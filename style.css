@@ -1,0 +1,369 @@
+/* ============================================================
+   Saem Physics — stylesheet
+   Design concept: a physics teacher's blackboard. Deep slate
+   "chalkboard" background, chalk-white text, a single warm
+   chalk-gold accent, and a scientific serif for headings.
+   ============================================================ */
+
+:root {
+  /* color */
+  --bg: #141d1a;
+  --bg-surface: #1b2622;
+  --ink: #f3efe2;
+  --ink-muted: #a7b2ab;
+  --gold: #ddb862;
+  --gold-bright: #f0cd83;
+  --on-accent: #1c1408;
+  --rule: rgba(243, 239, 226, 0.14);
+
+  /* type */
+  --font-display: "STIX Two Text", Georgia, "Times New Roman", serif;
+  --font-body: "Source Sans 3", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+  /* layout */
+  --container-w: 1120px;
+  --radius: 3px;
+}
+
+/* ---------- reset ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body, h1, h2, h3, p, figure { margin: 0; }
+img, svg { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; margin: 0; padding: 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* ---------- base ---------- */
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.15;
+  color: var(--ink);
+}
+
+h1 { font-size: clamp(2.5rem, 4vw + 1.2rem, 4.25rem); line-height: 1.08; }
+h2 { font-size: clamp(1.75rem, 2vw + 1.2rem, 2.5rem); max-width: 20ch; }
+h3 { font-size: 1.2rem; font-weight: 600; }
+
+.section-lead {
+  color: var(--ink-muted);
+  font-size: 1.05rem;
+  max-width: 60ch;
+  margin-top: 1rem;
+}
+
+:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: 0;
+  background: var(--gold);
+  color: var(--on-accent);
+  padding: 0.75rem 1.25rem;
+  z-index: 100;
+}
+.skip-link:focus { left: 1rem; top: 1rem; }
+
+.container {
+  max-width: var(--container-w);
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+}
+
+.section { padding-block: 5.5rem; }
+
+/* ---------- buttons ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 0.85rem 1.5rem;
+  border-radius: var(--radius);
+  border: 1.5px solid transparent;
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+  white-space: nowrap;
+}
+
+.btn-primary {
+  background: var(--gold);
+  color: var(--on-accent);
+}
+.btn-primary:hover { background: var(--gold-bright); }
+
+.btn-outline {
+  border-color: var(--rule);
+  color: var(--ink);
+}
+.btn-outline:hover { border-color: var(--gold); color: var(--gold-bright); }
+
+.btn-small { padding: 0.55rem 1.1rem; font-size: 0.875rem; }
+
+/* ---------- header ---------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(20, 29, 26, 0.92);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid var(--rule);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding-block: 1rem;
+}
+
+.wordmark {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.site-nav {
+  display: flex;
+  gap: 2rem;
+  margin-inline: auto;
+}
+.site-nav a { color: var(--ink-muted); font-size: 0.95rem; }
+.site-nav a:hover { color: var(--ink); }
+
+/* the CTA lives inside .site-nav but must keep its button look
+   rather than the plain-link color/size above — raised specificity
+   on purpose so it wins regardless of source order */
+nav.site-nav a.nav-cta,
+nav.site-nav a.nav-cta:hover,
+nav.site-nav a.nav-cta:focus-visible {
+  color: var(--on-accent);
+  font-size: 0.875rem;
+}
+
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 32px;
+  height: 32px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+.nav-toggle span {
+  display: block;
+  height: 2px;
+  background: var(--ink);
+  border-radius: 2px;
+}
+
+/* ---------- hero ---------- */
+.hero { padding-block: 4rem 5rem; position: relative; overflow: hidden; }
+
+.hero-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: center;
+  gap: 2rem;
+}
+
+.hero-copy { max-width: 52ch; }
+
+.hero-lead {
+  color: var(--ink-muted);
+  font-size: 1.15rem;
+  margin-top: 1.25rem;
+  max-width: 46ch;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2.25rem;
+}
+
+.hero-diagram {
+  width: 100%;
+  height: auto;
+  opacity: 0.9;
+  justify-self: end;
+}
+
+.hero-diagram .axis,
+.hero-diagram .tick {
+  stroke: var(--ink-muted);
+  stroke-width: 1.5;
+  opacity: 0.55;
+}
+.hero-diagram .axis-head { fill: var(--ink-muted); opacity: 0.55; }
+
+.hero-diagram .trajectory {
+  fill: none;
+  stroke: var(--gold);
+  stroke-width: 2.5;
+  stroke-dasharray: 7 7;
+  stroke-linecap: round;
+}
+
+.hero-diagram .vector {
+  stroke: var(--ink);
+  stroke-width: 2.5;
+}
+.hero-diagram .vector-head { fill: var(--ink); }
+
+.hero-diagram .angle-arc {
+  fill: none;
+  stroke: var(--ink-muted);
+  stroke-width: 1.5;
+}
+
+.hero-diagram .diagram-label {
+  fill: var(--ink-muted);
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 20px;
+}
+
+/* one deliberate page-load sequence: the launch vector draws first,
+   then the flight path fades in after it — nothing else on the page
+   animates on load */
+@media (prefers-reduced-motion: no-preference) {
+  .hero-diagram .vector {
+    stroke-dasharray: 200;
+    stroke-dashoffset: 200;
+    animation: draw 0.7s ease-out 0.2s forwards;
+  }
+  .hero-diagram .vector-head,
+  .hero-diagram .angle-arc,
+  .hero-diagram .diagram-label {
+    opacity: 0;
+    animation: fade-in 0.5s ease-out 0.85s forwards;
+  }
+  .hero-diagram .trajectory {
+    opacity: 0;
+    animation: fade-in 0.9s ease-out 1.1s forwards;
+  }
+}
+
+@keyframes draw { to { stroke-dashoffset: 0; } }
+@keyframes fade-in { to { opacity: 1; } }
+
+/* ---------- index list (programs + resources) ---------- */
+.index-list { margin-top: 2.5rem; border-top: 1px solid var(--rule); }
+
+.index-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+  gap: 1rem 2.5rem;
+  align-items: baseline;
+  padding-block: 1.6rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.index-row p { color: var(--ink-muted); }
+
+a.index-row-link {
+  border-left: 2px solid transparent;
+  padding-left: 0;
+  transition: border-color 0.15s ease, padding-left 0.15s ease, background-color 0.15s ease;
+}
+a.index-row-link:hover,
+a.index-row-link:focus-visible {
+  border-left-color: var(--gold);
+  padding-left: 1rem;
+  background: rgba(221, 184, 98, 0.06);
+}
+a.index-row-link:hover h3,
+a.index-row-link:focus-visible h3 { color: var(--gold-bright); }
+
+/* ---------- about / contact section backgrounds ---------- */
+.resources { background: var(--bg-surface); }
+
+.contact-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  gap: 3rem;
+}
+
+.contact-list { display: flex; flex-direction: column; gap: 0.9rem; font-style: normal; }
+.contact-list a { font-size: 1.05rem; }
+.contact-list a:hover { color: var(--gold-bright); }
+
+/* ---------- footer ---------- */
+.site-footer { border-top: 1px solid var(--rule); }
+.footer-inner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-block: 2rem;
+  color: var(--ink-muted);
+  font-size: 0.9rem;
+}
+.footer-inner a:hover { color: var(--gold-bright); }
+
+/* ---------- responsive ---------- */
+@media (max-width: 900px) {
+  .hero-inner { grid-template-columns: 1fr; }
+  .hero-diagram { justify-self: stretch; opacity: 0.55; margin-top: 1rem; }
+  .contact-inner { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 720px) {
+  .site-nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--bg);
+    border-bottom: 1px solid var(--rule);
+    flex-direction: column;
+    gap: 0;
+    margin: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.25s ease;
+  }
+  .site-nav.is-open { max-height: 320px; }
+  .site-nav a {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  nav.site-nav a.nav-cta {
+    margin: 0.75rem 1.5rem 1rem;
+    padding: 0.75rem 1.25rem;
+    border-bottom: none;
+  }
+  .nav-toggle { display: flex; }
+  .index-row { grid-template-columns: 1fr; gap: 0.4rem; }
+  .section { padding-block: 3.5rem; }
+}

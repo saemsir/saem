@@ -42,8 +42,10 @@ Stage 0/1 experience while keeping prediction claims tied to evidence.
   coverage, language/series selection, smoothing, and exclusion of target-year
   papers. Six channel-feed parser tests cover valid metadata, channel
   validation, malformed IDs, bounded snapshots, and bounded descriptions.
-  JavaScript syntax, HTML identifiers/links, local website smoke checks, and
-  the live hourly Pages deployment remain to be verified after this entry.
+  JavaScript syntax, 84 unique HTML IDs, 18 section links, and the live YouTube
+  feed pass. Pages deployment `42500311464` succeeded; the published homepage,
+  student module, site script, stylesheet, and 15-item feed return HTTP 200.
+  There is no local browser installed for rendered visual QA.
 - **Next:** gather legally usable, board/year/language-labelled papers and have
   a teacher review the questions and topic tags; only then add a curated,
   versioned dataset and past-only back-tests. Continue the kernel separately

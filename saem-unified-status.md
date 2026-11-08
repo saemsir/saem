@@ -43,8 +43,9 @@
 - GitHub Pages is enabled for public deployment from the workflow. A public
   YouTube RSS fetch is required for each build; a failed fetch stops the new
   deployment and leaves the previous published site intact. Deployment
-  `42497785994` succeeded; the homepage, CSS, JavaScript, and generated
-  15-video JSON feed all returned HTTP 200.
+  `42500311464` succeeded; the homepage, student module, site script,
+  stylesheet, and generated 15-video JSON feed all returned HTTP 200. No local
+  browser is installed for rendered visual QA.
 - The staged business and software architecture, including the correct roles
   for C17/QCOS, C++17, RISC-V, Open Math Harness/Rust, Python, R, Fortran, and
   Julia, is in [docs/SAEM_EDTECH_ARCHITECTURE.md](docs/SAEM_EDTECH_ARCHITECTURE.md).
@@ -59,9 +60,11 @@
   is an MIT teaching OS. Neither is currently wired into the site.
 - A DOM/canvas smoke harness, HTML link/ID checks, Markdown link checks, and
   local HTTP smoke tests pass for the motion-lab update. The new channel-feed
-  parser now has six passing tests. The new exam-studio model test passes;
-  live feed fetch and deployment checks for this update remain pending.
-  No visual browser test was available.
+  parser now has six passing tests. The exam-studio model tests cover scoring,
+  topic breakdown, provenance validation, language/series selection, minimum
+  evidence, smoothing, and target-year exclusion. The live feed yields 15
+  entries with descriptions; deployment `42500311464` succeeded. No visual
+  browser test was available.
 - Verified from the restored tree: JavaScript tests 35/35; C++ build and
   differential cases 325/325. `make test` passes and explicitly skips Python
   unittest discovery when no Python test files exist.

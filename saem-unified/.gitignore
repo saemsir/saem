@@ -1,0 +1,6 @@
+/build/
+/build_c17/
+/build_ef/
+/build_cos/
+__pycache__/
+*.py[cod]

@@ -9,10 +9,10 @@
   Julia, is in [docs/SAEM_EDTECH_ARCHITECTURE.md](docs/SAEM_EDTECH_ARCHITECTURE.md).
 - Stage 0 is the YouTube channel landing page. Share-card metadata and
   repository-accurate preview/Pages instructions have been added.
-- The 216-file source snapshot is
-  [saem-unified-bundle.py.txt](saem-unified-bundle.py.txt); it has not been
-  restored. Restore into a separate, clearly named subdirectory only after
-  checking the target is empty, then run its own documented tests.
+- The 216-file source snapshot is restored under
+  [saem-unified/](saem-unified/), in its own folder so the channel website is
+  untouched. All 216 files were cross-checked against the embedded SHA-256
+  manifest. A local README and ignore rules keep the boundary clear.
 - `open-math-harness-main.zip` is a Rust Open Math OS runtime, not a local
   physics solver; its README documents deployment dependencies. The xv6 archive
   is an MIT teaching OS. Neither is currently wired into the site.
@@ -21,9 +21,17 @@
   incorporated.
 - See the 2026-11-08 entry in [DAILY_INTUITION.md](DAILY_INTUITION.md) for what
   was actually inspected and the forecast baseline proposal.
-- Next: verify/publish the channel page, then restore and validate the Saem
-  snapshot without disturbing the website. Do not add forecasting claims until
-  past-only back-tests and provenance are working.
+- Verified from the restored tree: JavaScript tests 35/35; C++ build and
+  differential cases 325/325. `make test` passes and explicitly skips Python
+  unittest discovery when no Python test files exist.
+- `make c17` passed 51/56 groups; the remaining failures are environmental:
+  no `ld.lld` for the linked RISC-V audit and ThreadSanitizer startup failures
+  (`unexpected memory mapping`). Exact-rational and octonion oracle suites pass.
+- See the 2026-11-08 entry in [DAILY_INTUITION.md](DAILY_INTUITION.md) for
+  inspected source, proposed forecast baseline, and test evidence.
+- Next: resolve the validation gaps, then continue the saved Work-Time Engine
+  priority (rational slice 1.5) after reading its matching source material. Do
+  not add forecasting claims until past-only back-tests and provenance work.
 
 ## LATEST (2026-11-06): read this block first, then the PREVIOUS block and START HERE
 

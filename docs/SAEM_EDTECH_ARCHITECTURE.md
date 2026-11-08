@@ -121,9 +121,10 @@ data/configuration with tests, not hidden assumptions in UI code.
   current code.
 - [saem-unified-bundle.py.txt](../saem-unified-bundle.py.txt): a
   SHA-256-checked snapshot containing 216 files, including `core/c17`,
-  `core/src`, tests, and `docs`. It has **not** been restored into the current
-  working tree; its presence does not mean those modules can currently be
-  built from the repository root.
+  `core/src`, tests, and `docs`. It has been restored to the separate
+  [saem-unified/](../saem-unified/) directory; all 216 extracted files match
+  their embedded SHA-256 digests. Keep its build outputs separate from the
+  root channel site.
 - [open-math-harness-main.zip](../open-math-harness-main.zip): Rust source for
   Open Math Harness. Its README says the full runtime depends on the Open Math
   OS deployment environment; only a small example is self-contained locally.
@@ -150,11 +151,30 @@ notes and licensed integrations beside them.
 | 4 — QCOS and mathematics | Use QCOS gates/exact math where the restored implementation actually supports a calculation. Evaluate Open Math Harness separately for proof-verification work; keep it outside the scoring authority until independently validated. | Cross-language contract tests, exact-answer or explicit-refusal behavior, and no unsupported proof/forecast claims. |
 | 5 — RISC-V and scale | Port or deploy bounded components to a specified RISC-V board/simulator only after the software contract is stable. | Target-specific builds, simulator or hardware tests, measured resource limits, and a recovery path. |
 
+### Stage 1 verification in this workspace
+
+- **Passed:** restored snapshot contains 216/216 files with matching hashes;
+  JavaScript reference tests pass 35/35; C++ build and differential suite pass
+  325/325 cases.
+- **Passed:** `make test` now completes the JavaScript and C++ suites and
+  explicitly reports that Python unittest discovery is skipped because the
+  snapshot has no `test_*.py` files. No Python tests are claimed.
+- **Partially blocked:** the QCOS check passes its strict C builds, header
+  checks, zero-heap/global-state audits, RV32/RV64 encoding and decode
+  comparisons, exact-rational oracle (192,805 commands), and algebra checks.
+  Full completion is blocked by unavailable `ld.lld` for the RISC-V linked
+  image audit and ThreadSanitizer's `unexpected memory mapping` in the
+  container. Record these as environment limitations, not as passing checks
+  or proven source defects.
+
 ## Immediate continuation
 
 The smallest requested product step is the channel landing page, not a
 simulated learning backend. The page already exists; the current change makes
-it shareable and fixes its publishing instructions. Next, restore the 216-file
-snapshot into a separate directory and verify it before connecting any runtime.
-Review and index the two EdTech PDFs with an available extractor before claiming
-their detailed ideas have been incorporated.
+it shareable and fixes its publishing instructions. The 216-file snapshot is
+now separately restored and its C++/JavaScript baseline has been checked.
+Resolve the test-environment blockers and missing Python tests before calling
+the recovered baseline fully green. The next core-engine change in the saved
+priority order is rational slice 1.5; read and log its matching math and C
+sources before editing. Review and index the two EdTech PDFs with an available
+extractor before claiming their detailed ideas have been incorporated.

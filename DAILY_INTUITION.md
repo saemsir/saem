@@ -29,7 +29,9 @@ step-by-step path toward the offline-first physics learning product.
   material, not the Saem production backend.
 - [saem-unified-bundle.py.txt](saem-unified-bundle.py.txt): its manifest lists
   216 SHA-256-checked files, including `core/c17`, the EdTech `core/src`, tests,
-  and docs. The bundle was inspected without executing or restoring it.
+  and docs. The bundle was inspected, restored to [saem-unified/](saem-unified/),
+  and all extracted files were independently compared with their manifest
+  digests.
 
 The two supplied EdTech PDFs were identified as 351 pages and 8 pages, but no
 PDF text extractor is installed in this workspace. Their contents have not
@@ -71,6 +73,26 @@ been read; no book equation or recommendation is attributed to them here.
   that is actually in this repository.
 - Added share-card metadata to [index.html](index.html); no backend behavior
   or third-party runtime dependency was added.
+- Restored all 216 source files under [saem-unified/](saem-unified/) without
+  changing the root website and added a local README and generated-file ignore
+  rules.
+- Corrected the recovered `Makefile` to skip Python unittest discovery only
+  when no Python test files exist; it prints an explicit message rather than
+  returning unittest's "no tests" exit code.
+
+### Snapshot verification results
+
+- `node --test reference/test/*.test.js`: 35/35 pass.
+- `python3 tools/build.py cli` and the C++ differential harness: 325/325
+  cases agree.
+- `make test`: passes; 35 JavaScript tests and 325 C++ differential cases pass.
+  The target explicitly reports that no Python unit tests exist and skips that
+  suite. No Python test coverage is claimed.
+- `make c17`: 51/56 groups pass. Full exit is blocked by missing `ld.lld`
+  (RISC-V link audit) and four ThreadSanitizer runs failing at startup with
+  `FATAL: ThreadSanitizer: unexpected memory mapping`. The rational and algebra
+  oracles, RV32/RV64 ISA comparisons, strict C builds, and non-TSan C tests
+  passed. Do not mask these infrastructure failures as green.
 
 One entry per working day, written BEFORE the code it drives (rule in `docs/STANDING_ORDERS.md` section 2).
 Each entry: books and sections read, equations and invariants, code patterns, failure modes, and what changed in our code.

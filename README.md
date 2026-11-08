@@ -2,9 +2,9 @@
 
 The public front door for Saem Physics is a responsive, static website for
 students exploring lessons, exam solutions, and physics through computation.
-The design keeps the existing channel, playlist, admission, Telegram, and live
-class links, with a searchable lesson library and short code examples in the
-requested languages.
+It includes an original, interactive motion explainer, keeps the channel,
+playlist, admission, Telegram, and live-class links, and offers a searchable
+lesson library with short code examples in the requested languages.
 
 ## Run locally
 
@@ -35,6 +35,8 @@ in [the staged architecture](docs/SAEM_EDTECH_ARCHITECTURE.md).
 - [index.html](index.html), [style.css](style.css), [script.js](script.js):
   public website and browser interactions.
 - [docs/qcos/](docs/qcos/): QCOS design and Work-Time Engine plan.
-- [references/](references/): supplied books, archives, and source snapshot,
-  kept separate from deployable site assets.
+- [books/](books/): supplied physics, mathematics, computation, programming,
+  and EdTech reference PDFs, grouped by task.
+- [references/](references/): source archives and source snapshot, kept
+  separate from deployable site assets.
 - [saem-unified/](saem-unified/): restored C17/C++ source, tests, and tools.

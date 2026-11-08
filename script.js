@@ -245,5 +245,202 @@ end program motion`
     if (event.key === "Escape") closeMenu();
   });
 
+  const motionCanvas = document.getElementById("motion-canvas");
+  if (motionCanvas) {
+    // Keep this first explainer on 2D Canvas; the source flags costly graphics on budget phones (Saem Global EdTech, p. 59).
+    const motionContext = motionCanvas.getContext("2d");
+    if (motionContext) {
+      const playButton = document.getElementById("motion-play");
+      const timeSlider = document.getElementById("motion-time");
+      const timeOutput = document.getElementById("motion-time-output");
+      const accelerationSlider = document.getElementById("motion-acceleration");
+      const accelerationOutput = document.getElementById("motion-acceleration-output");
+      const motionStatus = document.getElementById("motion-status");
+      const maxTime = Number(timeSlider.max);
+      const initialVelocity = 3;
+      let time = Number(timeSlider.value);
+      let playing = false;
+      let previousFrame = null;
+      let frameId = 0;
+
+      function drawArrow(ctx, x, y, value, color, label) {
+        if (Math.abs(value) < 0.05) return;
+        const direction = Math.sign(value);
+        const length = Math.min(20 + Math.abs(value) * 11, 72);
+        const endX = x + direction * length;
+        ctx.strokeStyle = color;
+        ctx.fillStyle = color;
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(x, y);
+        ctx.lineTo(endX, y);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(endX, y);
+        ctx.lineTo(endX - direction * 7, y - 4);
+        ctx.lineTo(endX - direction * 7, y + 4);
+        ctx.closePath();
+        ctx.fill();
+        ctx.font = "12px sans-serif";
+        ctx.fillText(label, endX + direction * 8, y + 4);
+      }
+
+      function drawMotion() {
+        const bounds = motionCanvas.getBoundingClientRect();
+        const width = Math.max(bounds.width, 320);
+        const height = Math.max(bounds.height, 240);
+        const pixelRatio = window.devicePixelRatio || 1;
+        const pixelWidth = Math.round(width * pixelRatio);
+        const pixelHeight = Math.round(height * pixelRatio);
+        if (motionCanvas.width !== pixelWidth || motionCanvas.height !== pixelHeight) {
+          motionCanvas.width = pixelWidth;
+          motionCanvas.height = pixelHeight;
+        }
+        motionContext.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+        motionContext.clearRect(0, 0, width, height);
+        motionContext.fillStyle = "#101b19";
+        motionContext.fillRect(0, 0, width, height);
+
+        const acceleration = Number(accelerationSlider.value);
+        const position = initialVelocity * time + 0.5 * acceleration * time * time;
+        const velocity = initialVelocity + acceleration * time;
+        const padding = 48;
+        const trackWidth = width - padding * 2;
+        const trackY = height * 0.36;
+        const graphTop = height * 0.68;
+        const graphBottom = height - 31;
+        const maxPosition = 26;
+        const particleX = padding + (position / maxPosition) * trackWidth;
+        const graphX = (value) => padding + (value / maxTime) * trackWidth;
+        const graphY = (value) => graphBottom - (value / maxPosition) * (graphBottom - graphTop);
+
+        motionContext.strokeStyle = "rgba(245,242,233,.12)";
+        motionContext.lineWidth = 1;
+        for (let i = 0; i <= 4; i += 1) {
+          const x = padding + (trackWidth * i) / 4;
+          motionContext.beginPath();
+          motionContext.moveTo(x, graphTop);
+          motionContext.lineTo(x, graphBottom);
+          motionContext.stroke();
+        }
+
+        motionContext.font = "11px sans-serif";
+        motionContext.fillStyle = "rgba(245,242,233,.62)";
+        motionContext.fillText("PARTICLE TRACK", padding, 24);
+        motionContext.fillText("POSITION x (m)", padding, graphTop - 12);
+        motionContext.fillText("TIME t (s)", width - padding - 64, height - 8);
+
+        motionContext.strokeStyle = "rgba(245,242,233,.48)";
+        motionContext.lineWidth = 1.5;
+        motionContext.beginPath();
+        motionContext.moveTo(padding, trackY);
+        motionContext.lineTo(width - padding, trackY);
+        motionContext.moveTo(padding, graphTop);
+        motionContext.lineTo(padding, graphBottom);
+        motionContext.lineTo(width - padding, graphBottom);
+        motionContext.stroke();
+
+        motionContext.strokeStyle = "#f0bf91";
+        motionContext.lineWidth = 2.5;
+        motionContext.beginPath();
+        for (let step = 0; step <= 80; step += 1) {
+          const sampleTime = (maxTime * step) / 80;
+          const samplePosition = initialVelocity * sampleTime + 0.5 * acceleration * sampleTime * sampleTime;
+          const x = graphX(sampleTime);
+          const y = graphY(Math.max(0, Math.min(maxPosition, samplePosition)));
+          if (step === 0) motionContext.moveTo(x, y);
+          else motionContext.lineTo(x, y);
+        }
+        motionContext.stroke();
+
+        const currentGraphX = graphX(time);
+        motionContext.setLineDash([4, 5]);
+        motionContext.strokeStyle = "rgba(155,216,223,.56)";
+        motionContext.beginPath();
+        motionContext.moveTo(currentGraphX, trackY + 13);
+        motionContext.lineTo(currentGraphX, graphBottom);
+        motionContext.stroke();
+        motionContext.setLineDash([]);
+
+        drawArrow(motionContext, particleX, trackY - 28, velocity, "#9bd8df", `v ${velocity.toFixed(1)}`);
+        drawArrow(motionContext, particleX, trackY + 30, acceleration, "#c1d998", `a ${acceleration.toFixed(1)}`);
+
+        motionContext.fillStyle = "#f0bf91";
+        motionContext.beginPath();
+        motionContext.arc(particleX, trackY, 8, 0, Math.PI * 2);
+        motionContext.fill();
+        motionContext.strokeStyle = "#f5f2e9";
+        motionContext.lineWidth = 2;
+        motionContext.stroke();
+
+        motionContext.fillStyle = "#9bd8df";
+        motionContext.beginPath();
+        motionContext.arc(currentGraphX, graphY(position), 5, 0, Math.PI * 2);
+        motionContext.fill();
+      }
+
+      function setTime(nextTime) {
+        time = Math.max(0, Math.min(maxTime, nextTime));
+        timeSlider.value = time.toFixed(2);
+        timeOutput.textContent = `${time.toFixed(1)} s`;
+        drawMotion();
+      }
+
+      function pauseMotion(message) {
+        playing = false;
+        previousFrame = null;
+        if (frameId && typeof cancelAnimationFrame === "function") {
+          cancelAnimationFrame(frameId);
+        }
+        frameId = 0;
+        playButton.textContent = "Play motion";
+        playButton.setAttribute("aria-pressed", "false");
+        if (message) motionStatus.textContent = message;
+      }
+
+      function animate(timestamp) {
+        if (!playing) return;
+        if (previousFrame !== null) {
+          time += Math.min(timestamp - previousFrame, 50) / 1000;
+          if (time >= maxTime) {
+            setTime(maxTime);
+            pauseMotion("End of model. Press Play to run it again.");
+            return;
+          }
+          setTime(time);
+        }
+        previousFrame = timestamp;
+        frameId = requestAnimationFrame(animate);
+      }
+
+      timeSlider.addEventListener("input", () => {
+        if (playing) pauseMotion("Paused. Scrub the time slider or press Play.");
+        setTime(Number(timeSlider.value));
+        motionStatus.textContent = "Time set with the slider.";
+      });
+      accelerationSlider.addEventListener("input", () => {
+        const acceleration = Number(accelerationSlider.value);
+        accelerationOutput.textContent = `${acceleration >= 0 ? "+" : ""}${acceleration.toFixed(1)} m/s²`;
+        drawMotion();
+        motionStatus.textContent = "Acceleration changed; the curve and arrows update.";
+      });
+      playButton.addEventListener("click", () => {
+        if (playing) {
+          pauseMotion("Paused. Scrub the time slider or press Play.");
+          return;
+        }
+        if (time >= maxTime) setTime(0);
+        playing = true;
+        playButton.textContent = "Pause motion";
+        playButton.setAttribute("aria-pressed", "true");
+        motionStatus.textContent = "Playing the constant-acceleration model.";
+        frameId = requestAnimationFrame(animate);
+      });
+      window.addEventListener("resize", drawMotion);
+      accelerationOutput.textContent = `${Number(accelerationSlider.value) >= 0 ? "+" : ""}${Number(accelerationSlider.value).toFixed(1)} m/s²`;
+      setTime(time);
+    }
+  }
+
   document.getElementById("current-year").textContent = String(new Date().getFullYear());
 })();

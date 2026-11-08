@@ -8,7 +8,19 @@
 - The website has a searchable/filterable lesson library and accessible
   language-example tabs. It presents teaching snippets for C17, C, C++17,
   Python, Rust, R, Julia, Fortran, and Lisp without claiming those languages
-  are all integrated. GitHub Pages is static and cannot run the C17 backend.
+  are all integrated. The new motion lab is a user-controlled 2D Canvas
+  explanation of constant acceleration. GitHub Pages is static and cannot run
+  the C17 backend.
+- All 156 supplied PDFs are organized under `books/` by physics, mathematics,
+  computation, programming, EdTech, and research-review. All moved PDF blobs
+  match their original committed Git objects. See [books/README.md](books/README.md)
+  for the routing index.
+- Saem Global EdTech has had a targeted text review (PDF pages 58-61; its
+  embedded page tree has 686 pages). The companion book remains unread. Its
+  visual-learning guidance informed the Canvas explainer; performance and
+  offline-app proposals remain future work. The PDF contains a
+  credential-like example value; see `books/edtech/README.md` and rotate it if
+  it is real.
 - The new Pages workflow stages only `index.html`, `style.css`, and
   `script.js`; it deliberately excludes the research references and backend
   sources from the deployed site artifact.
@@ -28,9 +40,9 @@
 - [The Open Math archive](references/archives/open-math-harness-main.zip) is a Rust Open Math OS runtime, not a local
   physics solver; its README documents deployment dependencies. The xv6 archive
   is an MIT teaching OS. Neither is currently wired into the site.
-- The two EdTech PDFs (351 and 8 pages) remain unread because PDF extraction
-  tools are absent. Review their contents before claiming their details were
-  incorporated.
+- A DOM/canvas smoke harness, HTML link/ID checks, Markdown link checks, and
+  local HTTP smoke tests pass for the motion-lab update. No visual browser test
+  was available.
 - Verified from the restored tree: JavaScript tests 35/35; C++ build and
   differential cases 325/325. `make test` passes and explicitly skips Python
   unittest discovery when no Python test files exist.
@@ -40,8 +52,9 @@
   rational oracle reports 0 exact-fit sum refusals. The earlier full baseline
   also encountered ThreadSanitizer startup failures (`unexpected memory
   mapping`); the full sanitizer suite has not been rerun after this change.
-- See the continued 2026-11-08 entry in [DAILY_INTUITION.md](DAILY_INTUITION.md)
-  for the folder reorganization, exact-rational derivation, and test evidence.
+- See the newest 2026-11-08 entries in [DAILY_INTUITION.md](DAILY_INTUITION.md)
+  for book organization, targeted EdTech reading, website changes, and test
+  evidence; the older exact-rational entry remains below.
 - Next: slice 2 `cos_mat` (exact matrix elimination and the four subspaces),
   following the Work-Time Engine priority. Do not add forecasting claims until
   past-only back-tests and provenance work.

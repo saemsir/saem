@@ -100,8 +100,36 @@ C17 is the single source of truth. Python (`tools/alg_oracle.py`, `tools/check_a
 4. OPEN: the repository path name. The directives say `core/saem/`; the sovereign kernel lives in `core/c17/`. I keep `core/c17/` (no rename) until you say otherwise.
 5. OPEN: `check_sir` is named in the directives; SIR steps 3 and 4 do not exist yet, so neither does it.
 
-## 10. Sources (all project books; see docs/DAILY_INTUITION.md, entry 2026-11-04 to 2026-11-06, for sections and page numbers)
+## 10. Sources (all project books; see ../../DAILY_INTUITION.md, entry 2026-11-04 to 2026-11-06, for sections and page numbers)
 
 Baez, The Octonions; Baez's review of Conway and Smith; Artin, Algebra 2nd ed.; MIT 18.701 (Artin) lecture 29; MIT 18.755 (Etingof) 6.2; Hamilton, Lectures on Quaternions (1853); Lagrange, Mecanique analytique;
 Einstein 1916 in The Principle of Relativity; Strang, Computational Science and Engineering; Beal, the amorphous-medium papers (AIM-2003-xxx, AIM-2005-001, amorphous-medium-UPP-LNCS); Hillis and the Connection Machine papers; the Creator Book `Vision Instructions for QCOS.pdf`.
 NOT in the project: MIT 18.703 and 18.745. NOT yet read: the Turing set, Fourier, MIT 18.03 c01, 8.04, 8.321, `computation_structures-mit.pdf`.
+
+## 11. New instruction and book intake (2026-11-08)
+
+The latest saved instruction snapshot in this checkout is
+[INSTRUCTIONS_2026-11-06.md](../../INSTRUCTIONS_2026-11-06.md); the daily
+protocol and book map are in [STANDING_ORDERS.md](../../STANDING_ORDERS.md).
+The Work-Time Engine remains the top priority and slice 2 is next. This
+checkout does not contain a newer `project_info` result, so no newer verbatim
+instruction snapshot is claimed.
+
+The supplied PDFs are now organized under [`books/`](../../books/) by primary
+task. This table is a reading route, not a claim that every listed source has
+been reviewed. The mathematics and physics references below remain unread for
+their Work-Time Engine slices; the targeted Saem Global EdTech reading is
+recorded separately in [`DAILY_INTUITION.md`](../../DAILY_INTUITION.md).
+
+| Work-Time slice | Available source files | Intake status and use |
+|---|---|---|
+| S2 `cos_mat` | [`Gilbert Strang MIT Computational Science and Engineering (1).pdf`](../../books/mathematics/Gilbert%20Strang%20MIT%20Computational%20Science%20and%20Engineering%20%281%29.pdf); [`projection matrix.pdf`](../../books/mathematics/projection%20matrix.pdf); [`mit6_042js15_textbook.pdf`](../../books/mathematics/mit6_042js15_textbook.pdf) | Strang was previously read for other topics; revisit only the sections needed for elimination and subspaces. The other two are queued/unread. Next reading batch: Strang, projection matrix, and MIT 6.042; keep [`projection_theory_mit.pdf`](../../books/mathematics/projection_theory_mit.pdf) as a follow-up. |
+| S3 constraints and S5 calculus | [`Differential_MIT18_03S10_c01-combined.pdf`](../../books/mathematics/Differential_MIT18_03S10_c01-combined.pdf); [`mitres_18_001_gilbert strang.pdf`](../../books/mathematics/mitres_18_001_gilbert%20strang.pdf); the Fourier files `analyticaltheory00fourrich*.PDF` (not in this checkout); [`invariant variation by emmi noether.pdf`](../../books/physics/invariant%20variation%20by%20emmi%20noether.pdf) | Available, unread in this work item. Route to calculus, spectral, and variational slices; do not treat filename matching as review. |
+| S5 physics extensions | [`QuantumMechanics_MIT8_04S16_LecNotes1-combined.pdf`](../../books/physics/QuantumMechanics_MIT8_04S16_LecNotes1-combined.pdf); [`Quantum_matter_MIT8_321F17_lec1 (1)-combined.pdf`](../../books/physics/Quantum_matter_MIT8_321F17_lec1%20%281%29-combined.pdf); [`mit8_01scs22_chapter1.pdf`](../../books/physics/mit8_01scs22_chapter1.pdf) and the remaining `mit8_01scs22_*` chapters | Available, unread; defer until the relevant S5 question is defined. |
+| Later computation and compiler work | [`Algorithm_MIT6_006S20.pdf`](../../books/computation/Algorithm_MIT6_006S20.pdf); [`students digital guide - mit computer structure.pdf`](../../books/computation/students%20digital%20guide%20-%20mit%20computer%20structure.pdf); [`MIT_6.004_Computation_Structures_Spring_2017_Combined_Lecture_Notes.pdf`](../../books/computation/MIT_6.004_Computation_Structures_Spring_2017_Combined_Lecture_Notes.pdf); [`The_Turing_Bombe_by_Graham_Ellsbury.pdf`](../../books/computation/The_Turing_Bombe_by_Graham_Ellsbury.pdf) | Available, unread; keep behind the current Work-Time Engine slices unless a specific dependency arises. |
+| Language and systems references | [`C_Book_2nd.pdf`](../../books/programming/C_Book_2nd.pdf); [`Advanced_Programming_with_Python.pdf`](../../books/programming/Advanced_Programming_with_Python.pdf); [`rust_book.pdf`](../../books/programming/rust_book.pdf); [`julia-fresh-approach-BEKS.pdf`](../../books/programming/julia-fresh-approach-BEKS.pdf); [`fortran_manual.pdf`](../../books/programming/fortran_manual.pdf); [`UNIX OPERATING SYSTEM.pdf`](../../books/computation/UNIX%20OPERATING%20SYSTEM.pdf); [`operating system MIT6_828F12_xv6-book-rev7.pdf`](../../books/computation/operating%20system%20MIT6_828F12_xv6-book-rev7.pdf) | Available, unread in this work item; route to the relevant frontend or kernel backlog, not S2. |
+
+The EdTech PDFs are in [`books/edtech/`](../../books/edtech/); the Saem Global
+EdTech book has now been reviewed for the website design, while its companion
+book remains unread. See its folder README for the reading notes and
+credential-safety warning.

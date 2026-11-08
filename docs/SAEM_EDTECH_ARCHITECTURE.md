@@ -124,13 +124,12 @@ data/configuration with tests, not hidden assumptions in UI code.
 - [index.html](../index.html), [style.css](../style.css), and
   [script.js](../script.js): an existing one-page Saem Physics channel site
   with video, playlist, topic, admission, Telegram, and live-class links.
-- [Saem Global EdTech.pdf](../references/books/Saem%20Global%20EdTech.pdf): a 351-page source
-  PDF, and
-  [Saem_EdTech_Research_and_Codespaces_Build_Book.docx.PDF](../references/books/Saem_EdTech_Research_and_Codespaces_Build_Book.docx.PDF):
-  an 8-page source PDF. A PDF text extractor is not installed in this
-  workspace, so their contents have **not** been read or indexed here. Do not
-  treat their detailed contents as incorporated until they have been extracted
-  and reviewed.
+- [The organized book library](../books/README.md) includes the
+  [Saem Global EdTech book](../books/edtech/Saem%20Global%20EdTech.pdf), whose
+  PDF page tree contains 686 pages. Its visual-learning and performance notes
+  were reviewed for this website update (pages 58-61). The companion
+  [Research and Codespaces Build Book](../books/edtech/Saem_EdTech_Research_and_Codespaces_Build_Book.docx.PDF)
+  remains unread; no detailed claims are attributed to it.
 - [INSTRUCTIONS_2026-11-06.md](../INSTRUCTIONS_2026-11-06.md),
   [STANDING_ORDERS.md](../STANDING_ORDERS.md), and
   [saem-unified-status.md](../saem-unified-status.md): persistent product,

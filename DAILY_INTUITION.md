@@ -1,5 +1,102 @@
 # Daily intuition log (newest first)
 
+## 2026-11-08 (continued): book library and visual physics lab
+
+Work item: organize the supplied references by their primary use, resume the
+Saem Physics visual-learning website, and read the relevant parts of the Saem
+Global EdTech book before changing the experience.
+
+### Reading and design notes
+
+- Read the visual-learning, UI, and performance discussion in
+  [Saem Global EdTech.pdf](books/edtech/Saem%20Global%20EdTech.pdf), PDF pages
+  58-61. The local PDF page tree contains 686 pages. The supplied companion
+  [Research and Codespaces Build Book](books/edtech/Saem_EdTech_Research_and_Codespaces_Build_Book.docx.PDF)
+  remains unread; this is a targeted review, not a claim that all 686 pages
+  were read.
+- **Invariant/design rule:** a visual explanation should help expose a
+  mathematical relationship without burying it in interface noise. The book
+  also identifies low-end device performance as a constraint and proposes a
+  static vector fallback below 45 FPS. That threshold is its proposal; this
+  static site does not measure FPS.
+- **Code pattern applied:** one bounded, original 2D Canvas model with
+  explicit Play/Pause, time and acceleration controls, position/velocity/
+  acceleration annotations, and the graph of
+  `x(t) = ut + 1/2 at^2`. No GPU particle effect or autoplay is needed for this
+  first explainer; the existing site colors and typography remain distinct.
+- **Failure mode avoided:** excessive gamification/clutter and high-cost
+  animation that can stutter or drain a phone battery. The new interaction is
+  user-started, keyboard-operable through native controls, and has a static
+  initial frame. A measured adaptive fallback is deferred until there is a
+  performance case for it.
+- The PDF also contains a credential-like value in an example configuration.
+  It was not copied into code or notes. The original book is preserved
+  unchanged; if the value is real, it should be revoked and rotated and the
+  repository sharing history reviewed.
+
+### What changed
+
+- Moved all 156 PDFs into task-oriented
+  [book folders](books/README.md): physics (90), mathematics (33), computation
+  (17), programming (12), EdTech (2), and title-review research (2). The source
+  filenames and PDF bytes are preserved; the two opaque filenames are
+  quarantined for identification rather than guessed into a subject.
+- Updated the project map, references index, architecture notes, and Work-Time
+  Engine book links to use the new folders.
+- Added the interactive motion lab to [index.html](index.html), styled it in
+  [style.css](style.css), and connected its controls and drawing in
+  [script.js](script.js). It is an original teaching interaction inspired by
+  visual explanation, not copied 3Blue1Brown artwork or a replacement for the
+  planned offline product.
+
+### Verification and next action
+
+- Verified: JavaScript syntax; 30 unique HTML IDs and all 25 local
+  navigation/assets; Markdown links in 13 project documents; a DOM/canvas
+  interaction smoke test for lesson setup, tabs, slider changes, animation,
+  and pause; and byte-for-byte Git-blob comparison for all 156 moved PDFs.
+  `git diff --check` passes. A visual browser test is still unavailable in this
+  environment.
+- Next: finish those checks, then continue extending the site with one focused
+  visual explanation at a time; keep offline downloads, account services, and
+  production forecasting as separate future work.
+
+## 2026-11-08 (continued): instruction and book intake for the Work-Time Engine
+
+Work item: review the latest saved instructions and route newly uploaded
+reference books into the active Work-Time Engine matrix for continuity.
+
+### Context reviewed
+
+- Read [INSTRUCTIONS_2026-11-06.md](INSTRUCTIONS_2026-11-06.md),
+  [STANDING_ORDERS.md](STANDING_ORDERS.md), the current
+  [Work-Time Engine matrix](docs/qcos/WORKMATRIX.md), and the backend status.
+  The saved instruction snapshot confirms the Work-Time Engine priority;
+  slice 2 `cos_mat` is the next implementation slice.
+- Identified new references for matrix/projection work, calculus and Fourier,
+  physics, algorithms, computation structures, languages, and operating
+  systems. The EdTech PDFs are now organized under [books/edtech/](books/edtech/).
+- At that prior handoff, `pdftotext`, `pdfinfo`, `mutool`, and common Python
+  PDF packages were absent, so the new Work-Time Engine references were left
+  unread. In this continuation a local text-layer extraction was used for the
+  Saem Global EdTech PDF only; the S2 mathematics sources remain unread. See
+  the newest entry below for the targeted EdTech reading and website work.
+- The newest saved instruction snapshot in the checkout is dated 2026-11-06.
+  There is no newer `project_info` result here, so no new verbatim snapshot was
+  fabricated.
+
+### What changed and next action
+
+- Added a filename-based, explicitly unread routing table to
+  [WORKMATRIX.md](docs/qcos/WORKMATRIX.md), with a three-source reading batch
+  for the next S2 work item and later-slice queues for the remaining books.
+- Clarified in [references/README.md](references/README.md) that books are
+  indexed by topic in the book library.
+- Next: read the S2 batch (Strang CSE, `projection matrix.pdf`, and MIT 6.042)
+  from extracted text before implementing `cos_mat`; log the specific sections,
+  equations, code patterns, and failure modes then. No implementation or
+  verification claims are made by this intake update.
+
 ## 2026-11-08 (continued): redesigning the public Saem Physics website
 
 Work item: remake the public channel site, include useful teaching examples
@@ -13,7 +110,7 @@ publication without claiming an unconnected C17 backend.
   backend [STATUS.md](saem-unified/docs/STATUS.md), [PROGRESS_c17.md](saem-unified/docs/PROGRESS_c17.md),
   and the recent project intuition entries.
 - Checked the project book map. This checkout contains the two supplied EdTech
-  PDFs in [references/books/](references/books/), but no extracted text or
+  PDFs in [books/edtech/](books/edtech/), but no extracted text or
   other matching books. `pdftotext`, `pdfinfo`, `mutool`, `pypdf`, `fitz`, and
   `pdfminer` are unavailable; therefore I did not attribute a new design rule
   or quotation to either PDF.
@@ -155,9 +252,10 @@ step-by-step path toward the offline-first physics learning product.
   and all extracted files were independently compared with their manifest
   digests.
 
-The two supplied EdTech PDFs were identified as 351 pages and 8 pages, but no
-PDF text extractor is installed in this workspace. Their contents have not
-been read; no book equation or recommendation is attributed to them here.
+At this earlier point, PDF extraction was unavailable, so the EdTech books
+had not been read. In the 2026-11-08 continuation at the top of this log, the
+Global EdTech PDF's 686-page tree was extracted locally and pages 58-61 were
+reviewed for the website. Its companion remains unread.
 
 ### Equations and invariants
 

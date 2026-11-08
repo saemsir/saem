@@ -65,6 +65,11 @@ They change over time: on 2026-11-01 they added Rust to the frontend languages (
 | Work-Time Engine: amorphous medium, homeostasis | AIM-2003-007/011/012/017/027, AIM-2005-001, amorphous-medium-UPP-LNCS, MIT-CSAIL-TR-2005-005 (Beal) | lsmas-final; intelsys05; R language mit Project; deepr; ISLR (R frontend, statistics) |
 | Decidability, discrete-state machines, Zone 0 (added 2026-11-06) | Turing_Paper_1936; The Annotated Turing (Petzold); Computing Machinery and Intelligence | The Essential Turing; computation_structures-mit (not yet read) |
 
+The supplied PDFs are organized under `books/` by physics, mathematics,
+computation, programming, EdTech, and research-review. Use
+`books/README.md` as the filename and work-item index; the historical filenames
+above are unchanged within their topic folders.
+
 ## 3. Save protocol (every day, before the usage limit)
 
 1. Update `docs/STATUS.md` and `docs/PROGRESS_c17.md` (what changed, what is verified, what is only planned).

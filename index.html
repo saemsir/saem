@@ -28,6 +28,7 @@
       </button>
       <nav class="primary-nav" id="primary-nav" aria-label="Main navigation">
         <a href="#learn">Learn</a>
+        <a href="#visual-lab">Visual lab</a>
         <a href="#library">Lesson library</a>
         <a href="#method">Our method</a>
         <a href="#lab">Code &amp; physics</a>
@@ -79,6 +80,54 @@
           <p>Build an intuition, connect it to the mathematics, and practice using it. Explore the lessons already available on the Saem Physics channel.</p>
         </div>
         <div class="subject-stamp" aria-hidden="true"><span>LEARN</span><b>∴</b><span>REASON</span></div>
+      </div>
+    </section>
+
+    <section class="visual-lab-section section" id="visual-lab" aria-labelledby="motion-title">
+      <div class="container">
+        <div class="visual-lab-heading">
+          <div>
+            <p class="eyebrow">A small visual experiment</p>
+            <h2 id="motion-title">See motion <em>change.</em></h2>
+          </div>
+          <p>One particle, one rule. Scrub time or change the acceleration and watch the position graph respond.</p>
+        </div>
+        <div class="motion-lab">
+          <div class="motion-stage">
+            <div class="motion-stage-topline"><span>CONSTANT ACCELERATION · ONE DIMENSION</span><span>INTERACTIVE MODEL</span></div>
+            <canvas id="motion-canvas" class="motion-canvas" width="960" height="360" role="img" aria-label="A particle moving on a line with a velocity arrow and a position versus time graph. Use the controls to change time and acceleration.">
+              A particle moves along a line. Its position graph is x of t equals 3t plus one half a t squared.
+            </canvas>
+            <div class="motion-legend" aria-hidden="true">
+              <span><i class="legend-position"></i> position</span>
+              <span><i class="legend-velocity"></i> velocity</span>
+              <span><i class="legend-acceleration"></i> acceleration</span>
+            </div>
+            <div class="motion-controls">
+              <button id="motion-play" class="motion-play" type="button" aria-pressed="false">Play motion</button>
+              <label class="motion-control">
+                <span>Time <output id="motion-time-output" for="motion-time">0.0 s</output></span>
+                <input id="motion-time" type="range" min="0" max="4" step="0.05" value="0">
+              </label>
+              <label class="motion-control">
+                <span>Acceleration <output id="motion-acceleration-output" for="motion-acceleration">+0.5 m/s²</output></span>
+                <input id="motion-acceleration" type="range" min="-1.5" max="1.5" step="0.1" value="0.5">
+              </label>
+            </div>
+            <p id="motion-status" class="motion-status" aria-live="polite">Paused. Scrub the time slider or press Play.</p>
+          </div>
+          <aside class="motion-explanation">
+            <p class="eyebrow">The model</p>
+            <h3>A changing position has a shape.</h3>
+            <p>Start at the origin with velocity <i>u</i> = 3 m/s. Constant acceleration bends the position-versus-time graph into a parabola.</p>
+            <div class="motion-equation" aria-label="Position equals initial velocity times time plus one half acceleration times time squared">
+              <span>x(t) = ut + ½at<sup>2</sup></span>
+              <small>Here, u = 3 m/s</small>
+            </div>
+            <p class="motion-prompt">What changes when <i>a</i> becomes negative? Try it, then compare the velocity arrow with the curve's slope.</p>
+          </aside>
+        </div>
+        <p class="visual-lab-note">The animation starts only when you choose Play; every value can also be explored with the sliders. This lightweight drawing is designed to stay usable on mobile devices.</p>
       </div>
     </section>
 

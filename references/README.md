@@ -1,15 +1,9 @@
 # Supplied reference materials
 
-Original research materials are grouped here without changing their contents.
-They are references, not runtime dependencies of the channel website.
-
-## Books
-
-- [Saem Global EdTech.pdf](books/Saem%20Global%20EdTech.pdf)
-- [Saem EdTech Research and Codespaces Build Book.pdf](books/Saem_EdTech_Research_and_Codespaces_Build_Book.docx.PDF)
-
-The PDFs have not yet been text-extracted and reviewed; do not treat their
-contents as incorporated into the architecture until that work is completed.
+The source archives and source snapshots are references, not runtime
+dependencies of the channel website. Supplied books are now organized by task
+under [`books/`](../books/); the current Work-Time Engine reading queue is in
+[`docs/qcos/WORKMATRIX.md`](../docs/qcos/WORKMATRIX.md).
 
 ## Archives
 

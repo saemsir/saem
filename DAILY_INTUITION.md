@@ -1,5 +1,42 @@
 # Daily intuition log (newest first)
 
+## 2026-11-08 (continued): exact matrix RREF and rank
+
+Work item: start Work-Time Engine slice S2 with bounded exact row reduction
+and rank; keep the rest of S2 explicitly unfinished.
+
+- **Books read:** Strang, *Computational Science and Engineering*, p. 36
+  (four fundamental subspaces); *Projection matrices and least squares*, p. 1
+  (`P = A(A^T A)^-1 A^T` and projection into the column space); MIT 6.042J,
+  p. 359 (relation matrices and Boolean matrix composition).
+- **Equation/invariant:** exact Gauss-Jordan row operations preserve the
+  solution set of `Ax = b`; pivot columns determine rank and are a basis
+  selector for `C(A)`. The four spaces are `N(A)`, `C(A)`, `N(A^T)`, and
+  `C(A^T)`. The orthogonal projection formula is reference context for later
+  S2 work, not implemented in this unit.
+- **Code pattern:** added caller-owned C17 matrix storage bounded by
+  `COS_WORKING_LIMIT`, a separate caller-supplied scratch buffer, exact
+  `CosRat` row operations, and commit-on-success for matrix/pivot/rank
+  outputs. A Python `Fraction` elimination uses arbitrary-precision values
+  and a distinct implementation as the independent oracle.
+- **Failure modes:** rational elimination can exceed the kernel's 64-bit
+  representation even when its input is valid; refuse with the arithmetic
+  status rather than round. Invalid inputs and arithmetic refusal leave the
+  original matrix and metadata unchanged. Tests also cover row/column
+  limits, insufficient buffers, and overlapping storage.
+- **Changed:** added `core/c17/cos_mat.{h,c}`,
+  `core/tests/c17_mat_test.c`, `core/tests/c17_mat_dump.c`, and
+  `tools/check_mat.py`; integrated the C test and Fraction oracle into
+  `tools/check_c17.py`. Updated the work matrix, status handoff, progress log,
+  and this README.
+- **Verification:** 22 C checks passed at gcc O0/O2/O3, clang O2, and
+  ASan/UBSan; independent Fraction oracle matched 503/503 exact RREF cases.
+  `python3 tools/check_c17.py --quick` reported 56/57; the only failure is
+  the existing linked RISC-V audit, blocked because `ld.lld` is unavailable.
+  Next: continue S2 with basis routines for the four subspaces; keep solve,
+  inverse, projection, and their exact acceptance checks in S2 before
+  advancing.
+
 ## 2026-11-08: three parallel delivery lanes
 
 Work item: save an executable order for frontend development, backend

@@ -61,6 +61,7 @@ PROGRAMS = {
     "journal": ("c17_journal_test.c", ["cos_journal.c", "cos_wal.c", "cos_sha256.c"], True),
     "rat": ("c17_rat_test.c", ["cos_rat.c"], False),
     "alg": ("c17_alg_test.c", ["cos_alg.c", "cos_rat.c"], False),
+    "mat": ("c17_mat_test.c", ["cos_mat.c", "cos_rat.c"], False),
     "gate": ("c17_gate_test.c", ["cos_gate.c"], True),
     "core": ("c17_core_test.c", ["cos_core.c", "cos_gate.c", "cos_seal.c", "cos_journal.c", "cos_wal.c", "cos_sha256.c"], True),
     "rv": ("c17_rv_test.c", ["cos_rv.c", "cos_rv_tab.c"], False),
@@ -731,6 +732,8 @@ def main():
     check_rv.run_checks(record, quick=args.quick)
     import check_alg  # the number tower of the Work-Time Engine against the independent pair-rule oracle (Python Fractions)
     check_alg.run_checks(record, quick=args.quick)
+    import check_mat  # exact matrix elimination against an independent Fraction oracle
+    check_mat.run_checks(record, quick=args.quick)
     check_seal_tool()
     seal_vector()
     dump = build_dump()

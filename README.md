@@ -19,8 +19,11 @@
 
 Today I am saving an execution order for three independently trackable lanes:
 frontend development, backend development, and QCOS kernel development. This
-is a planning and documentation update; it does not claim that a new feature,
-backend API, or product integration was implemented today.
+continues with the first kernel unit in S2 `cos_mat`: exact, bounded
+row-reduced echelon form and rank. The independent Fraction oracle checks 503
+matrices, and the C tests check failure-untouched behavior. S2 remains in
+progress; this does not claim that its four subspaces, solve, inverse,
+projection, backend API, or frontend/backend integration are complete.
 
 ### Future
 

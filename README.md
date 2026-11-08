@@ -19,11 +19,11 @@
 
 Today I am saving an execution order for three independently trackable lanes:
 frontend development, backend development, and QCOS kernel development. This
-continues with the first kernel unit in S2 `cos_mat`: exact, bounded
-row-reduced echelon form and rank. The independent Fraction oracle checks 503
-matrices, and the C tests check failure-untouched behavior. S2 remains in
-progress; this does not claim that its four subspaces, solve, inverse,
-projection, backend API, or frontend/backend integration are complete.
+continues S2 `cos_mat`: bounded exact RREF/rank and basis APIs for the four
+fundamental subspaces. C tests verify dimensions, orthogonality, and
+failure-untouched behavior (45 checks); an independent Fraction oracle checks
+503 matrices and all four bases. S2 remains in progress: solve, inverse, and
+projection are not complete, nor is backend or frontend/backend integration.
 
 ### Future
 

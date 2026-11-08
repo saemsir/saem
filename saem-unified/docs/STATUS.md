@@ -20,11 +20,12 @@
   RISC-V audit; all C17 O2 tests pass. The full sanitizer suite has not been
   rerun. The octonion oracle, RV32/RV64 ISA checks, strict C builds, and
   non-TSan checks pass.
-- S2 first unit (2026-11-08): exact matrix RREF/rank passes 22 C checks at gcc
-  O0/O2/O3, clang O2, and ASan/UBSan, plus 503 independent Fraction-oracle
-  cases. `python3 tools/check_c17.py --quick` reports 56/57; the sole failure
-  is the existing RISC-V link audit, blocked by unavailable `ld.lld`. The
-  four subspaces, solve, inverse, and projection are still incomplete.
+- S2 matrix RREF/rank and four basis APIs (2026-11-08): 45 C checks pass at
+  gcc O0/O2/O3, clang O2, and ASan/UBSan. The independent Fraction oracle
+  matches RREF and all four bases on 503 matrices. The integrated
+  `python3 tools/check_c17.py --quick` reports 57/58: the only failure is the
+  pre-existing RISC-V link audit, blocked by unavailable `ld.lld`. Solve,
+  inverse, and projection remain incomplete.
 
 ## LATEST (2026-11-08): read this block first, then the PREVIOUS block and START HERE
 
@@ -35,14 +36,14 @@
 - CONTINUITY: the repeatable WTE resume, slice-order, verification, and
   checkpoint procedure is in `docs/qcos/WORK_TIME_ENGINE_GUIDE.md`; the
   authoritative slice status remains `docs/qcos/WORKMATRIX.md`. S2
-  `cos_mat` is active: bounded exact RREF/rank is implemented and checked
-  against an independent Fraction oracle; four subspaces, solve, inverse,
+  `cos_mat` is active: bounded exact RREF/rank and four subspace basis APIs
+  are checked against an independent Fraction oracle; solve, inverse,
   projection, and their acceptance tests remain in this same slice.
 - READING: the full 686-page Saem Global EdTech PDF has a complete text review
   recorded in `docs/DAILY_INTUITION.md` and `books/edtech/README.md`. It is
   product context, not a WTE mathematics specification. Its companion remains
   unread; no code was changed from its unverified proposals.
-- NEXT, in this order: (1) finish slice 2 `cos_mat` (four subspaces, solve, inverse, projection; RREF/rank are its first verified unit). (2) slice 3 relations, constraints, repair, holonomy. (3) slice 4 registry and time axis. (4) slice 5 calculus layer. (5) slice 6 self-repair loop. THEN the paused items: hypercube runtime `qcos_cm` with Feynman's log (design in DAILY_INTUITION 2026-11-03/04: closed-loop back-pressure instead of the open-loop 12-i counting, Gray-code escape ring with a watchdog, Q2.62 log, 12-byte packets with hop-invariant parity), the kernel capability layer, then the older backlog below.
+- NEXT, in this order: (1) finish slice 2 `cos_mat` (solve, inverse, projection; RREF/rank and four subspaces are verified). (2) slice 3 relations, constraints, repair, holonomy. (3) slice 4 registry and time axis. (4) slice 5 calculus layer. (5) slice 6 self-repair loop. THEN the paused items: hypercube runtime `qcos_cm` with Feynman's log (design in DAILY_INTUITION 2026-11-03/04: closed-loop back-pressure instead of the open-loop 12-i counting, Gray-code escape ring with a watchdog, Q2.62 log, 12-byte packets with hop-invariant parity), the kernel capability layer, then the older backlog below.
 - HONEST LIMITS: no RISC-V instruction of ours has been executed (no qemu, no spike); R and Julia are not installed here, so the frontends are planned only; MIT 18.703/18.745 and Einstein's 1917/1919 papers are not in the project; Artin's Algebra restricts "ring" to commutative rings (Def. 11.1.3), so non-commutative statements rest on Baez and the lectures; `conway_smith.pdf` is Baez's review of the book; `core/saem/` named in the directives does not exist (the kernel is `core/c17/`); `check_sir` does not exist yet.
 - CORRECTIONS OWED to the user (still true): an earlier note said "pool, core and 7 other objects identical", the right count is 8 of 9 objects byte-identical; the Fortran REAL-versus-INTEGER decision is open (v0 is INTEGER and exact rationals); the Berkeley TSS has four queues QTI/QIO/QSQ/QQE while the directive names three; the instructions PDF suggests LLVM while the directive says no LLVM (llvm-mc is used only as a test oracle).
 

@@ -1,41 +1,45 @@
 # Daily intuition log (newest first)
 
-## 2026-11-08 (continued): exact matrix RREF and rank
+## 2026-11-08 (continued): exact matrix RREF, rank, and four subspaces
 
-Work item: start Work-Time Engine slice S2 with bounded exact row reduction
-and rank; keep the rest of S2 explicitly unfinished.
+Work item: continue Work-Time Engine slice S2 with exact bases for the four
+fundamental subspaces; keep solve, inverse, and projection explicitly
+unfinished.
 
-- **Books read:** Strang, *Computational Science and Engineering*, p. 36
-  (four fundamental subspaces); *Projection matrices and least squares*, p. 1
-  (`P = A(A^T A)^-1 A^T` and projection into the column space); MIT 6.042J,
-  p. 359 (relation matrices and Boolean matrix composition).
-- **Equation/invariant:** exact Gauss-Jordan row operations preserve the
-  solution set of `Ax = b`; pivot columns determine rank and are a basis
-  selector for `C(A)`. The four spaces are `N(A)`, `C(A)`, `N(A^T)`, and
-  `C(A^T)`. The orthogonal projection formula is reference context for later
-  S2 work, not implemented in this unit.
+- **Books read:** Strang, *Computational Science and Engineering*, pp. 36-38
+  (four fundamental subspaces; `rank r`, dimensions `r`, `n-r`, `m-r`; basis
+  independence and orthogonality); *Projection matrices and least squares*,
+  pp. 1-2 (`P = A(A^T A)^-1 A^T`, the column-space/left-nullspace split, and
+  `A^T A x = A^T b`); MIT 6.042J, p. 359 (relation matrices and Boolean
+  matrix composition). The projection formula remains unimplemented.
+- **Equation/invariant:** for `A` of shape `m x n` and rank `r`,
+  `dim C(A) = dim C(A^T) = r`, `dim N(A) = n-r`, and
+  `dim N(A^T) = m-r`; `C(A^T) perp N(A)` and `C(A) perp N(A^T)`.
+  Exact Gauss-Jordan steps preserve the solution set of `Ax=b`, and pivot
+  columns select a basis for `C(A)`.
 - **Code pattern:** added caller-owned C17 matrix storage bounded by
-  `COS_WORKING_LIMIT`, a separate caller-supplied scratch buffer, exact
-  `CosRat` row operations, and commit-on-success for matrix/pivot/rank
-  outputs. A Python `Fraction` elimination uses arbitrary-precision values
-  and a distinct implementation as the independent oracle.
+  `COS_WORKING_LIMIT`, separate reduction/scratch buffers, exact `CosRat`
+  row operations, and commit-on-success for RREF and basis outputs. Nullspace
+  bases set free coordinates and solve pivot coordinates from RREF; rowspace
+  uses nonzero RREF rows; columnspace uses original pivot columns; left
+  nullspace applies the same construction to `A^T`. A Python `Fraction`
+  elimination independently constructs and checks all four bases.
 - **Failure modes:** rational elimination can exceed the kernel's 64-bit
   representation even when its input is valid; refuse with the arithmetic
   status rather than round. Invalid inputs and arithmetic refusal leave the
   original matrix and metadata unchanged. Tests also cover row/column
   limits, insufficient buffers, and overlapping storage.
-- **Changed:** added `core/c17/cos_mat.{h,c}`,
-  `core/tests/c17_mat_test.c`, `core/tests/c17_mat_dump.c`, and
-  `tools/check_mat.py`; integrated the C test and Fraction oracle into
+- **Changed:** added four basis APIs in `core/c17/cos_mat.{h,c}`,
+  `core/tests/c17_mat_test.c`, `core/tests/c17_mat_spaces_dump.c`, and extended
+  `tools/check_mat.py`; the C suite and Fraction oracle are integrated into
   `tools/check_c17.py`. Updated the work matrix, status handoff, progress log,
   and this README.
-- **Verification:** 22 C checks passed at gcc O0/O2/O3, clang O2, and
-  ASan/UBSan; independent Fraction oracle matched 503/503 exact RREF cases.
-  `python3 tools/check_c17.py --quick` reported 56/57; the only failure is
-  the existing linked RISC-V audit, blocked because `ld.lld` is unavailable.
-  Next: continue S2 with basis routines for the four subspaces; keep solve,
-  inverse, projection, and their exact acceptance checks in S2 before
-  advancing.
+- **Verification:** 45 C checks passed at gcc O0/O2/O3, clang O2, and
+  ASan/UBSan; the independent Fraction oracle matched 503/503 RREF matrices
+  and all four basis sets. `python3 tools/check_c17.py --quick` reported
+  57/58; the sole failure is the existing RISC-V link audit, blocked because
+  `ld.lld` is unavailable. Solve, inverse, projection, and their exact
+  acceptance checks remain within S2.
 
 ## 2026-11-08: three parallel delivery lanes
 

@@ -20,12 +20,13 @@
   RISC-V audit; all C17 O2 tests pass. The full sanitizer suite has not been
   rerun. The octonion oracle, RV32/RV64 ISA checks, strict C builds, and
   non-TSan checks pass.
-- S2 matrix RREF/rank and four basis APIs (2026-11-08): 45 C checks pass at
-  gcc O0/O2/O3, clang O2, and ASan/UBSan. The independent Fraction oracle
-  matches RREF and all four bases on 503 matrices. The integrated
-  `python3 tools/check_c17.py --quick` reports 57/58: the only failure is the
-  pre-existing RISC-V link audit, blocked by unavailable `ld.lld`. Solve,
-  inverse, and projection remain incomplete.
+- S2 rational matrix API (2026-11-08): RREF/rank, all four basis APIs, solve,
+  inverse, and orthogonal projection are implemented. The 183 C checks pass at
+  gcc O0/O2/O3, clang O2, and ASan/UBSan. The Fraction oracle matches 503
+  matrices and four-space bases, 250 systems, 100 inverses, and 150
+  projections. `python3 tools/check_c17.py --quick` reports 60/61; its sole
+  failure is the pre-existing RISC-V link audit, blocked by unavailable
+  `ld.lld`. Algebra-valued matrix operations remain future work.
 
 ## LATEST (2026-11-08): read this block first, then the PREVIOUS block and START HERE
 
@@ -35,10 +36,9 @@
 - DONE: slice 1.5 `cos_rat` wide addition/subtraction. The hand-written two-limb path uses no `__int128`; it reduces before checking fit. The 192,805-command Fraction oracle reports zero exact-fit refusals. `python3 tools/check_c17.py --quick` reports 54/55 only because `ld.lld` is unavailable for the linked RISC-V audit; all C17 O2 tests, including rational tests, pass.
 - CONTINUITY: the repeatable WTE resume, slice-order, verification, and
   checkpoint procedure is in `docs/qcos/WORK_TIME_ENGINE_GUIDE.md`; the
-  authoritative slice status remains `docs/qcos/WORKMATRIX.md`. S2
-  `cos_mat` is active: bounded exact RREF/rank and four subspace basis APIs
-  are checked against an independent Fraction oracle; solve, inverse,
-  projection, and their acceptance tests remain in this same slice.
+  authoritative slice status remains `docs/qcos/WORKMATRIX.md`. Rational S2
+  `cos_mat` is verified complete. Next kernel slice: S3 relations, constraints,
+  repair, and holonomy, in the fixed order.
 - READING: the full 686-page Saem Global EdTech PDF has a complete text review
   recorded in `docs/DAILY_INTUITION.md` and `books/edtech/README.md`. It is
   product context, not a WTE mathematics specification. Its companion remains

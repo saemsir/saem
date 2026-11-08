@@ -114,10 +114,129 @@ static void test_four_spaces(CosSuite *s) {
   CK(s, cos_mat_nullspace(growth, 2u, 2u, growth_basis, 4u, &growth_dim, &aliased_workspace) == COS_E_INVALID);
 }
 
+static void test_solve_inverse(CosSuite *s) {
+  const CosRat a[4] = { {2,1}, {1,1}, {1,1}, {-1,1} };
+  const CosRat rhs[2] = { {4,1}, {-1,1} };
+  CosRat solution[2] = { {77,1}, {77,1} };
+  CosRat reduced[6], scratch[4];
+  uint32_t pivots[2], rank = 99u;
+  CosMatWorkspace workspace = {reduced, 6u, scratch, 4u, pivots, 2u};
+  CK(s, cos_mat_solve(a, 2u, 2u, rhs, solution, 2u, &rank, &workspace) == COS_OK);
+  CK(s, rank == 2u && eq(solution[0], 1, 1) && eq(solution[1], 2, 1));
+
+  const CosRat under_a[2] = { {1,1}, {1,1} };
+  const CosRat under_rhs[1] = { {5,1} };
+  CosRat under_solution[2] = { {77,1}, {77,1} };
+  CosRat under_reduced[4], under_scratch[2];
+  uint32_t under_pivots[1], under_rank = 99u;
+  CosMatWorkspace under_workspace = {under_reduced, 4u, under_scratch, 2u, under_pivots, 1u};
+  CK(s, cos_mat_solve(under_a, 1u, 2u, under_rhs, under_solution, 2u,
+                      &under_rank, &under_workspace) == COS_OK);
+  CK(s, under_rank == 1u && eq(under_solution[0], 5, 1) && eq(under_solution[1], 0, 1));
+
+  const CosRat inconsistent_a[4] = { {1,1}, {1,1}, {1,1}, {1,1} };
+  const CosRat no_rhs[2] = { {5,1}, {6,1} };
+  solution[0] = (CosRat){77,1};
+  solution[1] = (CosRat){78,1};
+  rank = 79u;
+  CK(s, cos_mat_solve(inconsistent_a, 2u, 2u, no_rhs, solution, 2u, &rank, &workspace) == COS_E_NOT_FOUND);
+  CK(s, eq(solution[0], 77, 1) && eq(solution[1], 78, 1) && rank == 79u);
+  CK(s, cos_mat_solve(a, 2u, 2u, rhs, solution, 1u, &rank, &workspace) == COS_E_TOO_BIG);
+
+  const CosRat invertible[4] = { {1,1}, {2,1}, {3,1}, {4,1} };
+  CosRat inverse[4] = { {77,1}, {77,1}, {77,1}, {77,1} };
+  CosRat inverse_reduced[6], inverse_scratch[4];
+  uint32_t inverse_pivots[2];
+  CosMatWorkspace inverse_workspace = {inverse_reduced, 6u, inverse_scratch, 4u, inverse_pivots, 2u};
+  CK(s, cos_mat_inverse(invertible, 2u, inverse, 4u, &inverse_workspace) == COS_OK);
+  CK(s, eq(inverse[0], -2, 1) && eq(inverse[1], 1, 1));
+  CK(s, eq(inverse[2], 3, 2) && eq(inverse[3], -1, 2));
+  for (uint32_t i = 0u; i < 2u; ++i) {
+    for (uint32_t j = 0u; j < 2u; ++j) {
+      CosRat sum = {0, 1};
+      for (uint32_t k = 0u; k < 2u; ++k) {
+        CosRat product, next;
+        CK(s, cos_rat_mul(invertible[(size_t)i * 2u + k], inverse[(size_t)k * 2u + j], &product) == COS_OK);
+        CK(s, cos_rat_add(sum, product, &next) == COS_OK);
+        sum = next;
+      }
+      CK(s, eq(sum, i == j ? 1 : 0, 1));
+    }
+  }
+
+  const CosRat singular[4] = { {1,1}, {2,1}, {2,1}, {4,1} };
+  for (size_t i = 0u; i < 4u; ++i) inverse[i] = (CosRat){88,1};
+  CK(s, cos_mat_inverse(singular, 2u, inverse, 4u, &inverse_workspace) == COS_E_NOT_FOUND);
+  CK(s, eq(inverse[0], 88, 1) && eq(inverse[3], 88, 1));
+}
+
+static void test_projection(CosSuite *s) {
+  const CosRat a[6] = { {1,1}, {1,1}, {2,1}, {2,1}, {0,1}, {0,1} };
+  CosRat projection[9], staging[9], basis[6], gram[4];
+  CosRat reduced[6], scratch[6];
+  uint32_t pivots[2];
+  CosMatWorkspace workspace = {reduced, 6u, scratch, 6u, pivots, 2u};
+  CK(s, cos_mat_projection(a, 3u, 2u, projection, 9u, staging, 9u,
+                           basis, 6u, gram, 4u, &workspace) == COS_OK);
+  CK(s, eq(projection[0], 1, 5) && eq(projection[1], 2, 5) && eq(projection[2], 0, 1));
+  CK(s, eq(projection[3], 2, 5) && eq(projection[4], 4, 5) && eq(projection[5], 0, 1));
+  CK(s, eq(projection[6], 0, 1) && eq(projection[7], 0, 1) && eq(projection[8], 0, 1));
+  for (uint32_t i = 0u; i < 3u; ++i) {
+    for (uint32_t j = 0u; j < 3u; ++j) {
+      CK(s, eq(projection[(size_t)i * 3u + j], projection[(size_t)j * 3u + i].num,
+               projection[(size_t)j * 3u + i].den));
+      CosRat sum = {0, 1};
+      for (uint32_t k = 0u; k < 3u; ++k) {
+        CosRat product, next;
+        CK(s, cos_rat_mul(projection[(size_t)i * 3u + k], projection[(size_t)k * 3u + j], &product) == COS_OK);
+        CK(s, cos_rat_add(sum, product, &next) == COS_OK);
+        sum = next;
+      }
+      CK(s, eq(sum, projection[(size_t)i * 3u + j].num, projection[(size_t)i * 3u + j].den));
+    }
+  }
+  for (uint32_t row = 0u; row < 3u; ++row) {
+    CosRat projected = {0, 1};
+    for (uint32_t col = 0u; col < 3u; ++col) {
+      CosRat product, next;
+      CK(s, cos_rat_mul(projection[(size_t)row * 3u + col],
+                        (CosRat){col == 0u ? 1 : (col == 1u ? 2 : 0), 1}, &product) == COS_OK);
+      CK(s, cos_rat_add(projected, product, &next) == COS_OK);
+      projected = next;
+    }
+    CK(s, eq(projected, row == 0u ? 1 : (row == 1u ? 2 : 0), 1));
+  }
+
+  const CosRat full_rank[4] = { {1,1}, {0,1}, {0,1}, {1,1} };
+  CK(s, cos_mat_projection(full_rank, 2u, 2u, projection, 9u, staging, 9u,
+                           basis, 6u, gram, 4u, &workspace) == COS_OK);
+  CK(s, eq(projection[0], 1, 1) && eq(projection[1], 0, 1) &&
+        eq(projection[2], 0, 1) && eq(projection[3], 1, 1));
+
+  const CosRat zero[6] = { {0,1}, {0,1}, {0,1}, {0,1}, {0,1}, {0,1} };
+  for (size_t i = 0u; i < 9u; ++i) projection[i] = (CosRat){77,1};
+  CK(s, cos_mat_projection(zero, 3u, 2u, projection, 9u, staging, 9u,
+                           basis, 6u, gram, 4u, &workspace) == COS_OK);
+  CK(s, eq(projection[0], 0, 1) && eq(projection[8], 0, 1));
+  projection[0] = (CosRat){77,1};
+  CK(s, cos_mat_projection(a, 3u, 2u, projection, 8u, staging, 9u,
+                           basis, 6u, gram, 4u, &workspace) == COS_E_TOO_BIG);
+  CK(s, eq(projection[0], 77, 1));
+  CK(s, cos_mat_projection(a, 3u, 2u, projection, 9u, projection, 9u,
+                           basis, 6u, gram, 4u, &workspace) == COS_E_INVALID);
+  const CosRat overflow[1] = { {INT64_MAX,1} };
+  projection[0] = (CosRat){77,1};
+  CK(s, cos_mat_projection(overflow, 1u, 1u, projection, 9u, staging, 9u,
+                           basis, 6u, gram, 4u, &workspace) == COS_E_RANGE);
+  CK(s, eq(projection[0], 77, 1));
+}
+
 int main(void) {
   CosSuite suite = {"exact matrices", 0, 0};
   test_rref(&suite);
   test_refusals(&suite);
   test_four_spaces(&suite);
+  test_solve_inverse(&suite);
+  test_projection(&suite);
   return suite_done(&suite);
 }

@@ -1,5 +1,46 @@
 # Daily intuition log (newest first)
 
+## 2026-11-08 (continued): exact solve, inverse, and column-space projection
+
+Work item: complete the rational matrix API in Work-Time Engine slice S2
+without extending the claim to algebra-valued matrices.
+
+- **Books read:** revisited Strang, *Computational Science and Engineering*,
+  pp. 36–38 for pivot columns and the four fundamental subspaces; read
+  *Projection matrices and least squares*, pp. 1–2 for
+  `P = A(A^T A)^-1 A^T`, `I-P` projecting onto `N(A^T)`, and the normal
+  equations `A^T A x = A^T b`. MIT 6.042J p. 359 remains the relation-matrix
+  context from the previous S2 entry.
+- **Equation/invariant:** for a possibly rank-deficient `A`, choose independent
+  pivot columns `B`; compute `P = B(B^T B)^-1 B^T` so the Gram matrix is
+  invertible. Verify `P^T=P`, `P^2=P`, `Pb=b` for `b` in `C(A)`, and
+  `(I-P)b=0` for `b` in `N(A^T)`. Solving uses exact Gauss-Jordan elimination;
+  inconsistent systems refuse, while a consistent underdetermined system
+  returns the particular solution with free variables zero.
+- **Code pattern:** added caller-storage `cos_mat_solve`,
+  `cos_mat_inverse`, and `cos_mat_projection`. Inverse columns and projection
+  results are staged and copied to the output only on success. Projection
+  extracts original pivot columns, forms their exact Gram matrix, and solves
+  one small system per output column. The columnspace basis capacity is
+  `rows*min(rows,cols)`, its tight maximum size.
+- **Failure modes:** exact rational growth may exceed the 64-bit representation;
+  preserve outputs and return the arithmetic error instead of rounding. Also
+  reject inconsistent solves, singular inverses, undersized storage, and
+  aliased buffers; the zero matrix projects to zero.
+- **Changed:** `saem-unified/core/c17/cos_mat.{h,c}`,
+  `saem-unified/core/tests/c17_mat_test.c`,
+  `saem-unified/core/tests/c17_mat_solve_dump.c`,
+  `saem-unified/core/tests/c17_mat_projection_dump.c`, and
+  `saem-unified/tools/check_mat.py`; updated the S2 work matrix, status,
+  progress handoff, and README.
+- **Verification:** 183 C checks pass at GCC O0/O2/O3, Clang O2, and
+  ASan/UBSan. The independent Fraction oracle matches 503 RREF matrices and
+  all four basis sets, 250 systems, 100 inverses, and 150 projections.
+  `python3 tools/check_c17.py --quick` reports 60/61: the only failure is the
+  pre-existing RISC-V link audit, blocked by unavailable `ld.lld`. S2's
+  rational API is complete; algebra-valued matrices remain future work. Next:
+  read the queued S3 references before implementing relations and constraints.
+
 ## 2026-11-08 (continued): exact matrix RREF, rank, and four subspaces
 
 Work item: continue Work-Time Engine slice S2 with exact bases for the four

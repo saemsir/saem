@@ -17,13 +17,14 @@
 
 ### Present
 
-Today I am saving an execution order for three independently trackable lanes:
-frontend development, backend development, and QCOS kernel development. This
-continues S2 `cos_mat`: bounded exact RREF/rank and basis APIs for the four
-fundamental subspaces. C tests verify dimensions, orthogonality, and
-failure-untouched behavior (45 checks); an independent Fraction oracle checks
-503 matrices and all four bases. S2 remains in progress: solve, inverse, and
-projection are not complete, nor is backend or frontend/backend integration.
+Today I completed the rational S2 `cos_mat` API: bounded exact RREF/rank, four
+fundamental-subspace bases, consistent/inconsistent solving, inverse, and
+orthogonal projection (including rank-deficient inputs). C tests cover exact
+results, projector symmetry/idempotence, subspace invariants, refusals, and
+untouched outputs (183 checks); the independent Fraction oracle verifies 503
+matrices, 250 systems, 100 inverses, and 150 projections. The integrated quick
+suite still has one unrelated environment block: the RISC-V link audit needs
+unavailable `ld.lld`. Frontend/backend integration remains future work.
 
 ### Future
 
@@ -43,9 +44,9 @@ describe that path.
    [work matrix](docs/qcos/WORKMATRIX.md); take one small, testable next step
    in each lane when dependencies allow, and record what is planned versus
    verified.
-2. Continue the kernel in its required order: read the queued matrix sources,
-   implement and verify S2 `cos_mat`, then advance only when its exit checks
-   pass.
+2. Continue the kernel in its required order: advance to S3 relations only
+   after this verified rational S2 checkpoint; keep later matrix-algebra
+   extensions explicit rather than implying they are already implemented.
 3. Keep the product boundaries explicit: the static site is not the offline
    app, the C++17 EdTech engine is not exposed as a website API, and the C17
    QCOS kernel is not the customer-facing application.

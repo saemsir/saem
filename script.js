@@ -241,6 +241,134 @@ end program motion`
   }
   loadChannelVideos();
 
+  const practiceWidget = document.getElementById("practice-widget");
+  if (practiceWidget) {
+    const studio = window.SaemStudentStudio;
+    if (!studio) throw new Error("The student practice module did not load.");
+    const stepLabel = document.getElementById("practice-step");
+    const progress = document.getElementById("practice-progress");
+    const questionHeading = document.getElementById("practice-question");
+    const options = document.getElementById("practice-options");
+    const feedback = document.getElementById("practice-feedback");
+    const checkButton = document.getElementById("practice-check");
+    const nextButton = document.getElementById("practice-next");
+    const resetButton = document.getElementById("practice-reset");
+    const storageStatus = document.getElementById("practice-storage-status");
+    const progressKey = "saem-physics-practice-v1";
+    let questionIndex = 0;
+    let storageAvailable = true;
+    let answeredCorrectly = false;
+
+    function disableProgressStorage(message, error) {
+      storageAvailable = false;
+      storageStatus.textContent = message;
+      if (error) console.warn("Student progress is not being stored:", error);
+    }
+
+    try {
+      questionIndex = studio.restoreCompletedProgress(window.localStorage.getItem(progressKey));
+    } catch (error) {
+      disableProgressStorage("Browser storage is unavailable or invalid. Your answers stay in this session only.", error);
+    }
+
+    function saveProgress() {
+      if (!storageAvailable) return;
+      try {
+        window.localStorage.setItem(progressKey, studio.serializeCompletedProgress(questionIndex));
+        storageStatus.textContent = "Progress is stored only in this browser.";
+      } catch (error) {
+        disableProgressStorage("Browser storage is unavailable. Progress will reset when you leave this page.", error);
+      }
+    }
+
+    function renderPractice() {
+      const isComplete = questionIndex >= studio.questions.length;
+      progress.value = questionIndex;
+      resetButton.hidden = questionIndex === 0;
+      feedback.className = "practice-feedback";
+      feedback.textContent = "";
+      checkButton.hidden = isComplete;
+      nextButton.hidden = true;
+
+      if (isComplete) {
+        stepLabel.textContent = "Session complete";
+        questionHeading.hidden = false;
+        questionHeading.textContent = "Practice complete!";
+        options.hidden = true;
+        feedback.textContent = "You completed all three motion questions. Revisit the visual lab or start this practice again.";
+        feedback.className = "practice-feedback is-correct";
+        resetButton.hidden = false;
+        nextButton.hidden = true;
+        return;
+      }
+
+      questionHeading.hidden = false;
+      options.hidden = false;
+      stepLabel.textContent = `Question ${questionIndex + 1} of ${studio.questions.length}`;
+      const question = studio.questions[questionIndex];
+      questionHeading.textContent = question.prompt;
+      const legend = options.querySelector("legend");
+      const optionLabels = question.options.map((option, index) => {
+        const label = document.createElement("label");
+        label.className = "practice-option";
+        const input = document.createElement("input");
+        input.type = "radio";
+        input.name = "practice-answer";
+        input.value = String(index);
+        const answerText = document.createElement("span");
+        answerText.textContent = option;
+        label.append(input, answerText);
+        return label;
+      });
+      options.replaceChildren(legend, ...optionLabels);
+      answeredCorrectly = false;
+    }
+
+    checkButton.addEventListener("click", () => {
+      if (answeredCorrectly || questionIndex >= studio.questions.length) return;
+      const selected = options.querySelector('input[name="practice-answer"]:checked');
+      if (!selected) {
+        feedback.className = "practice-feedback is-incorrect";
+        feedback.textContent = "Choose an answer first. Try estimating before calculating.";
+        return;
+      }
+      const question = studio.questions[questionIndex];
+      if (Number(selected.value) === question.answerIndex) {
+        answeredCorrectly = true;
+        feedback.className = "practice-feedback is-correct";
+        feedback.textContent = `That is right. ${question.explanation}`;
+        checkButton.hidden = true;
+        nextButton.hidden = false;
+      } else {
+        feedback.className = "practice-feedback is-incorrect";
+        feedback.textContent = "Not quite. Check what each quantity means, then try another answer.";
+      }
+    });
+
+    nextButton.addEventListener("click", () => {
+      if (!answeredCorrectly) return;
+      questionIndex += 1;
+      saveProgress();
+      renderPractice();
+      questionHeading.focus();
+    });
+
+    resetButton.addEventListener("click", () => {
+      questionIndex = 0;
+      if (storageAvailable) {
+        try {
+          window.localStorage.removeItem(progressKey);
+        } catch (error) {
+          disableProgressStorage("Browser storage is unavailable. Progress will reset when you leave this page.", error);
+        }
+      }
+      renderPractice();
+      questionHeading.focus();
+    });
+
+    renderPractice();
+  }
+
   const tabs = document.getElementById("language-tabs");
   const code = document.getElementById("code-example");
   const codeLanguage = document.getElementById("code-language");

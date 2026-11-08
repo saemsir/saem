@@ -69,13 +69,17 @@ language runtimes to view a lesson.
 
 ### Public website status
 
-The root website is an HTML/CSS/JavaScript static site. It presents existing
-YouTube lessons and links, filters the curated lesson list in the browser, and
-shows small kinematics examples for C17, C, C++17, Python, Rust, R, Julia,
+The root website is an HTML/CSS/JavaScript static site. It presents curated
+YouTube lessons and a scheduled snapshot of recent public channel uploads,
+filters the lesson list in the browser, offers an interactive motion model and
+a short guided kinematics practice whose progress stays in browser storage,
+and shows small equation examples for C17, C, C++17, Python, Rust, R, Julia,
 Fortran, and Lisp. Those examples are educational sketches, not a polyglot
 runtime or calls into the EdTech engine. Its C17 example uses the existing
 `CosRat` arithmetic API, while the other snippets use small integer inputs to
-illustrate the same equation.
+illustrate the same equation. A capability map links students to tested
+repository code and explicitly distinguishes it from features not yet
+deployed.
 
 GitHub Pages can serve that static site, but cannot execute a C17 service. The
 QCOS C17 source and C++ EdTech engine remain in the separate

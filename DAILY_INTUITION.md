@@ -1,5 +1,44 @@
 # Daily intuition log (newest first)
 
+## 2026-11-08 (continued): student practice and repository capability map
+
+Work item: turn the static channel front door into a more useful, honest
+student workflow while keeping future EdTech services clearly marked as
+planned.
+
+- **Knowledge reviewed:** the Saem Global EdTech reading notes, especially
+  pp. 58–62 (calm visual explanation and low-end performance) and
+  pp. 151–177 (learning, assessment, and pedagogy). Applied the recorded
+  principles rather than copying the book's competing implementation
+  proposals. The public 3Blue1Brown website was reviewed for general visual
+  learning principles only; its distinctive artwork, layouts, and expression
+  are not reproduced.
+- **Learning model:** for constant acceleration,
+  `x = ut + 1/2 at^2` and `v = u + at`. The guided check asks students to
+  estimate, select an answer, and then read the worked reasoning. It includes
+  the graph invariant `slope of x(t) = v(t)` and a negative-acceleration
+  example that distinguishes acceleration direction from velocity direction.
+- **Workflow and boundaries:** added a three-question practice room with
+  keyboard-accessible radio choices, answer-specific explanations, progress,
+  resume, and reset. Only a count of completed questions is stored in
+  `localStorage`; no identity or responses are sent to a server. Added a
+  capability map separating the deployed site, tested-but-not-connected C17
+  and C++ source, and future offline/mock-test/forecast plans. These labels
+  are intentionally explicit so the site does not promise a web API that does
+  not exist.
+- **Changed:** `index.html`, `style.css`, `script.js`,
+  `student-studio.js`, `tools/test_student_studio.js`, the Pages workflow,
+  `README.md`, `docs/SAEM_EDTECH_ARCHITECTURE.md`, this log, and
+  `saem-unified-status.md`.
+- **Verification:** student-model tests cover kinematics equations, invalid
+  time/non-finite values, all three answer keys, and progress save/restore
+  validation. The five YouTube feed tests and live feed generation pass.
+  JavaScript syntax, 54 unique HTML IDs, 16 section links, deployment asset
+  inclusion, and `git diff --check` pass. No local browser is installed, so a
+  rendered visual QA pass is not available here.
+- **Next:** verify the fresh Pages deployment and its new student interface;
+  continue S3 only after reading its queued project-book sources.
+
 ## 2026-11-08 (continued): original visual learning design and channel updates
 
 Work item: improve the Saem Physics homepage and keep recent public channel

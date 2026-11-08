@@ -30,9 +30,11 @@
         <a href="#learn">Learn</a>
         <a href="#channel-updates">Latest videos</a>
         <a href="#visual-lab">Visual lab</a>
+        <a href="#practice-room">Practice</a>
         <a href="#library">Lesson library</a>
         <a href="#method">Our method</a>
         <a href="#lab">Code &amp; physics</a>
+        <a href="#repository-map">What powers Saem</a>
         <a class="nav-cta" href="https://www.youtube.com/@SaemPhysics" target="_blank" rel="noopener noreferrer">Watch on YouTube <span aria-hidden="true">↗</span></a>
       </nav>
     </div>
@@ -169,6 +171,46 @@
       </div>
     </section>
 
+    <section class="practice-section section" id="practice-room" aria-labelledby="practice-title">
+      <div class="container">
+        <div class="section-heading practice-heading">
+          <div>
+            <p class="eyebrow">A guided student practice</p>
+            <h2 id="practice-title">Try an idea. <em>Check your reasoning.</em></h2>
+          </div>
+          <p class="section-aside">Three short motion questions. Answer, read the explanation, and continue at your own pace.</p>
+        </div>
+        <div class="practice-layout" id="practice-widget">
+          <div class="practice-card">
+            <div class="practice-progress-row">
+              <span id="practice-step">Question 1 of 3</span>
+              <progress id="practice-progress" max="3" value="0" aria-label="Practice questions completed"></progress>
+            </div>
+            <h3 id="practice-question" tabindex="-1"></h3>
+            <fieldset id="practice-options" class="practice-options">
+              <legend class="visually-hidden">Choose one answer</legend>
+            </fieldset>
+            <p id="practice-feedback" class="practice-feedback" aria-live="polite"></p>
+            <div class="practice-actions">
+              <button id="practice-check" class="button button-dark" type="button">Check my answer</button>
+              <button id="practice-next" class="button button-quiet" type="button" hidden>Continue</button>
+              <button id="practice-reset" class="practice-reset" type="button" hidden>Start again</button>
+            </div>
+          </div>
+          <aside class="practice-note">
+            <p class="eyebrow">A useful habit</p>
+            <h3>Prediction before formula.</h3>
+            <p>Say what you expect to happen, choose a model, and check units before trusting a number. The feedback explains the reasoning, not only the answer.</p>
+            <div class="local-progress-note">
+              <span class="local-progress-icon" aria-hidden="true">⌂</span>
+              <p><strong>Your progress stays on this device.</strong><br>No account, name, or answer history is sent to a server.</p>
+            </div>
+            <p id="practice-storage-status" class="practice-storage-status" role="status" aria-live="polite">Progress is stored only in this browser.</p>
+          </aside>
+        </div>
+      </div>
+    </section>
+
     <section class="section learning-section" aria-labelledby="paths-title">
       <div class="container">
         <div class="section-heading">
@@ -296,6 +338,55 @@
       </div>
     </section>
 
+    <section class="capabilities-section section" id="repository-map" aria-labelledby="capabilities-title">
+      <div class="container">
+        <div class="section-heading capabilities-heading">
+          <div>
+            <p class="eyebrow">What powers Saem Global EdTech</p>
+            <h2 id="capabilities-title">A clear view of <em>what works today.</em></h2>
+          </div>
+          <p class="section-aside">Students should know what they can use now—and what is still being built.</p>
+        </div>
+        <div class="capability-columns">
+          <section class="capability-group" aria-labelledby="available-title">
+            <div class="capability-group-title"><span class="capability-status status-live"></span><h3 id="available-title">Available on this site</h3></div>
+            <article class="capability-item">
+              <span class="capability-index">01</span>
+              <div><h4>Lessons and channel updates</h4><p>Search curated lessons and see recent public Saem Physics uploads.</p><a href="#library">Open the lesson library <span aria-hidden="true">↗</span></a></div>
+            </article>
+            <article class="capability-item">
+              <span class="capability-index">02</span>
+              <div><h4>Interactive motion lab</h4><p>Change time and acceleration to connect a particle's motion to its graph.</p><a href="#visual-lab">Explore the motion model <span aria-hidden="true">↗</span></a></div>
+            </article>
+            <article class="capability-item">
+              <span class="capability-index">03</span>
+              <div><h4>Guided practice</h4><p>Try three questions with explanations and device-local progress.</p><a href="#practice-room">Start a practice session <span aria-hidden="true">↗</span></a></div>
+            </article>
+          </section>
+          <section class="capability-group capability-group-built" aria-labelledby="built-title">
+            <div class="capability-group-title"><span class="capability-status status-built"></span><h3 id="built-title">Built and tested in the repository</h3></div>
+            <article class="capability-item">
+              <span class="capability-index">04</span>
+              <div><h4>Exact rational and matrix kernel</h4><p>C17 can perform bounded exact arithmetic, linear solving, inverses, and projections. Independently tested; not connected to this page.</p><a href="https://github.com/saemsir/saem/tree/main/saem-unified/core/c17" target="_blank" rel="noopener noreferrer">Inspect the QCOS source <span aria-hidden="true">↗</span></a></div>
+            </article>
+            <article class="capability-item">
+              <span class="capability-index">05</span>
+              <div><h4>Local domain-engine source</h4><p>C++17 modules and test tools live in the repository; no public student API is deployed.</p><a href="https://github.com/saemsir/saem/tree/main/saem-unified" target="_blank" rel="noopener noreferrer">Read the implementation status <span aria-hidden="true">↗</span></a></div>
+            </article>
+            <article class="capability-item">
+              <span class="capability-index">06</span>
+              <div><h4>Automated verification</h4><p>Build and test workflows check code and compare exact math with independent oracles.</p><a href="https://github.com/saemsir/saem/actions" target="_blank" rel="noopener noreferrer">View repository checks <span aria-hidden="true">↗</span></a></div>
+            </article>
+          </section>
+        </div>
+        <div class="capability-boundary">
+          <span class="boundary-mark" aria-hidden="true">→</span>
+          <p><strong>Still being built:</strong> an offline student workspace, teacher-reviewed exam-paper practice, mock tests, and topic forecasts. These are goals—not features students can use here yet.</p>
+          <a href="https://github.com/saemsir/saem/blob/main/docs/SAEM_EDTECH_ARCHITECTURE.md" target="_blank" rel="noopener noreferrer">See the staged roadmap <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </section>
+
     <section class="join-section">
       <div class="container join-layout">
         <div><p class="eyebrow">Your next question is waiting</p><h2>Keep asking<br><em>better questions.</em></h2></div>
@@ -312,6 +403,8 @@
     </div>
     <div class="container footer-bottom"><span>© <span id="current-year"></span> Saem Physics</span><span>Built for learners who want to understand.</span></div>
   </footer>
+  <script src="student-studio.js"></script>
+  <script src="student-studio.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

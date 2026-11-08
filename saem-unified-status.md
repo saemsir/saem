@@ -7,12 +7,15 @@
   [saem-unified/](saem-unified/). Start at [README.md](README.md).
 - The website has a searchable/filterable lesson library, accessible
   language-example tabs, and a user-controlled constant-acceleration motion
-  lab. Its original hero diagram uses position and velocity vectors. Recent
-  channel uploads come from the public YouTube Atom feed: the Pages workflow
-  refreshes a static feed snapshot on pushes/manual deploys and every six
-  hours. The homepage shows six of up to 15 feed entries and links to the full
-  YouTube archive; no API key or client-side third-party script is required.
-  GitHub Pages is static and cannot run the C17 backend.
+  lab. The student practice room provides three kinematics questions with
+  explanations and browser-local progress (no account or server submission).
+  Its repository map links to working site features and tested C17 source,
+  while distinguishing planned offline/exam features. Recent channel uploads
+  come from the public YouTube Atom feed: the Pages workflow refreshes a static
+  snapshot on pushes/manual deploys and every six hours. The homepage shows
+  six of up to 15 entries and links to the full channel archive; no API key or
+  client-side third-party script is required. GitHub Pages is static and
+  cannot run the C17 backend.
 - All 156 supplied PDFs are organized under `books/` by physics, mathematics,
   computation, programming, EdTech, and research-review. All moved PDF blobs
   match their original committed Git objects. See [books/README.md](books/README.md)
@@ -28,9 +31,10 @@
   and checkpoint procedure are in
   [WORK_TIME_ENGINE_GUIDE.md](docs/qcos/WORK_TIME_ENGINE_GUIDE.md). The
   rational S2 `cos_mat` API is verified; the next kernel slice is S3.
-- The Pages workflow stages only `index.html`, `style.css`, `script.js`, and
-  the generated `channel-feed.json`; it deliberately excludes research books
-  and backend sources from the deployed site artifact.
+- The Pages workflow stages only website assets, the small
+  `student-studio.js` practice module, and generated `channel-feed.json`; it
+  deliberately excludes research books and backend sources from the deployed
+  site artifact.
 - GitHub Pages is enabled for public deployment from the workflow. A public
   YouTube RSS fetch is required for each build; a failed fetch stops the new
   deployment and leaves the previous published site intact. Deployment

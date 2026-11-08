@@ -32,7 +32,7 @@ jobs:
         run: |
           mkdir -p site-out
           python3 tools/fetch_channel_feed.py site-out/channel-feed.json
-          cp index.html style.css script.js site-out/
+          cp index.html style.css script.js student-studio.js site-out/
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:

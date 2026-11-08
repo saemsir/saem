@@ -19,15 +19,14 @@
 
 Today I reviewed the public 3Blue1Brown homepage for broad visual-learning
 principles, then extended Saem Physics with its own illustrated mechanics
-diagram and a recent-upload section. The site's visual language remains
-distinct: warm paper, field-note colors, and a custom position/vector sketch.
-Latest videos are generated from the public Saem Physics YouTube feed at each
-Pages deployment, with a scheduled refresh every six hours and a direct link
-to the full channel archive. The feed provides up to 15 recent uploads; six
-are shown on the homepage. No API key is needed. The completed rational S2
-`cos_mat` checkpoint remains verified; its evidence is in the
-[daily intuition log](DAILY_INTUITION.md). The new Pages deployment succeeded,
-and the live homepage, assets, and generated 15-video feed return HTTP 200.
+principles, then added an original student practice room and a clear map of
+what works today versus what remains planned. Students can answer three
+conceptual and numerical kinematics questions, read worked reasoning, and
+resume local progress on the same device without an account. The interface
+links the C17 exact arithmetic/matrix kernel and tests while plainly noting
+that these are not web services. The channel feed still refreshes every six
+hours. No 3Blue1Brown artwork was copied; the Saem visual identity remains
+distinct. See the [daily intuition log](DAILY_INTUITION.md) for test evidence.
 
 ### Future
 
@@ -57,7 +56,8 @@ describe that path.
    transparent, avoid promises about exam questions, and require human review
    for imported or generated learning content.
 5. Keep the YouTube feed workflow green and review the published latest-video
-   cards when channel uploads or the feed format changes.
+   cards when channel uploads or the feed format changes. Build student
+   practice from teacher-reviewed content with source and solution provenance.
 
 ### Outside GitHub
 
@@ -75,9 +75,11 @@ describe that path.
 
 The public front door for Saem Physics is a responsive, static website for
 students exploring lessons, exam solutions, and physics through computation.
-It includes an original, interactive motion explainer, keeps the channel,
-playlist, admission, Telegram, and live-class links, and offers a searchable
-lesson library with short code examples in the requested languages.
+It includes a searchable lesson library, automatically refreshed channel
+uploads, an interactive motion explainer, a short guided practice with worked
+feedback and device-local progress, and a map of tested repository features
+versus planned product capabilities. It keeps the channel, playlist,
+admission, Telegram, and live-class links.
 
 ## Run locally
 
@@ -91,10 +93,10 @@ Open `http://localhost:8000`. Stop the server with Ctrl+C.
 
 ## Publish with GitHub Pages
 
-The [Pages workflow](.github/workflows/deploy-pages.yml) deploys the three
-website files (`index.html`, `style.css`, and `script.js`) when changes are
-pushed to `main`. It intentionally excludes the research books, archives, and
-backend source from the Pages artifact. In GitHub, open **Settings → Pages**
+The [Pages workflow](.github/workflows/deploy-pages.yml) deploys the website
+assets and generated channel-feed snapshot when changes are pushed to `main`
+or on its six-hour refresh. It intentionally excludes research books, archives,
+and backend source from the Pages artifact. In GitHub, open **Settings → Pages**
 and select **GitHub Actions** as the build and deployment source. No build
 runtime is required to serve the site.
 
@@ -105,8 +107,9 @@ in [the staged architecture](docs/SAEM_EDTECH_ARCHITECTURE.md).
 
 ## Project map
 
-- [index.html](index.html), [style.css](style.css), [script.js](script.js):
-  public website and browser interactions.
+- [index.html](index.html), [style.css](style.css), [script.js](script.js),
+  [student-studio.js](student-studio.js): public website, student practice,
+  and browser interactions.
 - [docs/qcos/](docs/qcos/): QCOS design and Work-Time Engine plan.
 - [Work-Time Engine guide](docs/qcos/WORK_TIME_ENGINE_GUIDE.md): fixed slice
   order, verification gates, and session handoff procedure.

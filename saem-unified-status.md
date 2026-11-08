@@ -5,12 +5,14 @@
 - The repository root is the redesigned Saem Physics static channel site; the recovered,
   separately buildable C17/C++ backend source is under
   [saem-unified/](saem-unified/). Start at [README.md](README.md).
-- The website has a searchable/filterable lesson library and accessible
-  language-example tabs. It presents teaching snippets for C17, C, C++17,
-  Python, Rust, R, Julia, Fortran, and Lisp without claiming those languages
-  are all integrated. The new motion lab is a user-controlled 2D Canvas
-  explanation of constant acceleration. GitHub Pages is static and cannot run
-  the C17 backend.
+- The website has a searchable/filterable lesson library, accessible
+  language-example tabs, and a user-controlled constant-acceleration motion
+  lab. Its original hero diagram uses position and velocity vectors. Recent
+  channel uploads come from the public YouTube Atom feed: the Pages workflow
+  refreshes a static feed snapshot on pushes/manual deploys and every six
+  hours. The homepage shows six of up to 15 feed entries and links to the full
+  YouTube archive; no API key or client-side third-party script is required.
+  GitHub Pages is static and cannot run the C17 backend.
 - All 156 supplied PDFs are organized under `books/` by physics, mathematics,
   computation, programming, EdTech, and research-review. All moved PDF blobs
   match their original committed Git objects. See [books/README.md](books/README.md)
@@ -25,15 +27,13 @@
 - The repeatable Work-Time Engine slice order, verification gates, stop rules,
   and checkpoint procedure are in
   [WORK_TIME_ENGINE_GUIDE.md](docs/qcos/WORK_TIME_ENGINE_GUIDE.md). The
-  authoritative matrix still has S2 `cos_mat` as the next implementation;
-  this documentation work did not start or complete S2.
-- The new Pages workflow stages only `index.html`, `style.css`, and
-  `script.js`; it deliberately excludes the research references and backend
-  sources from the deployed site artifact.
-- Local HTTP smoke test returned 200 for the homepage, CSS, and JavaScript.
-  GitHub Pages setup was not enabled when checked (Pages API returned 404);
-  configure root-of-`main` Pages after pushing and verify its deployment
-  before describing the site as live.
+  rational S2 `cos_mat` API is verified; the next kernel slice is S3.
+- The Pages workflow stages only `index.html`, `style.css`, `script.js`, and
+  the generated `channel-feed.json`; it deliberately excludes research books
+  and backend sources from the deployed site artifact.
+- GitHub Pages is enabled for public deployment from the workflow. A public
+  YouTube RSS fetch is required for each build; a failed fetch stops the new
+  deployment and leaves the previous published site intact.
 - The staged business and software architecture, including the correct roles
   for C17/QCOS, C++17, RISC-V, Open Math Harness/Rust, Python, R, Fortran, and
   Julia, is in [docs/SAEM_EDTECH_ARCHITECTURE.md](docs/SAEM_EDTECH_ARCHITECTURE.md).
@@ -62,9 +62,9 @@
   for the complete EdTech review, WTE continuity guide, book organization,
   website changes, and test evidence; the older exact-rational entry remains
   below.
-- Next: slice 2 `cos_mat` (exact matrix elimination and the four subspaces),
-  following the Work-Time Engine priority. Do not add forecasting claims until
-  past-only back-tests and provenance work.
+- Next: continue with S3 relations only after reading its queued project-book
+  references. Do not add forecasting claims until past-only back-tests and
+  provenance work.
 
 ## LATEST (2026-11-08): read this block first, then the PREVIOUS block and START HERE
 

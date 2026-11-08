@@ -64,14 +64,17 @@ h1 em, h2 em { color: var(--green); font-weight: 400; }
 .hero-audience i { width: 3px; height: 3px; border-radius: 50%; background: var(--orange); }
 .hero-visual { position: relative; min-height: 430px; overflow: hidden; background: #e9e6d9; }
 .hero-visual:before { position: absolute; inset: 0; background-image: linear-gradient(rgba(23,37,31,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(23,37,31,.05) 1px, transparent 1px); background-size: 38px 38px; content: ""; mask-image: radial-gradient(ellipse, #000 0, transparent 78%); }
-.orbit { position: absolute; top: 49%; left: 51%; border: 1px solid rgba(36,92,70,.46); border-radius: 50%; transform: translate(-50%,-50%) rotate(-24deg); }
-.orbit-one { width: 76%; height: 36%; }
-.orbit-two { width: 64%; height: 58%; transform: translate(-50%,-50%) rotate(53deg); border-color: rgba(217,111,71,.52); }
-.orbit-three { width: 46%; height: 83%; transform: translate(-50%,-50%) rotate(30deg); border-style: dashed; opacity: .7; }
-.axis { position: absolute; background: rgba(23,37,31,.28); }
-.axis-x { top: 74%; left: 11%; width: 77%; height: 1px; }
-.axis-y { top: 12%; left: 52%; width: 1px; height: 75%; }
-.path-dot { position: absolute; top: 30%; left: 72%; width: 13px; height: 13px; border: 3px solid var(--paper); border-radius: 50%; background: var(--orange); box-shadow: 0 0 0 7px rgba(217,111,71,.14); }
+.hero-diagram { position: absolute; inset: 3% 3% 1%; width: 94%; height: 96%; overflow: visible; }
+.diagram-orbit { fill: none; stroke: rgba(36,92,70,.2); stroke-width: 1.4; stroke-dasharray: 4 7; }
+.diagram-path { fill: none; stroke: #245c46; stroke-width: 3; stroke-linecap: round; }
+.diagram-guide { fill: none; stroke: rgba(23,37,31,.3); stroke-width: 1; stroke-dasharray: 4 5; }
+.diagram-vector { fill: none; stroke-width: 2.3; stroke-linecap: round; }
+.diagram-position { stroke: #245c46; }
+.diagram-velocity { stroke: #d96f47; }
+.diagram-point { fill: #d96f47; stroke: #f5f2e9; stroke-width: 4; }
+.diagram-origin { fill: #17251f; }
+.hero-diagram text { fill: #41534a; font: italic 17px Georgia,serif; }
+.hero-diagram .diagram-caption { fill: #68756c; font: 800 10px "Segoe UI",sans-serif; letter-spacing: 2px; }
 .visual-note { position: absolute; z-index: 1; color: var(--muted); font: italic .9rem/1.35 var(--serif); }
 .note-top { top: 8%; right: 7%; transform: rotate(4deg); }
 .visual-note strong { color: var(--green); font-size: 1.05rem; }
@@ -91,6 +94,21 @@ h1 em, h2 em { color: var(--green); font-weight: 400; }
 .subject-stamp { display: grid; justify-items: center; align-content: center; gap: .2rem; width: 112px; height: 112px; margin: 1rem auto 0; border: 1px solid rgba(36,92,70,.45); border-radius: 50%; color: var(--green); transform: rotate(9deg); }
 .subject-stamp span { font-size: .5rem; font-weight: 800; letter-spacing: .14em; }
 .subject-stamp b { font: 2.4rem/.9 var(--serif); }
+.channel-section { background: #fbfaf6; }
+.channel-heading { margin-bottom: 1.1rem; }
+.channel-feed-bar { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding-block: 1rem; border-top: 1px solid var(--line); color: var(--muted); font-size: .73rem; }
+.channel-feed-status { color: var(--green); font-size: .66rem; font-weight: 750; }
+.channel-video-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: .85rem; }
+.channel-video { display: grid; grid-template-rows: auto auto 1fr auto; min-height: 245px; padding: 1.15rem; border: 1px solid var(--line); background: var(--paper); transition: transform .2s,border-color .2s,box-shadow .2s; }
+.channel-video:hover { transform: translateY(-4px); border-color: var(--green); box-shadow: 0 12px 30px rgba(23,37,31,.08); }
+.channel-video-top { display: flex; justify-content: space-between; align-items: center; gap: .5rem; color: var(--green); font-size: .55rem; font-weight: 850; letter-spacing: .12em; text-transform: uppercase; }
+.channel-video-top time { color: var(--muted); font-size: .58rem; font-weight: 650; letter-spacing: 0; }
+.channel-video img { display: block; width: 100%; aspect-ratio: 16/9; margin-top: .9rem; object-fit: cover; background: var(--paper-deep); }
+.channel-video h3 { align-self: center; margin-block: 1.4rem; font-size: clamp(1.3rem,2.1vw,1.9rem); overflow-wrap: anywhere; }
+.channel-video-action { display: flex; justify-content: space-between; align-items: center; padding-top: .75rem; border-top: 1px solid var(--line); color: var(--ink-soft); font-size: .66rem; font-weight: 750; }
+.channel-video-action span:last-child { color: var(--orange); font-size: 1rem; }
+.channel-fallback { padding: 1rem 0; color: var(--muted); font-size: .78rem; }
+.channel-fallback a { color: var(--green); text-decoration: underline; text-underline-offset: .2em; }
 .visual-lab-section { background: #19332c; color: var(--paper); }
 .visual-lab-section .eyebrow { color: #b7d5c6; }
 .visual-lab-heading { display: flex; align-items: end; justify-content: space-between; gap: 2rem; margin-bottom: 2.2rem; }
@@ -248,6 +266,7 @@ kbd { padding: .05rem .3rem; border: 1px solid var(--line); color: var(--muted);
   .path-card { min-height: 320px; padding: 1.2rem; }
   .path-card h3 { font-size: 2rem; }
   .library-controls { align-items: stretch; flex-direction: column; }
+  .channel-video-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
   .search-box { width: 100%; }
   .method-layout { gap: 3rem; }
   .motion-lab { grid-template-columns: 1fr; }
@@ -277,8 +296,9 @@ kbd { padding: .05rem .3rem; border: 1px solid var(--line); color: var(--muted);
   .intro-layout h2 { font-size: 2.8rem; }
   .section { padding-block: 4.5rem; }
   .section-heading, .lab-heading, .visual-lab-heading { align-items: start; flex-direction: column; gap: 1rem; }
+  .channel-feed-bar { align-items: start; flex-direction: column; gap: .35rem; }
   .section-heading h2, .lab-heading h2, .visual-lab-heading h2 { font-size: 3.2rem; }
-  .path-grid, .lesson-grid { grid-template-columns: 1fr; }
+  .path-grid, .lesson-grid, .channel-video-grid { grid-template-columns: 1fr; }
   .path-card { min-height: 292px; }
   .path-card h3 { font-size: 2.35rem; }
   .section-aside { max-width: 44ch; }

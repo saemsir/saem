@@ -169,6 +169,78 @@ end program motion`
   });
   renderLessons();
 
+  const channelGrid = document.getElementById("channel-video-grid");
+  const channelStatus = document.getElementById("channel-feed-status");
+  function makeChannelVideo(video) {
+    const link = document.createElement("a");
+    link.className = "channel-video";
+    link.href = `https://www.youtube.com/watch?v=${video.videoId}`;
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+
+    const top = document.createElement("span");
+    top.className = "channel-video-top";
+    const source = document.createElement("span");
+    source.textContent = "SAEM PHYSICS · VIDEO";
+    const time = document.createElement("time");
+    const published = new Date(video.published);
+    if (Number.isNaN(published.getTime())) {
+      time.textContent = "Recent upload";
+    } else {
+      time.dateTime = published.toISOString();
+      time.textContent = new Intl.DateTimeFormat(undefined, { dateStyle: "medium" }).format(published);
+    }
+    top.append(source, time);
+
+    const thumbnail = document.createElement("img");
+    thumbnail.src = `https://i.ytimg.com/vi/${video.videoId}/hqdefault.jpg`;
+    thumbnail.alt = "";
+    thumbnail.loading = "lazy";
+    thumbnail.decoding = "async";
+
+    const title = document.createElement("h3");
+    title.textContent = video.title;
+
+    const action = document.createElement("span");
+    action.className = "channel-video-action";
+    const label = document.createElement("span");
+    label.textContent = "Watch on YouTube";
+    const arrow = document.createElement("span");
+    arrow.setAttribute("aria-hidden", "true");
+    arrow.textContent = "↗";
+    action.append(label, arrow);
+
+    link.append(top, thumbnail, title, action);
+    return link;
+  }
+
+  async function loadChannelVideos() {
+    try {
+      const response = await fetch("./channel-feed.json", { cache: "no-store" });
+      if (!response.ok) throw new Error(`Channel feed request failed (${response.status})`);
+      const feed = await response.json();
+      if (!Array.isArray(feed.items) || feed.items.length === 0) {
+        throw new Error("The channel feed did not contain any videos");
+      }
+      channelGrid.replaceChildren(...feed.items.slice(0, 6).map(makeChannelVideo));
+      const refreshed = new Date(feed.generatedAt);
+      channelStatus.textContent = Number.isNaN(refreshed.getTime())
+        ? "Recent uploads · automatically refreshed"
+        : `Feed refreshed ${new Intl.DateTimeFormat(undefined, { dateStyle: "medium", timeStyle: "short" }).format(refreshed)}`;
+    } catch (error) {
+      console.warn("Could not load the latest Saem Physics uploads:", error);
+      channelStatus.textContent = "Recent uploads are temporarily unavailable. Visit the channel for the latest videos.";
+      const fallback = document.createElement("a");
+      fallback.className = "channel-fallback";
+      fallback.href = "https://www.youtube.com/@SaemPhysics/videos";
+      fallback.target = "_blank";
+      fallback.rel = "noopener noreferrer";
+      fallback.textContent = "Open the Saem Physics video archive ↗";
+      channelGrid.replaceChildren(fallback);
+    }
+  }
+  loadChannelVideos();
+
   const tabs = document.getElementById("language-tabs");
   const code = document.getElementById("code-example");
   const codeLanguage = document.getElementById("code-language");

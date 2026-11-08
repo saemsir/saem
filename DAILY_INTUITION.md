@@ -1,5 +1,47 @@
 # Daily intuition log (newest first)
 
+## 2026-11-08 (continued): original visual learning design and channel updates
+
+Work item: improve the Saem Physics homepage and keep recent public channel
+uploads visible without introducing credentials or a runtime backend.
+
+- **Reference reviewed:** the public 3Blue1Brown homepage at
+  [3blue1brown.com](https://www.3blue1brown.com/), focusing on broad
+  visual-learning principles: topic-led discovery, visual explanations, and
+  concise paths into lessons. Its layout, brand, copy, and artwork were not
+  copied. Saem's implementation uses its own warm-paper palette, field-note
+  treatment, and mechanics diagram.
+- **Equation/visual model:** the new hero diagram labels position `r(t)` and
+  velocity `v(t) = dr/dt` on a particle path; the existing interactive lab
+  continues to explore `x(t) = ut + 1/2 at^2`. The picture is an invitation to
+  connect a geometric representation with a physical quantity, not a claim
+  that an illustration replaces a derivation.
+- **Code/data flow:** resolve the public channel handle to channel ID
+  `UCJlNb8kQgLWqb65htic2CkQ`; read YouTube's public Atom feed during the Pages
+  workflow; validate its channel and 11-character video IDs; serialize at most
+  15 recent items as JSON; render six with DOM `textContent` and canonical
+  YouTube watch URLs and lazy-loaded channel thumbnails. The workflow refreshes
+  on pushes, manual dispatch, and every six hours. The page links to the full
+  channel archive because the public feed is a recent-upload feed, not a
+  complete channel export.
+- **Failure/security limits:** no API key is stored or exposed. A malformed,
+  empty, or unavailable feed fails the new deployment and leaves the previous
+  Pages deployment intact. Browser rendering uses text nodes rather than
+  inserting feed titles as HTML; if JSON is unavailable, the page displays a
+  direct channel-archive link. GitHub Pages remains static.
+- **Changed:** `index.html`, `style.css`, `script.js`,
+  `.github/workflows/deploy-pages.yml`, `tools/fetch_channel_feed.py`, and
+  `tools/test_fetch_channel_feed.py`; refreshed the README and status handoff.
+- **Verification:** five parser tests pass for valid data, both channel-ID
+  forms, channel mismatch, invalid IDs, and the 15-item bound. The live feed
+  yields 15 valid uploads.
+  JavaScript syntax and `git diff --check` pass. No local visual browser is
+  installed; the SVG is responsive and labelled. The final Pages workflow
+  deployment remains to be verified after pushing.
+- **Next:** deploy and inspect the public site, confirm scheduled refresh
+  remains active, then resume S3 after reading its project-book references.
+  The full channel archive remains available directly from YouTube.
+
 ## 2026-11-08 (continued): exact solve, inverse, and column-space projection
 
 Work item: complete the rational matrix API in Work-Time Engine slice S2

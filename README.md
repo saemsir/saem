@@ -17,14 +17,16 @@
 
 ### Present
 
-Today I completed the rational S2 `cos_mat` API: bounded exact RREF/rank, four
-fundamental-subspace bases, consistent/inconsistent solving, inverse, and
-orthogonal projection (including rank-deficient inputs). C tests cover exact
-results, projector symmetry/idempotence, subspace invariants, refusals, and
-untouched outputs (183 checks); the independent Fraction oracle verifies 503
-matrices, 250 systems, 100 inverses, and 150 projections. The integrated quick
-suite still has one unrelated environment block: the RISC-V link audit needs
-unavailable `ld.lld`. Frontend/backend integration remains future work.
+Today I reviewed the public 3Blue1Brown homepage for broad visual-learning
+principles, then extended Saem Physics with its own illustrated mechanics
+diagram and a recent-upload section. The site's visual language remains
+distinct: warm paper, field-note colors, and a custom position/vector sketch.
+Latest videos are generated from the public Saem Physics YouTube feed at each
+Pages deployment, with a scheduled refresh every six hours and a direct link
+to the full channel archive. The feed provides up to 15 recent uploads; six
+are shown on the homepage. No API key is needed. The completed rational S2
+`cos_mat` checkpoint remains verified; its evidence is in the
+[daily intuition log](DAILY_INTUITION.md).
 
 ### Future
 
@@ -53,6 +55,8 @@ describe that path.
 4. Add code, tests, and source/provenance notes together. Keep forecasts
    transparent, avoid promises about exam questions, and require human review
    for imported or generated learning content.
+5. Keep the YouTube feed workflow green and review the published latest-video
+   cards when channel uploads or the feed format changes.
 
 ### Outside GitHub
 

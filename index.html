@@ -28,6 +28,7 @@
       </button>
       <nav class="primary-nav" id="primary-nav" aria-label="Main navigation">
         <a href="#learn">Learn</a>
+        <a href="#channel-updates">Latest videos</a>
         <a href="#visual-lab">Visual lab</a>
         <a href="#library">Lesson library</a>
         <a href="#method">Our method</a>
@@ -50,18 +51,37 @@
           </div>
           <p class="hero-audience">JEE <i></i> NEET <i></i> CBSE <i></i> Bihar Board <i></i> NCERT</p>
         </div>
-        <div class="hero-visual" role="img" aria-label="A visual sketch of a particle moving along a curved path">
-          <div class="visual-note note-top">Start with<br><strong>what you can see.</strong></div>
-          <div class="orbit orbit-one"></div>
-          <div class="orbit orbit-two"></div>
-          <div class="orbit orbit-three"></div>
-          <div class="axis axis-x"></div>
-          <div class="axis axis-y"></div>
-          <div class="path-dot"></div>
+        <div class="hero-visual">
+          <div class="visual-note note-top">A path tells<br><strong>a physical story.</strong></div>
+          <svg class="hero-diagram" viewBox="0 0 640 500" role="img" aria-labelledby="hero-diagram-title hero-diagram-desc">
+            <title id="hero-diagram-title">A particle follows a curved path</title>
+            <desc id="hero-diagram-desc">Position and velocity vectors describe a particle moving through a field of motion.</desc>
+            <defs>
+              <marker id="arrow-coral" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+                <path d="M0 0 8 4 0 8Z" fill="#d96f47"></path>
+              </marker>
+              <marker id="arrow-green" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+                <path d="M0 0 8 4 0 8Z" fill="#245c46"></path>
+              </marker>
+            </defs>
+            <path class="diagram-orbit" d="M108 356 C154 156 350 91 518 184"></path>
+            <path class="diagram-path" d="M90 364 C156 292 160 193 270 177 S413 295 514 175"></path>
+            <path class="diagram-guide" d="M90 364H545M270 177V401"></path>
+            <path class="diagram-vector diagram-position" d="M90 364 270 177" marker-end="url(#arrow-green)"></path>
+            <path class="diagram-vector diagram-velocity" d="M270 177 390 132" marker-end="url(#arrow-coral)"></path>
+            <circle class="diagram-point" cx="270" cy="177" r="9"></circle>
+            <circle class="diagram-origin" cx="90" cy="364" r="5"></circle>
+            <text x="179" y="249">r(t)</text>
+            <text x="337" y="128">v(t)</text>
+            <text x="78" y="394">0</text>
+            <text x="534" y="387">x</text>
+            <text x="281" y="164">particle</text>
+            <text class="diagram-caption" x="90" y="445">POSITION · DIRECTION · CHANGE</text>
+          </svg>
           <span class="formula formula-force">F = ma</span>
-          <span class="formula formula-wave">y = A sin(kx − ωt)</span>
-          <span class="visual-caption">A model is a picture<br>with rules you can test.</span>
-          <span class="visual-index">01 / MOTION</span>
+          <span class="formula formula-wave">v = dr / dt</span>
+          <span class="visual-caption">Describe the motion.<br>Then ask what causes it.</span>
+          <span class="visual-index">01 / MECHANICS</span>
         </div>
       </div>
       <div class="hero-bottom">
@@ -80,6 +100,24 @@
           <p>Build an intuition, connect it to the mathematics, and practice using it. Explore the lessons already available on the Saem Physics channel.</p>
         </div>
         <div class="subject-stamp" aria-hidden="true"><span>LEARN</span><b>∴</b><span>REASON</span></div>
+      </div>
+    </section>
+
+    <section class="channel-section section" id="channel-updates" aria-labelledby="channel-title">
+      <div class="container">
+        <div class="section-heading channel-heading">
+          <div>
+            <p class="eyebrow">From the Saem Physics channel</p>
+            <h2 id="channel-title">New ideas, <em>as they arrive.</em></h2>
+          </div>
+          <a class="arrow-link" href="https://www.youtube.com/@SaemPhysics/videos" target="_blank" rel="noopener noreferrer">Browse every upload <span aria-hidden="true">↗</span></a>
+        </div>
+        <div class="channel-feed-bar">
+          <p>Recent uploads are refreshed automatically from the public YouTube channel feed. The feed lists up to 15; six appear here.</p>
+          <p id="channel-feed-status" class="channel-feed-status" role="status" aria-live="polite">Loading recent videos…</p>
+        </div>
+        <div class="channel-video-grid" id="channel-video-grid"></div>
+        <noscript><p class="channel-fallback">Turn on JavaScript to see the latest uploads, or <a href="https://www.youtube.com/@SaemPhysics/videos">visit the channel archive</a>.</p></noscript>
       </div>
     </section>
 

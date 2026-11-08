@@ -36,6 +36,32 @@ Everything is exact rational arithmetic in the tower Q, Q(i), H (quaternions), O
 | S6 self-repair loop | detect (exact residuals, holonomy), project, propose, Zone 0 gate, journal, apply, verify; sealed core never repairable | seeded corruptions repaired or refused, every step journaled | planned |
 | S7 content and frontends | real QCOS content in the axes; R (`R.h` .Call into the C kernel), Julia offline workbench, Python oracle | R and Julia are NOT installed in this workspace: planned only | planned |
 
+## 2.1 Cross-domain parallel work order
+
+Saem Global EdTech and QCOS are related goals, but they are not one runtime.
+Advance the following lanes independently when their interfaces do not
+conflict. Within each lane, work in small, ordered, verifiable steps; do not
+represent a planned item as implemented.
+
+| Lane | Work order | First milestone and evidence |
+|---|---|---|
+| Frontend development | 1. Maintain the public static site and its accessible, mobile-friendly learning entry points. 2. Shape the offline learner/teacher screens against reviewed workflows. 3. Connect to backend capabilities only through a versioned, tested interface. | Keep the current site deployable without a server; test browser behavior and accessibility for each change. The existing motion lesson uses `x(t) = ut + 1/2 at^2`; the EdTech book's visual and performance proposals are goals, not measured guarantees. |
+| Backend development | 1. Define and test versioned question, paper, solution, and provenance data. 2. Build the offline import/review/mock-test workflow around the existing C++17 domain engine and local application boundary. 3. Add optional synchronization only after local behavior and privacy boundaries are clear. | Preserve source, board, year, and language; require teacher confirmation of extracted question boundaries and labels. Test the data contract and workflow before connecting a UI. |
+| QCOS kernel development | 1. Read the queued matrix references. 2. Implement S2 `cos_mat` with exact rational arithmetic and independent Fraction-oracle tests. 3. Continue S3 through S7 only in the fixed order above. | S2 passes its stated matrix, subspace, and exactness checks before its status changes from planned. The projection formula and relation/calculus work stay in their assigned later slices; no approximate fallback is introduced. |
+
+### Parallel-work rules
+
+- The kernel lane has a strict sequential slice order; parallel product work
+  does not authorize skipping S2 or advancing a dependent kernel slice early.
+- Frontend and backend prototypes may proceed in parallel, but their
+  integration waits for an explicit, versioned contract and tests.
+- Keep the public website, local/offline product, C++17 domain engine, and C17
+  QCOS kernel as separate deployment and trust boundaries. GitHub Pages does
+  not run the backend or kernel.
+- At each checkpoint, record the date, files changed, sources used, exact
+  tests run, outcomes, and next small step in the project handoff. Report
+  unavailable tools and unverified product goals plainly.
+
 ## 3. Slice 1 (verified): what the tower guarantees
 
 API and the full integrity contract live in `core/c17/cos_alg.h` (read it first); the proofs are `core/tests/c17_alg_test.c`, `tools/check_alg.py`, `tools/alg_oracle.py`.

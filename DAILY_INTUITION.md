@@ -1,5 +1,39 @@
 # Daily intuition log (newest first)
 
+## 2026-11-08: three parallel delivery lanes
+
+Work item: save an executable order for frontend development, backend
+development, and QCOS kernel development while keeping product and kernel
+boundaries explicit.
+
+- **Sources used:** the existing full-book review of
+  [Saem Global EdTech.pdf](books/edtech/Saem%20Global%20EdTech.pdf) and its
+  source notes in [books/edtech/README.md](books/edtech/README.md); the staged
+  system boundaries in
+  [SAEM_EDTECH_ARCHITECTURE.md](docs/SAEM_EDTECH_ARCHITECTURE.md); and the
+  current [Work-Time Engine matrix](docs/qcos/WORKMATRIX.md) and
+  [operating guide](docs/qcos/WORK_TIME_ENGINE_GUIDE.md). No additional PDF
+  pages were reviewed for this documentation-only item.
+- **Equation/invariant:** retain the existing visual lesson's
+  `x(t) = ut + 1/2 at^2` as a frontend example, not a forecast formula.
+  Kernel matrices remain exact over Q and must pass independent Fraction
+  checks; the planned S2 exit conditions are unchanged.
+- **Code/interface pattern:** keep HTML/CSS/JavaScript presentation, the local
+  EdTech workflow and C++17 domain engine, and the C17 QCOS kernel in separate
+  boundaries. Connect components later through a versioned, tested contract;
+  start the kernel at S2 and preserve the fixed slice order.
+- **Failure modes:** do not treat book proposals or performance targets as
+  measured results; do not imply GitHub Pages runs a backend; do not merge
+  kernel and customer-facing responsibilities; do not start dependent kernel
+  slices before S2 passes.
+- **Changed:** added the dated three-lane update and owner actions to
+  [README.md](README.md), and saved the lane order and integration rules in
+  [WORKMATRIX.md](docs/qcos/WORKMATRIX.md). No runtime code changed.
+- **Verification:** documentation review and `git diff --check`; no code tests
+  are applicable. Next: read the queued matrix references and begin S2
+  `cos_mat`; separately choose the first learner cohort and paper-data
+  sources for the product work.
+
 ## 2026-11-08 (continued): complete EdTech book review and WTE continuity guide
 
 Work item: review the complete Saem Global EdTech book and make the Work-Time

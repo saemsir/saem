@@ -1,5 +1,69 @@
 # Saem Physics
 
+## Daily vision update — 2026-11-08
+
+### Past
+
+- Saem Physics has a live-in-repository static website and an original
+  interactive motion explainer.
+- The Saem Global EdTech reference book has been reviewed and its useful
+  product principles recorded: offline-first learning, clear visual
+  explanations, source provenance, and human review. See the
+  [book review](books/edtech/README.md) and
+  [daily intuition log](DAILY_INTUITION.md).
+- QCOS has verified exact algebra and rational foundations. The next planned
+  Work-Time Engine implementation is matrix support (S2), not a finished
+  EdTech backend; see the [work matrix](docs/qcos/WORKMATRIX.md).
+
+### Present
+
+Today I am saving an execution order for three independently trackable lanes:
+frontend development, backend development, and QCOS kernel development. This
+is a planning and documentation update; it does not claim that a new feature,
+backend API, or product integration was implemented today.
+
+### Future
+
+Build the student and teacher experience, the offline EdTech workflow, and
+QCOS's exact-math capabilities in parallel where their interfaces do not
+conflict. Keep each lane small and testable, preserve the current boundaries,
+and integrate only through documented, verified interfaces. The
+[staged architecture](docs/SAEM_EDTECH_ARCHITECTURE.md) and
+[three-lane work order](docs/qcos/WORKMATRIX.md#21-cross-domain-parallel-work-order)
+describe that path.
+
+## What you can do to complete the SAEM Global EdTech vision
+
+### Inside GitHub
+
+1. Keep the three lanes visible in the
+   [work matrix](docs/qcos/WORKMATRIX.md); take one small, testable next step
+   in each lane when dependencies allow, and record what is planned versus
+   verified.
+2. Continue the kernel in its required order: read the queued matrix sources,
+   implement and verify S2 `cos_mat`, then advance only when its exit checks
+   pass.
+3. Keep the product boundaries explicit: the static site is not the offline
+   app, the C++17 EdTech engine is not exposed as a website API, and the C17
+   QCOS kernel is not the customer-facing application.
+4. Add code, tests, and source/provenance notes together. Keep forecasts
+   transparent, avoid promises about exam questions, and require human review
+   for imported or generated learning content.
+
+### Outside GitHub
+
+1. Choose the first learner group, exam boards, launch region, and languages;
+   decide which learning workflow should be useful first.
+2. Gather question papers and learning materials you have permission to use.
+   Record their board, year, language, and source, and arrange teacher review
+   for extracted questions and solutions.
+3. Speak with students and teachers about device limits, offline use,
+   accessibility, and the mock-test experience; use their feedback to
+   prioritize the next small feature.
+4. Set a sustainable routine: make one manageable daily contribution, then
+   review progress and choose the next step rather than trying to build the
+   whole vision at once.
+
 The public front door for Saem Physics is a responsive, static website for
 students exploring lessons, exam solutions, and physics through computation.
 It includes an original, interactive motion explainer, keeps the channel,

@@ -35,6 +35,8 @@ in [the staged architecture](docs/SAEM_EDTECH_ARCHITECTURE.md).
 - [index.html](index.html), [style.css](style.css), [script.js](script.js):
   public website and browser interactions.
 - [docs/qcos/](docs/qcos/): QCOS design and Work-Time Engine plan.
+- [Work-Time Engine guide](docs/qcos/WORK_TIME_ENGINE_GUIDE.md): fixed slice
+  order, verification gates, and session handoff procedure.
 - [books/](books/): supplied physics, mathematics, computation, programming,
   and EdTech reference PDFs, grouped by task.
 - [references/](references/): source archives and source snapshot, kept

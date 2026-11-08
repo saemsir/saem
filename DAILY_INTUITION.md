@@ -1,5 +1,65 @@
 # Daily intuition log (newest first)
 
+## 2026-11-08 (continued): complete EdTech book review and WTE continuity guide
+
+Work item: review the complete Saem Global EdTech book and make the Work-Time
+Engine resumable slice by slice, with explicit scope and verification gates.
+
+### Full-book review record
+
+- Read [Saem Global EdTech.pdf](books/edtech/Saem%20Global%20EdTech.pdf)
+  beyond the earlier targeted pages 58-61. The authoritative PDF page tree
+  and local parser agree on 686 pages. The extracted text covers all 686 pages
+  (91,466 words), with no empty pages or extraction errors. The review covered
+  the book's evolving system architecture (pp. 1-22 and 180-611), Saem Physics
+  product/platform proposals (pp. 23-150), learning, assessment, forecasting,
+  and visual pedagogy (pp. 151-180), and model/mobile implementation material
+  (pp. 612-686). Code samples and third-party/market claims were not
+  independently validated.
+- **Equation/invariants:** the architecture names A*'s `f(n) = g(n) + h(n)`
+  (p. 2), but does not establish heuristic assumptions for a WTE use. Its
+  recurring system boundary is protected core rules versus adaptable content;
+  other stated constraints are offline use, bounded resources, and visual
+  clarity without interface noise (pp. 1-4, 58-62, 151-177, 201-205,
+  265-269).
+- **Product design patterns:** render math clearly; keep the active learning
+  task visually central; support curated question metadata, provenance, and
+  teacher authoring/review; degrade expensive visual effects to a static
+  representation when a measured performance budget requires it (pp. 58-62,
+  89-90, 151-162). The proposed 45 FPS graphics threshold is a book target,
+  not a measurement made by this static site.
+- **Code pattern retained, not copied:** keep generated candidates behind
+  explicit validation, separate local/offline learning data from optional
+  synchronization, and use bounded user-controlled visuals. No book code was
+  imported into the kernel or site in this work item.
+- **Failure modes:** the compilation contains conflicting stacks and phased
+  proposals (static HTML, Next.js/React Native, cloud services, Python/FastAPI,
+  Kivy, and pure C); generated code and unattended auto-commit examples are
+  not safe implementation instructions. Symbolic checks do not prove an
+  explanation or forecast correct, and cryptographic hashes do not by
+  themselves make a phone core tamper-proof (pp. 58-59, 95-103, 151-162,
+  201-205, 612-686). The PDF includes credential-like examples; none are
+  reproduced here.
+- **WTE boundary:** the book's discussion of matrix views and four fundamental
+  subspaces (p. 165) is pedagogical context only. S2 design and acceptance
+  remain governed by the WTE matrix and its exact Fraction-oracle tests.
+
+### What changed
+
+- Added [WORK_TIME_ENGINE_GUIDE.md](docs/qcos/WORK_TIME_ENGINE_GUIDE.md) with
+  the fixed S1, S1.5, S2, S3, S4, S5, S6, S7 order, resume protocol,
+  per-slice entry and exit gates, stop rules, and checkpoint requirements.
+  Linked it from the
+  matrix and project indexes; made the matrix explicitly authoritative.
+- Updated the EdTech book index, staged architecture, and project handoffs to
+  record the full-document review without treating its proposals as deployed
+  or verified code. Marked the bundled duplicate WTE matrix as a historical
+  snapshot so its stale S1.5 status cannot override the active matrix. The
+  companion EdTech book remains unread.
+- No WTE implementation was started. The next implementation slice remains
+  S2 `cos_mat`; first read the queued matrix/projection references as recorded
+  in the WTE matrix.
+
 ## 2026-11-08 (continued): book library and visual physics lab
 
 Work item: organize the supplied references by their primary use, resume the

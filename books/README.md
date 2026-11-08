@@ -31,7 +31,7 @@ library, not a claim that every source has been read or independently checked.
   [Programming](programming/); its availability does not imply integration in
   the website or backend.
 
-The [EdTech folder index](edtech/README.md) records the first book review and
-an important credential-handling warning. For all other reading, record the
-specific sections, equations or invariants, code patterns, and failure modes
-in [DAILY_INTUITION.md](../DAILY_INTUITION.md).
+The [EdTech folder index](edtech/README.md) records the full-document review
+of Saem Global EdTech and an important credential-handling warning. For all
+other reading, record the specific sections, equations or invariants, code
+patterns, and failure modes in [DAILY_INTUITION.md](../DAILY_INTUITION.md).

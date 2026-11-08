@@ -1,6 +1,6 @@
 # QCOS standing orders (READ THIS FIRST: every day, every session, every new model)
 
-Owner: manhoodwild@gmail.com (India, IST). Kept by the assistant. Last updated 2026-11-06 (IST).
+Owner: manhoodwild@gmail.com (India, IST). Kept by the assistant. Last updated 2026-11-08 (IST).
 Why this file exists: the work is long, sessions are short, and a different model may start tomorrow with no memory.
 If you are that model: read sections 1 to 3 now, then `docs/STATUS.md`, then continue. Do not ask the user to repeat anything written here.
 
@@ -16,7 +16,7 @@ If you are that model: read sections 1 to 3 now, then `docs/STATUS.md`, then con
 5. 2026-10-27: absorb the xv6 sources for the vision. Done: `docs/knowledge/xv6.md`.
 6. 2026-10-01: the product. Offline software for teachers and students in India (mobile, iOS, desktop). It predicts exam papers from up to 30 years of past papers, ranks probable topics and questions, and delivers them with solutions in a timed mock-test machine. Output language and script follow the exam paper. Faculty opinion is optional and minimal. The interface must look like the two earlier HTML files (`saem-physics-exam-forecaster.html`, `saem-physics-mock-test-1.html`).
 7. "Continue" means: take the next item in `docs/STATUS.md`, do it, save it, and tell the user in two or three plain sentences.
-8. 2026-11-04 19:08 IST: TOP PRIORITY, before everything else in the backlog: the Work-Time Engine, an n-dimensional quaternion/octonion matrix engine with a time axis, relations and functions in its cells and a calculus layer on top, so that anyone and QCOS itself can complete, upgrade and repair QCOS ("it's a very long work so do bit by bit slowly wisely"). Spec and status: `docs/WORKMATRIX.md`. The text is also in the Creator Book `Vision Instructions for QCOS.pdf`.
+8. 2026-11-04 19:08 IST: TOP PRIORITY, before everything else in the backlog: the Work-Time Engine, an n-dimensional quaternion/octonion matrix engine with a time axis, relations and functions in its cells and a calculus layer on top, so that anyone and QCOS itself can complete, upgrade and repair QCOS ("it's a very long work so do bit by bit slowly wisely"). Active spec and status: `../../docs/qcos/WORKMATRIX.md`; repeatable procedure: `../../docs/qcos/WORK_TIME_ENGINE_GUIDE.md`. The local `docs/WORKMATRIX.md` is a historical snapshot. The text is also in the Creator Book `Vision Instructions for QCOS.pdf`.
 9. 2026-11-05 10:38 IST: build the algebraic foundations of `cos_alg` on Artin's Algebra, MIT 18.703/18.745 (NOT in the project: 18.701 and 18.755 are) and the uploaded books; the Cayley-Dickson tower from Q to the octonions must keep its integrity with no floating point and no C++ STL. Done and verified in slice 1.
 10. 2026-11-05 22:33 and 2026-11-06 10:25 IST: "Continue" and "Save instructions and Continue..": after each change of the live project instructions, take a verbatim dated snapshot with `python3 -I tools/snap_instructions.py <transcript.jsonl> docs/INSTRUCTIONS_<date>.md` (call `Projects project_info` first; the tool copies the last result without retyping), write what changed into section 6 below, save to the project, update the skill `qcos-daily-start`, then continue with the next item.
 

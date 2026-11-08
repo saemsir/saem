@@ -6,6 +6,10 @@ a LAST axis = time, relations and functions held in the matrices, and an advance
 can complete, upgrade and repair QCOS without being misled. "It is a very long work, do it bit by bit, slowly, wisely."
 Rule for every line below: **verified** = a test or an oracle ran it; **planned** = a design no test has run. Nothing here is claimed beyond that.
 
+The repeatable resume, implementation, verification, and checkpoint procedure is
+in [WORK_TIME_ENGINE_GUIDE.md](WORK_TIME_ENGINE_GUIDE.md). This matrix remains
+the sole authority for slice scope and status.
+
 ## 1. The picture in one page
 
 ```
@@ -129,7 +133,8 @@ recorded separately in [`DAILY_INTUITION.md`](../../DAILY_INTUITION.md).
 | Later computation and compiler work | [`Algorithm_MIT6_006S20.pdf`](../../books/computation/Algorithm_MIT6_006S20.pdf); [`students digital guide - mit computer structure.pdf`](../../books/computation/students%20digital%20guide%20-%20mit%20computer%20structure.pdf); [`MIT_6.004_Computation_Structures_Spring_2017_Combined_Lecture_Notes.pdf`](../../books/computation/MIT_6.004_Computation_Structures_Spring_2017_Combined_Lecture_Notes.pdf); [`The_Turing_Bombe_by_Graham_Ellsbury.pdf`](../../books/computation/The_Turing_Bombe_by_Graham_Ellsbury.pdf) | Available, unread; keep behind the current Work-Time Engine slices unless a specific dependency arises. |
 | Language and systems references | [`C_Book_2nd.pdf`](../../books/programming/C_Book_2nd.pdf); [`Advanced_Programming_with_Python.pdf`](../../books/programming/Advanced_Programming_with_Python.pdf); [`rust_book.pdf`](../../books/programming/rust_book.pdf); [`julia-fresh-approach-BEKS.pdf`](../../books/programming/julia-fresh-approach-BEKS.pdf); [`fortran_manual.pdf`](../../books/programming/fortran_manual.pdf); [`UNIX OPERATING SYSTEM.pdf`](../../books/computation/UNIX%20OPERATING%20SYSTEM.pdf); [`operating system MIT6_828F12_xv6-book-rev7.pdf`](../../books/computation/operating%20system%20MIT6_828F12_xv6-book-rev7.pdf) | Available, unread in this work item; route to the relevant frontend or kernel backlog, not S2. |
 
-The EdTech PDFs are in [`books/edtech/`](../../books/edtech/); the Saem Global
-EdTech book has now been reviewed for the website design, while its companion
-book remains unread. See its folder README for the reading notes and
-credential-safety warning.
+The EdTech PDFs are in [`books/edtech/`](../../books/edtech/); the 686-page
+Saem Global EdTech book has now had a full-document text review, while its
+companion book remains unread. It is product context, not a mathematical
+authority for WTE. See the folder README for the review scope, implementation
+boundary, and credential-safety warning.

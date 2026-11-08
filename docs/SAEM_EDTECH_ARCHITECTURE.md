@@ -125,9 +125,10 @@ data/configuration with tests, not hidden assumptions in UI code.
   [script.js](../script.js): an existing one-page Saem Physics channel site
   with video, playlist, topic, admission, Telegram, and live-class links.
 - [The organized book library](../books/README.md) includes the
-  [Saem Global EdTech book](../books/edtech/Saem%20Global%20EdTech.pdf), whose
-  PDF page tree contains 686 pages. Its visual-learning and performance notes
-  were reviewed for this website update (pages 58-61). The companion
+  [Saem Global EdTech book](../books/edtech/Saem%20Global%20EdTech.pdf). Its
+  686-page text layer has been reviewed across the full document; see the
+  [EdTech reading notes](../books/edtech/README.md) for useful product
+  principles, proposal conflicts, and implementation limits. The companion
   [Research and Codespaces Build Book](../books/edtech/Saem_EdTech_Research_and_Codespaces_Build_Book.docx.PDF)
   remains unread; no detailed claims are attributed to it.
 - [INSTRUCTIONS_2026-11-06.md](../INSTRUCTIONS_2026-11-06.md),

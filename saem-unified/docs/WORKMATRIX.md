@@ -1,4 +1,9 @@
-# WORKMATRIX: the Work-Time Engine (spec and status, 2026-11-06)
+# WORKMATRIX: historical snapshot (2026-11-06)
+
+This copy is retained from the restored source bundle and its slice statuses
+are stale. Use the active [Work-Time Engine matrix](../../docs/qcos/WORKMATRIX.md)
+and [operating guide](../../docs/qcos/WORK_TIME_ENGINE_GUIDE.md) for all
+current scope, status, and continuation decisions.
 
 The user's TOP PRIORITY (2026-11-04 19:08 IST; the Creator Book `Vision Instructions for QCOS.pdf`): an n-dimensional quaternion/octonion matrix engine that explores algebraic geometry,
 differential geometry and linear algebra, with axes vision, architecture, steps, problems, solutions, books, maths, physics, computation, concepts, equations, code (and more, added with time),

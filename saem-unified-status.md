@@ -15,12 +15,18 @@
   computation, programming, EdTech, and research-review. All moved PDF blobs
   match their original committed Git objects. See [books/README.md](books/README.md)
   for the routing index.
-- Saem Global EdTech has had a targeted text review (PDF pages 58-61; its
-  embedded page tree has 686 pages). The companion book remains unread. Its
-  visual-learning guidance informed the Canvas explainer; performance and
-  offline-app proposals remain future work. The PDF contains a
-  credential-like example value; see `books/edtech/README.md` and rotate it if
-  it is real.
+- Saem Global EdTech has had a full-document text review across all 686 pages
+  (91,466 extracted words; no page extraction errors). The review and its
+  limits are recorded in `books/edtech/README.md` and `DAILY_INTUITION.md`.
+  The companion book remains unread. The full book contains conflicting,
+  unverified implementation proposals; it is not the product or WTE authority.
+  The PDF also contains credential-like examples; see `books/edtech/README.md`
+  and rotate any real credential.
+- The repeatable Work-Time Engine slice order, verification gates, stop rules,
+  and checkpoint procedure are in
+  [WORK_TIME_ENGINE_GUIDE.md](docs/qcos/WORK_TIME_ENGINE_GUIDE.md). The
+  authoritative matrix still has S2 `cos_mat` as the next implementation;
+  this documentation work did not start or complete S2.
 - The new Pages workflow stages only `index.html`, `style.css`, and
   `script.js`; it deliberately excludes the research references and backend
   sources from the deployed site artifact.
@@ -53,8 +59,9 @@
   also encountered ThreadSanitizer startup failures (`unexpected memory
   mapping`); the full sanitizer suite has not been rerun after this change.
 - See the newest 2026-11-08 entries in [DAILY_INTUITION.md](DAILY_INTUITION.md)
-  for book organization, targeted EdTech reading, website changes, and test
-  evidence; the older exact-rational entry remains below.
+  for the complete EdTech review, WTE continuity guide, book organization,
+  website changes, and test evidence; the older exact-rational entry remains
+  below.
 - Next: slice 2 `cos_mat` (exact matrix elimination and the four subspaces),
   following the Work-Time Engine priority. Do not add forecasting claims until
   past-only back-tests and provenance work.

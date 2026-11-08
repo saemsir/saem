@@ -1,7 +1,9 @@
 # QCOS design and engineering notes
 
 This folder groups the top-level QCOS design notes. The active Work-Time
-Engine priority and slice status are in [WORKMATRIX.md](WORKMATRIX.md).
+Engine priority and slice status are in [WORKMATRIX.md](WORKMATRIX.md); the
+repeatable resume and verification procedure is in
+[WORK_TIME_ENGINE_GUIDE.md](WORK_TIME_ENGINE_GUIDE.md).
 
 - [LINUX_QCOS.md](LINUX_QCOS.md) — proposed Linux/QCOS responsibilities and
   sandbox boundary.

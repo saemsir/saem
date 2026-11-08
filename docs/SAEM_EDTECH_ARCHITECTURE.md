@@ -1,0 +1,160 @@
+# Saem Global EdTech: staged product and systems architecture
+
+Status: architecture proposal for this workspace, 2026-11-08. It separates
+verified material from planned work; it does not claim that a production
+backend or RISC-V deployment already exists.
+
+## Product direction
+
+Start with the Saem Physics YouTube channel as the public front door. Grow it
+into an offline-first learning product for teachers and students: lessons and
+notes, exam-paper practice, transparent topic forecasts, timed mock tests,
+worked solutions, and a study plan based on results. India exam boards and
+JEE/NEET are the first content context; add other regions only with their own
+reviewed curricula and paper data.
+
+The forecast must say **chances, never promises**. Store the source and language
+of each question and solution. Keep student work private by default, allow
+teacher/classroom workflows only with explicit sharing, and do not make a
+forecast or an automated model a substitute for a teacher.
+
+## System boundaries
+
+```text
+Public channel site (HTML/CSS/JavaScript; static hosting)
+                  |
+                  v
+Local/offline learning app (Python UI/server and import/export)
+                  |
+             versioned JSON
+                  v
+EdTech domain engine (C++17 modules from the Saem source snapshot)
+        |                         |
+        v                         v
+QCOS C17 gate and exact       Open Math Harness (Rust)
+math services                 isolated research/verification tool
+        |
+        v
+Later: constrained RISC-V target and local/edge deployment
+```
+
+These are separate trust and deployment boundaries. A static website can be
+published without a server; it must not pretend to run the exam forecaster.
+The RISC-V kernel is not a web server. Open Math Harness is not a drop-in
+arithmetic library or a dependency that may silently decide student results.
+Initially the learning app should work on one computer with local files and a
+local database; classroom access on a local network is a later, opt-in mode.
+
+### Programming-language roles
+
+Languages meet at documented data formats and tested interfaces; they are not
+all compiled into the browser or placed in one runtime.
+
+| Language | Bounded role |
+|---|---|
+| HTML, CSS, JavaScript | Public website and browser presentation. Keep this first channel page static and lightweight. |
+| Python | Local/offline application shell, import/export, UI orchestration, and test automation. It must not be trusted to change QCOS-protected state. |
+| C++17 | Existing EdTech domain/solver and forecast modules in the archived Saem source bundle; isolate behind the JSON-lines/API boundary and preserve differential tests. |
+| C17 | QCOS/saem kernel, gates, bounded state, and exact rational/algebra primitives. Treat the kernel as a narrow authority/verifier, not the whole customer-facing app. |
+| Rust | Open Math Harness itself and, if useful, standalone local developer/administration tools. Use a process/JSON boundary first; do not add unverified FFI ownership or runtime coupling. |
+| R | Offline statistics exploration, visualizations, and forecast analysis. Promote a result only after reproducible tests and porting it to a supported runtime. |
+| Fortran | Offline numerical prototypes and bounded numerical routines; specify integer/rational semantics before any routine becomes part of exam scoring. |
+| Julia | Offline mathematical experimentation and benchmarks only. No Julia runtime or garbage collector in the production deterministic backend. |
+
+This uses the requested languages where their strengths fit, while keeping the
+actual browser interface coherent. It avoids making students download multiple
+language runtimes to view a lesson.
+
+## Learning and computation flow
+
+1. Import a paper and preserve its original file, board, year, language/script,
+   and provenance. Extraction is a proposal until a teacher confirms question
+   boundaries, marks, and topic labels.
+2. Maintain a versioned question/topic taxonomy and a review trail. Keep source
+   text distinct from normalized search text so Devanagari and other scripts
+   are not lost or silently rewritten.
+3. Generate a forecast from eligible prior papers. A simple, auditable topic
+   baseline to compare against is a smoothed weighted occurrence rate:
+
+   `p(topic) = (sum_i w_i * y_i + alpha) / (sum_i w_i + 2 * alpha)`
+
+   Here `y_i` is whether the topic appeared in paper `i`, `w_i` is a declared
+   recency/eligibility weight, and `alpha > 0` is a declared smoothing value.
+   The formula is a proposed baseline, not a result or a model already in this
+   repository. Choose weights and smoothing using past-only validation; never
+   train on the paper being evaluated.
+4. Back-test by holding out one year at a time and fitting only on earlier
+   papers. Report coverage, calibration, and a proper score such as the Brier
+   score `mean((p_i - y_i)^2)` alongside a historical-frequency baseline.
+   Display data coverage and uncertainty; suppress forecasts when the evidence
+   is insufficient. A ranked topic is not a guarantee that a question will
+   appear.
+5. Assemble a mock test only from reviewed questions. Score deterministically
+   under the selected exam's marking rules; attach solution steps, source
+   provenance, and a version to every answer key.
+6. Summarize weak topics and suggest a study plan. Keep the student in control
+   and make the teacher's review and correction path explicit.
+
+The exam rule set, marks, negative marking, timers, and output language must be
+data/configuration with tests, not hidden assumptions in UI code.
+
+## What the supplied materials support
+
+### Present in this repository
+
+- [index.html](../index.html), [style.css](../style.css), and
+  [script.js](../script.js): an existing one-page Saem Physics channel site
+  with video, playlist, topic, admission, Telegram, and live-class links.
+- [Saem Global EdTech.pdf](../Saem%20Global%20EdTech.pdf): a 351-page source
+  PDF, and
+  [Saem_EdTech_Research_and_Codespaces_Build_Book.docx.PDF](../Saem_EdTech_Research_and_Codespaces_Build_Book.docx.PDF):
+  an 8-page source PDF. A PDF text extractor is not installed in this
+  workspace, so their contents have **not** been read or indexed here. Do not
+  treat their detailed contents as incorporated until they have been extracted
+  and reviewed.
+- [INSTRUCTIONS_2026-11-06.md](../INSTRUCTIONS_2026-11-06.md),
+  [STANDING_ORDERS.md](../STANDING_ORDERS.md), and
+  [saem-unified-status.md](../saem-unified-status.md): persistent product,
+  technology, and continuity notes. Older statements in them mention different
+  prototype constraints; resolve conflicts against the latest user direction
+  and this staged architecture rather than treating every historical note as
+  current code.
+- [saem-unified-bundle.py.txt](../saem-unified-bundle.py.txt): a
+  SHA-256-checked snapshot containing 216 files, including `core/c17`,
+  `core/src`, tests, and `docs`. It has **not** been restored into the current
+  working tree; its presence does not mean those modules can currently be
+  built from the repository root.
+- [open-math-harness-main.zip](../open-math-harness-main.zip): Rust source for
+  Open Math Harness. Its README says the full runtime depends on the Open Math
+  OS deployment environment; only a small example is self-contained locally.
+  It uses Lean to check candidate proofs, not as a general physics solver.
+  Evaluate its license, dependencies, security boundary, and offline behavior
+  before adopting code or running student workloads.
+- [xv6-riscv-fall19-xv6-riscv-fall19.zip](../xv6-riscv-fall19-xv6-riscv-fall19.zip):
+  the 2019 MIT teaching xv6/RISC-V source archive. It is a study reference, not
+  Saem's production kernel or a ready-to-deploy application backend.
+- [README.md](../README.md): corrected instructions for the current root-level
+  static website.
+
+Do not move or edit the supplied source books/archives in place. Add reviewed
+notes and licensed integrations beside them.
+
+## Delivery stages
+
+| Stage | Deliverable | Exit condition |
+|---|---|---|
+| 0 — Channel front door | Publish the current static channel page and verify its links, metadata, mobile layout, and keyboard navigation. | A student can reach lessons and the existing learning/contact resources; no backend claims are made. |
+| 1 — Recover the EdTech baseline | Restore the checked Saem source bundle into a clearly named subdirectory, inspect its exact build/test commands, and reconcile its recorded status with current source/tests. | Clean, repeatable build and tests; no overwriting the channel site. |
+| 2 — Local learning shell | Connect a minimal Python UI to the existing C++ engine through a documented, bounded JSON interface; keep local content and progress on device. | Import, reviewed question display, and one mock-test flow work offline with integration tests. |
+| 3 — Auditable forecasting | Add paper normalization, reviewed labels, past-only back-tests, calibration reporting, and explicit low-evidence behavior. | Reproducible evaluation beats or explains its baseline; every output has provenance and uncertainty. |
+| 4 — QCOS and mathematics | Use QCOS gates/exact math where the restored implementation actually supports a calculation. Evaluate Open Math Harness separately for proof-verification work; keep it outside the scoring authority until independently validated. | Cross-language contract tests, exact-answer or explicit-refusal behavior, and no unsupported proof/forecast claims. |
+| 5 — RISC-V and scale | Port or deploy bounded components to a specified RISC-V board/simulator only after the software contract is stable. | Target-specific builds, simulator or hardware tests, measured resource limits, and a recovery path. |
+
+## Immediate continuation
+
+The smallest requested product step is the channel landing page, not a
+simulated learning backend. The page already exists; the current change makes
+it shareable and fixes its publishing instructions. Next, restore the 216-file
+snapshot into a separate directory and verify it before connecting any runtime.
+Review and index the two EdTech PDFs with an available extractor before claiming
+their detailed ideas have been incorporated.

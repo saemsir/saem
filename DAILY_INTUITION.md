@@ -1,5 +1,77 @@
 # Daily intuition log (newest first)
 
+## 2026-11-08: Saem Physics channel site and staged EdTech architecture
+
+Work item: organize the current website and supplied references into a truthful
+step-by-step path toward the offline-first physics learning product.
+
+### Sources actually inspected
+
+- Workspace [README.md](README.md), [index.html](index.html), [script.js](script.js),
+  and [style.css](style.css): the existing site is a static channel page with
+  curated YouTube links, topic/playlist/lecture cards, admission, Telegram, and
+  live-class links.
+- [STANDING_ORDERS.md](STANDING_ORDERS.md), sections 1–3, and
+  [INSTRUCTIONS_2026-11-06.md](INSTRUCTIONS_2026-11-06.md): the product target
+  includes forecasting with past-paper evidence, a timed test machine, worked
+  solutions, weak-topic feedback, offline use, and durable save/continuity.
+- [saem-unified-status.md](saem-unified-status.md), LATEST and the EdTech
+  product state: the project records a C++ EdTech engine, C17 kernel/math work,
+  and reference interface plans; this workspace currently has only the packed
+  source snapshot, not an extracted backend tree.
+- `open-math-harness-main.zip`, its README and Cargo manifest: it is a Rust
+  runtime for Open Math OS; the README says the complete runtime depends on that
+  deployment environment, while a small example is locally self-contained.
+  Lean checks proof candidates. This is not established as an offline physics
+  solver for the product.
+- `xv6-riscv-fall19-xv6-riscv-fall19.zip`, its README: this is a 2019 RISC-V
+  teaching OS and requires a RISC-V toolchain and QEMU to run. It is reference
+  material, not the Saem production backend.
+- [saem-unified-bundle.py.txt](saem-unified-bundle.py.txt): its manifest lists
+  216 SHA-256-checked files, including `core/c17`, the EdTech `core/src`, tests,
+  and docs. The bundle was inspected without executing or restoring it.
+
+The two supplied EdTech PDFs were identified as 351 pages and 8 pages, but no
+PDF text extractor is installed in this workspace. Their contents have not
+been read; no book equation or recommendation is attributed to them here.
+
+### Equations and invariants
+
+- Proposed, not implemented: a transparent smoothed occurrence baseline
+  `p(topic) = (sum_i w_i*y_i + alpha)/(sum_i w_i + 2*alpha)`, with declared
+  weights, `alpha > 0`, and paper `i` held out during back-testing. Evaluate
+  predictions with a proper score such as `mean((p_i-y_i)^2)` and report
+  calibration and evidence coverage. This is a product-design starting point,
+  not a claim that the forecast works.
+- Keep original paper language/script and source provenance separate from
+  normalized text. Keep the browser UI, local app, EdTech engine, QCOS gate,
+  research tools, and future RISC-V target behind explicit interfaces.
+- The archived Open Math and xv6 projects have deployment/scope constraints;
+  their mere presence does not make them production-ready dependencies.
+
+### Code pattern and failure modes
+
+- Reuse the already-working root-level HTML/CSS/JS channel site as Stage 0;
+  make publication instructions match its actual flat directory layout.
+- Use versioned, bounded JSON/process interfaces between language runtimes
+  before attempting shared-memory or FFI integration. Keep Julia, R, and
+  Fortran in offline research/prototyping roles until outputs are independently
+  validated.
+- Failure modes: claiming a static site has a working forecast backend;
+  treating Open Math Harness as a standalone offline solver despite its README;
+  treating teaching xv6 as the product kernel; reporting predictions without
+  past-only back-tests; or claiming PDF knowledge without extracting the PDFs.
+
+### What changed
+
+- Added the staged boundaries, language roles, forecast evaluation proposal,
+  source inventory, and verification gates to
+  [docs/SAEM_EDTECH_ARCHITECTURE.md](docs/SAEM_EDTECH_ARCHITECTURE.md).
+- Corrected the root [README.md](README.md) to describe and publish the site
+  that is actually in this repository.
+- Added share-card metadata to [index.html](index.html); no backend behavior
+  or third-party runtime dependency was added.
+
 One entry per working day, written BEFORE the code it drives (rule in `docs/STANDING_ORDERS.md` section 2).
 Each entry: books and sections read, equations and invariants, code patterns, failure modes, and what changed in our code.
 "Verified" means we read it in the project copy or ran it; "planned" means a design that no test has run yet.

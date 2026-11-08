@@ -1,5 +1,30 @@
 # Saem Unified: status and handoff
 
+## CURRENT WORKSPACE HANDOFF (2026-11-08)
+
+- The present repository root is the Saem Physics static channel site, not a
+  checked-out, runnable EdTech/QCOS backend. Start at [README.md](README.md).
+- The staged business and software architecture, including the correct roles
+  for C17/QCOS, C++17, RISC-V, Open Math Harness/Rust, Python, R, Fortran, and
+  Julia, is in [docs/SAEM_EDTECH_ARCHITECTURE.md](docs/SAEM_EDTECH_ARCHITECTURE.md).
+- Stage 0 is the YouTube channel landing page. Share-card metadata and
+  repository-accurate preview/Pages instructions have been added.
+- The 216-file source snapshot is
+  [saem-unified-bundle.py.txt](saem-unified-bundle.py.txt); it has not been
+  restored. Restore into a separate, clearly named subdirectory only after
+  checking the target is empty, then run its own documented tests.
+- `open-math-harness-main.zip` is a Rust Open Math OS runtime, not a local
+  physics solver; its README documents deployment dependencies. The xv6 archive
+  is an MIT teaching OS. Neither is currently wired into the site.
+- The two EdTech PDFs (351 and 8 pages) remain unread because PDF extraction
+  tools are absent. Review their contents before claiming their details were
+  incorporated.
+- See the 2026-11-08 entry in [DAILY_INTUITION.md](DAILY_INTUITION.md) for what
+  was actually inspected and the forecast baseline proposal.
+- Next: verify/publish the channel page, then restore and validate the Saem
+  snapshot without disturbing the website. Do not add forecasting claims until
+  past-only back-tests and provenance are working.
+
 ## LATEST (2026-11-06): read this block first, then the PREVIOUS block and START HERE
 
 - Standing orders: `docs/STANDING_ORDERS.md` (sections 1, 6c, 6d are new). TOP PRIORITY since 2026-11-04 19:08 IST: the Work-Time Engine, spec and slice table in `docs/WORKMATRIX.md`. Live project instructions were verified with `project_info` and saved verbatim in `docs/INSTRUCTIONS_2026-11-06.md` (made with `tools/snap_instructions.py`).

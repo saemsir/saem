@@ -13,6 +13,7 @@ CHANNEL_ID = "UCJlNb8kQgLWqb65htic2CkQ"
 FEED_URL = f"https://www.youtube.com/feeds/videos.xml?channel_id={CHANNEL_ID}"
 ATOM = "{http://www.w3.org/2005/Atom}"
 YOUTUBE = "{http://www.youtube.com/xml/schemas/2015}"
+MEDIA = "{http://search.yahoo.com/mrss/}"
 VIDEO_ID = re.compile(r"[A-Za-z0-9_-]{11}\Z")
 MAX_ITEMS = 15
 MAX_FEED_BYTES = 1_000_000
@@ -29,9 +30,16 @@ def parse_feed(xml_data):
         video_id = entry.findtext(f"{YOUTUBE}videoId", default="")
         title = entry.findtext(f"{ATOM}title", default="").strip()
         published = entry.findtext(f"{ATOM}published", default="")
+        group = entry.find(f"{MEDIA}group")
+        description = group.findtext(f"{MEDIA}description", default="").strip()[:1000] if group is not None else ""
         if not VIDEO_ID.fullmatch(video_id) or not title or not published:
             continue
-        items.append({"videoId": video_id, "title": title, "published": published})
+        items.append({
+            "videoId": video_id,
+            "title": title,
+            "published": published,
+            "description": description,
+        })
         if len(items) == MAX_ITEMS:
             break
     if not items:

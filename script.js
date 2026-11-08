@@ -171,12 +171,10 @@ end program motion`
 
   const channelGrid = document.getElementById("channel-video-grid");
   const channelStatus = document.getElementById("channel-feed-status");
+  const channelRefresh = document.getElementById("channel-feed-refresh");
   function makeChannelVideo(video) {
-    const link = document.createElement("a");
-    link.className = "channel-video";
-    link.href = `https://www.youtube.com/watch?v=${video.videoId}`;
-    link.target = "_blank";
-    link.rel = "noopener noreferrer";
+    const card = document.createElement("article");
+    card.className = "channel-video";
 
     const top = document.createElement("span");
     top.className = "channel-video-top";
@@ -198,35 +196,72 @@ end program motion`
     thumbnail.loading = "lazy";
     thumbnail.decoding = "async";
 
+    const playButton = document.createElement("button");
+    playButton.className = "channel-video-play";
+    playButton.type = "button";
+    playButton.setAttribute("aria-label", `Play ${video.title} on this page`);
+    const playLabel = document.createElement("span");
+    playLabel.className = "channel-play-icon";
+    playLabel.setAttribute("aria-hidden", "true");
+    playLabel.textContent = "▶";
+    playButton.append(thumbnail, playLabel);
+    playButton.addEventListener("click", () => {
+      const frame = document.createElement("iframe");
+      frame.className = "channel-video-player";
+      frame.src = `https://www.youtube-nocookie.com/embed/${video.videoId}?autoplay=1&rel=0`;
+      frame.title = video.title;
+      frame.loading = "lazy";
+      frame.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+      frame.referrerPolicy = "strict-origin-when-cross-origin";
+      frame.allowFullscreen = true;
+      playButton.replaceWith(frame);
+    }, { once: true });
+
     const title = document.createElement("h3");
     title.textContent = video.title;
 
+    const description = document.createElement("p");
+    description.className = "channel-video-description";
+    description.textContent = typeof video.description === "string" ? video.description : "";
+    description.hidden = !description.textContent;
+
     const action = document.createElement("span");
     action.className = "channel-video-action";
-    const label = document.createElement("span");
-    label.textContent = "Watch on YouTube";
-    const arrow = document.createElement("span");
-    arrow.setAttribute("aria-hidden", "true");
-    arrow.textContent = "↗";
-    action.append(label, arrow);
+    const playText = document.createElement("span");
+    playText.textContent = "Play here";
+    const external = document.createElement("a");
+    external.href = `https://www.youtube.com/watch?v=${video.videoId}`;
+    external.target = "_blank";
+    external.rel = "noopener noreferrer";
+    external.textContent = "YouTube ↗";
+    action.append(playText, external);
 
-    link.append(top, thumbnail, title, action);
-    return link;
+    card.append(top, playButton, title, description, action);
+    return card;
   }
 
+  let channelLoadInProgress = false;
   async function loadChannelVideos() {
+    if (channelLoadInProgress) return;
+    channelLoadInProgress = true;
+    channelRefresh.disabled = true;
+    channelStatus.textContent = "Checking the latest channel feed…";
     try {
-      const response = await fetch("./channel-feed.json", { cache: "no-store" });
+      const response = await fetch(`./channel-feed.json?check=${Date.now()}`, { cache: "no-store" });
       if (!response.ok) throw new Error(`Channel feed request failed (${response.status})`);
       const feed = await response.json();
-      if (!Array.isArray(feed.items) || feed.items.length === 0) {
+      const videos = Array.isArray(feed.items)
+        ? feed.items.filter((video) => video && /^[A-Za-z0-9_-]{11}$/.test(video.videoId) &&
+          typeof video.title === "string" && video.title.trim() && typeof video.published === "string")
+        : [];
+      if (videos.length === 0) {
         throw new Error("The channel feed did not contain any videos");
       }
-      channelGrid.replaceChildren(...feed.items.slice(0, 6).map(makeChannelVideo));
+      channelGrid.replaceChildren(...videos.slice(0, 6).map(makeChannelVideo));
       const refreshed = new Date(feed.generatedAt);
       channelStatus.textContent = Number.isNaN(refreshed.getTime())
-        ? "Recent uploads · automatically refreshed"
-        : `Feed refreshed ${new Intl.DateTimeFormat(undefined, { dateStyle: "medium", timeStyle: "short" }).format(refreshed)}`;
+        ? "Latest upload updates · checked just now"
+        : `Checked just now · channel snapshot ${new Intl.DateTimeFormat(undefined, { dateStyle: "medium", timeStyle: "short" }).format(refreshed)}`;
     } catch (error) {
       console.warn("Could not load the latest Saem Physics uploads:", error);
       channelStatus.textContent = "Recent uploads are temporarily unavailable. Visit the channel for the latest videos.";
@@ -237,9 +272,33 @@ end program motion`
       fallback.rel = "noopener noreferrer";
       fallback.textContent = "Open the Saem Physics video archive ↗";
       channelGrid.replaceChildren(fallback);
+    } finally {
+      channelLoadInProgress = false;
+      channelRefresh.disabled = false;
     }
   }
+  channelRefresh.addEventListener("click", loadChannelVideos);
   loadChannelVideos();
+  window.setInterval(() => {
+    if (!document.hidden) loadChannelVideos();
+  }, 15 * 60 * 1000);
+
+  const liveButton = document.getElementById("channel-live-load");
+  const livePlayer = document.getElementById("channel-live-player");
+  const liveStatus = document.getElementById("channel-live-status");
+  liveButton.addEventListener("click", () => {
+    const frame = document.createElement("iframe");
+    frame.className = "channel-live-frame";
+    frame.src = "https://www.youtube-nocookie.com/embed/live_stream?channel=UCJlNb8kQgLWqb65htic2CkQ";
+    frame.title = "Saem Physics live stream";
+    frame.loading = "lazy";
+    frame.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+    frame.referrerPolicy = "strict-origin-when-cross-origin";
+    frame.allowFullscreen = true;
+    livePlayer.replaceChildren(frame);
+    livePlayer.hidden = false;
+    liveStatus.textContent = "The player is connected. If no public broadcast is running, browse the channel streams.";
+  });
 
   const practiceWidget = document.getElementById("practice-widget");
   if (practiceWidget) {
@@ -367,6 +426,282 @@ end program motion`
     });
 
     renderPractice();
+  }
+
+  const examWidget = document.getElementById("exam-test-widget");
+  if (examWidget) {
+    const studio = window.SaemStudentStudio;
+    if (!studio) throw new Error("The student exam module did not load.");
+    const startButton = document.getElementById("exam-start");
+    const startPanel = document.getElementById("exam-test-start");
+    const sessionPanel = document.getElementById("exam-test-session");
+    const resultsPanel = document.getElementById("exam-test-results");
+    const questionCount = document.getElementById("exam-question-count");
+    const timerLabel = document.getElementById("exam-timer");
+    const progress = document.getElementById("exam-progress");
+    const questionHeading = document.getElementById("exam-question");
+    const options = document.getElementById("exam-options");
+    const status = document.getElementById("exam-test-status");
+    const previousButton = document.getElementById("exam-previous");
+    const nextButton = document.getElementById("exam-next");
+    const submitButton = document.getElementById("exam-submit");
+    const totalSeconds = studio.examConfig.durationSeconds;
+    let answers;
+    let questionIndex;
+    let remainingSeconds;
+    let timerId = null;
+    let confirmIncomplete = false;
+
+    function updateExamTimer() {
+      const minutes = Math.floor(remainingSeconds / 60);
+      const seconds = remainingSeconds % 60;
+      timerLabel.textContent = `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+    }
+
+    function renderExamQuestion() {
+      const question = studio.examQuestions[questionIndex];
+      questionCount.textContent = `Question ${questionIndex + 1} of ${studio.examQuestions.length}`;
+      questionHeading.textContent = question.prompt;
+      progress.value = answers.filter((answer) => answer !== null).length;
+      previousButton.disabled = questionIndex === 0;
+      nextButton.hidden = questionIndex === studio.examQuestions.length - 1;
+      submitButton.hidden = questionIndex !== studio.examQuestions.length - 1;
+      status.textContent = "";
+      confirmIncomplete = false;
+      submitButton.textContent = "Finish test";
+
+      const legend = options.querySelector("legend");
+      const labels = question.options.map((option, index) => {
+        const label = document.createElement("label");
+        label.className = "practice-option";
+        const input = document.createElement("input");
+        input.type = "radio";
+        input.name = "exam-answer";
+        input.value = String(index);
+        input.checked = answers[questionIndex] === index;
+        input.addEventListener("change", () => {
+          answers[questionIndex] = index;
+          progress.value = answers.filter((answer) => answer !== null).length;
+          status.textContent = "";
+          confirmIncomplete = false;
+          submitButton.textContent = "Finish test";
+        });
+        const answerText = document.createElement("span");
+        answerText.textContent = option;
+        label.append(input, answerText);
+        return label;
+      });
+      options.replaceChildren(legend, ...labels);
+    }
+
+    function finishExam(byTimer) {
+      if (timerId !== null) window.clearInterval(timerId);
+      timerId = null;
+      const result = studio.scoreExam(answers);
+      const heading = document.createElement("h4");
+      heading.textContent = `Your score: ${result.score} / ${result.maximumScore}`;
+      const summary = document.createElement("p");
+      summary.textContent = `${byTimer ? "Time is up. " : ""}Marks: correct ${studio.examConfig.marksCorrect}, incorrect ${studio.examConfig.marksIncorrect}, unanswered ${studio.examConfig.marksUnanswered}.`;
+      const topicHeading = document.createElement("h5");
+      topicHeading.textContent = "Topic check";
+      const topicList = document.createElement("ul");
+      topicList.className = "exam-topic-results";
+      result.topicScores.forEach((topic) => {
+        const item = document.createElement("li");
+        item.textContent = `${topic.topic}: ${topic.correct} of ${topic.total} correct`;
+        topicList.append(item);
+      });
+      const reviewHeading = document.createElement("h5");
+      reviewHeading.textContent = "Worked review";
+      const reviewList = document.createElement("div");
+      reviewList.className = "exam-review-list";
+      studio.examQuestions.forEach((question, index) => {
+        const details = document.createElement("details");
+        details.className = "exam-review-item";
+        const summaryLine = document.createElement("summary");
+        const answer = answers[index] === null ? "Not answered" : question.options[answers[index]];
+        summaryLine.textContent = `${index + 1}. ${question.topic} · ${answers[index] === question.answerIndex ? "Correct" : "Review"} · Your answer: ${answer}`;
+        const correct = document.createElement("p");
+        correct.textContent = `Answer: ${question.options[question.answerIndex]}. ${question.explanation}`;
+        details.append(summaryLine, correct);
+        reviewList.append(details);
+      });
+      const restart = document.createElement("button");
+      restart.className = "button button-quiet";
+      restart.type = "button";
+      restart.textContent = "Start another attempt";
+      restart.addEventListener("click", resetExam);
+      resultsPanel.replaceChildren(heading, summary, topicHeading, topicList, reviewHeading, reviewList, restart);
+      sessionPanel.hidden = true;
+      resultsPanel.hidden = false;
+    }
+
+    function resetExam() {
+      if (timerId !== null) window.clearInterval(timerId);
+      timerId = null;
+      answers = Array(studio.examQuestions.length).fill(null);
+      questionIndex = 0;
+      remainingSeconds = totalSeconds;
+      updateExamTimer();
+      resultsPanel.hidden = true;
+      startPanel.hidden = false;
+      sessionPanel.hidden = true;
+    }
+
+    startButton.addEventListener("click", () => {
+      answers = Array(studio.examQuestions.length).fill(null);
+      questionIndex = 0;
+      remainingSeconds = totalSeconds;
+      updateExamTimer();
+      startPanel.hidden = true;
+      resultsPanel.hidden = true;
+      sessionPanel.hidden = false;
+      renderExamQuestion();
+      questionHeading.focus();
+      timerId = window.setInterval(() => {
+        remainingSeconds -= 1;
+        updateExamTimer();
+        if (remainingSeconds <= 0) finishExam(true);
+      }, 1000);
+    });
+    previousButton.addEventListener("click", () => {
+      if (questionIndex === 0) return;
+      questionIndex -= 1;
+      renderExamQuestion();
+      questionHeading.focus();
+    });
+    nextButton.addEventListener("click", () => {
+      if (questionIndex >= studio.examQuestions.length - 1) return;
+      questionIndex += 1;
+      renderExamQuestion();
+      questionHeading.focus();
+    });
+    submitButton.addEventListener("click", () => {
+      const unanswered = answers.filter((answer) => answer === null).length;
+      if (unanswered && !confirmIncomplete) {
+        confirmIncomplete = true;
+        submitButton.textContent = "Submit with blanks";
+        status.textContent = `${unanswered} question${unanswered === 1 ? "" : "s"} unanswered. Choose Submit with blanks to finish now.`;
+        return;
+      }
+      finishExam(false);
+    });
+  }
+
+  const paperHistoryInput = document.getElementById("paper-history-file");
+  if (paperHistoryInput) {
+    const studio = window.SaemStudentStudio;
+    if (!studio) throw new Error("The topic outlook module did not load.");
+    const historyStatus = document.getElementById("paper-history-status");
+    const boardSelect = document.getElementById("outlook-board");
+    const languageSelect = document.getElementById("outlook-language");
+    const targetYear = document.getElementById("outlook-year");
+    const runForecast = document.getElementById("outlook-run");
+    const forecastStatus = document.getElementById("outlook-status");
+    const forecastResults = document.getElementById("outlook-results");
+    let paperHistory = [];
+    targetYear.value = String(new Date().getFullYear());
+
+    function selectOptions(select, values, placeholder) {
+      const options = [new Option(placeholder, ""), ...values.map((value) => new Option(value, value))];
+      select.replaceChildren(...options);
+    }
+
+    function updateAvailableLanguages() {
+      const languages = [...new Set(paperHistory
+        .filter((paper) => paper.board.toLocaleLowerCase() === boardSelect.value.toLocaleLowerCase())
+        .map((paper) => paper.language))]
+        .sort((a, b) => a.localeCompare(b));
+      selectOptions(languageSelect, languages, languages.length ? "Choose language" : "No languages");
+      languageSelect.disabled = languages.length === 0;
+      languageSelect.value = languages[0] || "";
+      runForecast.disabled = languages.length === 0;
+    }
+
+    boardSelect.addEventListener("change", updateAvailableLanguages);
+    paperHistoryInput.addEventListener("change", async () => {
+      const file = paperHistoryInput.files && paperHistoryInput.files[0];
+      paperHistory = [];
+      selectOptions(boardSelect, [], "Import history first");
+      boardSelect.disabled = true;
+      selectOptions(languageSelect, [], "Choose exam series first");
+      languageSelect.disabled = true;
+      runForecast.disabled = true;
+      forecastResults.hidden = true;
+      forecastStatus.textContent = "";
+      if (!file) {
+        historyStatus.textContent = "No paper history loaded. Your file is read locally and is not sent to Saem.";
+        return;
+      }
+      if (file.size > 1_000_000) {
+        historyStatus.textContent = "The paper-history file is too large (maximum 1 MB).";
+        return;
+      }
+      try {
+        const parsed = JSON.parse(await file.text());
+        paperHistory = studio.parsePaperHistory(parsed);
+        const boards = [...new Set(paperHistory.map((paper) => paper.board))].sort((a, b) => a.localeCompare(b));
+        selectOptions(boardSelect, boards, "Choose exam series");
+        boardSelect.disabled = false;
+        boardSelect.value = boards[0];
+        updateAvailableLanguages();
+        historyStatus.textContent = `${paperHistory.length} cited paper records loaded locally. Teacher-review labels are user supplied and not independently verified.`;
+      } catch (error) {
+        paperHistory = [];
+        historyStatus.textContent = `Could not load paper history: ${error.message}`;
+        console.warn("Could not load local exam paper history:", error);
+      }
+    });
+
+    runForecast.addEventListener("click", () => {
+      forecastResults.hidden = true;
+      forecastStatus.textContent = "";
+      try {
+        const outlook = studio.calculateTopicOutlook(
+          paperHistory,
+          boardSelect.value,
+          languageSelect.value,
+          Number(targetYear.value)
+        );
+        const summary = document.createElement("p");
+        summary.textContent = `${outlook.board} · ${outlook.language} · ${outlook.paperCount} reviewed papers · ${outlook.years[0]}–${outlook.years[outlook.years.length - 1]} · target ${outlook.targetYear}. Only earlier papers were counted.`;
+        const list = document.createElement("ol");
+        list.className = "outlook-topic-list";
+        outlook.topics.forEach((topic) => {
+          const item = document.createElement("li");
+          const label = document.createElement("span");
+          label.textContent = topic.topic;
+          const rate = document.createElement("strong");
+          rate.textContent = `${(topic.probability * 100).toFixed(1)}%`;
+          const evidence = document.createElement("small");
+          evidence.textContent = `Tagged in ${topic.appearances} of ${topic.papers} papers`;
+          item.append(label, rate, evidence);
+          list.append(item);
+        });
+        const sources = document.createElement("details");
+        const sourceSummary = document.createElement("summary");
+        sourceSummary.textContent = "Paper sources used";
+        const sourceList = document.createElement("ul");
+        paperHistory
+          .filter((paper) =>
+            paper.board.toLocaleLowerCase() === outlook.board.toLocaleLowerCase() &&
+            paper.language.toLocaleLowerCase() === outlook.language.toLocaleLowerCase() &&
+            paper.year < outlook.targetYear
+          )
+          .sort((a, b) => a.year - b.year || a.paperId.localeCompare(b.paperId))
+          .forEach((paper) => {
+            const item = document.createElement("li");
+            item.textContent = `${paper.year} · ${paper.paperId} · ${paper.source}`;
+            sourceList.append(item);
+          });
+        sources.append(sourceSummary, sourceList);
+        forecastResults.replaceChildren(summary, list, sources);
+        forecastResults.hidden = false;
+        forecastStatus.textContent = "Exploratory frequency only—not a calibrated exam forecast.";
+      } catch (error) {
+        forecastStatus.textContent = error.message;
+      }
+    });
   }
 
   const tabs = document.getElementById("language-tabs");

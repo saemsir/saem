@@ -1,5 +1,54 @@
 # Daily intuition log (newest first)
 
+## 2026-11-08 (continued): first exam desk and dynamic channel updates
+
+Work item: move the static channel front door toward the SAEM Global EdTech
+Stage 0/1 experience while keeping prediction claims tied to evidence.
+
+- **Knowledge reviewed:** the staged
+  [SAEM EdTech architecture](docs/SAEM_EDTECH_ARCHITECTURE.md) and its
+  [full-book reading notes](books/edtech/README.md), especially the product
+  direction, learning/forecast flow, provenance requirements, and separation
+  between a static website and the future offline application. The book is an
+  evolving proposal; its sample implementation claims were not treated as
+  verified requirements.
+- **Testing model:** added an original eight-question, 12-minute sample with a
+  visible `+1 / 0` practice marking rule, answer navigation, timeout,
+  deterministic scoring, topic breakdown, and worked review. This is not a
+  teacher-reviewed JEE/NEET/board mock. Answers exist only in page memory.
+- **Forecast intuition and equation:** for `n` cited, reviewed papers before
+  target year `T`, and `k` papers tagged with a topic, the browser experiment
+  uses the uniform Beta prior `p = (k + 1)/(n + 2)`. It requires at least five
+  papers across three earlier years, filters to one exam series and language,
+  and records the sources used. It is an exploratory frequency—not a chance
+  that an exam question will appear. There is no curated paper archive or
+  past-only calibration/back-test yet; labels and citations in imported files
+  are user-supplied and not independently verified. Files are read in-browser,
+  not uploaded or saved.
+- **Channel updates:** video cards now work as dated upload posts with an
+  optional bounded feed description. A student click activates an inline
+  `youtube-nocookie.com` embed; no player is loaded until requested. A separate
+  user-activated channel live-stream player is available if a public broadcast
+  is running. The Pages workflow snapshots the public YouTube Atom upload feed
+  hourly, and an open page checks the snapshot every 15 minutes. RSS does not
+  expose Community posts or live-stream status, so the interface does not
+  claim automatic live detection.
+- **Changed:** `index.html`, `style.css`, `script.js`,
+  `student-studio.js`, the student/feed tests, the channel-feed parser, Pages
+  schedule, `README.md`, this log, the EdTech architecture, and this status
+  handoff.
+- **Verification:** the student-model tests cover all eight answers,
+  unanswered/invalid scoring, cited/reviewed history validation, minimum
+  coverage, language/series selection, smoothing, and exclusion of target-year
+  papers. Six channel-feed parser tests cover valid metadata, channel
+  validation, malformed IDs, bounded snapshots, and bounded descriptions.
+  JavaScript syntax, HTML identifiers/links, local website smoke checks, and
+  the live hourly Pages deployment remain to be verified after this entry.
+- **Next:** gather legally usable, board/year/language-labelled papers and have
+  a teacher review the questions and topic tags; only then add a curated,
+  versioned dataset and past-only back-tests. Continue the kernel separately
+  at S3 under its saved slice order.
+
 ## 2026-11-08 (continued): student practice and repository capability map
 
 Work item: turn the static channel front door into a more useful, honest

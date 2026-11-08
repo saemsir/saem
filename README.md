@@ -11,9 +11,9 @@
   explanations, source provenance, and human review. See the
   [book review](books/edtech/README.md) and
   [daily intuition log](DAILY_INTUITION.md).
-- QCOS has verified exact algebra and rational foundations. The next planned
-  Work-Time Engine implementation is matrix support (S2), not a finished
-  EdTech backend; see the [work matrix](docs/qcos/WORKMATRIX.md).
+- QCOS has verified exact algebra and the rational matrix API in S2. The next
+  planned Work-Time Engine slice is S3 relations, not a finished EdTech
+  backend; see the [work matrix](docs/qcos/WORKMATRIX.md).
 
 ### Present
 
@@ -25,8 +25,22 @@ conceptual and numerical kinematics questions, read worked reasoning, and
 resume local progress on the same device without an account. The interface
 links the C17 exact arithmetic/matrix kernel and tests while plainly noting
 that these are not web services. The channel feed still refreshes every six
-hours. No 3Blue1Brown artwork was copied; the Saem visual identity remains
-distinct. See the [daily intuition log](DAILY_INTUITION.md) for test evidence.
+hours in that earlier version. No 3Blue1Brown artwork was copied; the Saem
+visual identity remains distinct.
+
+### Present — 2026-11-08 (continued)
+
+The public page now has an eight-question, 12-minute sample test with worked
+review and topic-level results, plus an experimental topic-frequency explorer
+that runs only on locally imported, cited, teacher-reviewed past-paper data.
+It requires at least five papers across three earlier years and labels its
+smoothed frequencies as exploratory—not an official or calibrated exam
+prediction. Channel uploads show as dated update cards with click-to-play,
+privacy-enhanced YouTube embeds; an on-demand player can show a public live
+channel broadcast. The feed snapshot refreshes hourly and the open page checks
+it every 15 minutes. YouTube's public Atom feed does not provide Community
+posts or live-status detection. See the
+[daily intuition log](DAILY_INTUITION.md) for model details and test evidence.
 
 ### Future
 
@@ -75,11 +89,15 @@ describe that path.
 
 The public front door for Saem Physics is a responsive, static website for
 students exploring lessons, exam solutions, and physics through computation.
-It includes a searchable lesson library, automatically refreshed channel
-uploads, an interactive motion explainer, a short guided practice with worked
-feedback and device-local progress, and a map of tested repository features
-versus planned product capabilities. It keeps the channel, playlist,
-admission, Telegram, and live-class links.
+It includes a searchable lesson library, hourly refreshed channel uploads with
+click-to-play embeds and an on-demand channel live-stream player, an interactive
+motion explainer, guided practice, and a local timed sample test with worked
+answer review. Its experimental topic-frequency explorer accepts cited,
+teacher-reviewed paper history from a local
+JSON file; it does not claim to make a calibrated or official exam prediction.
+The map separates tested repository features from planned product
+capabilities. The site keeps the channel, playlist, admission, Telegram, and
+live-class links.
 
 ## Run locally
 
@@ -95,7 +113,7 @@ Open `http://localhost:8000`. Stop the server with Ctrl+C.
 
 The [Pages workflow](.github/workflows/deploy-pages.yml) deploys the website
 assets and generated channel-feed snapshot when changes are pushed to `main`
-or on its six-hour refresh. It intentionally excludes research books, archives,
+or on its hourly refresh. It intentionally excludes research books, archives,
 and backend source from the Pages artifact. In GitHub, open **Settings → Pages**
 and select **GitHub Actions** as the build and deployment source. No build
 runtime is required to serve the site.

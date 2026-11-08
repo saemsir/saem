@@ -6,7 +6,8 @@ from fetch_channel_feed import CHANNEL_ID, MAX_ITEMS, parse_feed
 def make_feed(entries, channel_id=CHANNEL_ID):
     return f"""<?xml version="1.0"?>
     <feed xmlns="http://www.w3.org/2005/Atom"
-          xmlns:yt="http://www.youtube.com/xml/schemas/2015">
+          xmlns:yt="http://www.youtube.com/xml/schemas/2015"
+          xmlns:media="http://search.yahoo.com/mrss/">
       <yt:channelId>{channel_id}</yt:channelId>
       {entries}
     </feed>"""
@@ -17,6 +18,7 @@ def make_entry(video_id, title="Physics &amp; intuition", published="2026-11-08T
       <yt:videoId>{video_id}</yt:videoId>
       <title>{title}</title>
       <published>{published}</published>
+      <media:group><media:description>Explore the physics idea.</media:description></media:group>
     </entry>"""
 
 
@@ -29,8 +31,18 @@ class ChannelFeedTests(unittest.TestCase):
                 "videoId": "AbCdEf12345",
                 "title": "Physics & intuition",
                 "published": "2026-11-08T10:00:00+00:00",
+                "description": "Explore the physics idea.",
             }],
         )
+
+    def test_bounds_and_trims_upload_descriptions(self):
+        long_text = " " + ("x" * 1100) + " "
+        xml_data = make_feed(make_entry("AbCdEf12345").replace(
+            "Explore the physics idea.", long_text
+        ))
+        description = parse_feed(xml_data)[0]["description"]
+        self.assertEqual(len(description), 1000)
+        self.assertEqual(description[0], "x")
 
     def test_rejects_a_different_channel(self):
         with self.assertRaisesRegex(ValueError, "Unexpected YouTube channel"):

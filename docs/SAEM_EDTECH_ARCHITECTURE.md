@@ -39,7 +39,10 @@ Later: constrained RISC-V target and local/edge deployment
 ```
 
 These are separate trust and deployment boundaries. The root static website can
-be published without a server; it must not pretend to run the exam forecaster.
+be published without a server; it must not claim to run the production exam
+forecaster. A bounded browser experiment may calculate transparent statistics
+from locally imported data, but it is not the offline application or a
+validated service.
 The RISC-V kernel is not a web server. Open Math Harness is not a drop-in
 arithmetic library or a dependency that may silently decide student results.
 Initially the learning app should work on one computer with local files and a
@@ -70,16 +73,33 @@ language runtimes to view a lesson.
 ### Public website status
 
 The root website is an HTML/CSS/JavaScript static site. It presents curated
-YouTube lessons and a scheduled snapshot of recent public channel uploads,
-filters the lesson list in the browser, offers an interactive motion model and
-a short guided kinematics practice whose progress stays in browser storage,
-and shows small equation examples for C17, C, C++17, Python, Rust, R, Julia,
-Fortran, and Lisp. Those examples are educational sketches, not a polyglot
-runtime or calls into the EdTech engine. Its C17 example uses the existing
-`CosRat` arithmetic API, while the other snippets use small integer inputs to
-illustrate the same equation. A capability map links students to tested
-repository code and explicitly distinguishes it from features not yet
-deployed.
+YouTube lessons and an hourly snapshot of recent public channel uploads, with
+click-to-play privacy-enhanced embeds and in-page refresh checks. A separate
+user-activated channel live-stream embed can play a public broadcast when one
+is available; the page does not determine live status. The public Atom feed
+contains recent uploads, not Community posts or live-broadcast status. The
+site filters the lesson list in the browser, offers an interactive motion
+model and guided kinematics practice, and provides an eight-question timed
+sample test with worked review and topic-level results. The sample test is
+original starter content, not an official or board-reviewed exam paper.
+
+An experimental topic-frequency explorer accepts a user-selected JSON file
+locally. It requires citations, a teacher-review flag, at least five papers,
+and at least three eligible past years; it excludes papers at or after the
+requested target year. Its smoothed occurrence rate is
+`p = (k + 1) / (n + 2)`, the equal-weight special case of the proposed
+Beta-smoothed baseline. This is an exploratory frequency—not a prediction
+that a question will appear. User-provided provenance and review labels are
+not independently verified; no paper history or answer is sent to a server.
+There is no curated board dataset or past-only validation in this site, so a
+calibrated forecast remains future work.
+
+The site also shows small equation examples for C17, C, C++17, Python, Rust,
+R, Julia, Fortran, and Lisp. Those examples are educational sketches, not a
+polyglot runtime or calls into the EdTech engine. Its C17 example uses the
+existing `CosRat` arithmetic API, while the other snippets use small integer
+inputs to illustrate the same equation. A capability map links students to
+tested repository code and distinguishes it from features not yet deployed.
 
 GitHub Pages can serve that static site, but cannot execute a C17 service. The
 QCOS C17 source and C++ EdTech engine remain in the separate
@@ -96,25 +116,29 @@ separate stage.
 2. Maintain a versioned question/topic taxonomy and a review trail. Keep source
    text distinct from normalized search text so Devanagari and other scripts
    are not lost or silently rewritten.
-3. Generate a forecast from eligible prior papers. A simple, auditable topic
-   baseline to compare against is a smoothed weighted occurrence rate:
+3. Generate a production forecast from eligible prior papers. A simple,
+   auditable topic baseline to compare against is a smoothed weighted
+   occurrence rate:
 
    `p(topic) = (sum_i w_i * y_i + alpha) / (sum_i w_i + 2 * alpha)`
 
    Here `y_i` is whether the topic appeared in paper `i`, `w_i` is a declared
    recency/eligibility weight, and `alpha > 0` is a declared smoothing value.
-   The formula is a proposed baseline, not a result or a model already in this
-   repository. Choose weights and smoothing using past-only validation; never
-   train on the paper being evaluated.
+   This formula is a proposed baseline; the website's smaller experimental
+   equal-weight explorer is not this validated model. Choose weights and
+   smoothing using past-only validation; never train on the paper being
+   evaluated.
 4. Back-test by holding out one year at a time and fitting only on earlier
    papers. Report coverage, calibration, and a proper score such as the Brier
    score `mean((p_i - y_i)^2)` alongside a historical-frequency baseline.
    Display data coverage and uncertainty; suppress forecasts when the evidence
    is insufficient. A ranked topic is not a guarantee that a question will
    appear.
-5. Assemble a mock test only from reviewed questions. Score deterministically
-   under the selected exam's marking rules; attach solution steps, source
-   provenance, and a version to every answer key.
+5. Assemble a production mock test only from reviewed questions. Score
+   deterministically under the selected exam's marking rules; attach solution
+   steps, source provenance, and a version to every answer key. The current
+   website's eight-question sample demonstrates local timer/scoring/review
+   behavior only; it is not a board-specific mock test.
 6. Summarize weak topics and suggest a study plan. Keep the student in control
    and make the teacher's review and correction path explicit.
 

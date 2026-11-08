@@ -7,14 +7,19 @@
   [saem-unified/](saem-unified/). Start at [README.md](README.md).
 - The website has a searchable/filterable lesson library, accessible
   language-example tabs, and a user-controlled constant-acceleration motion
-  lab. The student practice room provides three kinematics questions with
-  explanations and browser-local progress (no account or server submission).
-  Its repository map links to working site features and tested C17 source,
-  while distinguishing planned offline/exam features. Recent channel uploads
-  come from the public YouTube Atom feed: the Pages workflow refreshes a static
-  snapshot on pushes/manual deploys and every six hours. The homepage shows
-  six of up to 15 entries and links to the full channel archive; no API key or
-  client-side third-party script is required. GitHub Pages is static and
+  lab. Guided practice provides three kinematics questions with explanations
+  and browser-local progress. The exam desk adds an eight-question, 12-minute
+  sample test with worked answer review and topic results, plus an experimental
+  topic-frequency explorer using a locally imported JSON history. The explorer
+  requires cited, teacher-reviewed records with an exam series and language
+  (at least five papers across three earlier years), excludes target/future
+  years, and does not claim to be an official or calibrated prediction.
+  Student answers and paper files are not uploaded or persisted. Recent YouTube
+  uploads are shown as dated update cards with click-to-play privacy-enhanced
+  embeds, with a separate user-activated live-channel player when a public
+  broadcast is running; the workflow refreshes its public Atom-feed snapshot
+  hourly and the open page checks for updates every 15 minutes. The Atom feed
+  does not expose community posts or live status. GitHub Pages is static and
   cannot run the C17 backend.
 - All 156 supplied PDFs are organized under `books/` by physics, mathematics,
   computation, programming, EdTech, and research-review. All moved PDF blobs
@@ -32,7 +37,7 @@
   [WORK_TIME_ENGINE_GUIDE.md](docs/qcos/WORK_TIME_ENGINE_GUIDE.md). The
   rational S2 `cos_mat` API is verified; the next kernel slice is S3.
 - The Pages workflow stages only website assets, the small
-  `student-studio.js` practice module, and generated `channel-feed.json`; it
+  `student-studio.js` browser learning module, and generated `channel-feed.json`; it
   deliberately excludes research books and backend sources from the deployed
   site artifact.
 - GitHub Pages is enabled for public deployment from the workflow. A public
@@ -54,7 +59,8 @@
   is an MIT teaching OS. Neither is currently wired into the site.
 - A DOM/canvas smoke harness, HTML link/ID checks, Markdown link checks, and
   local HTTP smoke tests pass for the motion-lab update. The new channel-feed
-  parser has five passing tests; live feed fetch and public deployment pass.
+  parser now has six passing tests. The new exam-studio model test passes;
+  live feed fetch and deployment checks for this update remain pending.
   No visual browser test was available.
 - Verified from the restored tree: JavaScript tests 35/35; C++ build and
   differential cases 325/325. `make test` passes and explicitly skips Python

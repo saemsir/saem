@@ -31,6 +31,7 @@
         <a href="#channel-updates">Latest videos</a>
         <a href="#visual-lab">Visual lab</a>
         <a href="#practice-room">Practice</a>
+        <a href="#exam-center">Exam desk</a>
         <a href="#library">Lesson library</a>
         <a href="#method">Our method</a>
         <a href="#lab">Code &amp; physics</a>
@@ -115,8 +116,22 @@
           <a class="arrow-link" href="https://www.youtube.com/@SaemPhysics/videos" target="_blank" rel="noopener noreferrer">Browse every upload <span aria-hidden="true">↗</span></a>
         </div>
         <div class="channel-feed-bar">
-          <p>Recent uploads are refreshed automatically from the public YouTube channel feed. The feed lists up to 15; six appear here.</p>
+          <p>New uploads appear as dated update cards. The public feed refreshes hourly; this page checks every 15 minutes while open. The feed does not carry Community posts or live status.</p>
           <p id="channel-feed-status" class="channel-feed-status" role="status" aria-live="polite">Loading recent videos…</p>
+          <button id="channel-feed-refresh" class="channel-refresh" type="button">Check for updates</button>
+        </div>
+        <div class="channel-live-card">
+          <div>
+            <p class="eyebrow">Saem Physics · live channel</p>
+            <h3>Joining a live class?</h3>
+            <p>If a public YouTube broadcast is running, check it here. The player loads only after you choose to connect.</p>
+          </div>
+          <div class="channel-live-actions">
+            <button id="channel-live-load" class="button button-dark" type="button">Check live stream</button>
+            <a href="https://www.youtube.com/@SaemPhysics/streams" target="_blank" rel="noopener noreferrer">Browse channel streams ↗</a>
+          </div>
+          <div id="channel-live-player" class="channel-live-player" hidden></div>
+          <p id="channel-live-status" class="channel-live-status" role="status" aria-live="polite">YouTube will report whether a public stream is available after you connect.</p>
         </div>
         <div class="channel-video-grid" id="channel-video-grid"></div>
         <noscript><p class="channel-fallback">Turn on JavaScript to see the latest uploads, or <a href="https://www.youtube.com/@SaemPhysics/videos">visit the channel archive</a>.</p></noscript>
@@ -207,6 +222,90 @@
             </div>
             <p id="practice-storage-status" class="practice-storage-status" role="status" aria-live="polite">Progress is stored only in this browser.</p>
           </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="exam-section section" id="exam-center" aria-labelledby="exam-title">
+      <div class="container">
+        <div class="section-heading exam-heading">
+          <div>
+            <p class="eyebrow">Saem exam desk · first version</p>
+            <h2 id="exam-title">Practice with a clock.<br><em>Revise with evidence.</em></h2>
+          </div>
+          <p class="section-aside">A short sample test and an experimental past-paper topic outlook. Your answers and imported history stay in this browser.</p>
+        </div>
+        <div class="exam-grid">
+          <section class="exam-card" id="exam-test-widget" aria-labelledby="exam-test-title">
+            <div class="exam-card-topline"><span>8 QUESTIONS · 12 MINUTES</span><span class="exam-badge">SAMPLE TEST</span></div>
+            <h3 id="exam-test-title">Check your physics foundations.</h3>
+            <p class="exam-card-intro">One mark per correct answer; no negative marking. This original starter set is not an official JEE, NEET, CBSE, or board paper.</p>
+            <div id="exam-test-session" hidden>
+              <div class="exam-progress-row">
+                <span id="exam-question-count">Question 1 of 8</span>
+                <span class="exam-timer">Time left <time id="exam-timer" aria-live="off">12:00</time></span>
+              </div>
+              <progress id="exam-progress" max="8" value="0" aria-label="Exam questions answered"></progress>
+              <h4 id="exam-question" tabindex="-1"></h4>
+              <fieldset id="exam-options" class="practice-options">
+                <legend class="visually-hidden">Choose one answer</legend>
+              </fieldset>
+              <p id="exam-test-status" class="exam-status" role="status" aria-live="polite"></p>
+              <div class="exam-actions">
+                <button id="exam-previous" class="button button-quiet" type="button">Previous</button>
+                <button id="exam-next" class="button button-dark" type="button">Next</button>
+                <button id="exam-submit" class="button button-dark" type="button">Finish test</button>
+              </div>
+            </div>
+            <div id="exam-test-start">
+              <button id="exam-start" class="button button-dark" type="button">Start sample test</button>
+              <p class="exam-privacy">The timer starts when you choose Start. Leaving this page ends the session; answers are not uploaded or saved.</p>
+            </div>
+            <div id="exam-test-results" class="exam-results" hidden aria-live="polite"></div>
+          </section>
+
+          <section class="exam-card outlook-card" aria-labelledby="outlook-title">
+            <div class="exam-card-topline"><span>PAST-PAPER TOPIC OUTLOOK</span><span class="exam-badge exam-badge-experimental">EXPERIMENTAL</span></div>
+            <h3 id="outlook-title">What has appeared before?</h3>
+            <p class="exam-card-intro">Import your own cited, teacher-reviewed paper records. The browser estimates topic appearance frequency using <code>p = (k + 1) / (n + 2)</code>; it is an exploratory signal, not a prediction of questions or a promise about any exam.</p>
+            <label class="paper-import-label" for="paper-history-file">Choose a paper-history JSON file</label>
+            <input id="paper-history-file" class="paper-import-input" type="file" accept=".json,application/json">
+            <p id="paper-history-status" class="exam-status" role="status" aria-live="polite">No paper history loaded. Your file is read locally and is not sent to Saem.</p>
+            <div class="outlook-controls">
+              <label>Exam series
+                <select id="outlook-board" disabled>
+                  <option value="">Import history first</option>
+                </select>
+              </label>
+              <label>Paper language
+                <select id="outlook-language" disabled>
+                  <option value="">Choose exam series first</option>
+                </select>
+              </label>
+              <label>Target year
+                <input id="outlook-year" type="number" min="1900" max="2100">
+              </label>
+            </div>
+            <button id="outlook-run" class="button button-dark" type="button" disabled>Estimate topic frequencies</button>
+            <p id="outlook-status" class="exam-status" role="status" aria-live="polite"></p>
+            <div id="outlook-results" class="outlook-results" hidden aria-live="polite"></div>
+            <details class="paper-schema">
+              <summary>Paper-history file format and limits</summary>
+              <p>Each record represents one paper or exam session. Keep the exam series and paper language consistent, record its source, and include only topic labels a teacher has checked.</p>
+              <pre><code>[
+  {
+    "board": "JEE Main",
+    "paperId": "2024-session-1",
+    "year": 2024,
+    "language": "English",
+    "source": "Official paper citation or URL",
+    "reviewed": true,
+    "topics": ["Mechanics", "Optics"]
+  }
+]</code></pre>
+              <p>At least five reviewed papers across three earlier years are required. The file's review labels and citations are user supplied and are not independently verified. A calibrated forecast still needs a larger curated archive and past-only back-testing.</p>
+            </details>
+          </section>
         </div>
       </div>
     </section>
@@ -362,26 +461,30 @@
               <span class="capability-index">03</span>
               <div><h4>Guided practice</h4><p>Try three questions with explanations and device-local progress.</p><a href="#practice-room">Start a practice session <span aria-hidden="true">↗</span></a></div>
             </article>
+            <article class="capability-item">
+              <span class="capability-index">04</span>
+              <div><h4>Sample testing and topic outlook</h4><p>Take an eight-question timed sample test or explore frequencies from your own cited, teacher-reviewed past-paper data. Neither is an official exam prediction.</p><a href="#exam-center">Open the exam desk <span aria-hidden="true">↗</span></a></div>
+            </article>
           </section>
           <section class="capability-group capability-group-built" aria-labelledby="built-title">
             <div class="capability-group-title"><span class="capability-status status-built"></span><h3 id="built-title">Built and tested in the repository</h3></div>
             <article class="capability-item">
-              <span class="capability-index">04</span>
+              <span class="capability-index">05</span>
               <div><h4>Exact rational and matrix kernel</h4><p>C17 can perform bounded exact arithmetic, linear solving, inverses, and projections. Independently tested; not connected to this page.</p><a href="https://github.com/saemsir/saem/tree/main/saem-unified/core/c17" target="_blank" rel="noopener noreferrer">Inspect the QCOS source <span aria-hidden="true">↗</span></a></div>
             </article>
             <article class="capability-item">
-              <span class="capability-index">05</span>
+              <span class="capability-index">06</span>
               <div><h4>Local domain-engine source</h4><p>C++17 modules and test tools live in the repository; no public student API is deployed.</p><a href="https://github.com/saemsir/saem/tree/main/saem-unified" target="_blank" rel="noopener noreferrer">Read the implementation status <span aria-hidden="true">↗</span></a></div>
             </article>
             <article class="capability-item">
-              <span class="capability-index">06</span>
+              <span class="capability-index">07</span>
               <div><h4>Automated verification</h4><p>Build and test workflows check code and compare exact math with independent oracles.</p><a href="https://github.com/saemsir/saem/actions" target="_blank" rel="noopener noreferrer">View repository checks <span aria-hidden="true">↗</span></a></div>
             </article>
           </section>
         </div>
         <div class="capability-boundary">
           <span class="boundary-mark" aria-hidden="true">→</span>
-          <p><strong>Still being built:</strong> an offline student workspace, teacher-reviewed exam-paper practice, mock tests, and topic forecasts. These are goals—not features students can use here yet.</p>
+          <p><strong>Still being built:</strong> the offline workspace, official-board question bank, teacher review workflow, and a back-tested, calibrated topic forecast. The exam desk here is a local sample test and an experimental frequency tool, not those finished services.</p>
           <a href="https://github.com/saemsir/saem/blob/main/docs/SAEM_EDTECH_ARCHITECTURE.md" target="_blank" rel="noopener noreferrer">See the staged roadmap <span aria-hidden="true">↗</span></a>
         </div>
       </div>
@@ -403,7 +506,6 @@
     </div>
     <div class="container footer-bottom"><span>© <span id="current-year"></span> Saem Physics</span><span>Built for learners who want to understand.</span></div>
   </footer>
-  <script src="student-studio.js"></script>
   <script src="student-studio.js"></script>
   <script src="script.js"></script>
 </body>

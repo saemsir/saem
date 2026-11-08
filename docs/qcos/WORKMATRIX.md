@@ -1,4 +1,4 @@
-# WORKMATRIX: the Work-Time Engine (spec and status, 2026-11-06)
+# WORKMATRIX: the Work-Time Engine (updated 2026-11-08)
 
 The user's TOP PRIORITY (2026-11-04 19:08 IST; the Creator Book `Vision Instructions for QCOS.pdf`): an n-dimensional quaternion/octonion matrix engine that explores algebraic geometry,
 differential geometry and linear algebra, with axes vision, architecture, steps, problems, solutions, books, maths, physics, computation, concepts, equations, code (and more, added with time),
@@ -24,7 +24,7 @@ Everything is exact rational arithmetic in the tower Q, Q(i), H (quaternions), O
 | Slice | Content | Done when | Status |
 |---|---|---|---|
 | S1 `cos_alg` | exact Cayley-Dickson tower, levels 0..3, level 4+ refused | integrity contract (below) tested against an independent oracle; mutation self-test | **DONE, verified** (353,429 C checks; 19 oracle groups; 23 of 23 seeded faults caught; gate 69 of 69) |
-| S1.5 `cos_rat` wide path | 128-bit intermediates (hand-written two-limb helpers, no `__int128`, no libgcc call) so add/sub/accumulate refuse only when the REDUCED result does not fit 64 bits; the gate today reports 167 of 138,265 sums refused though they fit | the 192,805-command Fraction cross-check shows 0 such refusals; object audit unchanged | planned, NEXT (it is also the user's 2026-11-06 directive: "124-bit common denominator scaling ... overflow caught at the accumulation phase") |
+| S1.5 `cos_rat` wide path | 128-bit intermediates (hand-written two-limb helpers, no `__int128`) so add/sub refuse only when the reduced result does not fit 64 bits | the 192,805-command Fraction cross-check shows 0 exactly representable sums refused; strict builds and O2 C tests pass | **DONE, verified** (the RISC-V link audit remains blocked by unavailable `ld.lld`) |
 | S2 `cos_mat` | exact matrices over Q (and algebra-valued ones through the regular representation): RREF, rank, null space, column space, left null space (Strang's four subspaces), solve, inverse, projection | tests against Fraction RREF; the four subspaces satisfy dimension and orthogonality theorems exactly | planned |
 | S3 relations | constraint matrix, tangent space, minimal-norm repair, exact multipliers, connection and holonomy, graph Laplacian | holonomy of a flat connection is exactly 1; repair lands on the constraint set; multipliers satisfy A^T lambda = residual direction | planned |
 | S4 work-tensor registry | axes registry, nodes, edges, function-id table, append-only time axis, queries, journal/seal integration | static bounds by `static_assert`; relabel-invariance tests (section 6); nothing dynamic | planned |
@@ -41,6 +41,23 @@ API and the full integrity contract live in `core/c17/cos_alg.h` (read it first)
 - Symmetry: exact rational spin map x -> q x q^-1 (kernel = centre), 3 x 3 rational rotations R^T R = I, det 1; level 3: SO(4) inside G2, conjugation by a unit is NOT an automorphism, 7-D cross product identities.
 - Overflow: every operation returns the exact answer or COS_E_RANGE with *out untouched (also when out aliases an input); proven on products whose terms fit but whose sum does not (2^62 + 2^62, a 124-bit common denominator).
 - Independence of the oracle: the kernel multiplies by signed basis products from a four-case sign rule; the oracle multiplies by the pair rule on Python Fractions and shares no code. Baez's published mirror convention is carried to ours by the explicit isomorphism psi(a, b) = (psi a, conj psi b).
+
+## 3.5 Slice 1.5 (verified): exact rational addition and subtraction
+
+For reduced inputs `a = n1/d1` and `b = n2/d2`, let
+`g = gcd(d1,d2)`, `u = d1/g`, and `v = d2/g`. Form the signed wide numerator
+`t = n1*v + n2*u`, then `h = gcd(|t|,g)`. The reduced answer is
+`(t/h) / (u*(d2/h))`. Each product and signed accumulation is represented by
+hand-written `{hi, lo}` limbs; a bounded 128-step bitwise division obtains the
+remainder and quotient needed for `h` and the final numerator. Only the reduced
+numerator or denominator being outside `[-INT64_MAX, INT64_MAX]` is refused.
+No `__int128`, heap allocation, floating point, or approximate fallback is used.
+
+Verification: the independent Python `Fraction` oracle checked 192,805
+commands, including 30,000 operand pairs across add/sub/mul/div/cmp. It found
+zero refusals where the exact reduced sum fits. The strict C17 builds and O2
+test for the rational layer pass. The quick C17 check cannot finish the linked
+RISC-V audit in this environment because `ld.lld` is unavailable.
 
 ## 4. The axes, nodes, relations and functions (slice 4 design, planned)
 
@@ -79,7 +96,7 @@ C17 is the single source of truth. Python (`tools/alg_oracle.py`, `tools/check_a
 
 1. DECIDED (mine, reversible): the tower stops at the octonions; sedenions would break N(ab) = N(a) N(b) and introduce zero divisors.
 2. DECIDED: exact or refuse. A rounded value is never returned.
-3. OPEN, not blocking: a 128-bit wide path in `cos_rat` (slice 1.5) changes the documented refusal limits of add and sub; I propose to do it next because slices 2 to 5 need it.
+3. DONE: the 128-bit wide path in `cos_rat` (slice 1.5) changes add/sub to refuse only when the reduced exact result does not fit.
 4. OPEN: the repository path name. The directives say `core/saem/`; the sovereign kernel lives in `core/c17/`. I keep `core/c17/` (no rename) until you say otherwise.
 5. OPEN: `check_sir` is named in the directives; SIR steps 3 and 4 do not exist yet, so neither does it.
 

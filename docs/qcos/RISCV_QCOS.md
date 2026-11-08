@@ -1,8 +1,8 @@
 # QCOS on RISC-V: the "4+1" mapping, the monitor core, the two atomic profiles
 
 Written 2026-11-01 from the project books (`riscv-privileged.pdf`, `riscv-unprivileged.pdf`, both ratified 20250508; `FU540-C000-v1.0.pdf`; `linus.pdf`)
-and from objects we built and read in this tree. Companion: `docs/LINUX_QCOS.md` (the Linux side), `docs/ARCHITECTURE.md` (the one picture),
-`docs/DAILY_INTUITION.md` (the day's reading, with the numbered equations cited below as "DI n").
+and from objects we built and read in this tree. Companion: [LINUX_QCOS.md](LINUX_QCOS.md) (the Linux side), [the staged EdTech architecture](../SAEM_EDTECH_ARCHITECTURE.md),
+[the Work-Time Engine plan](WORKMATRIX.md), and [the daily intuition log](../../DAILY_INTUITION.md) (the day's reading, with the numbered equations cited below as "DI n").
 Legend: **[V]** verified (we ran it, or read it in the project copy and wrote down where); **[P]** planned (a design no test has run yet).
 Honest limit up front: no RV64 instruction of ours has been EXECUTED yet (no qemu or spike in this workspace). We compile, disassemble, link and
 prove properties of the object code; the interpreter and the conformance digest are item #55 in `docs/STATUS.md`.

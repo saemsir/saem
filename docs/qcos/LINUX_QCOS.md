@@ -1,7 +1,7 @@
 # Linux in QCOS: what it is for, what it may never decide, what we take from it
 
 Written 2026-11-01. Evidence: the Linux tree in `/home/claude/torvalds/linux` (version 7.3.0, commit 36aad21d, 2026-10-30; a PARTIAL clone: `net/core/*`, `drivers/remoteproc`, `drivers/rpmsg` are absent),
-Torvalds' thesis (`linus.pdf`, Helsinki 1997), the project's virtio-v1.1. Companion: `docs/RISCV_QCOS.md` (the hardware side and the door), `docs/knowledge/linux.md` (per-topic notes).
+Torvalds' thesis (`linus.pdf`, Helsinki 1997), the project's virtio-v1.1. Companion: [RISCV_QCOS.md](RISCV_QCOS.md) (the hardware side and the door), [the backend Linux notes](../../saem-unified/docs/knowledge/linux.md) (per-topic notes).
 Legend: **[V]** we read the file at the path and line given; **[U]** unverified here (the file is not in the local clone, or we only know it from documentation); **[P]** planned.
 
 ## 1. The rule
@@ -19,7 +19,7 @@ policy in user-level daemons, mechanism in the kernel; and, for Phase 2 and 4, m
 |---|---|---|---|
 | 1 home hardware (phone, laptop, desktop) | Android and desktop Linux are Linux; Windows, macOS and iOS are not | the C17 library inside the app process (default profile if several threads call it; `COS_SINGLE_HART=1` only if the app serializes every call on one thread). `qcosd` is optional on Linux and Android | function calls through the C header; JSON methods |
 | 2 enterprise parallel | one Linux per cluster node; GPUs through Linux DRM and the LLVM AMDGPU/NVPTX backends [P] | one sovereign core per node; nodes talk by messages, not shared memory; SQLite L3 and RDMA | sockets or RDMA between `qcosd` peers; the gate sits in front |
-| 3 custom silicon 4+1 | Linux in S-mode on the four application harts | the kernel on the monitor hart in M-mode, `COS_SINGLE_HART=1` | shared-memory rings plus doorbells (`RISCV_QCOS.md` section 4) |
+| 3 custom silicon 4+1 | Linux in S-mode on the four application harts | the kernel on the monitor hart in M-mode, `COS_SINGLE_HART=1` | shared-memory rings plus doorbells ([RISCV_QCOS.md](RISCV_QCOS.md), section 4) |
 | 4 air-gapped datacentre | the same Linux, built from a pinned tree, no external network | as phase 3, per node | internal fabric only |
 | 5 P2P marketplace | Linux nodes of independent parties | contracts (Al-Ujrah, Al-Musharakah, Al-Istisna') are sealed articles; Zone 0 pass C checks each offer; no interest-bearing term can pass | signed messages |
 
@@ -73,6 +73,6 @@ The daemon talks to the sovereign core only through the door and trusts nothing 
 
 ## 6. Verified, unverified, planned
 
-Verified today: every `path:line` marked [V] above was read in the tree on 2026-11-01; the kernel's behaviour under both atomic profiles is proven in `docs/RISCV_QCOS.md` section 2.
+Verified today: every `path:line` marked [V] above was read in the tree on 2026-11-01; the kernel's behaviour under both atomic profiles is proven in [RISCV_QCOS.md](RISCV_QCOS.md), section 2.
 Unverified: `SO_PEERCRED`, `setrlimit`, remoteproc and rpmsg (their files are not in the local clone; re-attach `torvalds/linux` with `add_repo` for a full tree), anything about iOS.
 Planned: the door, `qcosd`, the sticky taint word, door litmus tests, virtio transport, GPU path.

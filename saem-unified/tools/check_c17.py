@@ -408,8 +408,7 @@ NUM_RE = re.compile(rb"(-?)(0|[1-9][0-9]*)(?:\.([0-9]+))?(?:[eE]([+-]?[0-9]+))?"
 
 def check_rat(dump):
     """cos_rat.c against Python's arbitrary-precision integers and fractions. For every operation the C answer must be the EXACT answer or a refusal;
-    mul, div and cmp are decided exactly; add and sub are checked against the documented algorithm (Knuth 4.5.1) so that a refusal can only come from the
-    documented intermediate overflow; pow follows square-and-multiply; the number reader follows the JSON grammar; the text writers are compared digit by digit."""
+    add, sub, mul, div and cmp are decided exactly; pow follows square-and-multiply; the number reader follows the JSON grammar; the text writers are compared digit by digit."""
     from fractions import Fraction
     from math import gcd
     rng = random.Random(20261031)
@@ -425,21 +424,8 @@ def check_rat(dump):
     def exp_addsub(a, b, sub):
         if sub:
             b = -b
-        g = gcd(a.denominator, b.denominator)
-        ad, bd = a.denominator // g, b.denominator // g
-        t1, t2 = a.numerator * bd, b.numerator * ad
         exact = a + b
-        if abs(t1) > M or abs(t2) > M or abs(t1 + t2) > M:
-            return res(15), "refused-though-fits" if fits(exact) else "refused"
-        t = t1 + t2
-        if t == 0:
-            return res(0, Fraction(0)), "ok"
-        g2 = gcd(abs(t), g)
-        den = ad * (b.denominator // g2)
-        if den > M:
-            return res(15), "refused-though-fits" if fits(exact) else "refused"
-        assert Fraction(t // g2, den) == exact and gcd(abs(t // g2), den) == 1, "the Python copy of the algorithm is wrong"
-        return res(0, exact), "ok"
+        return (res(0, exact), "ok") if fits(exact) else (res(15), "refused")
 
     def exp_mul(a, b):
         r = a * b
@@ -680,14 +666,14 @@ def check_rat(dump):
     refused = sum(1 for k in kinds if k[2] in ("refused", "refused-though-fits"))
     # the properties that matter on top of equality: operands under 2^31 never reach a refusal in add, sub, mul
     mid_refused = [i for i, k in enumerate(kinds) if k[0] == "mid" and k[1] in ("add", "sub", "mul") and k[2] != "ok"]
-    # a refusal of an exactly representable sum is rare and only ever in add/sub (mul and div decide exactly)
+    # A refusal of an exactly representable result must be absent for every arithmetic operation.
     wrong_op = [i for i, k in enumerate(kinds) if k[2] == "refused-though-fits" and k[1] not in ("add", "sub")]
-    record(ok and not mid_refused and not wrong_op,
+    record(ok and not mid_refused and not wrong_op and refused_fit == 0,
            "cross-check: exact rationals equal Python's Fraction on %d commands (%d operand pairs x add/sub/mul/div/cmp, pow, make, neg/abs, "
            "%d number texts, fmt/dec): %d exact answers, %d refusals" % (len(cmds), n_pairs, len(texts), ok_count, refused),
            detail + ("\noperands under 2^31 were refused at %s" % mid_refused[:5] if mid_refused else "") +
            ("\nmul/div refused an answer that fits at %s" % wrong_op[:5] if wrong_op else ""))
-    print("      info: %d sums were refused although the exact sum fits (documented limit of add/sub; mul and div refuse only what does not fit)" % refused_fit,
+    print("      info: %d exactly representable sums were refused" % refused_fit,
           flush=True)
 
 

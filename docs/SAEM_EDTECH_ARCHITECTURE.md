@@ -105,9 +105,9 @@ data/configuration with tests, not hidden assumptions in UI code.
 - [index.html](../index.html), [style.css](../style.css), and
   [script.js](../script.js): an existing one-page Saem Physics channel site
   with video, playlist, topic, admission, Telegram, and live-class links.
-- [Saem Global EdTech.pdf](../Saem%20Global%20EdTech.pdf): a 351-page source
+- [Saem Global EdTech.pdf](../references/books/Saem%20Global%20EdTech.pdf): a 351-page source
   PDF, and
-  [Saem_EdTech_Research_and_Codespaces_Build_Book.docx.PDF](../Saem_EdTech_Research_and_Codespaces_Build_Book.docx.PDF):
+  [Saem_EdTech_Research_and_Codespaces_Build_Book.docx.PDF](../references/books/Saem_EdTech_Research_and_Codespaces_Build_Book.docx.PDF):
   an 8-page source PDF. A PDF text extractor is not installed in this
   workspace, so their contents have **not** been read or indexed here. Do not
   treat their detailed contents as incorporated until they have been extracted
@@ -119,26 +119,27 @@ data/configuration with tests, not hidden assumptions in UI code.
   prototype constraints; resolve conflicts against the latest user direction
   and this staged architecture rather than treating every historical note as
   current code.
-- [saem-unified-bundle.py.txt](../saem-unified-bundle.py.txt): a
+- [saem-unified-bundle.py.txt](../references/source-snapshots/saem-unified-bundle.py.txt): a
   SHA-256-checked snapshot containing 216 files, including `core/c17`,
   `core/src`, tests, and `docs`. It has been restored to the separate
   [saem-unified/](../saem-unified/) directory; all 216 extracted files match
   their embedded SHA-256 digests. Keep its build outputs separate from the
   root channel site.
-- [open-math-harness-main.zip](../open-math-harness-main.zip): Rust source for
+- [open-math-harness-main.zip](../references/archives/open-math-harness-main.zip): Rust source for
   Open Math Harness. Its README says the full runtime depends on the Open Math
   OS deployment environment; only a small example is self-contained locally.
   It uses Lean to check candidate proofs, not as a general physics solver.
   Evaluate its license, dependencies, security boundary, and offline behavior
   before adopting code or running student workloads.
-- [xv6-riscv-fall19-xv6-riscv-fall19.zip](../xv6-riscv-fall19-xv6-riscv-fall19.zip):
+- [xv6-riscv-fall19-xv6-riscv-fall19.zip](../references/archives/xv6-riscv-fall19-xv6-riscv-fall19.zip):
   the 2019 MIT teaching xv6/RISC-V source archive. It is a study reference, not
   Saem's production kernel or a ready-to-deploy application backend.
 - [README.md](../README.md): corrected instructions for the current root-level
   static website.
 
-Do not move or edit the supplied source books/archives in place. Add reviewed
-notes and licensed integrations beside them.
+The supplied books and archives are kept unmodified under `references/`;
+add reviewed notes and licensed integrations beside them, not into their
+contents.
 
 ## Delivery stages
 

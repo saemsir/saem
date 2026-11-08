@@ -2,8 +2,9 @@
 
 ## CURRENT WORKSPACE HANDOFF (2026-11-08)
 
-- The present repository root is the Saem Physics static channel site, not a
-  checked-out, runnable EdTech/QCOS backend. Start at [README.md](README.md).
+- The repository root is the Saem Physics static channel site; the recovered,
+  separately buildable C17/C++ backend source is under
+  [saem-unified/](saem-unified/). Start at [README.md](README.md).
 - The staged business and software architecture, including the correct roles
   for C17/QCOS, C++17, RISC-V, Open Math Harness/Rust, Python, R, Fortran, and
   Julia, is in [docs/SAEM_EDTECH_ARCHITECTURE.md](docs/SAEM_EDTECH_ARCHITECTURE.md).
@@ -13,32 +14,34 @@
   [saem-unified/](saem-unified/), in its own folder so the channel website is
   untouched. All 216 files were cross-checked against the embedded SHA-256
   manifest. A local README and ignore rules keep the boundary clear.
-- `open-math-harness-main.zip` is a Rust Open Math OS runtime, not a local
+- [The Open Math archive](references/archives/open-math-harness-main.zip) is a Rust Open Math OS runtime, not a local
   physics solver; its README documents deployment dependencies. The xv6 archive
   is an MIT teaching OS. Neither is currently wired into the site.
 - The two EdTech PDFs (351 and 8 pages) remain unread because PDF extraction
   tools are absent. Review their contents before claiming their details were
   incorporated.
-- See the 2026-11-08 entry in [DAILY_INTUITION.md](DAILY_INTUITION.md) for what
-  was actually inspected and the forecast baseline proposal.
 - Verified from the restored tree: JavaScript tests 35/35; C++ build and
   differential cases 325/325. `make test` passes and explicitly skips Python
   unittest discovery when no Python test files exist.
-- `make c17` passed 51/56 groups; the remaining failures are environmental:
-  no `ld.lld` for the linked RISC-V audit and ThreadSanitizer startup failures
-  (`unexpected memory mapping`). Exact-rational and octonion oracle suites pass.
-- See the 2026-11-08 entry in [DAILY_INTUITION.md](DAILY_INTUITION.md) for
-  inspected source, proposed forecast baseline, and test evidence.
-- Next: resolve the validation gaps, then continue the saved Work-Time Engine
-  priority (rational slice 1.5) after reading its matching source material. Do
-  not add forecasting claims until past-only back-tests and provenance work.
+- `python3 tools/check_c17.py --quick` reports 54/55 groups after Work-Time
+  Engine slice 1.5: the only failure is the linked RISC-V audit, which needs
+  unavailable `ld.lld`; all O2 C17 tests pass. The 192,805-command exact
+  rational oracle reports 0 exact-fit sum refusals. The earlier full baseline
+  also encountered ThreadSanitizer startup failures (`unexpected memory
+  mapping`); the full sanitizer suite has not been rerun after this change.
+- See the continued 2026-11-08 entry in [DAILY_INTUITION.md](DAILY_INTUITION.md)
+  for the folder reorganization, exact-rational derivation, and test evidence.
+- Next: slice 2 `cos_mat` (exact matrix elimination and the four subspaces),
+  following the Work-Time Engine priority. Do not add forecasting claims until
+  past-only back-tests and provenance work.
 
-## LATEST (2026-11-06): read this block first, then the PREVIOUS block and START HERE
+## LATEST (2026-11-08): read this block first, then the PREVIOUS block and START HERE
 
-- Standing orders: `docs/STANDING_ORDERS.md` (sections 1, 6c, 6d are new). TOP PRIORITY since 2026-11-04 19:08 IST: the Work-Time Engine, spec and slice table in `docs/WORKMATRIX.md`. Live project instructions were verified with `project_info` and saved verbatim in `docs/INSTRUCTIONS_2026-11-06.md` (made with `tools/snap_instructions.py`).
-- DONE and VERIFIED: engine slice 1 `core/c17/cos_alg.{h,c}`, the exact Cayley-Dickson tower Q, Q(i), Hamilton quaternions, octonions (level 4+ refused: sedenion zero divisor (e1+e10)(e4-e15) = 0). Proofs: `core/tests/c17_alg_test.c` (353,429 exact checks, all pass), `tools/check_alg.py` against the independent pair-rule oracle `tools/alg_oracle.py` (19 groups, 23 of 23 seeded faults caught), Baez's published convention reached through an explicit isomorphism. `python3 tools/check_c17.py` = 69 of 69 checks, full run 1 min 32 s (gcc, clang, ASan/UBSan, zero-heap and no-global object audits, RISC-V object audit, headers as C17 and C++17).
+- Standing orders: `STANDING_ORDERS.md` (sections 1, 6c, 6d are new). TOP PRIORITY since 2026-11-04 19:08 IST: the Work-Time Engine, spec and slice table in `docs/qcos/WORKMATRIX.md`. Live project instructions were verified with `project_info` and saved verbatim in `INSTRUCTIONS_2026-11-06.md` (made with `tools/snap_instructions.py`).
+- DONE and VERIFIED: engine slice 1 `core/c17/cos_alg.{h,c}`, the exact Cayley-Dickson tower Q, Q(i), Hamilton quaternions, octonions (level 4+ refused: sedenion zero divisor (e1+e10)(e4-e15) = 0). Proofs: `core/tests/c17_alg_test.c` (353,429 exact checks, all pass), `tools/check_alg.py` against the independent pair-rule oracle `tools/alg_oracle.py` (19 groups, 23 of 23 seeded faults caught), Baez's published convention reached through an explicit isomorphism. The 2026-11-08 quick C17 check also passes all O2 C tests and the independent rational oracle.
 - Reading logged: `docs/DAILY_INTUITION.md` entry 2026-11-04 to 2026-11-06 (Baez, Artin, 18.701, 18.755, Hamilton's Lectures on Quaternions, Lagrange, Einstein 1916, Strang). Not yet read: Turing set, Fourier, MIT 18.03/8.04/8.321, `computation_structures-mit.pdf`.
-- NEXT, in this order: (1) slice 1.5: a hand-written 128-bit intermediate in `cos_rat` (no `__int128`, no libgcc call) so add/sub refuse only when the REDUCED result does not fit; target: the Fraction cross-check's "167 sums refused though the exact sum fits" becomes 0 (it is also the 2026-11-06 directive "124-bit common denominator scaling"). (2) slice 2 `cos_mat` (exact RREF, rank, four subspaces, projection). (3) slice 3 relations, constraints, repair, holonomy. (4) slice 4 registry and time axis. (5) slice 5 calculus layer. (6) slice 6 self-repair loop. THEN the paused items: hypercube runtime `qcos_cm` with Feynman's log (design in DAILY_INTUITION 2026-11-03/04: closed-loop back-pressure instead of the open-loop 12-i counting, Gray-code escape ring with a watchdog, Q2.62 log, 12-byte packets with hop-invariant parity), the kernel capability layer, then the older backlog below.
+- DONE: slice 1.5 `cos_rat` wide addition/subtraction. The hand-written two-limb path uses no `__int128`; it reduces before checking fit. The 192,805-command Fraction oracle reports zero exact-fit refusals. `python3 tools/check_c17.py --quick` reports 54/55 only because `ld.lld` is unavailable for the linked RISC-V audit; all C17 O2 tests, including rational tests, pass.
+- NEXT, in this order: (1) slice 2 `cos_mat` (exact RREF, rank, four subspaces, projection). (2) slice 3 relations, constraints, repair, holonomy. (3) slice 4 registry and time axis. (4) slice 5 calculus layer. (5) slice 6 self-repair loop. THEN the paused items: hypercube runtime `qcos_cm` with Feynman's log (design in DAILY_INTUITION 2026-11-03/04: closed-loop back-pressure instead of the open-loop 12-i counting, Gray-code escape ring with a watchdog, Q2.62 log, 12-byte packets with hop-invariant parity), the kernel capability layer, then the older backlog below.
 - HONEST LIMITS: no RISC-V instruction of ours has been executed (no qemu, no spike); R and Julia are not installed here, so the frontends are planned only; MIT 18.703/18.745 and Einstein's 1917/1919 papers are not in the project; Artin's Algebra restricts "ring" to commutative rings (Def. 11.1.3), so non-commutative statements rest on Baez and the lectures; `conway_smith.pdf` is Baez's review of the book; `core/saem/` named in the directives does not exist (the kernel is `core/c17/`); `check_sir` does not exist yet.
 - CORRECTIONS OWED to the user (still true): an earlier note said "pool, core and 7 other objects identical", the right count is 8 of 9 objects byte-identical; the Fortran REAL-versus-INTEGER decision is open (v0 is INTEGER and exact rationals); the Berkeley TSS has four queues QTI/QIO/QSQ/QQE while the directive names three; the instructions PDF suggests LLVM while the directive says no LLVM (llvm-mc is used only as a test oracle).
 
@@ -46,7 +49,7 @@
 
 - Standing orders (user, 2026-11-01 01:16 and earlier) are in `docs/STANDING_ORDERS.md`: read the matching project books BEFORE every work item and log them in `docs/DAILY_INTUITION.md`; save to the project before the usage limit.
 - DONE today: the E51 single-hart atomic profile of the sovereign kernel (`core/c17/cos_atomic.h`, `-DCOS_SINGLE_HART=1`), proven from object code; new status `COS_E_BUSY`; `check_c17.py` 33 of 33, full run green (O0/O2/O3/clang/asan/tsan and one-hart variants).
-  Design documents written: `docs/RISCV_QCOS.md` (4+1, atomic profiles, PMP/Smepmp, the door, FU540 errata), `docs/LINUX_QCOS.md` (role of Linux, `qcosd`, mechanism table with `path:line`),
+  Design documents written: `docs/qcos/RISCV_QCOS.md` (4+1, atomic profiles, PMP/Smepmp, the door, FU540 errata), `docs/qcos/LINUX_QCOS.md` (role of Linux, `qcosd`, mechanism table with `path:line`),
   `docs/knowledge/linux.md`, `docs/knowledge/riscv_llvm.md`.
 - PROJECT INSTRUCTIONS changed (seen 2026-11-01): (1) frontend is now "Python ... and Rust" (metadata orchestration, logical shaping, topology routing; Rust 1.97 is installed, std only unless a crate can be fetched);
   (2) a compiler-backend brief: C17 backend parses Machine IR (MIR) nodes and emits raw 32-bit RISC-V instruction words into a static buffer, prepends a boot reset vector, writes a flat image `qcos_kernel.bin`, bypassing text assemblers;

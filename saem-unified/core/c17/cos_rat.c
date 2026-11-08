@@ -13,12 +13,7 @@ static uint64_t gcd_u(uint64_t a, uint64_t b) {
   return a;
 }
 
-/* checked arithmetic on the symmetric range [-INT64_MAX, INT64_MAX]; true means overflow */
-static bool add_ovf(int64_t a, int64_t b, int64_t *r) {
-  if ((b > 0 && a > RMAX - b) || (b < 0 && a < -RMAX - b)) return true;
-  *r = a + b;
-  return false;
-}
+/* checked multiplication on the symmetric range [-INT64_MAX, INT64_MAX]; true means overflow */
 static bool mul_ovf(int64_t a, int64_t b, int64_t *r) {
   if (a == 0 || b == 0) {
     *r = 0;
@@ -38,6 +33,57 @@ static void mul128(uint64_t a, uint64_t b, uint64_t *hi, uint64_t *lo) {
   const uint64_t mid = (p00 >> 32) + (p01 & 0xFFFFFFFFu) + (p10 & 0xFFFFFFFFu);
   *lo = (p00 & 0xFFFFFFFFu) | (mid << 32);
   *hi = p11 + (p01 >> 32) + (p10 >> 32) + (mid >> 32);
+}
+
+typedef struct U128 {
+  uint64_t hi;
+  uint64_t lo;
+} U128;
+
+static U128 mul_u128(uint64_t a, uint64_t b) {
+  U128 r;
+  mul128(a, b, &r.hi, &r.lo);
+  return r;
+}
+
+static int cmp128(U128 a, U128 b) {
+  if (a.hi != b.hi) return a.hi < b.hi ? -1 : 1;
+  if (a.lo != b.lo) return a.lo < b.lo ? -1 : 1;
+  return 0;
+}
+
+static U128 add128(U128 a, U128 b) {
+  U128 r;
+  r.lo = a.lo + b.lo;
+  r.hi = a.hi + b.hi + (r.lo < a.lo ? 1u : 0u);
+  return r;
+}
+
+static U128 sub128(U128 a, U128 b) {
+  U128 r;
+  r.lo = a.lo - b.lo;
+  r.hi = a.hi - b.hi - (a.lo < b.lo ? 1u : 0u);
+  return r;
+}
+
+static uint64_t bit128(U128 a, unsigned int bit) {
+  return bit >= 64u ? (a.hi >> (bit - 64u)) & 1u : (a.lo >> bit) & 1u;
+}
+
+/* d is a positive CosRat divisor <= INT64_MAX, so doubling rem cannot overflow. */
+static U128 divmod128_u64(U128 n, uint64_t d, uint64_t *rem_out) {
+  U128 q = {0, 0};
+  uint64_t rem = 0;
+  for (int bit = 127; bit >= 0; --bit) {
+    rem = rem * 2u + bit128(n, (unsigned int)bit);
+    if (rem >= d) {
+      rem -= d;
+      if (bit >= 64) q.hi |= (uint64_t)1u << (unsigned int)(bit - 64);
+      else q.lo |= (uint64_t)1u << (unsigned int)bit;
+    }
+  }
+  *rem_out = rem;
+  return q;
 }
 
 bool cos_rat_valid(CosRat a) {
@@ -76,20 +122,39 @@ CosStatus cos_rat_abs(CosRat a, CosRat *out) {
 
 CosStatus cos_rat_add(CosRat a, CosRat b, CosRat *out) {
   if (!cos_rat_valid(a) || !cos_rat_valid(b)) return COS_E_INVALID;
-  const int64_t g = (int64_t)gcd_u((uint64_t)a.den, (uint64_t)b.den);
-  const int64_t ad = a.den / g, bd = b.den / g;
-  int64_t t1, t2, t;
-  if (mul_ovf(a.num, bd, &t1) || mul_ovf(b.num, ad, &t2) || add_ovf(t1, t2, &t)) return COS_E_RANGE;
-  if (t == 0) {
+  const uint64_t g = gcd_u((uint64_t)a.den, (uint64_t)b.den);
+  const uint64_t ad = (uint64_t)a.den / g, bd = (uint64_t)b.den / g;
+  const U128 p = mul_u128(mag(a.num), bd);
+  const U128 q = mul_u128(mag(b.num), ad);
+  U128 t;
+  bool neg;
+  if ((a.num < 0) == (b.num < 0)) {
+    t = add128(p, q);
+    neg = a.num < 0;
+  } else {
+    const int c = cmp128(p, q);
+    if (c == 0) {
+      out->num = 0;
+      out->den = 1;
+      return COS_OK;
+    }
+    t = c > 0 ? sub128(p, q) : sub128(q, p);
+    neg = c > 0 ? a.num < 0 : b.num < 0;
+  }
+  if (t.hi == 0u && t.lo == 0u) {
     out->num = 0;
     out->den = 1;
     return COS_OK;
   }
-  const int64_t g2 = (int64_t)gcd_u(mag(t), (uint64_t)g);
-  int64_t den;
-  if (mul_ovf(ad, b.den / g2, &den)) return COS_E_RANGE;
-  out->num = t / g2;
-  out->den = den;
+  uint64_t rem;
+  (void)divmod128_u64(t, g, &rem);
+  const uint64_t g2 = gcd_u(rem, g);
+  const U128 reduced = divmod128_u64(t, g2, &rem);
+  if (rem != 0u || reduced.hi != 0u || reduced.lo > (uint64_t)RMAX) return COS_E_RANGE;
+  const U128 den = mul_u128(ad, (uint64_t)b.den / g2);
+  if (den.hi != 0u || den.lo > (uint64_t)RMAX) return COS_E_RANGE;
+  out->num = neg ? -(int64_t)reduced.lo : (int64_t)reduced.lo;
+  out->den = (int64_t)den.lo;
   return COS_OK;
 }
 

@@ -4,10 +4,8 @@
  *   a value: it keeps negation total).
  *
  * Every operation either returns the exact answer or a status, never a rounded one:
- *   COS_E_RANGE    the exact result does not fit in 64 bits. mul and div decide this exactly (an answer that fits is always returned: both
- *                  factors are cross-reduced before multiplying). add and sub also refuse when the numerator before the last cancellation does
- *                  not fit in 63 bits, so in contrived cases an exactly representable sum is refused, e.g. (2^63-1)/2^62 + 3/2^62 (never a
- *                  wrong answer, only a refusal: the Forbidden Zone is fail-closed). pow refuses when a square on the way does not fit.
+ *   COS_E_RANGE    the reduced exact result does not fit in 64 bits. The arithmetic uses exact two-limb intermediates without compiler-specific
+ *                  128-bit types; add and sub reduce before deciding whether the result fits. pow refuses when a square on the way does not fit.
  *   COS_E_INVALID  division by zero, 0^0, 0 to a negative power, a malformed number, or an argument that is not a valid CosRat
  * On error *out is left unchanged. No heap, no floating point, no global state; pure functions of their arguments.
  * Adapted from Knuth, TAOCP vol. 2, 4.5.1 (greatest common divisors before products). cmp is exact for every valid pair (128-bit products).

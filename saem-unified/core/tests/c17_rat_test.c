@@ -99,19 +99,28 @@ static void test_arithmetic(CosSuite *s) {
   CK(s, cos_rat_div(R(MAXV, 1), R(-1, 1), &r) == COS_OK && eq(r, -MAXV, 1));
   CK(s, cos_rat_add(R(MAXV, 1), R(-MAXV, 1), &r) == COS_OK && eq(r, 0, 1));
   CK(s, cos_rat_add(R(MAXV - 1, 1), R(1, 1), &r) == COS_OK && eq(r, MAXV, 1));
-  /* the documented limit of add: the sum (2^63+2)/2^62 = (2^62+1)/2^61 fits, but its numerator before the last cancellation does not: refused,
-   * never rounded and never wrong. The same operands in the other order, and with the sign flipped, behave the same way */
+  /* Wide intermediates preserve sums whose unreduced numerator exceeds 64 bits but whose exact reduced result fits. */
   r = SENTINEL;
-  CK(s, cos_rat_add(R(MAXV, (int64_t)1 << 62), R(3, (int64_t)1 << 62), &r) == COS_E_RANGE && eq(r, 123456789, 987654321));
-  CK(s, cos_rat_add(R(3, (int64_t)1 << 62), R(MAXV, (int64_t)1 << 62), &r) == COS_E_RANGE);
-  CK(s, cos_rat_add(R(MAXV, (int64_t)1 << 62), R(1, (int64_t)1 << 62), &r) == COS_E_RANGE);  /* = 2 exactly, still refused: 2^63 does not fit */
+  CK(s, cos_rat_add(R(MAXV, (int64_t)1 << 62), R(3, (int64_t)1 << 62), &r) == COS_OK && eq(r, 4611686018427387905LL, 2305843009213693952LL));
+  CK(s, cos_rat_add(R(3, (int64_t)1 << 62), R(MAXV, (int64_t)1 << 62), &r) == COS_OK && eq(r, 4611686018427387905LL, 2305843009213693952LL));
+  CK(s, cos_rat_add(R(-MAXV, (int64_t)1 << 62), R(-3, (int64_t)1 << 62), &r) == COS_OK && eq(r, -4611686018427387905LL, 2305843009213693952LL));
+  CK(s, cos_rat_add(R(MAXV, (int64_t)1 << 62), R(1, (int64_t)1 << 62), &r) == COS_OK && eq(r, 2, 1));
+  CK(s, cos_rat_add(R(1, (int64_t)1 << 62), R(MAXV, (int64_t)1 << 62), &r) == COS_OK && eq(r, 2, 1));
+  CK(s, cos_rat_sub(R(MAXV, (int64_t)1 << 62), R(-3, (int64_t)1 << 62), &r) == COS_OK && eq(r, 4611686018427387905LL, 2305843009213693952LL));
   CK(s, cos_rat_add(R(MAXV - 2, (int64_t)1 << 62), R(1, (int64_t)1 << 62), &r) == COS_OK && eq(r, 4611686018427387903LL, 2305843009213693952LL)); /* (2^63-2)/2^62 = (2^62-1)/2^61 */
+  r = SENTINEL;
+  CK(s, cos_rat_add(R(MAXV, 2), R(MAXV - 1, 2), &r) == COS_E_RANGE && eq(r, 123456789, 987654321));
+  CK(s, cos_rat_sub(R(MAXV, 2), R(-(MAXV - 1), 2), &r) == COS_E_RANGE && eq(r, 123456789, 987654321));
   /* an answer that fits is not lost to an overflow on the way (reduce before multiplying) */
   CK(s, cos_rat_mul(R(3, MAXV), R(MAXV, 3), &r) == COS_OK && eq(r, 1, 1));
   CK(s, cos_rat_mul(R(MAXV, 7), R(7, MAXV), &r) == COS_OK && eq(r, 1, 1));
   const int64_t two62 = (int64_t)1 << 62;
   CK(s, cos_rat_add(R(1, two62), R(1, two62), &r) == COS_OK && eq(r, 1, two62 / 2));
   CK(s, cos_rat_sub(R(1, two62), R(1, two62), &r) == COS_OK && eq(r, 0, 1));
+  r = R(MAXV, two62);
+  CK(s, cos_rat_add(r, R(3, two62), &r) == COS_OK && eq(r, 4611686018427387905LL, 2305843009213693952LL));
+  r = R(MAXV, two62);
+  CK(s, cos_rat_sub(r, R(-3, two62), &r) == COS_OK && eq(r, 4611686018427387905LL, 2305843009213693952LL));
   CK(s, cos_rat_div(R(MAXV, 5), R(MAXV, 3), &r) == COS_OK && eq(r, 3, 5));
   CK(s, cos_rat_add(R(MAXV, 2), R(-MAXV, 2), &r) == COS_OK && eq(r, 0, 1));
   /* operations compose: (a + b) - b == a, (a * b) / b == a, for operands whose products fit */

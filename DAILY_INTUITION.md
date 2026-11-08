@@ -1,5 +1,57 @@
 # Daily intuition log (newest first)
 
+## 2026-11-08 (continued): organizing the source tree and exact rational slice 1.5
+
+Work item: arrange supplied materials without entangling the channel website
+and continue the authoritative Work-Time Engine priority.
+
+### Materials and structure
+
+- Read the existing root [README.md](README.md), architecture and QCOS notes,
+  [WORKMATRIX.md](docs/qcos/WORKMATRIX.md), the backend rational API,
+  implementation, tests, and Fraction-oracle logic.
+- Grouped QCOS design and the Work-Time Engine plan in [docs/qcos/](docs/qcos/).
+  Grouped the supplied PDFs and source archives under [references/](references/),
+  with indexes in each folder. The static website stays at the repository root;
+  the restored C17/C++ source remains isolated in [saem-unified/](saem-unified/).
+- The two supplied EdTech PDFs are not yet text-extracted. No applicable
+  numerical-analysis book/source was present in the workspace; I derived and
+  checked the rational reduction independently rather than claiming new book
+  reading.
+
+### Rational derivation and implementation
+
+For reduced `a=n1/d1`, `b=n2/d2`, set `g=gcd(d1,d2)`,
+`u=d1/g`, `v=d2/g`, and form `t=n1*v+n2*u` with signed two-limb arithmetic.
+Then `h=gcd(|t|,g)`, and the reduced result is
+`(t/h) / (u*(d2/h))`. This cancels only the denominator gcd shared with the
+wide numerator before checking whether the final numerator and denominator fit
+the symmetric 64-bit `CosRat` range.
+
+Added explicit `{hi,lo}` operations and a bounded 128-bit-by-64-bit
+long-division helper in `cos_rat.c`; there is no `__int128` or approximate
+fallback. Tests now cover same-denominator sums whose unreduced numerator
+exceeds 64 bits, operand order and sign, exact cancellation to an integer,
+overflow with untouched output, and output aliasing an input.
+
+### Verification and next step
+
+- Independent Python `Fraction` oracle: 192,805 commands; 138,432 exact
+  results, 53,032 legitimate refusals, and **0** exactly representable sums
+  refused.
+- `python3 tools/check_c17.py --quick`: all C17 O2 tests pass; 54/55 total
+  checks because the linked RISC-V audit cannot run without `ld.lld`.
+- `make test`: 35 JavaScript tests and 325 C++ differential cases pass; Python
+  unittest discovery explicitly skips because this source snapshot has no
+  Python test files.
+- The full sanitizer suite was not rerun after this change; the prior baseline
+  had a missing RISC-V linker and ThreadSanitizer startup failures in this
+  container.
+
+Next: slice 2 `cos_mat`—exact rational matrix operations, elimination, rank,
+and the four subspaces. No RISC-V execution, student-facing forecasting claim,
+or PDF-derived content is implied by these results.
+
 ## 2026-11-08: Saem Physics channel site and staged EdTech architecture
 
 Work item: organize the current website and supplied references into a truthful
@@ -19,15 +71,15 @@ step-by-step path toward the offline-first physics learning product.
   product state: the project records a C++ EdTech engine, C17 kernel/math work,
   and reference interface plans; this workspace currently has only the packed
   source snapshot, not an extracted backend tree.
-- `open-math-harness-main.zip`, its README and Cargo manifest: it is a Rust
+- `references/archives/open-math-harness-main.zip`, its README and Cargo manifest: it is a Rust
   runtime for Open Math OS; the README says the complete runtime depends on that
   deployment environment, while a small example is locally self-contained.
   Lean checks proof candidates. This is not established as an offline physics
   solver for the product.
-- `xv6-riscv-fall19-xv6-riscv-fall19.zip`, its README: this is a 2019 RISC-V
+- `references/archives/xv6-riscv-fall19-xv6-riscv-fall19.zip`, its README: this is a 2019 RISC-V
   teaching OS and requires a RISC-V toolchain and QEMU to run. It is reference
   material, not the Saem production backend.
-- [saem-unified-bundle.py.txt](saem-unified-bundle.py.txt): its manifest lists
+- [saem-unified-bundle.py.txt](references/source-snapshots/saem-unified-bundle.py.txt): its manifest lists
   216 SHA-256-checked files, including `core/c17`, the EdTech `core/src`, tests,
   and docs. The bundle was inspected, restored to [saem-unified/](saem-unified/),
   and all extracted files were independently compared with their manifest
@@ -102,7 +154,7 @@ Each entry: books and sections read, equations and invariants, code patterns, fa
 
 Work item: the user's TOP PRIORITY (2026-11-04 19:08 IST, and in the Creator Book `Vision Instructions for QCOS.pdf`): an n-dimensional quaternion/octonion matrix engine
 (algebraic geometry, differential geometry, linear algebra) with axes vision, architecture, steps, problems, solutions, books, maths, physics, computation, concepts, equations, code,
-a last axis = time, relations and functions in the cells, and a calculus layer on top; so that anyone, and QCOS itself, can complete, upgrade and repair QCOS. Spec: `docs/WORKMATRIX.md`.
+a last axis = time, relations and functions in the cells, and a calculus layer on top; so that anyone, and QCOS itself, can complete, upgrade and repair QCOS. Spec: `docs/qcos/WORKMATRIX.md`.
 Books read (project copies; "verified" = read in the extracted text):
 `octonions.pdf` (Baez, The Octonions, Bull. AMS 39, 2002) 1.1, 2.1 to 2.4, 4.1; `conway_smith.pdf` (this is Baez's REVIEW of Conway and Smith, not the book);
 `ArtinAlgebra.pdf` (Artin, Algebra 2nd ed.) 9.3, 9.4, 11.1, 11.3, 11.7, M.4; `mit18_701f21_full_lec_new.pdf` lecture 29; `mit18_755_s24_lec_full.pdf` 6.2 and Ex 3.9;
@@ -219,7 +271,7 @@ Books read, from the project copies (not only the repo clones): `riscv-privilege
   A surprise from this reading-and-checking loop: a linked image without `.riscv.attributes` shows A, M and C instructions as `<unknown>`; the checker now passes `--mattr`.
 - `tools/check_c17.py`: atomics-only-through-the-header rule; every source built in both profiles under gcc and clang; one-hart test variants (`sh-O2`, `sh-clang-O2`, `sh-asan`); 33 checks, full run green.
 - Tests: threads replaced by a re-entry test (journal) and sequential workloads (pool, core) in the one-hart build.
-- Not changed, deliberately: PMP, Smepmp, the door and the OTP counter are designs only (`docs/RISCV_QCOS.md` sections 3 to 5); the lock's spin loop stays a plain test-and-set (a test-and-test-and-set refinement needs `cache & structure.pdf` read first).
+- Not changed, deliberately: PMP, Smepmp, the door and the OTP counter are designs only (`docs/qcos/RISCV_QCOS.md` sections 3 to 5); the lock's spin loop stays a plain test-and-set (a test-and-test-and-set refinement needs `cache & structure.pdf` read first).
 
 ### Next reading (planned)
 

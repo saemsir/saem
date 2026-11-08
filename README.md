@@ -8,6 +8,9 @@ backend in the root website.
 The staged plan for the wider offline-first education product and the roles of
 QCOS, RISC-V, Open Math Harness, and the other languages is in
 [docs/SAEM_EDTECH_ARCHITECTURE.md](docs/SAEM_EDTECH_ARCHITECTURE.md).
+The QCOS design and Work-Time Engine plan are grouped in [docs/qcos/](docs/qcos/).
+Supplied books and archives are indexed in [references/](references/);
+the restored backend remains separate in [saem-unified/](saem-unified/).
 
 ## Preview locally
 
@@ -36,5 +39,6 @@ settings after registering and configuring that domain.
 - Lesson, topic, and playlist cards: [script.js](script.js)
 - Colors, layout, and responsive styling: [style.css](style.css)
 
-The PDFs, archives, and packed Saem source snapshot in this repository are
-reference materials; they are not loaded by the static website.
+The PDFs and archives under `references/`, and the packed Saem source snapshot
+in this repository, are reference materials; they are not loaded by the static
+website.

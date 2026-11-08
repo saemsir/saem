@@ -38,8 +38,8 @@ math services                 isolated research/verification tool
 Later: constrained RISC-V target and local/edge deployment
 ```
 
-These are separate trust and deployment boundaries. A static website can be
-published without a server; it must not pretend to run the exam forecaster.
+These are separate trust and deployment boundaries. The root static website can
+be published without a server; it must not pretend to run the exam forecaster.
 The RISC-V kernel is not a web server. Open Math Harness is not a drop-in
 arithmetic library or a dependency that may silently decide student results.
 Initially the learning app should work on one computer with local files and a
@@ -56,14 +56,33 @@ all compiled into the browser or placed in one runtime.
 | Python | Local/offline application shell, import/export, UI orchestration, and test automation. It must not be trusted to change QCOS-protected state. |
 | C++17 | Existing EdTech domain/solver and forecast modules in the archived Saem source bundle; isolate behind the JSON-lines/API boundary and preserve differential tests. |
 | C17 | QCOS/saem kernel, gates, bounded state, and exact rational/algebra primitives. Treat the kernel as a narrow authority/verifier, not the whole customer-facing app. |
+| C | The website's cross-language section includes a small integer-arithmetic example for comparison; production backend code remains C17. |
 | Rust | Open Math Harness itself and, if useful, standalone local developer/administration tools. Use a process/JSON boundary first; do not add unverified FFI ownership or runtime coupling. |
 | R | Offline statistics exploration, visualizations, and forecast analysis. Promote a result only after reproducible tests and porting it to a supported runtime. |
 | Fortran | Offline numerical prototypes and bounded numerical routines; specify integer/rational semantics before any routine becomes part of exam scoring. |
 | Julia | Offline mathematical experimentation and benchmarks only. No Julia runtime or garbage collector in the production deterministic backend. |
+| Lisp | Optional symbolic-language learning and expression experiments; no Lisp runtime is currently integrated into the product. |
 
 This uses the requested languages where their strengths fit, while keeping the
 actual browser interface coherent. It avoids making students download multiple
 language runtimes to view a lesson.
+
+### Public website status
+
+The root website is an HTML/CSS/JavaScript static site. It presents existing
+YouTube lessons and links, filters the curated lesson list in the browser, and
+shows small kinematics examples for C17, C, C++17, Python, Rust, R, Julia,
+Fortran, and Lisp. Those examples are educational sketches, not a polyglot
+runtime or calls into the EdTech engine. Its C17 example uses the existing
+`CosRat` arithmetic API, while the other snippets use small integer inputs to
+illustrate the same equation.
+
+GitHub Pages can serve that static site, but cannot execute a C17 service. The
+QCOS C17 source and C++ EdTech engine remain in the separate
+[`saem-unified/`](../saem-unified/) tree and are not yet exposed through a web
+API. A future offline app should connect to bounded C17 capabilities through a
+versioned, tested interface; hosting and deployment of that service are a
+separate stage.
 
 ## Learning and computation flow
 

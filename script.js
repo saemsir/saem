@@ -1,39 +1,249 @@
-document.addEventListener('DOMContentLoaded', function () {
-  const lectures = [
-    ['JEE ADVANCED','JEE Advanced Physics Paper Solution','Detailed solution and reasoning for advanced physics problems.','https://www.youtube.com/live/3TT1crLy9PQ?si=gyVhZIM5InkcNF4o'],
-    ['JEE MAINS','JEE Mains Physics Paper Solution','Work through the paper and understand each answer.','https://www.youtube.com/live/3IbsP-95MRE?si=BYujEr7TzCAeNRiB'],
-    ['NEET','NEET Physics Paper Solution','A clear, step-by-step paper discussion.','https://www.youtube.com/live/Ya75UNbuVaI?si=JN63seRXFpHVkw8d'],
-    ['MECHANICS',"Newton's Law of Motion",'See how force, motion and mechanics fit together.','https://www.youtube.com/live/ARLQwOAdqd0?si=HOgtkaaQIqB0UaC2'],
-    ['ROTATIONAL MOTION','Angular Momentum','Explore rotational motion through intuition and equations.','https://youtu.be/iGLd6pqGu4w?si=UUK1ZToThHkY8fD_'],
-    ['OPTICS','Refraction of Light','Understand why light bends between materials.','https://youtu.be/dD5CMx5GeSM?si=uSyKlizkeR7II3kT'],
-    ['CBSE CLASS 12','CBSE 12th Physics PYQ','Practice previous-year questions concept-first.','https://www.youtube.com/live/FvA6a8dzL0o?si=KaM5WR5qZ9bzRz5C'],
-    ['BIHAR BOARD','Bihar Board 12th PYQ','Prepare with guided previous-year solutions.','https://www.youtube.com/live/3RmLjiBsL1Q?si=8xGlEimTatNyZGV0'],
-    ['NCERT','NCERT Clear','Make NCERT concepts clear and connected.','https://www.youtube.com/live/fpqUMPcvvmc?si=3dFFE43w-sMJs3x9']
+(() => {
+  const lessons = [
+    { category: "exam", tag: "JEE ADVANCED", title: "JEE Advanced Physics Paper Solution", description: "Detailed solutions with the reasoning behind each step.", url: "https://www.youtube.com/live/3TT1crLy9PQ?si=gyVhZIM5InkcNF4o" },
+    { category: "exam", tag: "JEE MAINS", title: "JEE Mains Physics Paper Solution", description: "Work through the paper and understand why each answer works.", url: "https://www.youtube.com/live/3IbsP-95MRE?si=BYujEr7TzCAeNRiB" },
+    { category: "exam", tag: "NEET", title: "NEET Physics Paper Solution", description: "A clear, step-by-step discussion of a NEET physics paper.", url: "https://www.youtube.com/live/Ya75UNbuVaI?si=JN63seRXFpHVkw8d" },
+    { category: "concept", tag: "MECHANICS", title: "Newton's Laws of Motion", description: "Connect force, acceleration, and motion with a physical picture.", url: "https://www.youtube.com/live/ARLQwOAdqd0?si=HOgtkaaQIqB0UaC2" },
+    { category: "concept", tag: "ROTATIONAL MOTION", title: "Angular Momentum", description: "Explore rotational motion through intuition and equations.", url: "https://youtu.be/iGLd6pqGu4w?si=UUK1ZToThHkY8fD_" },
+    { category: "concept", tag: "OPTICS", title: "Refraction of Light", description: "Understand why light changes direction between materials.", url: "https://youtu.be/dD5CMx5GeSM?si=uSyKlizkeR7II3kT" },
+    { category: "revision", tag: "CBSE CLASS 12", title: "CBSE Class 12 Physics PYQs", description: "Practice previous-year questions concept-first.", url: "https://www.youtube.com/live/FvA6a8dzL0o?si=KaM5WR5qZ9bzRz5C" },
+    { category: "revision", tag: "BIHAR BOARD", title: "Bihar Board Class 12 PYQs", description: "Prepare with guided previous-year question solutions.", url: "https://www.youtube.com/live/3RmLjiBsL1Q?si=8xGlEimTatNyZGV0" },
+    { category: "concept", tag: "NCERT", title: "NCERT Physics, Made Clear", description: "Build connections between core NCERT ideas and problems.", url: "https://www.youtube.com/live/fpqUMPcvvmc?si=3dFFE43w-sMJs3x9" },
+    { category: "concept", tag: "MATHEMATICAL TOOLS", title: "Units, Dimensions & Errors", description: "Use measurement as a tool for checking physical reasoning.", url: "https://youtube.com/playlist?list=PLjEkQ_dvlIGk-_9QojNMbg6vhRrk1C0Yg&si=YWpAnwJcX90NDFev" },
+    { category: "concept", tag: "WORK & ENERGY", title: "Work, Energy & Power", description: "Solve questions by choosing the right physical viewpoint.", url: "https://www.youtube.com/live/94KWCWIpTWM?si=GXJzfDrZw8iYHCC8" },
+    { category: "revision", tag: "QUICK REVISION", title: "Electrostatics", description: "Review electric fields, force, and central ideas.", url: "https://youtu.be/OzuS2LwJwzI?si=531yUfZV0wWUEuSS" },
+    { category: "revision", tag: "QUICK REVISION", title: "Gravitation", description: "Revisit gravity, orbits, and central forces.", url: "https://youtube.com/playlist?list=PLjEkQ_dvlIGlDLayMTKe7kAf28RswrXAc&si=aWb3DhyKGrZKYCxZ" },
+    { category: "concept", tag: "MODERN PHYSICS", title: "Modern Physics", description: "Explore the ideas beyond classical intuition.", url: "https://youtube.com/playlist?list=PLjEkQ_dvlIGmYGbJoXdyKCa3eN6w0OrL0&si=FMKiyUA__LxuaSLx" },
   ];
-  const playlists = [
-    ['JEE ADVANCE','JEE Advance Paper Solution','https://youtube.com/playlist?list=PLjEkQ_dvlIGmJCQv5QKkfGWBBCLtzgQr1&si=I7vTInci3mQOs9N2'],['NEET','NEET Exam Paper Solution','https://youtube.com/playlist?list=PLjEkQ_dvlIGm7bdSxNp61GfEgAgpcb7c3&si=EcrB9UqsoHXF4uZG'],['CLASS 12','12th DEEP Physics','https://youtube.com/playlist?list=PLjEkQ_dvlIGmz5Nu8Eo3tbW7C6TWxg47M&si=w7Tp_LEO3NaNfjpT'],['CLASS 11','11th Morning Physics','https://youtube.com/playlist?list=PLjEkQ_dvlIGnJopwUTNwm4zB88Stdj8sc&si=HwBloKVuYDkOz8OG'],['CLASS 11','11th Deep Physics','https://youtube.com/playlist?list=PLjEkQ_dvlIGkgKaiK8vYlJZRkklOYwrZ8&si=hmjmuwMQQu10lkGX'],['DAILY LEARNING','Evening Physics','https://youtube.com/playlist?list=PLjEkQ_dvlIGm5vX6_yZjSzkwPIv5BOr7d&si=ZVGB_tkm3_Lu_-vY'],['REVISION','Quick Revision: System of Particles','https://youtube.com/playlist?list=PLjEkQ_dvlIGldL1j2dvWCqR-9J_d1rQTv&si=5iBtkozfmJv2Pw53'],['STRATEGY',"Topper's Strategy",'https://youtube.com/playlist?list=PLjEkQ_dvlIGlbjHCLVfFG1LOmz6DhCpOB&si=YqUhwj7uVVRb-o9a'],['JEE','Clear JEE Physics','https://youtube.com/playlist?list=PLjEkQ_dvlIGnUR6SCSdM0oApUY7jldn1R&si=oW1Z8Fck_6wSgLFZ'],['NEET','Clear NEET Physics','https://youtube.com/playlist?list=PLjEkQ_dvlIGnoVXe4df8IAa1Ka-wvy9qr&si=jX-Sus6vzYBF-GnI'],['CLASS 10','10th Quick Revision','https://youtube.com/playlist?list=PLjEkQ_dvlIGnrLTOGX75hlPRQE2mMDkUT&si=0ppHTD3-aq98uUrV'],['CLASS 9','9th Quick Revision','https://youtube.com/playlist?list=PLjEkQ_dvlIGk-Y6nr-ldTnnCr8uRftGiC&si=9ygXAY1V3050SBG5'],['CBSE 12','CBSE 12th Board exam','https://youtube.com/playlist?list=PLjEkQ_dvlIGlHZ0f8U3R3_i1t9YFURQex&si=J-_FE2Sh3OdO0_aR'],['BIHAR BOARD','Bihar Board Exam Guess','https://youtube.com/playlist?list=PLjEkQ_dvlIGk0GPyRclNXoJYx7kQ5OQLV&si=aBSlHE8EMinmehJV']
-  ];
-  const topics = [
-    ['MECHANICS','NCERT Questions: Laws of Motion','Motion, forces and the logic behind acceleration.','https://youtube.com/playlist?list=PLjEkQ_dvlIGmj-GBjRI7WC_vzYn4-7Si5&si=hqmCPs2kr-OM5-mF'],
-    ['MATHEMATICAL TOOLS','NCERT Book: Units, Dimensions & Errors','The language of measurement and physical reasoning.','https://youtube.com/playlist?list=PLjEkQ_dvlIGk-_9QojNMbg6vhRrk1C0Yg&si=YWpAnwJcX90NDFev'],
-    ['PROBLEM SOLVING','Work, Energy & Power','Question-first problem solving with the right intuition.','https://www.youtube.com/live/94KWCWIpTWM?si=GXJzfDrZw8iYHCC8'],
-    ['QUICK REVISION','Electrostatics','Electric fields, force and central ideas in one pass.','https://youtu.be/OzuS2LwJwzI?si=531yUfZV0wWUEuSS'],
-    ['QUICK REVISION','Gravitation','Gravity, orbits and the structure of central forces.','https://youtube.com/playlist?list=PLjEkQ_dvlIGlDLayMTKe7kAf28RswrXAc&si=aWb3DhyKGrZKYCxZ'],
-    ['MODERN PHYSICS','Modern Physics','The world beyond classical intuition.','https://youtube.com/playlist?list=PLjEkQ_dvlIGmYGbJoXdyKCa3eN6w0OrL0&si=FMKiyUA__LxuaSLx']
-  ];
-  function card(data, kind) { const a=document.createElement('a'); a.className='card'; a.href=kind==='lecture'?data[3]:kind==='topic'?data[3]:data[2]; a.target='_blank'; a.rel='noopener'; a.innerHTML='<small>'+data[0]+'</small><h3>'+data[1]+'</h3><p>'+ (kind==='lecture'?data[2]:kind==='topic'?data[2]:'A focused Saem Physics learning path.') +'</p><b>'+ (kind==='playlist'?'Open playlist':'Watch lesson') +' ↗</b>'; return a; }
-  lectures.forEach(x=>document.getElementById('lecture-grid').appendChild(card(x,'lecture')));
-  playlists.forEach(x=>document.getElementById('playlist-grid').appendChild(card(x,'playlist')));
-  topics.forEach(x=>document.getElementById('topic-grid').appendChild(card(x,'topic')));
 
-  const toggle=document.getElementById('nav-toggle'), nav=document.getElementById('site-nav');
-  toggle.addEventListener('click',()=>{const open=nav.classList.toggle('is-open');toggle.setAttribute('aria-expanded',String(open));});
-  nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('is-open');toggle.setAttribute('aria-expanded','false');}));
-  document.addEventListener('click',e=>{if(!nav.contains(e.target)&&!toggle.contains(e.target)){nav.classList.remove('is-open');toggle.setAttribute('aria-expanded','false');}});
-  document.getElementById('year').textContent=new Date().getFullYear();
-  const items=document.querySelectorAll('.reveal');
-  if('IntersectionObserver' in window){const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target);}}),{threshold:.12});items.forEach(x=>io.observe(x));}else items.forEach(x=>x.classList.add('visible'));
-  const canvas=document.getElementById('particle-canvas');
-  if(canvas&&!matchMedia('(prefers-reduced-motion: reduce)').matches){const ctx=canvas.getContext('2d');let ps=[];function resize(){canvas.width=innerWidth;canvas.height=innerHeight;ps=Array.from({length:Math.min(60,Math.floor(innerWidth/20))},()=>({x:Math.random()*canvas.width,y:Math.random()*canvas.height,vx:(Math.random()-.5)*.3,vy:(Math.random()-.5)*.3,r:Math.random()*1.4+.3}));}function draw(){ctx.clearRect(0,0,canvas.width,canvas.height);ps.forEach((p,i)=>{p.x=(p.x+p.vx+canvas.width)%canvas.width;p.y=(p.y+p.vy+canvas.height)%canvas.height;ctx.fillStyle='rgba(115,215,245,.4)';ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fill();for(let j=i+1;j<ps.length;j++){const q=ps[j],d=Math.hypot(p.x-q.x,p.y-q.y);if(d<110){ctx.strokeStyle='rgba(115,215,245,'+(0.09*(1-d/110))+')';ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(q.x,q.y);ctx.stroke();}}});requestAnimationFrame(draw);}addEventListener('resize',resize);resize();draw();}
-});
+  const examples = [
+    {
+      name: "C17 · exact core",
+      result: "For u=4, a=2, t=3: displacement = 21/1 exactly.",
+      code: `#include "cos_rat.h"
 
+CosRat u = {4, 1}, a = {2, 1}, t = {3, 1};
+CosRat half = {1, 2}, ut, t2, at2, half_at2, s = {0, 1};
+CosStatus st = cos_rat_mul(u, t, &ut);
+if (st == COS_OK) st = cos_rat_mul(t, t, &t2);
+if (st == COS_OK) st = cos_rat_mul(a, t2, &at2);
+if (st == COS_OK) st = cos_rat_mul(at2, half, &half_at2);
+if (st == COS_OK) st = cos_rat_add(ut, half_at2, &s);`
+    },
+    {
+      name: "C",
+      result: "For these small integer inputs, s = 21.",
+      code: `#include <stdint.h>
+
+int main(void) {
+  const int64_t u = 4, a = 2, t = 3;
+  const int64_t s = u * t + (a * t * t) / 2;
+  return s == 21 ? 0 : 1;
+}`
+    },
+    {
+      name: "C++",
+      result: "For these small integer inputs, s = 21.",
+      code: `#include <cstdint>
+
+int main() {
+  constexpr std::int64_t u = 4, a = 2, t = 3;
+  constexpr auto s = u * t + (a * t * t) / 2;
+  return s == 21 ? 0 : 1;
+}`
+    },
+    {
+      name: "Python",
+      result: "Python integers keep this integer example exact.",
+      code: `u, a, t = 4, 2, 3
+s = u * t + (a * t * t) // 2
+print(s)  # 21`
+    },
+    {
+      name: "Rust",
+      result: "For these small integer inputs, s = 21.",
+      code: `fn main() {
+    let (u, a, t): (i64, i64, i64) = (4, 2, 3);
+    let s = u * t + (a * t * t) / 2;
+    println!("{s}");
+}`
+    },
+    {
+      name: "R",
+      result: "R prints the displacement as 21.",
+      code: `u <- 4
+a <- 2
+t <- 3
+s <- u * t + (a * t^2) / 2
+print(s)  # 21`
+    },
+    {
+      name: "Julia",
+      result: "Integer division is exact here because the numerator is even.",
+      code: `u, a, t = 4, 2, 3
+s = u * t + (a * t^2) ÷ 2
+println(s)  # 21`
+    },
+    {
+      name: "Fortran",
+      result: "For these small integer inputs, s = 21.",
+      code: `program motion
+  implicit none
+  integer :: u, a, t, s
+  u = 4; a = 2; t = 3
+  s = u * t + (a * t * t) / 2
+  print *, s
+end program motion`
+    },
+    {
+      name: "Lisp",
+      result: "Common Lisp evaluates this integer expression to 21.",
+      code: `(let ((u 4) (a 2) (t 3))
+  (+ (* u t)
+     (/ (* a t t) 2)))`
+    },
+  ];
+
+  const lessonGrid = document.getElementById("lesson-grid");
+  const search = document.getElementById("lesson-search");
+  const count = document.getElementById("results-count");
+  const emptyState = document.getElementById("empty-state");
+  const filters = document.getElementById("lesson-filters");
+  let activeFilter = "all";
+
+  function makeLessonCard(lesson) {
+    const link = document.createElement("a");
+    link.className = "lesson-card";
+    link.href = lesson.url;
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+
+    const topline = document.createElement("span");
+    topline.className = "lesson-topline";
+    topline.textContent = lesson.tag;
+
+    const title = document.createElement("h3");
+    title.textContent = lesson.title;
+
+    const description = document.createElement("p");
+    description.textContent = lesson.description;
+
+    const action = document.createElement("span");
+    action.className = "lesson-link";
+    action.append("Watch lesson", document.createTextNode("↗"));
+
+    link.append(topline, title, description, action);
+    return link;
+  }
+
+  function renderLessons() {
+    const query = search.value.trim().toLocaleLowerCase();
+    const visible = lessons.filter((lesson) => {
+      const matchesFilter = activeFilter === "all" || lesson.category === activeFilter;
+      const matchesQuery = `${lesson.tag} ${lesson.title} ${lesson.description}`.toLocaleLowerCase().includes(query);
+      return matchesFilter && matchesQuery;
+    });
+
+    lessonGrid.replaceChildren(...visible.map(makeLessonCard));
+    count.textContent = `${visible.length} ${visible.length === 1 ? "lesson" : "lessons"}`;
+    emptyState.hidden = visible.length !== 0;
+  }
+
+  search.addEventListener("input", renderLessons);
+  filters.addEventListener("click", (event) => {
+    const button = event.target.closest("button[data-filter]");
+    if (!button) return;
+    activeFilter = button.dataset.filter;
+    filters.querySelectorAll("button[data-filter]").forEach((item) => {
+      const selected = item === button;
+      item.classList.toggle("is-active", selected);
+      item.setAttribute("aria-pressed", String(selected));
+    });
+    renderLessons();
+  });
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "/" && !event.ctrlKey && !event.metaKey && !event.altKey && !["INPUT", "TEXTAREA"].includes(document.activeElement.tagName)) {
+      event.preventDefault();
+      search.focus();
+    }
+  });
+  renderLessons();
+
+  const tabs = document.getElementById("language-tabs");
+  const code = document.getElementById("code-example");
+  const codeLanguage = document.getElementById("code-language");
+  const codeResult = document.getElementById("code-result");
+  const copyButton = document.getElementById("copy-code");
+  let selectedExample = 0;
+
+  function selectExample(index) {
+    selectedExample = index;
+    const example = examples[index];
+    code.textContent = example.code;
+    codeLanguage.textContent = example.name;
+    codeResult.textContent = example.result;
+    tabs.querySelectorAll('[role="tab"]').forEach((tab, tabIndex) => {
+      const selected = tabIndex === index;
+      tab.setAttribute("aria-selected", String(selected));
+      tab.tabIndex = selected ? 0 : -1;
+    });
+    document.getElementById("code-panel").setAttribute("aria-labelledby", `language-tab-${index}`);
+    copyButton.textContent = "Copy code";
+  }
+
+  examples.forEach((example, index) => {
+    const tab = document.createElement("button");
+    tab.className = "language-tab";
+    tab.type = "button";
+    tab.id = `language-tab-${index}`;
+    tab.setAttribute("role", "tab");
+    tab.setAttribute("aria-controls", "code-panel");
+    tab.setAttribute("aria-selected", String(index === selectedExample));
+    tab.tabIndex = index === selectedExample ? 0 : -1;
+    tab.textContent = example.name;
+    tab.addEventListener("click", () => selectExample(index));
+    tab.addEventListener("keydown", (event) => {
+      if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) return;
+      event.preventDefault();
+      const next = event.key === "Home" ? 0
+        : event.key === "End" ? examples.length - 1
+          : (index + (event.key === "ArrowRight" ? 1 : -1) + examples.length) % examples.length;
+      selectExample(next);
+      tabs.children[next].focus();
+    });
+    tabs.append(tab);
+  });
+  selectExample(selectedExample);
+
+  copyButton.addEventListener("click", async () => {
+    try {
+      await navigator.clipboard.writeText(examples[selectedExample].code);
+      copyButton.textContent = "Copied";
+    } catch (error) {
+      copyButton.textContent = "Select code to copy";
+    }
+  });
+
+  const menuToggle = document.getElementById("menu-toggle");
+  const primaryNav = document.getElementById("primary-nav");
+  function closeMenu() {
+    menuToggle.setAttribute("aria-expanded", "false");
+    menuToggle.setAttribute("aria-label", "Open navigation");
+    primaryNav.classList.remove("is-open");
+  }
+  menuToggle.addEventListener("click", () => {
+    const open = menuToggle.getAttribute("aria-expanded") !== "true";
+    menuToggle.setAttribute("aria-expanded", String(open));
+    menuToggle.setAttribute("aria-label", open ? "Close navigation" : "Open navigation");
+    primaryNav.classList.toggle("is-open", open);
+  });
+  primaryNav.querySelectorAll("a").forEach((link) => link.addEventListener("click", closeMenu));
+  document.addEventListener("click", (event) => {
+    if (!primaryNav.contains(event.target) && !menuToggle.contains(event.target)) closeMenu();
+  });
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") closeMenu();
+  });
+
+  document.getElementById("current-year").textContent = String(new Date().getFullYear());
+})();

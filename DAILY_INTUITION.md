@@ -1,5 +1,75 @@
 # Daily intuition log (newest first)
 
+## 2026-11-08 (continued): redesigning the public Saem Physics website
+
+Work item: remake the public channel site, include useful teaching examples
+for the requested programming languages, and prepare a truthful static
+publication without claiming an unconnected C17 backend.
+
+### Context and reading attempted
+
+- Read the current [README.md](README.md), product architecture,
+  [STANDING_ORDERS.md](STANDING_ORDERS.md) and its language-role guidance,
+  backend [STATUS.md](saem-unified/docs/STATUS.md), [PROGRESS_c17.md](saem-unified/docs/PROGRESS_c17.md),
+  and the recent project intuition entries.
+- Checked the project book map. This checkout contains the two supplied EdTech
+  PDFs in [references/books/](references/books/), but no extracted text or
+  other matching books. `pdftotext`, `pdfinfo`, `mutool`, `pypdf`, `fitz`, and
+  `pdfminer` are unavailable; therefore I did not attribute a new design rule
+  or quotation to either PDF.
+- Checked GitHub Pages configuration; the Pages API returned 404, so Pages
+  was not configured at the start of this work item.
+
+### Equation, invariants, and implementation choices
+
+- Teaching example: for constant acceleration,
+  `s = ut + (1/2)at^2`. With `u=4`, `a=2`, `t=3`, the exact integer result is
+  `s=21`. The C17 tab performs the calculation through `CosRat`; the other
+  language tabs use the same small integer inputs as illustrative sketches.
+- Keep presentation and authority separate: HTML/CSS/JavaScript is the static
+  public front end; the C17 QCOS core is a future bounded authority, not a
+  currently hosted web service. GitHub Pages does not execute C17.
+- Existing C17/C++ source, Python verification tools, and Rust archive retain
+  their actual status. R, Julia, Fortran, and Lisp examples are not represented
+  as integrated product runtimes.
+- Failure modes to avoid: implying a formula sketch is a general overflow-safe
+  solver, implying language examples are wired into the engine, or advertising
+  a published backend when only static hosting is available.
+
+### What changed
+
+- Replaced the previous landing page with an editorial, responsive channel
+  website that retains the existing YouTube, admission, Telegram, contact, and
+  Webex live-class destinations.
+- Added searchable/category-filtered lesson cards, keyboard-accessible
+  language-example tabs with copy support, reduced-motion styling, and a clear
+  statement of the static/backend boundary.
+- Added a GitHub Pages Actions workflow that publishes only the three website
+  files, leaving research PDFs, archives, and backend source out of the web
+  artifact.
+- Updated the root README, the language-role table and website status in the
+  architecture, and this continuity log. Publication still needs to be
+  enabled and verified after pushing.
+
+### Verification and next action
+
+- `node --check script.js` passes. A standard-library HTML parse found 21
+  unique IDs and all 24 asset/navigation references resolve.
+- Compiled and ran the C17 example against `saem-unified/core/c17/cos_rat.c`;
+  it returned exact `21/1`. The C and C++ examples compiled with strict
+  warnings, and the Python example evaluated to 21.
+- A DOM interaction harness passed lesson search, category filtering, the
+  empty state, language tab selection and arrow-key navigation, and menu open /
+  outside-click close. No browser binary is installed, so this is not a
+  visual-browser test.
+- R, Julia, Fortran, Rust, and Lisp examples are included but those runtimes
+  are not installed here and could not be executed.
+- Local HTTP smoke test returned 200 for the homepage, stylesheet, and
+  JavaScript; GitHub Pages was not configured at the start of this check.
+
+Next: push the redesign, enable GitHub Pages for `main` at `/`, and verify its
+published response before calling the site live.
+
 ## 2026-11-08 (continued): organizing the source tree and exact rational slice 1.5
 
 Work item: arrange supplied materials without entangling the channel website

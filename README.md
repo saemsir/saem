@@ -1,18 +1,12 @@
-# Saem Physics — channel website
+# Saem Physics
 
-This repository currently contains a static landing page for the Saem Physics
-YouTube channel. It links to lessons, playlists, notes, admission, and live
-classes. It uses plain HTML, CSS, and JavaScript; there is no build step or
-backend in the root website.
+The public front door for Saem Physics is a responsive, static website for
+students exploring lessons, exam solutions, and physics through computation.
+The design keeps the existing channel, playlist, admission, Telegram, and live
+class links, with a searchable lesson library and short code examples in the
+requested languages.
 
-The staged plan for the wider offline-first education product and the roles of
-QCOS, RISC-V, Open Math Harness, and the other languages is in
-[docs/SAEM_EDTECH_ARCHITECTURE.md](docs/SAEM_EDTECH_ARCHITECTURE.md).
-The QCOS design and Work-Time Engine plan are grouped in [docs/qcos/](docs/qcos/).
-Supplied books and archives are indexed in [references/](references/);
-the restored backend remains separate in [saem-unified/](saem-unified/).
-
-## Preview locally
+## Run locally
 
 From the repository root:
 
@@ -20,25 +14,27 @@ From the repository root:
 python3 -m http.server 8000
 ```
 
-Then open `http://localhost:8000`. Stop the server with Ctrl+C.
+Open `http://localhost:8000`. Stop the server with Ctrl+C.
 
 ## Publish with GitHub Pages
 
-This site is already at the repository root. In GitHub, open **Settings →
-Pages**, choose **Deploy from a branch**, select the publishing branch and
-`/(root)`, and save. The site will be published at
-`https://<owner>.github.io/<repository>/`.
+The [Pages workflow](.github/workflows/deploy-pages.yml) deploys the three
+website files (`index.html`, `style.css`, and `script.js`) when changes are
+pushed to `main`. It intentionally excludes the research books, archives, and
+backend source from the Pages artifact. In GitHub, open **Settings → Pages**
+and select **GitHub Actions** as the build and deployment source. No build
+runtime is required to serve the site.
 
-The page and assets use relative paths, so the repository can be published
-from a project subpath. A custom domain can be configured later in GitHub Pages
-settings after registering and configuring that domain.
+The public site is static: GitHub Pages does not execute the C17 backend. The
+language examples are teaching sketches, not integrations. The intended
+offline EdTech application and the current state of each language are described
+in [the staged architecture](docs/SAEM_EDTECH_ARCHITECTURE.md).
 
-## Edit the site
+## Project map
 
-- Page sections and outbound links: [index.html](index.html)
-- Lesson, topic, and playlist cards: [script.js](script.js)
-- Colors, layout, and responsive styling: [style.css](style.css)
-
-The PDFs and archives under `references/`, and the packed Saem source snapshot
-in this repository, are reference materials; they are not loaded by the static
-website.
+- [index.html](index.html), [style.css](style.css), [script.js](script.js):
+  public website and browser interactions.
+- [docs/qcos/](docs/qcos/): QCOS design and Work-Time Engine plan.
+- [references/](references/): supplied books, archives, and source snapshot,
+  kept separate from deployable site assets.
+- [saem-unified/](saem-unified/): restored C17/C++ source, tests, and tools.

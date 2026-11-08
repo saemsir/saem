@@ -2,9 +2,20 @@
 
 ## CURRENT WORKSPACE HANDOFF (2026-11-08)
 
-- The repository root is the Saem Physics static channel site; the recovered,
+- The repository root is the redesigned Saem Physics static channel site; the recovered,
   separately buildable C17/C++ backend source is under
   [saem-unified/](saem-unified/). Start at [README.md](README.md).
+- The website has a searchable/filterable lesson library and accessible
+  language-example tabs. It presents teaching snippets for C17, C, C++17,
+  Python, Rust, R, Julia, Fortran, and Lisp without claiming those languages
+  are all integrated. GitHub Pages is static and cannot run the C17 backend.
+- The new Pages workflow stages only `index.html`, `style.css`, and
+  `script.js`; it deliberately excludes the research references and backend
+  sources from the deployed site artifact.
+- Local HTTP smoke test returned 200 for the homepage, CSS, and JavaScript.
+  GitHub Pages setup was not enabled when checked (Pages API returned 404);
+  configure root-of-`main` Pages after pushing and verify its deployment
+  before describing the site as live.
 - The staged business and software architecture, including the correct roles
   for C17/QCOS, C++17, RISC-V, Open Math Harness/Rust, Python, R, Fortran, and
   Julia, is in [docs/SAEM_EDTECH_ARCHITECTURE.md](docs/SAEM_EDTECH_ARCHITECTURE.md).

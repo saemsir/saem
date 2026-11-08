@@ -26,7 +26,8 @@ Pages deployment, with a scheduled refresh every six hours and a direct link
 to the full channel archive. The feed provides up to 15 recent uploads; six
 are shown on the homepage. No API key is needed. The completed rational S2
 `cos_mat` checkpoint remains verified; its evidence is in the
-[daily intuition log](DAILY_INTUITION.md).
+[daily intuition log](DAILY_INTUITION.md). The new Pages deployment succeeded,
+and the live homepage, assets, and generated 15-video feed return HTTP 200.
 
 ### Future
 

@@ -34,13 +34,13 @@ uploads visible without introducing credentials or a runtime backend.
   `tools/test_fetch_channel_feed.py`; refreshed the README and status handoff.
 - **Verification:** five parser tests pass for valid data, both channel-ID
   forms, channel mismatch, invalid IDs, and the 15-item bound. The live feed
-  yields 15 valid uploads.
-  JavaScript syntax and `git diff --check` pass. No local visual browser is
-  installed; the SVG is responsive and labelled. The final Pages workflow
-  deployment remains to be verified after pushing.
-- **Next:** deploy and inspect the public site, confirm scheduled refresh
-  remains active, then resume S3 after reading its project-book references.
-  The full channel archive remains available directly from YouTube.
+  yields 15 valid uploads. JavaScript syntax, unique HTML IDs, fragment links,
+  and `git diff --check` pass. Pages deployment `42497785994` succeeded; the
+  live homepage, CSS, JavaScript, and channel JSON return HTTP 200. No local
+  visual browser is installed; the SVG is responsive and labelled.
+- **Next:** observe the scheduled refresh on its next run, then resume S3 after
+  reading its project-book references. The full channel archive remains
+  available directly from YouTube.
 
 ## 2026-11-08 (continued): exact solve, inverse, and column-space projection
 

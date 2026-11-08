@@ -33,7 +33,9 @@
   and backend sources from the deployed site artifact.
 - GitHub Pages is enabled for public deployment from the workflow. A public
   YouTube RSS fetch is required for each build; a failed fetch stops the new
-  deployment and leaves the previous published site intact.
+  deployment and leaves the previous published site intact. Deployment
+  `42497785994` succeeded; the homepage, CSS, JavaScript, and generated
+  15-video JSON feed all returned HTTP 200.
 - The staged business and software architecture, including the correct roles
   for C17/QCOS, C++17, RISC-V, Open Math Harness/Rust, Python, R, Fortran, and
   Julia, is in [docs/SAEM_EDTECH_ARCHITECTURE.md](docs/SAEM_EDTECH_ARCHITECTURE.md).
@@ -47,14 +49,15 @@
   physics solver; its README documents deployment dependencies. The xv6 archive
   is an MIT teaching OS. Neither is currently wired into the site.
 - A DOM/canvas smoke harness, HTML link/ID checks, Markdown link checks, and
-  local HTTP smoke tests pass for the motion-lab update. No visual browser test
-  was available.
+  local HTTP smoke tests pass for the motion-lab update. The new channel-feed
+  parser has five passing tests; live feed fetch and public deployment pass.
+  No visual browser test was available.
 - Verified from the restored tree: JavaScript tests 35/35; C++ build and
   differential cases 325/325. `make test` passes and explicitly skips Python
   unittest discovery when no Python test files exist.
-- `python3 tools/check_c17.py --quick` reports 54/55 groups after Work-Time
-  Engine slice 1.5: the only failure is the linked RISC-V audit, which needs
-  unavailable `ld.lld`; all O2 C17 tests pass. The 192,805-command exact
+- `python3 tools/check_c17.py --quick` reports 60/61 groups after S2: the only
+  failure is the linked RISC-V audit, which needs unavailable `ld.lld`; all O2
+  C17 tests and matrix Fraction oracles pass. The 192,805-command exact
   rational oracle reports 0 exact-fit sum refusals. The earlier full baseline
   also encountered ThreadSanitizer startup failures (`unexpected memory
   mapping`); the full sanitizer suite has not been rerun after this change.

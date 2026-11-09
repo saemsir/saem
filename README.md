@@ -52,6 +52,16 @@ website backed by a versioned C17 service; its first loopback-only kernel/API
 slice is implemented in [dynamic-site/](dynamic-site/), while the current
 GitHub-Pages website remains static.
 
+The static Exam Time Matrix now includes a text-free index of all 202 supplied
+paper PDFs, exploratory past-only topic keyword signals, and a private
+browser-only timed mode for a PDF selected from the learner's device. The
+timed mode records responses but does not score or publish the paper. Rebuild
+the corpus index with `python3 tools/build_exam_corpus.py`; only the generated
+metadata/candidate-topic index is deployed, never PDFs or extracted question
+text. Each Pages deployment refreshes the source inventory and incrementally
+builds the index; newly discovered files remain unreviewed and are excluded
+from the historical outlook until their owner-review status is verified.
+
 ### Future
 
 Build the student and teacher experience, the offline EdTech workflow, and
@@ -145,6 +155,8 @@ teaching sketches, not integrations. See the
   forecast, kernel, and dynamic student-website gates.
 - [Dynamic-site prototype](dynamic-site/README.md): local website and API
   calling the existing C17 exact-rational kernel.
+- [Static exam corpus index](data/exam-corpus.json): generated source-hash
+  coverage and unreviewed year/topic candidates; no paper content.
 - [Work-Time Engine guide](docs/qcos/WORK_TIME_ENGINE_GUIDE.md): fixed slice
   order, verification gates, and session handoff procedure.
 - [books/](books/): supplied physics, mathematics, computation, programming,

@@ -127,6 +127,16 @@ adapter hosted on backend-capable infrastructure. Hosting, service
 operations, and any complementary offline mode are later stages; none are
 currently deployed.
 
+The static homepage now receives a generated, text-free index covering all
+202 supplied paper PDFs. A local pypdf build step records hashes, extraction
+coverage, year candidates, and deterministic keyword-topic candidates; it
+does not publish the source PDFs or extracted question text. The browser
+shows past-only historical detection rates with explicit review and
+calibration caveats. Its local paper timer previews a PDF selected by the
+learner, keeps responses in memory, and does not claim automatic scoring.
+Question extraction, source mapping, item review, and solutions remain a
+separate import/review pipeline.
+
 ## Learning and computation flow
 
 1. Import a paper and preserve its original file, board, year, language/script,

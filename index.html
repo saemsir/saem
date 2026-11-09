@@ -233,7 +233,7 @@
             <p class="eyebrow">Saem exam desk · first version</p>
             <h2 id="exam-title">Practice with a clock.<br><em>Revise with evidence.</em></h2>
           </div>
-          <p class="section-aside">A short sample test and an experimental past-paper topic outlook. Your answers and imported history stay in this browser.</p>
+          <p class="section-aside">Try the sample, explore source-derived topic signals from the full supplied corpus, or run a paper you already have in a private timed session.</p>
         </div>
         <div class="exam-grid">
           <section class="exam-card" id="exam-test-widget" aria-labelledby="exam-test-title">
@@ -307,6 +307,71 @@
             </details>
           </section>
         </div>
+        <section class="exam-corpus-card" aria-labelledby="exam-corpus-title">
+          <div class="exam-card-topline"><span>EXAM TIME MATRIX · SOURCE FILES</span><span class="exam-badge exam-badge-experimental">REVIEW NEEDED</span></div>
+          <h3 id="exam-corpus-title">Signals from the supplied papers.</h3>
+          <p class="exam-card-intro">The static site receives a text-free index of every supplied PDF. Year and topic labels are machine-generated candidates; they have not been checked by a teacher. These historical keyword-detection rates are study signals, not chances that a topic or question will appear.</p>
+          <p id="corpus-status" class="exam-status" role="status" aria-live="polite">Loading the paper index…</p>
+          <div class="outlook-controls">
+            <label>Exam series
+              <select id="corpus-board">
+                <option value="neet">NEET</option>
+                <option value="jee_main">JEE Main</option>
+                <option value="jee_advanced">JEE Advanced</option>
+              </select>
+            </label>
+            <label>Target year
+              <input id="corpus-year" type="number" min="1900" max="2100">
+            </label>
+          </div>
+          <button id="corpus-run" class="button button-dark" type="button" disabled>Review past topic signals</button>
+          <p id="corpus-outlook-status" class="exam-status" role="status" aria-live="polite"></p>
+          <div id="corpus-results" class="outlook-results" hidden aria-live="polite"></div>
+          <details class="paper-schema">
+            <summary>Browse all indexed paper files</summary>
+            <label class="paper-import-label" for="corpus-search">Filter this source list</label>
+            <input id="corpus-search" class="paper-import-input" type="search" placeholder="Search a paper filename">
+            <ul id="corpus-paper-list" class="corpus-paper-list"></ul>
+          </details>
+          <p class="exam-privacy">The deployed site does not contain paper PDFs or extracted question text. Corpus indexing runs locally before deployment; scanned/low-text files and uncertain years are explicitly excluded from the topic calculation.</p>
+        </section>
+        <section class="exam-paper-practice" aria-labelledby="paper-practice-title">
+          <div>
+            <p class="eyebrow">Private timed-paper mode</p>
+            <h3 id="paper-practice-title">Bring a paper. <em>Practice to the clock.</em></h3>
+            <p class="exam-card-intro">Choose a PDF already on your device. It stays in this browser tab; nothing is uploaded. Set the paper's time and question count from its instructions.</p>
+            <label class="paper-import-label" for="local-paper-file">Choose a local exam-paper PDF</label>
+            <input id="local-paper-file" class="paper-import-input" type="file" accept=".pdf,application/pdf">
+            <p id="local-paper-status" class="exam-status" role="status" aria-live="polite">No local PDF selected.</p>
+            <div class="outlook-controls">
+              <label>Exam series
+                <select id="local-paper-series">
+                  <option value="neet">NEET</option>
+                  <option value="jee_main">JEE Main</option>
+                  <option value="jee_advanced">JEE Advanced</option>
+                </select>
+              </label>
+              <label>Time limit (minutes)
+                <input id="local-paper-minutes" type="number" min="1" max="300" value="180">
+              </label>
+              <label>Question count
+                <input id="local-paper-count" type="number" min="1" max="300" placeholder="Set from paper">
+              </label>
+            </div>
+            <button id="local-paper-start" class="button button-dark" type="button" disabled>Start private timed paper</button>
+          </div>
+          <div id="local-paper-session" class="local-paper-session" hidden>
+            <div class="exam-progress-row">
+              <span id="local-paper-progress">0 answered</span>
+              <span class="exam-timer">Time left <time id="local-paper-timer" aria-live="off">180:00</time></span>
+            </div>
+            <iframe id="local-paper-preview" title="Selected local exam paper" hidden></iframe>
+            <div id="local-paper-answer-sheet" class="local-paper-answer-sheet"></div>
+            <button id="local-paper-finish" class="button button-dark" type="button">Finish this attempt</button>
+          </div>
+          <div id="local-paper-results" class="exam-results" hidden aria-live="polite"></div>
+          <p class="exam-privacy">The paper timer and response sheet run only in this page. Automatic scoring and worked solutions require a reviewed answer key and are not fabricated for these source PDFs.</p>
+        </section>
       </div>
     </section>
 

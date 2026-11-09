@@ -704,6 +704,285 @@ end program motion`
     });
   }
 
+  const corpusRunButton = document.getElementById("corpus-run");
+  if (corpusRunButton) {
+    const studio = window.SaemStudentStudio;
+    if (!studio) throw new Error("The Exam Time Matrix module did not load.");
+    const corpusStatus = document.getElementById("corpus-status");
+    const boardSelect = document.getElementById("corpus-board");
+    const targetYear = document.getElementById("corpus-year");
+    const outlookStatus = document.getElementById("corpus-outlook-status");
+    const results = document.getElementById("corpus-results");
+    const paperList = document.getElementById("corpus-paper-list");
+    const paperSearch = document.getElementById("corpus-search");
+    let corpusPapers = [];
+    targetYear.value = String(new Date().getFullYear());
+
+    function renderPaperList() {
+      const selectedBoard = boardSelect.value;
+      const query = paperSearch.value.trim().toLocaleLowerCase();
+      const papers = corpusPapers.filter((paper) =>
+        paper.examSeries === selectedBoard &&
+        paper.sourceName.toLocaleLowerCase().includes(query)
+      );
+      paperList.replaceChildren(...papers.map((paper) => {
+        const item = document.createElement("li");
+        const year = paper.year === null ? "Year not mapped" : `${paper.year} · ${paper.yearSource.replaceAll("_", " ")}`;
+        const topics = paper.topicSignals.length
+          ? paper.topicSignals.slice(0, 3).map((signal) => signal.label).join(", ")
+          : "No topic signals";
+        item.textContent = `${year} · ${paper.sourceName} · ${paper.ownerVerificationStatus.replaceAll("_", " ")} · ${paper.pages} pages · ${paper.extractionStatus.replaceAll("_", " ")} · ${topics}`;
+        return item;
+      }));
+      if (papers.length === 0) {
+        const item = document.createElement("li");
+        item.textContent = "No indexed files match this filter.";
+        paperList.append(item);
+      }
+    }
+
+    async function loadCorpus() {
+      try {
+        const response = await fetch("./data/exam-corpus.json", { cache: "no-cache" });
+        if (!response.ok) throw new Error(`Paper index request failed (${response.status}).`);
+        const data = await response.json();
+        corpusPapers = studio.parseExamCorpus(data);
+        const summary = Object.entries(data.summary)
+          .map(([series, item]) => `${series.replaceAll("_", " ")} ${item.paperFiles}`)
+          .join(" · ");
+        corpusStatus.textContent = `${corpusPapers.length} source PDFs indexed (${summary}). The source files themselves are not served from this site.`;
+        corpusRunButton.disabled = false;
+        renderPaperList();
+      } catch (error) {
+        corpusStatus.textContent = `The paper index is unavailable: ${error.message}`;
+        corpusRunButton.disabled = true;
+        console.error("Could not load the bundled exam corpus:", error);
+      }
+    }
+
+    boardSelect.addEventListener("change", renderPaperList);
+    paperSearch.addEventListener("input", renderPaperList);
+    corpusRunButton.addEventListener("click", () => {
+      results.hidden = true;
+      outlookStatus.textContent = "";
+      try {
+        const outlook = studio.calculateCorpusOutlook(
+          corpusPapers,
+          boardSelect.value,
+          Number(targetYear.value)
+        );
+        const summary = document.createElement("p");
+        summary.textContent =
+          `${outlook.examSeries.replaceAll("_", " ")} · target ${outlook.targetYear} · ` +
+          `${outlook.analyzedPaperFiles} text-extracted earlier files analyzed of ` +
+          `${outlook.eligiblePaperFiles} owner-verified year-mapped files · ` +
+          `${outlook.unreviewedPaperFiles} unreviewed files excluded · ` +
+          `${outlook.years[0]}–${outlook.years[outlook.years.length - 1]}.`;
+        const caveat = document.createElement("p");
+        caveat.textContent =
+          "These percentages are the share of analyzed PDFs with matching topic keywords—not probability of appearance. Years and topic tags are unreviewed candidates.";
+        const list = document.createElement("ol");
+        list.className = "outlook-topic-list";
+        outlook.topics.slice(0, 20).forEach((topic) => {
+          const item = document.createElement("li");
+          const label = document.createElement("span");
+          label.textContent = `${topic.subject} · ${topic.topic}`;
+          const rate = document.createElement("strong");
+          rate.textContent = `${(topic.historicalDetectionRate * 100).toFixed(0)}%`;
+          const evidence = document.createElement("small");
+          evidence.textContent = `Keyword signal in ${topic.appearances} of ${topic.papers} files`;
+          item.append(label, rate, evidence);
+          list.append(item);
+        });
+        const sources = document.createElement("details");
+        const sourceSummary = document.createElement("summary");
+        sourceSummary.textContent = "Earlier source files included";
+        const sourceList = document.createElement("ul");
+        corpusPapers
+          .filter((paper) => paper.examSeries === outlook.examSeries && paper.year !== null &&
+            paper.year < outlook.targetYear && paper.ownerVerificationStatus === "owner_verified" &&
+            paper.searchableCharacters >= 200 &&
+            paper.extractionStatus === "text_extracted")
+          .sort((left, right) => left.year - right.year || left.sourceName.localeCompare(right.sourceName))
+          .forEach((paper) => {
+            const item = document.createElement("li");
+            item.textContent = `${paper.year} · ${paper.sourceName} · ${paper.yearSource.replaceAll("_", " ")}`;
+            sourceList.append(item);
+          });
+        sources.append(sourceSummary, sourceList);
+        results.replaceChildren(summary, caveat, list, sources);
+        results.hidden = false;
+        outlookStatus.textContent = "Exploratory corpus signal only. It is not a calibrated forecast or question prediction.";
+      } catch (error) {
+        outlookStatus.textContent = error.message;
+      }
+    });
+    loadCorpus();
+  }
+
+  const localPaperInput = document.getElementById("local-paper-file");
+  if (localPaperInput) {
+    const localStatus = document.getElementById("local-paper-status");
+    const startButton = document.getElementById("local-paper-start");
+    const session = document.getElementById("local-paper-session");
+    const preview = document.getElementById("local-paper-preview");
+    const answerSheet = document.getElementById("local-paper-answer-sheet");
+    const progress = document.getElementById("local-paper-progress");
+    const timerLabel = document.getElementById("local-paper-timer");
+    const resultsPanel = document.getElementById("local-paper-results");
+    const minutesInput = document.getElementById("local-paper-minutes");
+    const questionCountInput = document.getElementById("local-paper-count");
+    const seriesInput = document.getElementById("local-paper-series");
+    let paperObjectUrl = null;
+    let intervalId = null;
+    let secondsRemaining = 0;
+    let deadline = 0;
+    let selectedPaper = null;
+
+    function updateAnsweredCount() {
+      const inputs = answerSheet.querySelectorAll("input");
+      const answered = [...inputs].filter((input) => input.value.trim()).length;
+      progress.textContent = `${answered} of ${inputs.length} responses recorded`;
+    }
+
+    function renderTimer() {
+      const minutes = Math.floor(secondsRemaining / 60);
+      const seconds = secondsRemaining % 60;
+      timerLabel.textContent = `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+    }
+
+    function finishLocalPaper(byTimer) {
+      if (intervalId !== null) window.clearInterval(intervalId);
+      intervalId = null;
+      const inputs = answerSheet.querySelectorAll("input");
+      const answered = [...inputs].filter((input) => input.value.trim()).length;
+      const heading = document.createElement("h4");
+      heading.textContent = "Attempt complete";
+      const summary = document.createElement("p");
+      const note = document.createElement("p");
+      note.textContent =
+        "Compare your response sheet with the answer key and worked solutions in your own paper. The site has not read or uploaded your PDF and cannot score it.";
+      const responseList = document.createElement("ol");
+      inputs.forEach((input, index) => {
+        const item = document.createElement("li");
+        item.textContent = `Q${index + 1}: ${input.value.trim() || "No response"}`;
+        responseList.append(item);
+      });
+      const restart = document.createElement("button");
+      restart.className = "button button-quiet";
+      restart.type = "button";
+      restart.textContent = "Set up another attempt";
+      restart.addEventListener("click", () => {
+        resultsPanel.hidden = true;
+        session.hidden = true;
+        startButton.hidden = false;
+        localPaperInput.disabled = false;
+        minutesInput.disabled = false;
+        questionCountInput.disabled = false;
+        seriesInput.disabled = false;
+      });
+      summary.textContent =
+        `${byTimer ? "Time is up. " : ""}${answered} of ${inputs.length} responses recorded` +
+        ` for ${selectedPaper ? selectedPaper.name : "the local paper"} (${seriesInput.options[seriesInput.selectedIndex].text}).`;
+      resultsPanel.replaceChildren(heading, summary, note, responseList, restart);
+      session.hidden = true;
+      startButton.hidden = true;
+      resultsPanel.hidden = false;
+    }
+
+    function updateClock() {
+      secondsRemaining = Math.max(0, Math.ceil((deadline - Date.now()) / 1000));
+      renderTimer();
+      if (secondsRemaining === 0) finishLocalPaper(true);
+    }
+
+    localPaperInput.addEventListener("change", async () => {
+      selectedPaper = localPaperInput.files && localPaperInput.files[0];
+      startButton.disabled = true;
+      if (paperObjectUrl) URL.revokeObjectURL(paperObjectUrl);
+      paperObjectUrl = null;
+      if (!selectedPaper) {
+        localStatus.textContent = "No local PDF selected.";
+        return;
+      }
+      if (selectedPaper.size === 0 || selectedPaper.size > 50 * 1024 * 1024 ||
+          !/\.pdf$/i.test(selectedPaper.name)) {
+        localStatus.textContent = "Choose a non-empty PDF no larger than 50 MiB.";
+        selectedPaper = null;
+        return;
+      }
+      const paper = selectedPaper;
+      try {
+        const header = new TextDecoder("latin1").decode(
+          await paper.slice(0, 1024).arrayBuffer()
+        );
+        if (selectedPaper !== paper) return;
+        if (!header.includes("%PDF-")) throw new TypeError("This file has no PDF header.");
+        paperObjectUrl = URL.createObjectURL(selectedPaper);
+        localStatus.textContent = `${selectedPaper.name} is ready. It stays in this browser and is not uploaded.`;
+        startButton.disabled = false;
+      } catch (error) {
+        if (selectedPaper !== paper) return;
+        selectedPaper = null;
+        localStatus.textContent = `Could not use this PDF: ${error.message}`;
+      }
+    });
+
+    answerSheet.addEventListener("input", updateAnsweredCount);
+    startButton.addEventListener("click", () => {
+      const minutes = Number(minutesInput.value);
+      const questionCount = Number(questionCountInput.value);
+      if (!selectedPaper || !paperObjectUrl || !Number.isInteger(minutes) ||
+          minutes < 1 || minutes > 300 || !Number.isInteger(questionCount) ||
+          questionCount < 1 || questionCount > 300) {
+        localStatus.textContent = "Choose a PDF and enter valid paper time and question count.";
+        return;
+      }
+      const legend = document.createElement("legend");
+      legend.className = "visually-hidden";
+      legend.textContent = "Your private response sheet";
+      const labels = Array.from({ length: questionCount }, (_, index) => {
+        const label = document.createElement("label");
+        label.className = "paper-answer-item";
+        const number = document.createElement("span");
+        number.textContent = `Q${index + 1}`;
+        const input = document.createElement("input");
+        input.type = "text";
+        input.maxLength = 40;
+        input.autocomplete = "off";
+        input.setAttribute("aria-label", `Response to question ${index + 1}`);
+        input.placeholder = "Option / value";
+        label.append(number, input);
+        return label;
+      });
+      answerSheet.replaceChildren(legend, ...labels);
+      localPaperInput.disabled = true;
+      minutesInput.disabled = true;
+      questionCountInput.disabled = true;
+      seriesInput.disabled = true;
+      preview.src = paperObjectUrl;
+      preview.hidden = false;
+      secondsRemaining = minutes * 60;
+      deadline = Date.now() + secondsRemaining * 1000;
+      renderTimer();
+      updateAnsweredCount();
+      resultsPanel.hidden = true;
+      startButton.hidden = true;
+      session.hidden = false;
+      intervalId = window.setInterval(() => {
+        updateClock();
+      }, 1000);
+    });
+    document.getElementById("local-paper-finish").addEventListener("click", () => finishLocalPaper(false));
+    document.addEventListener("visibilitychange", () => {
+      if (!document.hidden && intervalId !== null) updateClock();
+    });
+    window.addEventListener("pagehide", () => {
+      if (intervalId !== null) window.clearInterval(intervalId);
+      if (paperObjectUrl) URL.revokeObjectURL(paperObjectUrl);
+    }, { once: true });
+  }
+
   const tabs = document.getElementById("language-tabs");
   const code = document.getElementById("code-example");
   const codeLanguage = document.getElementById("code-language");

@@ -94,7 +94,9 @@
   });
 
   const MAX_PAPER_RECORDS = 500;
+  const MAX_CORPUS_PAPERS = 10000;
   const MAX_SOURCE_LENGTH = 500;
+  const EXAM_SERIES = Object.freeze(["neet", "jee_main", "jee_advanced"]);
 
   function calculateKinematics(initialVelocity, acceleration, time) {
     if (![initialVelocity, acceleration, time].every(Number.isFinite) || time < 0) {
@@ -268,10 +270,134 @@
     });
   }
 
+  function parseExamCorpus(corpus) {
+    if (!corpus || typeof corpus !== "object" || corpus.corpusVersion !== 1 ||
+        corpus.indexMethodVersion !== 1 ||
+        !Array.isArray(corpus.papers) || corpus.papers.length < 1 ||
+        corpus.papers.length > MAX_CORPUS_PAPERS) {
+      throw new TypeError("The bundled exam corpus has an unsupported format.");
+    }
+    const identifiers = new Set();
+    const papers = corpus.papers.map((paper, index) => {
+      if (!paper || typeof paper !== "object" || Array.isArray(paper) ||
+          typeof paper.id !== "string" || !paper.id.trim() ||
+          identifiers.has(paper.id) ||
+          !EXAM_SERIES.includes(paper.examSeries) ||
+          typeof paper.sourceName !== "string" ||
+          !/^[a-f0-9]{64}$/.test(paper.sha256) ||
+          !["owner_verified", "not_reviewed"].includes(paper.ownerVerificationStatus) ||
+          (paper.year !== null && (!Number.isInteger(paper.year) || paper.year < 1900 || paper.year > 2100)) ||
+          !["filename_hint", "title_text_candidate", "needs_mapping"].includes(paper.yearSource) ||
+          !Number.isInteger(paper.pages) || paper.pages < 0 ||
+          !Number.isInteger(paper.searchableCharacters) || paper.searchableCharacters < 0 ||
+          !["text_extracted", "low_text", "partial"].includes(paper.extractionStatus) ||
+          paper.topicReviewStatus !== "machine_candidates_unreviewed" ||
+          !Array.isArray(paper.topicSignals)) {
+        throw new TypeError(`The bundled exam corpus has an invalid paper record at ${index + 1}.`);
+      }
+      identifiers.add(paper.id);
+      const topicLabels = new Set();
+      const topicSignals = paper.topicSignals.map((signal) => {
+        if (!signal || typeof signal !== "object" ||
+            !["physics", "chemistry", "mathematics", "biology"].includes(signal.subject) ||
+            typeof signal.label !== "string" || !signal.label.trim() ||
+            !Number.isInteger(signal.keywordMatches) || signal.keywordMatches < 2) {
+          throw new TypeError(`Paper record ${index + 1} has an invalid topic candidate.`);
+        }
+        const key = `${signal.subject}:${signal.label.toLocaleLowerCase()}`;
+        if (topicLabels.has(key)) throw new TypeError(`Paper record ${index + 1} repeats a topic candidate.`);
+        topicLabels.add(key);
+        return Object.freeze({
+          subject: signal.subject,
+          label: signal.label,
+          keywordMatches: signal.keywordMatches
+        });
+      });
+      return Object.freeze({
+        id: paper.id,
+        examSeries: paper.examSeries,
+        sourceName: paper.sourceName,
+        sha256: paper.sha256,
+        ownerVerificationStatus: paper.ownerVerificationStatus,
+        year: paper.year,
+        yearSource: paper.yearSource,
+        pages: paper.pages,
+        searchableCharacters: paper.searchableCharacters,
+        extractionStatus: paper.extractionStatus,
+        topicReviewStatus: paper.topicReviewStatus,
+        topicSignals: Object.freeze(topicSignals)
+      });
+    });
+    return Object.freeze(papers);
+  }
+
+  function calculateCorpusOutlook(papers, examSeries, targetYear) {
+    if (!Array.isArray(papers) || papers.length < 1) {
+      throw new TypeError("Load the bundled exam corpus before estimating a topic outlook.");
+    }
+    if (!EXAM_SERIES.includes(examSeries)) {
+      throw new TypeError("Choose NEET, JEE Main, or JEE Advanced.");
+    }
+    if (!Number.isInteger(targetYear) || targetYear < 1900 || targetYear > 2100) {
+      throw new RangeError("Target year must be a whole year between 1900 and 2100.");
+    }
+    const selected = papers.filter((paper) =>
+      paper.examSeries === examSeries && paper.year !== null && paper.year < targetYear
+    );
+    const eligible = selected.filter((paper) => paper.ownerVerificationStatus === "owner_verified");
+    const analyzed = eligible.filter((paper) =>
+      paper.searchableCharacters >= 200 && paper.extractionStatus === "text_extracted"
+    );
+    const years = [...new Set(analyzed.map((paper) => paper.year))].sort((a, b) => a - b);
+    if (analyzed.length < 5 || years.length < 3) {
+      throw new RangeError(
+        `Only ${analyzed.length} earlier text-extracted papers across ${years.length} years are available; at least five papers across three years are required.`
+      );
+    }
+
+    const topicCounts = new Map();
+    for (const paper of analyzed) {
+      for (const signal of paper.topicSignals) {
+        const key = `${signal.subject}:${signal.label.toLocaleLowerCase()}`;
+        const entry = topicCounts.get(key) || {
+          subject: signal.subject,
+          topic: signal.label,
+          appearances: 0,
+          keywordMatches: 0
+        };
+        entry.appearances += 1;
+        entry.keywordMatches += signal.keywordMatches;
+        topicCounts.set(key, entry);
+      }
+    }
+    const topics = [...topicCounts.values()]
+      .map((item) => Object.freeze({
+        ...item,
+        papers: analyzed.length,
+        historicalDetectionRate: item.appearances / analyzed.length
+      }))
+      .sort((left, right) =>
+        right.historicalDetectionRate - left.historicalDetectionRate ||
+        left.subject.localeCompare(right.subject) ||
+        left.topic.localeCompare(right.topic)
+      );
+    return Object.freeze({
+      examSeries,
+      targetYear,
+      eligiblePaperFiles: eligible.length,
+      unreviewedPaperFiles: selected.length - eligible.length,
+      analyzedPaperFiles: analyzed.length,
+      years: Object.freeze(years),
+      topics: Object.freeze(topics)
+    });
+  }
+
   return Object.freeze({
     questions,
     examConfig,
     examQuestions,
+    parseExamCorpus,
+    calculateCorpusOutlook,
     calculateTopicOutlook,
     calculateKinematics,
     parsePaperHistory,

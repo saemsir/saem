@@ -57,6 +57,39 @@ preview without publishing the exam corpus.
   proxy, then continue D1a source mapping. A public student endpoint remains
   blocked on its own auth, privacy, rate-limit, and approved-content design.
 
+## 2026-11-09 (continued): static Exam Time Matrix paper signals
+
+Work item: connect the Exam Time Matrix to the existing static student site
+using the full supplied NEET, JEE Main, and JEE Advanced corpus.
+
+- **Evidence reviewed:** pypdf parsed all 202 source files (6,541 pages):
+  187 contain searchable text in the first two pages, 15 are low-text/scanned,
+  and parsing completed without file errors. Some JEE Advanced and NEET PDFs
+  expose little text, so topic/year coverage cannot be treated as complete.
+- **Corpus pipeline:** added a deterministic local PDF indexer. It verifies
+  each source hash against the paper inventory, keeps all source records,
+  extracts exam-year/title candidates and broad syllabus keyword matches, and
+  emits no question text or PDFs. Year and topic labels remain unreviewed;
+  scanned/ambiguous papers are surfaced as gaps, not silently counted as
+  reviewed evidence.
+- **Static learning workflow:** the homepage loads the bundled, text-free
+  corpus index and calculates earlier-year-only topic keyword detection
+  rates with a minimum evidence gate. UI labels state that those rates are
+  not question probabilities or calibrated forecasts. Students can browse
+  all 202 source records and start a local PDF timer/response sheet; file
+  content is never uploaded and answers are not auto-scored without a reviewed
+  answer key.
+- **Deployment:** the Pages workflow includes only `data/exam-corpus.json`,
+  existing static assets, and the channel snapshot. It never publishes the
+  exam PDFs or extracted question text. Corpus tests run during deployment.
+- **Changed:** new corpus builder/requirements/tests, generated index, static
+  past-only signal functions and UI, private local-paper timed mode, and
+  corresponding data-coverage documentation.
+- **Next:** owner-confirm year/subject/topic candidates, extract and review
+  actual questions/solutions under the content contract, then connect a
+  verified question bank to auto-scored exam-rule profiles. Do not describe
+  the keyword trend as a predictive model until past-only validation exists.
+
 ## 2026-11-09 (continued): versioned exam-content contract and paper inventory
 
 Work item: continue the Exam Time Matrix with D1, a typed, provenance-preserving

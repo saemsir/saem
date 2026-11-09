@@ -1,11 +1,13 @@
 const assert = require("node:assert/strict");
 const {
   calculateKinematics,
+  calculateCorpusOutlook,
   calculateTopicOutlook,
   examConfig,
   examQuestions,
   questions,
   parsePaperHistory,
+  parseExamCorpus,
   restoreCompletedProgress,
   scoreExam,
   serializeCompletedProgress
@@ -77,5 +79,51 @@ assert.throws(() => parsePaperHistory([{ ...papers[0], reviewed: false }]), Type
 assert.throws(() => parsePaperHistory([papers[0], papers[0]]), TypeError);
 assert.equal(parsePaperHistory([papers[0], { ...papers[0], language: "Hindi" }]).length, 2);
 assert.throws(() => parsePaperHistory(Array(501).fill(papers[0])), RangeError);
+
+const corpus = parseExamCorpus({
+  corpusVersion: 1,
+  indexMethodVersion: 1,
+  papers: Array.from({ length: 8 }, (_, index) => ({
+    id: `jee-${index}`,
+    examSeries: "jee_main",
+    sourceName: `source-${index}.pdf`,
+    sha256: "a".repeat(64),
+    ownerVerificationStatus: index === 6 ? "not_reviewed" : "owner_verified",
+    year: index === 7 ? 2024 : index === 6 ? 2023 : 2020 + Math.floor(index / 2),
+    yearSource: "title_text_candidate",
+    pages: 10,
+    searchableCharacters: 1200,
+    extractionStatus: index === 5 ? "partial" : "text_extracted",
+    topicReviewStatus: "machine_candidates_unreviewed",
+    topicSignals: index === 5
+      ? [{ subject: "physics", label: "Partial-only", keywordMatches: 4 }]
+      : index === 6
+      ? [{ subject: "physics", label: "Unreviewed-only", keywordMatches: 5 }]
+      : index === 7
+      ? [{ subject: "physics", label: "Future-only", keywordMatches: 9 }]
+      : index < 5
+        ? [{ subject: "physics", label: "Mechanics", keywordMatches: 3 }]
+      : []
+  }))
+});
+const corpusOutlook = calculateCorpusOutlook(corpus, "jee_main", 2024);
+assert.equal(corpusOutlook.eligiblePaperFiles, 6);
+assert.equal(corpusOutlook.unreviewedPaperFiles, 1);
+assert.equal(corpusOutlook.analyzedPaperFiles, 5);
+assert.deepEqual(corpusOutlook.years, [2020, 2021, 2022]);
+assert.equal(corpusOutlook.topics[0].appearances, 5);
+assert.equal(corpusOutlook.topics[0].historicalDetectionRate, 1);
+assert.ok(!corpusOutlook.topics.some((topic) => topic.topic === "Partial-only"));
+assert.ok(!corpusOutlook.topics.some((topic) => topic.topic === "Unreviewed-only"));
+assert.ok(!corpusOutlook.topics.some((topic) => topic.topic === "Future-only"));
+assert.throws(() => calculateCorpusOutlook(corpus, "jee_main", 2021), RangeError);
+assert.throws(() => parseExamCorpus({
+  corpusVersion: 1,
+  papers: [{ ...corpus[0], year: 2024, yearSource: "invented" }]
+}), TypeError);
+assert.throws(() => parseExamCorpus({
+  corpusVersion: 1,
+  papers: [corpus[0], corpus[0]]
+}), TypeError);
 
 console.log("Student studio: practice, timed-test scoring, and past-paper outlook pass");

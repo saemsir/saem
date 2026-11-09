@@ -56,6 +56,10 @@ owns request validation and web concerns; the C17 kernel remains a bounded
 core, not an HTTP server, authentication system, or question database. Deploy
 the future service only on infrastructure that can build/run the selected C17
 adapter and supports its operational, privacy, and recovery requirements.
+The root Dockerfile now prepares a minimal, non-root Cloud Run preview image
+that excludes paper PDFs and requires IAM-authenticated invocation. This is
+deployment scaffolding only; the service is not deployed, and its IAM preview
+is not a student sign-in or public-service design.
 The RISC-V kernel is not a web server. Open Math Harness is not a drop-in
 arithmetic library or a dependency that may silently decide student results.
 An offline/local mode may complement the website, but does not replace the

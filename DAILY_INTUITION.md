@@ -28,6 +28,35 @@ discovered while the local dynamic site is running.
   keeping the owner's paper-level attestation separate from redistribution
   permission and question-level review.
 
+## 2026-11-09 (continued): private Cloud Run preview preparation
+
+Work item: prepare the local C17-backed site for a private Cloud Run developer
+preview without publishing the exam corpus.
+
+- **Deployment boundary:** the service uses Cloud Run IAM authentication,
+  builds the existing C17 adapter in a multi-stage root Dockerfile, and runs
+  under a non-root identity. Docker's allowlist excludes exam PDFs, the paper
+  inventory, books, and unrelated repository files. Its paper folders start
+  empty; the image does not carry question content.
+- **Runtime behavior:** local runs remain bound to loopback by default. The
+  container explicitly binds `0.0.0.0`, honors Cloud Run's `PORT`, and loads
+  the prebuilt shared library. Authorized reviewers can use the authenticated
+  local Cloud Run proxy; this is not a student login flow.
+- **Changed:** added the production container and context allowlist, runtime
+  host/prebuilt-kernel support, Cloud Run IAM preview instructions, and an
+  explicit matrix status separating scaffolding from a live deployment.
+- **Verification:** Docker image build succeeds with a 3.25 kB build context.
+  Container smoke checks pass for health, exact `3/10` arithmetic, empty paper
+  inventory, non-root runtime identity, and no embedded PDFs. The C17/site
+  suite passes 11 tests and the content/corpus suite passes 10 tests.
+- **Blocker:** no `gcloud` CLI or authorized Cloud Run project is configured
+  in this workspace. Actual deployment and end-to-end IAM verification need a
+  project ID and region from the owner.
+- **Next:** deploy only after project/region are available; retain
+  `--no-allow-unauthenticated`, verify the service through the authenticated
+  proxy, then continue D1a source mapping. A public student endpoint remains
+  blocked on its own auth, privacy, rate-limit, and approved-content design.
+
 ## 2026-11-09 (continued): versioned exam-content contract and paper inventory
 
 Work item: continue the Exam Time Matrix with D1, a typed, provenance-preserving

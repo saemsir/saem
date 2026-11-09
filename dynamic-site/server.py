@@ -310,42 +310,54 @@ def make_handler(kernel, inventory_path):
     return Handler
 
 
-def create_server(kernel, port, inventory_path=None):
+def create_server(kernel, port, inventory_path=None, host="127.0.0.1"):
     if inventory_path is None:
         inventory_path = ROOT / "data" / "paper_inventory.json"
     return ThreadingHTTPServer(
-        ("127.0.0.1", port),
+        (host, port),
         make_handler(kernel, inventory_path),
     )
 
 
+def serve(kernel, host, port):
+    inventory, inventory_path = write_inventory()
+    print(f"Refreshed paper inventory: {inventory['sourceCount']} PDFs in {inventory_path}")
+    server = create_server(kernel, port, host=host)
+    watcher = PaperInventoryWatcher(ROOT.parent, inventory_path)
+    watcher.start()
+    print(f"Saem dynamic site: http://{host}:{server.server_port}")
+    try:
+        server.serve_forever()
+    finally:
+        watcher.stop()
+        server.server_close()
+
+
 def main():
     parser = argparse.ArgumentParser(description="Run the local Saem C17-backed dynamic site.")
-    parser.add_argument("--port", type=int, default=8000)
+    parser.add_argument("--host", default="127.0.0.1")
+    parser.add_argument("--port", type=int, default=int(os.environ.get("PORT", "8000")))
     args = parser.parse_args()
     if args.port < 1 or args.port > 65535:
         parser.error("--port must be between 1 and 65535")
 
-    inventory, inventory_path = write_inventory()
-    print(f"Refreshed paper inventory: {inventory['sourceCount']} PDFs in {inventory_path}")
+    library_path = os.environ.get("SAEM_KERNEL_LIBRARY")
+    if library_path:
+        if not Path(library_path).is_file():
+            parser.error("SAEM_KERNEL_LIBRARY does not point to a readable kernel library.")
+        try:
+            serve(C17Kernel(library_path), args.host, args.port)
+        except KeyboardInterrupt:
+            pass
+        return
 
-    watcher = PaperInventoryWatcher(ROOT.parent, inventory_path)
-    watcher.start()
-    server = None
-    try:
-        with tempfile.TemporaryDirectory(prefix="saem-c17-") as build_dir:
-            library_path = build_kernel_library(build_dir)
-            kernel = C17Kernel(library_path)
-            server = create_server(kernel, args.port)
-            print(f"Saem dynamic development site: http://127.0.0.1:{args.port}")
-            print("Loopback-only prototype; do not expose this development server publicly.")
-            server.serve_forever()
-    except KeyboardInterrupt:
-        pass
-    finally:
-        watcher.stop()
-        if server is not None:
-            server.server_close()
+    with tempfile.TemporaryDirectory(prefix="saem-c17-") as build_dir:
+        library_path = build_kernel_library(build_dir)
+        kernel = C17Kernel(library_path)
+        try:
+            serve(kernel, args.host, args.port)
+        except KeyboardInterrupt:
+            pass
 
 
 if __name__ == "__main__":

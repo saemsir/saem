@@ -50,7 +50,7 @@ answers; never claim "zero hallucination."
 | D1a Source mapping | Resolve filename hints and missing-file anomalies into owner-confirmed exam year/session/subject/language/source metadata; keep redistribution permission separate. | Owner-confirmed mappings cite each source file; bad/placeholder files are replaced or explicitly excluded; no metadata is inferred from opaque IDs. | **NEXT** |
 | D2 Exam mock engine | Implement a single selected exam/subject/rule profile from reviewed items, then add profiles with focused tests. | Exact marking, timing, navigation, question-type, language, and worked-review fixtures pass. | Pending |
 | D3 Forecast and evaluation | Build topic coverage and question retrieval/ranking only from the verified, mapped history; run past-only holdouts. | Coverage, uncertainty, calibration, and baseline comparisons are reproducible; future/held-out papers are excluded. | Pending |
-| D4 Public dynamic deployment | Deploy frontend and API/kernel adapter to compatible hosting after operational and privacy requirements are settled. | Production build, end-to-end tests, monitoring/limits, privacy/security review, and target-device checks pass. | Pending |
+| D4 Public dynamic deployment | Deploy frontend and API/kernel adapter to compatible hosting after operational and privacy requirements are settled. | Production build, end-to-end tests, monitoring/limits, privacy/security review, and target-device checks pass. | **Private preview scaffold prepared:** root Dockerfile builds the C17 adapter, excludes papers from the image, and keeps Cloud Run IAM authentication required. Deployment remains pending an authorized Cloud Run project/region and live preview verification; this is not a public student service. |
 
 ### Current source-folder inventory (file count only)
 
@@ -147,8 +147,10 @@ service.
    held-out evidence exists.
 5. Continue the kernel only in its saved order. Integrate the exam domain and
    kernel through tests, not shared assumptions.
-6. Design and deploy the dynamic website/API only after the content contract,
-   C17 adapter boundary, privacy policy, and hosting/runtime requirements are
+6. Deploy the IAM-protected Cloud Run developer preview only after an
+   authorized project and region are supplied; keep exam PDFs out of the
+   image. Design any public student API only after the content contract, C17
+   adapter boundary, privacy policy, and hosting/runtime requirements are
    explicit; keep the existing static site available during that transition.
 
 The [daily intuition log](../DAILY_INTUITION.md) records the context, sources,

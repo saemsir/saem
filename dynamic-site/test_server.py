@@ -167,6 +167,13 @@ class DynamicKernelSiteTests(unittest.TestCase):
             for source in inventory["sources"]
         ))
 
+    def test_server_can_bind_to_explicit_cloud_runtime_host(self):
+        server = create_server(self.kernel, 0, host="0.0.0.0")
+        try:
+            self.assertEqual(server.server_address[0], "0.0.0.0")
+        finally:
+            server.server_close()
+
     def test_unknown_routes_and_query_variants_are_not_served(self):
         for path in ("/missing", "/api/v1/health?debug=1", "/../server.py"):
             with self.subTest(path=path):

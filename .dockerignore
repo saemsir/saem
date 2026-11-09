@@ -1,0 +1,16 @@
+**
+!Dockerfile
+!dynamic-site/
+!dynamic-site/server.py
+!dynamic-site/inventory_exam_papers.py
+!dynamic-site/kernel_bridge.c
+!dynamic-site/web/
+!dynamic-site/web/index.html
+!dynamic-site/web/app.js
+!dynamic-site/web/style.css
+!saem-unified/
+!saem-unified/core/
+!saem-unified/core/c17/
+!saem-unified/core/c17/cos_rat.c
+!saem-unified/core/c17/cos_rat.h
+!saem-unified/core/c17/cos_status.h

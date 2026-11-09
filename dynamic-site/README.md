@@ -20,8 +20,50 @@ the server exits. Use Ctrl+C to stop it.
 This prototype is not a public deployment. It has no accounts, question
 extraction/import, exam scoring, question prediction, or student data storage.
 Do not expose the development server to a network. The production frontend/API
-hosting decision, authentication, data policy, and operational limits remain
-future work.
+hosting and student authentication remain future work.
+
+## Private Cloud Run preview
+
+The repository-root `Dockerfile` builds the C17 bridge into a small runtime
+image. The `.dockerignore` allowlist excludes the paper folders, the generated
+paper inventory, books, and unrelated repository files from the build context.
+The image starts with empty exam folders and an empty inventory; it contains no
+exam PDFs or extracted question content. The container runs as an unprivileged
+user and listens on Cloud Run's `PORT`. The default local server bind remains
+`127.0.0.1`; the container explicitly opts into `0.0.0.0`.
+
+The service must remain IAM-authenticated (`--no-allow-unauthenticated`).
+Cloud Run does not turn a private service URL into a student-ready login flow.
+For an authorized developer preview, deploy from the repository root:
+
+```sh
+gcloud config set project PROJECT_ID
+gcloud services enable run.googleapis.com cloudbuild.googleapis.com
+gcloud run deploy saem-exam-preview \
+  --source . \
+  --region REGION \
+  --no-allow-unauthenticated \
+  --port 8080 \
+  --memory 512Mi \
+  --cpu 1 \
+  --max 2 \
+  --concurrency 10 \
+  --timeout 30
+```
+
+Grant `roles/run.invoker` only to the preview reviewers. To use the page with
+Cloud Run IAM authentication, run the authenticated local proxy:
+
+```sh
+gcloud run services proxy saem-exam-preview --region REGION --port 8080
+```
+
+Then open `http://127.0.0.1:8080`. Verify the page and `/api/v1/health` through
+the proxy before sharing the service URL. Deployment requires an authorized
+Google Cloud project, billing, and `gcloud`; those are not stored in the
+repository. Do not remove IAM authentication or grant public invoker access
+for this preview. A public student deployment requires a separately designed
+login, privacy, rate-limit, monitoring, and approved-content flow.
 
 ## Verify
 

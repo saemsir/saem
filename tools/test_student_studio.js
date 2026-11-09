@@ -6,10 +6,12 @@ const {
   examConfig,
   examQuestions,
   questions,
+  parsePaperAnswerKey,
   parsePaperHistory,
   parseExamCorpus,
   restoreCompletedProgress,
   scoreExam,
+  scorePaperResponses,
   serializeCompletedProgress
 } = require("../student-studio.js");
 
@@ -69,16 +71,113 @@ const papers = parsePaperHistory([
 const outlook = calculateTopicOutlook(papers, "JEE Main", "English", 2025);
 assert.equal(outlook.paperCount, 5);
 assert.deepEqual(outlook.years, [2020, 2021, 2022, 2023, 2024]);
-assert.equal(outlook.topics.find((item) => item.topic === "Mechanics").probability, 5 / 7);
+assert.equal(outlook.topics.find((item) => item.topic === "Mechanics").rawProbability, 5 / 7);
+assert.equal(outlook.topics.find((item) => item.topic === "Mechanics").probability, null);
 assert.equal(outlook.topics.find((item) => item.topic === "Optics").appearances, 3);
-assert.ok(outlook.topics.every((item) => item.probability > 0 && item.probability < 1));
+assert.ok(outlook.topics.every((item) => item.probability === null));
 assert.equal(outlook.topics.find((item) => item.topic === "Mechanics").appearances, 4);
+assert.equal(outlook.calibration.status, "not_validated");
 assert.throws(() => calculateTopicOutlook(papers, "JEE Main", "English", 2024), RangeError);
 assert.throws(() => calculateTopicOutlook(papers, "NEET", "Hindi", 2025), RangeError);
 assert.throws(() => parsePaperHistory([{ ...papers[0], reviewed: false }]), TypeError);
 assert.throws(() => parsePaperHistory([papers[0], papers[0]]), TypeError);
 assert.equal(parsePaperHistory([papers[0], { ...papers[0], language: "Hindi" }]).length, 2);
 assert.throws(() => parsePaperHistory(Array(501).fill(papers[0])), RangeError);
+
+let randomSeed = 17;
+function nextRandom() {
+  randomSeed = (randomSeed * 48271) % 2147483647;
+  return randomSeed / 2147483647;
+}
+const calibrationHistory = [];
+const topicRates = [
+  ["Mechanics", 0.8],
+  ["Optics", 0.5],
+  ["Thermal physics", 0.3],
+  ["Probability", 0.1]
+];
+for (let year = 1980; year < 2015; year += 1) {
+  for (let session = 0; session < 4; session += 1) {
+    let topics = topicRates
+      .filter(([, rate]) => nextRandom() < rate)
+      .map(([topic]) => topic);
+    if (topics.length === 0) topics = ["Mechanics"];
+    calibrationHistory.push({
+      board: "JEE Main",
+      paperId: `${year}-${session}`,
+      year,
+      language: "English",
+      source: `Reviewed source ${year}-${session}`,
+      reviewed: true,
+      topics
+    });
+  }
+}
+const calibratedOutlook = calculateTopicOutlook(
+  parsePaperHistory(calibrationHistory),
+  "JEE Main",
+  "English",
+  2015
+);
+assert.equal(calibratedOutlook.calibration.status, "validated");
+assert.ok(calibratedOutlook.calibration.validationYears >= 3);
+assert.ok(calibratedOutlook.calibration.validationSamples >= 30);
+assert.ok(calibratedOutlook.calibration.calibratedBrier <
+  calibratedOutlook.calibration.baselineBrier);
+assert.ok(calibratedOutlook.topics.every((item) =>
+  Number.isFinite(item.probability) && item.probability > 0 && item.probability < 1
+));
+
+const sourceSha256 = "b".repeat(64);
+const answerKey = parsePaperAnswerKey({
+  schemaVersion: 1,
+  paperId: "neet-2024-paper-1",
+  examSeries: "neet",
+  year: 2024,
+  source: "Teacher-checked paper section",
+  sourceSha256,
+  teacherReviewed: true,
+  reviewedBy: "Test reviewer",
+  marking: { correct: 4, incorrect: -1, unanswered: 0 },
+  questions: [
+    { number: 1, answerType: "choice", answer: "B", solution: "Apply the conservation law and compare the two states." },
+    { number: 2, answerType: "numeric", answer: 2.5, tolerance: 0.01, solution: "Substitute in the relation, then check the units." },
+    {
+      number: 3,
+      answerType: "choice",
+      answer: "C",
+      solution: "Use the definition to eliminate the distractor.",
+      marking: { correct: 5, incorrect: -2, unanswered: 0 }
+    }
+  ]
+});
+const paperScore = scorePaperResponses(["b", "2.505", ""], answerKey);
+assert.deepEqual(
+  {
+    correct: paperScore.correct,
+    incorrect: paperScore.incorrect,
+    unanswered: paperScore.unanswered,
+    score: paperScore.score,
+    maximumScore: paperScore.maximumScore
+  },
+  { correct: 2, incorrect: 0, unanswered: 1, score: 8, maximumScore: 13 }
+);
+const negativeScore = scorePaperResponses(["A", "1.5", "C"], answerKey);
+assert.equal(negativeScore.incorrect, 2);
+assert.equal(negativeScore.score, 3);
+assert.throws(() => parsePaperAnswerKey({
+  schemaVersion: 1,
+  paperId: "bad",
+  examSeries: "neet",
+  year: 2024,
+  source: "citation",
+  sourceSha256: "wrong",
+  teacherReviewed: true,
+  reviewedBy: "Reviewer",
+  marking: { correct: 4, incorrect: -1, unanswered: 0 },
+  questions: []
+}), TypeError);
+assert.throws(() => scorePaperResponses([], answerKey), TypeError);
 
 const corpus = parseExamCorpus({
   corpusVersion: 1,

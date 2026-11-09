@@ -236,29 +236,107 @@
       paper.language.toLocaleLowerCase() === selectedLanguage.toLocaleLowerCase() &&
       paper.reviewed && paper.year < targetYear
     );
-    const years = [...new Set(eligible.map((paper) => paper.year))].sort((a, b) => a - b);
+    const yearlyTopics = new Map();
+    for (const paper of eligible) {
+      if (!yearlyTopics.has(paper.year)) yearlyTopics.set(paper.year, new Set());
+      for (const topic of paper.topics) yearlyTopics.get(paper.year).add(topic.toLocaleLowerCase());
+    }
+    const years = [...yearlyTopics.keys()].sort((a, b) => a - b);
     if (eligible.length < 5 || years.length < 3) {
       throw new RangeError("At least five reviewed papers across three earlier years are required for an outlook.");
     }
 
-    const topicCounts = new Map();
+    const topicLabels = new Map();
     for (const paper of eligible) {
       for (const label of paper.topics) {
         const key = label.toLocaleLowerCase();
-        const item = topicCounts.get(key) || { topic: label, appearances: 0 };
-        item.appearances += 1;
-        topicCounts.set(key, item);
+        if (!topicLabels.has(key)) topicLabels.set(key, label);
       }
     }
 
-    const topics = [...topicCounts.values()]
-      .map((item) => Object.freeze({
-        topic: item.topic,
-        appearances: item.appearances,
-        papers: eligible.length,
-        probability: (item.appearances + 1) / (eligible.length + 2)
-      }))
-      .sort((left, right) => right.probability - left.probability || left.topic.localeCompare(right.topic));
+    const outOfFoldSamples = [];
+    for (let holdoutIndex = 3; holdoutIndex < years.length; holdoutIndex += 1) {
+      const trainingYears = years.slice(0, holdoutIndex);
+      const trainingPapers = eligible.filter((paper) => paper.year < years[holdoutIndex]);
+      if (trainingPapers.length < 5) continue;
+      const trainingTopics = new Set(
+        trainingPapers.flatMap((paper) => paper.topics.map((topic) => topic.toLocaleLowerCase()))
+      );
+      for (const topic of trainingTopics) {
+        const presentYears = trainingYears.filter((year) => yearlyTopics.get(year).has(topic)).length;
+        outOfFoldSamples.push({
+          targetYear: years[holdoutIndex],
+          rawProbability: (presentYears + 1) / (trainingYears.length + 2),
+          observed: yearlyTopics.get(years[holdoutIndex]).has(topic)
+        });
+      }
+    }
+
+    const oofYears = [...new Set(outOfFoldSamples.map((sample) => sample.targetYear))];
+    const validationSamples = [];
+    for (const validationYear of oofYears) {
+      const calibrationTraining = outOfFoldSamples.filter((sample) => sample.targetYear < validationYear);
+      const calibrationYears = new Set(calibrationTraining.map((sample) => sample.targetYear));
+      const holdout = outOfFoldSamples.filter((sample) => sample.targetYear === validationYear);
+      if (calibrationTraining.length < 30 || calibrationYears.size < 3) continue;
+      const calibrator = fitProbabilityCalibrator(calibrationTraining);
+      if (!calibrator) continue;
+      const baselineRate =
+        calibrationTraining.reduce((sum, sample) => sum + Number(sample.observed), 0) /
+        calibrationTraining.length;
+      holdout.forEach((sample) => validationSamples.push({
+        ...sample,
+        calibratedProbability: calibrateProbability(sample.rawProbability, calibrator),
+        baselineProbability: baselineRate
+      }));
+    }
+
+    const validationYears = [...new Set(validationSamples.map((sample) => sample.targetYear))];
+    const finalCalibrator = fitProbabilityCalibrator(outOfFoldSamples);
+    const calibratedBrier = brierScore(validationSamples, (sample) => sample.calibratedProbability);
+    const rawBrier = brierScore(validationSamples, (sample) => sample.rawProbability);
+    const baselineBrier = brierScore(validationSamples, (sample) => sample.baselineProbability);
+    const expectedCalibrationError = calibrationError(
+      validationSamples,
+      (sample) => sample.calibratedProbability
+    );
+    const calibrated =
+      finalCalibrator !== null &&
+      validationSamples.length >= 30 &&
+      validationYears.length >= 3 &&
+      calibratedBrier < baselineBrier &&
+      expectedCalibrationError <= 0.1;
+    const calibration = Object.freeze({
+      status: calibrated ? "validated" : "not_validated",
+      outOfFoldYears: oofYears.length,
+      outOfFoldSamples: outOfFoldSamples.length,
+      validationYears: validationYears.length,
+      validationSamples: validationSamples.length,
+      calibratedBrier,
+      rawBrier,
+      baselineBrier,
+      expectedCalibrationError
+    });
+
+    const topics = [...topicLabels.entries()]
+      .map(([key, topic]) => {
+        const appearances = years.filter((year) => yearlyTopics.get(year).has(key)).length;
+        const rawProbability = (appearances + 1) / (years.length + 2);
+        return Object.freeze({
+          topic,
+          appearances,
+          papers: eligible.length,
+          yearsObserved: years.length,
+          rawProbability,
+          probability: calibrated
+            ? calibrateProbability(rawProbability, finalCalibrator)
+            : null
+        });
+      })
+      .sort((left, right) =>
+        (right.probability ?? right.rawProbability) - (left.probability ?? left.rawProbability) ||
+        left.topic.localeCompare(right.topic)
+      );
 
     return Object.freeze({
       board: selectedBoard,
@@ -266,7 +344,207 @@
       targetYear,
       paperCount: eligible.length,
       years: Object.freeze(years),
+      calibration,
       topics: Object.freeze(topics)
+    });
+  }
+
+  function fitProbabilityCalibrator(samples) {
+    if (samples.length < 30 || !samples.some((sample) => sample.observed) ||
+        !samples.some((sample) => !sample.observed)) return null;
+
+    let intercept = 0;
+    let slope = 1;
+    for (let iteration = 0; iteration < 80; iteration += 1) {
+      let gradientIntercept = 0;
+      let gradientSlope = 0;
+      let hessianIntercept = 1e-6;
+      let hessianCross = 0;
+      let hessianSlope = 1e-3;
+      for (const sample of samples) {
+        const logit = Math.log(sample.rawProbability / (1 - sample.rawProbability));
+        const linear = Math.max(-30, Math.min(30, intercept + slope * logit));
+        const prediction = 1 / (1 + Math.exp(-linear));
+        const residual = prediction - Number(sample.observed);
+        const weight = prediction * (1 - prediction);
+        gradientIntercept += residual;
+        gradientSlope += residual * logit;
+        hessianIntercept += weight;
+        hessianCross += weight * logit;
+        hessianSlope += weight * logit * logit;
+      }
+      gradientSlope += 1e-3 * (slope - 1);
+      const determinant = hessianIntercept * hessianSlope - hessianCross * hessianCross;
+      if (determinant < 1e-12) return null;
+      const interceptStep =
+        (hessianSlope * gradientIntercept - hessianCross * gradientSlope) / determinant;
+      const slopeStep =
+        (hessianIntercept * gradientSlope - hessianCross * gradientIntercept) / determinant;
+      const nextIntercept = Math.max(-8, Math.min(8, intercept - interceptStep));
+      const nextSlope = Math.max(0, Math.min(8, slope - slopeStep));
+      if (Math.abs(nextIntercept - intercept) + Math.abs(nextSlope - slope) < 1e-7) {
+        intercept = nextIntercept;
+        slope = nextSlope;
+        break;
+      }
+      intercept = nextIntercept;
+      slope = nextSlope;
+    }
+    return Object.freeze({ intercept, slope });
+  }
+
+  function calibrateProbability(probability, calibrator) {
+    const safeProbability = Math.max(1e-6, Math.min(1 - 1e-6, probability));
+    const logit = Math.log(safeProbability / (1 - safeProbability));
+    const linear = Math.max(-30, Math.min(30, calibrator.intercept + calibrator.slope * logit));
+    return 1 / (1 + Math.exp(-linear));
+  }
+
+  function brierScore(samples, probabilityFor) {
+    if (samples.length === 0) return 1;
+    return samples.reduce((sum, sample) => {
+      const difference = probabilityFor(sample) - Number(sample.observed);
+      return sum + difference * difference;
+    }, 0) / samples.length;
+  }
+
+  function calibrationError(samples, probabilityFor) {
+    if (samples.length === 0) return 1;
+    const sorted = [...samples].sort((left, right) =>
+      probabilityFor(left) - probabilityFor(right)
+    );
+    const binCount = Math.min(5, sorted.length);
+    let weightedError = 0;
+    for (let bin = 0; bin < binCount; bin += 1) {
+      const start = Math.floor(bin * sorted.length / binCount);
+      const end = Math.floor((bin + 1) * sorted.length / binCount);
+      const members = sorted.slice(start, end);
+      if (members.length === 0) continue;
+      const predicted = members.reduce((sum, sample) => sum + probabilityFor(sample), 0) / members.length;
+      const observed = members.reduce((sum, sample) => sum + Number(sample.observed), 0) / members.length;
+      weightedError += members.length * Math.abs(predicted - observed);
+    }
+    return weightedError / sorted.length;
+  }
+
+  function parsePaperAnswerKey(data) {
+    if (!data || typeof data !== "object" || Array.isArray(data) ||
+        data.schemaVersion !== 1 || typeof data.paperId !== "string" ||
+        !data.paperId.trim() || !EXAM_SERIES.includes(data.examSeries) ||
+        !Number.isInteger(data.year) || data.year < 1900 || data.year > 2100 ||
+        typeof data.source !== "string" || !data.source.trim() ||
+        !/^[a-f0-9]{64}$/.test(data.sourceSha256) ||
+        data.teacherReviewed !== true ||
+        typeof data.reviewedBy !== "string" || !data.reviewedBy.trim() ||
+        !Array.isArray(data.questions) || data.questions.length < 1 ||
+        data.questions.length > 300) {
+      throw new TypeError("The local answer key is missing a valid paper identity, source hash, review record, or question list.");
+    }
+
+    const marking = data.marking;
+    const parseMarking = (value, label) => {
+      if (!value || typeof value !== "object" ||
+          ![value.correct, value.incorrect, value.unanswered].every(Number.isFinite) ||
+          value.correct <= 0 || value.correct > 100 ||
+          value.incorrect < -100 || value.incorrect > 100 ||
+          value.unanswered < -100 || value.unanswered > 100) {
+        throw new RangeError(`${label} needs finite marking values within the supported range.`);
+      }
+      return Object.freeze({
+        correct: value.correct,
+        incorrect: value.incorrect,
+        unanswered: value.unanswered
+      });
+    };
+    const defaultMarking = parseMarking(marking, "The answer key");
+
+    const questionNumbers = new Set();
+    const questions = data.questions.map((question, index) => {
+      if (!question || typeof question !== "object" || Array.isArray(question) ||
+          !Number.isInteger(question.number) || question.number < 1 ||
+          question.number > data.questions.length || questionNumbers.has(question.number) ||
+          !["choice", "numeric"].includes(question.answerType) ||
+          typeof question.solution !== "string" || question.solution.trim().length < 10 ||
+          question.solution.length > 4000) {
+        throw new TypeError(`Answer-key question ${index + 1} has an invalid number, answer type, or worked solution.`);
+      }
+      questionNumbers.add(question.number);
+      if (question.answerType === "choice" &&
+          (typeof question.answer !== "string" || !question.answer.trim() || question.answer.length > 40)) {
+        throw new TypeError(`Answer-key question ${question.number} needs a choice answer.`);
+      }
+      if (question.answerType === "numeric" &&
+          (!Number.isFinite(question.answer) || !Number.isFinite(question.tolerance ?? 0) ||
+           (question.tolerance ?? 0) < 0 || (question.tolerance ?? 0) > 1e6)) {
+        throw new TypeError(`Answer-key question ${question.number} needs a numeric answer and non-negative tolerance.`);
+      }
+      const questionMarking = question.marking === undefined
+        ? defaultMarking
+        : parseMarking(question.marking, `Question ${question.number}`);
+      return Object.freeze({
+        number: question.number,
+        answerType: question.answerType,
+        answer: question.answerType === "choice" ? question.answer.trim() : question.answer,
+        tolerance: question.tolerance ?? 0,
+        solution: question.solution.trim(),
+        marking: questionMarking
+      });
+    });
+    if (questionNumbers.size !== questions.length ||
+        questions.some((question, index) => question.number !== index + 1)) {
+      throw new TypeError("Answer-key question numbers must be a complete sequence from 1 to the paper's question count.");
+    }
+
+    return Object.freeze({
+      schemaVersion: 1,
+      paperId: data.paperId.trim(),
+      examSeries: data.examSeries,
+      year: data.year,
+      source: data.source.trim(),
+      sourceSha256: data.sourceSha256,
+      teacherReviewed: true,
+      reviewedBy: data.reviewedBy.trim(),
+      marking: defaultMarking,
+      questions: Object.freeze(questions)
+    });
+  }
+
+  function scorePaperResponses(responses, answerKey) {
+    if (!Array.isArray(responses) || !answerKey ||
+        !Array.isArray(answerKey.questions) || responses.length !== answerKey.questions.length) {
+      throw new TypeError("Paper responses must contain one entry per answer-key question.");
+    }
+    let correct = 0;
+    let incorrect = 0;
+    let unanswered = 0;
+    const perQuestion = responses.map((response, index) => {
+      const question = answerKey.questions[index];
+      const marking = question.marking || answerKey.marking;
+      const normalized = typeof response === "string" ? response.trim() : "";
+      if (!normalized) {
+        unanswered += 1;
+        return Object.freeze({ result: "unanswered", score: marking.unanswered });
+      }
+      const isCorrect = question.answerType === "choice"
+        ? normalized.toLocaleUpperCase() === question.answer.toLocaleUpperCase()
+        : Number.isFinite(Number(normalized)) &&
+          Math.abs(Number(normalized) - question.answer) <= question.tolerance;
+      if (isCorrect) {
+        correct += 1;
+        return Object.freeze({ result: "correct", score: marking.correct });
+      }
+      incorrect += 1;
+      return Object.freeze({ result: "incorrect", score: marking.incorrect });
+    });
+    return Object.freeze({
+      correct,
+      incorrect,
+      unanswered,
+      total: responses.length,
+      score: perQuestion.reduce((sum, item) => sum + item.score, 0),
+      maximumScore: answerKey.questions.reduce((sum, question) =>
+        sum + (question.marking || answerKey.marking).correct, 0),
+      perQuestion: Object.freeze(perQuestion)
     });
   }
 
@@ -399,6 +677,8 @@
     parseExamCorpus,
     calculateCorpusOutlook,
     calculateTopicOutlook,
+    parsePaperAnswerKey,
+    scorePaperResponses,
     calculateKinematics,
     parsePaperHistory,
     restoreCompletedProgress,

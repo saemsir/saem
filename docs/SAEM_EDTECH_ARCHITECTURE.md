@@ -105,11 +105,16 @@ locally. It requires citations, a teacher-review flag, at least five papers,
 and at least three eligible past years; it excludes papers at or after the
 requested target year. Its smoothed occurrence rate is
 `p = (k + 1) / (n + 2)`, the equal-weight special case of the proposed
-Beta-smoothed baseline. This is an exploratory frequency—not a prediction
-that a question will appear. User-provided provenance and review labels are
-not independently verified; no paper history or answer is sent to a server.
-There is no curated board dataset or past-only validation in this site, so a
-calibrated forecast remains future work.
+Beta-smoothed baseline. The separate outlook engine performs forward-year
+out-of-fold topic forecasts and logistic calibration using only earlier
+out-of-fold years; it displays probabilities only after at least 30 later
+held-out samples across three years, better Brier score than the historical
+baseline, and expected calibration error at or below 0.10. Failed gates
+withhold percentages. This is topic-presence evidence, not a prediction that a
+specific question will appear. User-provided provenance and review labels are
+not independently verified; imported histories stay in the browser. The
+bundled corpus is not reviewed topic history and supplies no calibrated
+forecast by default.
 
 The site also shows small equation examples for C17, C, C++17, Python, Rust,
 R, Julia, Fortran, and Lisp. Those examples are educational sketches, not a
@@ -133,9 +138,11 @@ coverage, year candidates, and deterministic keyword-topic candidates; it
 does not publish the source PDFs or extracted question text. The browser
 shows past-only historical detection rates with explicit review and
 calibration caveats. Its local paper timer previews a PDF selected by the
-learner, keeps responses in memory, and does not claim automatic scoring.
-Question extraction, source mapping, item review, and solutions remain a
-separate import/review pipeline.
+learner and keeps responses in memory. An optional local answer key scores
+choice/numeric responses and reveals supplied worked solutions only when its
+SHA-256 matches the selected PDF. Review flags and supplied solutions are not
+independently verified. Question extraction, source mapping, item review,
+and solutions remain a separate import/review pipeline.
 
 ## Learning and computation flow
 

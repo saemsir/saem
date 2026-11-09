@@ -54,13 +54,26 @@ GitHub-Pages website remains static.
 
 The static Exam Time Matrix now includes a text-free index of all 202 supplied
 paper PDFs, exploratory past-only topic keyword signals, and a private
-browser-only timed mode for a PDF selected from the learner's device. The
-timed mode records responses but does not score or publish the paper. Rebuild
+browser-only timed mode for a PDF selected from the learner's device. Students
+can optionally load a local answer-key JSON with the matching PDF SHA-256,
+marking rule, and worked solutions; choice and numeric responses are scored in
+the browser. The key stays local and its review claim is not independently
+verified. Rebuild
 the corpus index with `python3 tools/build_exam_corpus.py`; only the generated
 metadata/candidate-topic index is deployed, never PDFs or extracted question
 text. Each Pages deployment refreshes the source inventory and incrementally
 builds the index; newly discovered files remain unreviewed and are excluded
 from the historical outlook until their owner-review status is verified.
+
+The paper-history outlook now uses forward-year backtests and a logistic
+probability calibrator trained only on earlier out-of-fold years. It displays
+percentages only when the held-out Brier score beats the historical baseline
+and calibration error meets the set gate; otherwise it explicitly withholds
+probabilities. The supplied corpus's automatic keyword tags are not calibration
+labels. The exam area follows the EdTech book's geometric-tranquility and
+visual-reasoning guidance (pp. 58-62, 151-177) with restrained scroll reveals,
+small evidence bars, and reduced-motion support; no third-party artwork is
+used.
 
 ### Future
 

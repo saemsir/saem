@@ -1,5 +1,41 @@
 # Daily intuition log (newest first)
 
+## 2026-11-09 (continued): calibrated outlook and private answer-key scoring
+
+Work item: finish the static Exam Time Matrix iteration with evidence-gated
+topic outlooks, exact-source local scoring, and a concise visual treatment.
+
+- **Evidence boundary:** the bundled corpus has owner-verified source papers,
+  but its machine-generated years/topics are not reviewed labels. Forecast
+  probabilities therefore use only locally imported, teacher-reviewed paper
+  histories, and those review claims remain self-declared. The calibration
+  path forecasts each later year from earlier years, calibrates only on prior
+  out-of-fold samples, and exposes percentages only after held-out sample,
+  year-count, Brier-score, and calibration-error gates pass.
+- **Scoring boundary:** a local answer key must match the selected PDF's
+  SHA-256 and exact exam series and question count. It can score choice and
+  numeric answers using global or question-specific marking and show supplied
+  worked solutions. PDF/key data remain in the browser; the claimed review and
+  correctness are not independently verified. Timer-only practice remains
+  available without a matching key.
+- **Design and learning:** applied the EdTech book's geometric-tranquility,
+  visual-reasoning, and low-end/reduced-motion guidance (pp. 58-62,
+  151-177). The new original reveal and evidence-bar motion is restrained and
+  disabled for reduced-motion preference. The visual treatment does not turn
+  keyword matches into probabilities or imply that a specific question is
+  predictable.
+- **Changed:** completed forward-year calibration and per-question scoring
+  coverage; updated the student UI, answer-key example, limitations, and
+  architecture note.
+- **Verification:** student-studio tests pass, including deterministic
+  synthetic calibration and global/per-question scoring; JS syntax checks,
+  corpus tests, contract tests, dynamic content tests, and `git diff --check`
+  pass. Synthetic data verifies algorithm behavior only, not a real exam
+  forecast.
+- **Next:** map and review actual question content and answer keys for the
+  source papers. Do not claim real corpus probabilities, official mocks, or
+  independently verified solutions until that work is complete.
+
 ## 2026-11-09 (continued): live paper-folder intake
 
 Work item: continue the paper-ingest infrastructure so new source PDFs are

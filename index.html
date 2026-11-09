@@ -265,9 +265,9 @@
           </section>
 
           <section class="exam-card outlook-card" aria-labelledby="outlook-title">
-            <div class="exam-card-topline"><span>PAST-PAPER TOPIC OUTLOOK</span><span class="exam-badge exam-badge-experimental">EXPERIMENTAL</span></div>
-            <h3 id="outlook-title">What has appeared before?</h3>
-            <p class="exam-card-intro">Import your own cited, teacher-reviewed paper records. The browser estimates topic appearance frequency using <code>p = (k + 1) / (n + 2)</code>; it is an exploratory signal, not a prediction of questions or a promise about any exam.</p>
+            <div class="exam-card-topline"><span>PAST-PAPER OUTLOOK</span><span class="exam-badge exam-badge-experimental">BACKTESTED</span></div>
+            <h3 id="outlook-title">A forecast with its evidence.</h3>
+            <p class="exam-card-intro">Use reviewed papers only. Probabilities appear only after forward-year calibration passes its evidence checks.</p>
             <label class="paper-import-label" for="paper-history-file">Choose a paper-history JSON file</label>
             <input id="paper-history-file" class="paper-import-input" type="file" accept=".json,application/json">
             <p id="paper-history-status" class="exam-status" role="status" aria-live="polite">No paper history loaded. Your file is read locally and is not sent to Saem.</p>
@@ -286,11 +286,11 @@
                 <input id="outlook-year" type="number" min="1900" max="2100">
               </label>
             </div>
-            <button id="outlook-run" class="button button-dark" type="button" disabled>Estimate topic frequencies</button>
+            <button id="outlook-run" class="button button-dark" type="button" disabled>Build outlook</button>
             <p id="outlook-status" class="exam-status" role="status" aria-live="polite"></p>
             <div id="outlook-results" class="outlook-results" hidden aria-live="polite"></div>
             <details class="paper-schema">
-              <summary>Paper-history file format and limits</summary>
+              <summary>History format and calibration method</summary>
               <p>Each record represents one paper or exam session. Keep the exam series and paper language consistent, record its source, and include only topic labels a teacher has checked.</p>
               <pre><code>[
   {
@@ -303,14 +303,14 @@
     "topics": ["Mechanics", "Optics"]
   }
 ]</code></pre>
-              <p>At least five reviewed papers across three earlier years are required. The file's review labels and citations are user supplied and are not independently verified. A calibrated forecast still needs a larger curated archive and past-only back-testing.</p>
+              <p>Each record's reviewed flag and citation are user supplied, not independently verified. The engine holds out whole years, fits a logistic calibration only on earlier out-of-fold years, and checks Brier score and calibration error on later held-out years. If evidence gates fail, it shows no probability. The corpus keyword candidates are not used as reviewed outcomes.</p>
             </details>
           </section>
         </div>
         <section class="exam-corpus-card" aria-labelledby="exam-corpus-title">
           <div class="exam-card-topline"><span>EXAM TIME MATRIX · SOURCE FILES</span><span class="exam-badge exam-badge-experimental">REVIEW NEEDED</span></div>
-          <h3 id="exam-corpus-title">Signals from the supplied papers.</h3>
-          <p class="exam-card-intro">The static site receives a text-free index of every supplied PDF. Year and topic labels are machine-generated candidates; they have not been checked by a teacher. These historical keyword-detection rates are study signals, not chances that a topic or question will appear.</p>
+          <h3 id="exam-corpus-title">Review the paper trail.</h3>
+          <p class="exam-card-intro">See which files and machine topic tags still need human review. They do not generate probabilities.</p>
           <p id="corpus-status" class="exam-status" role="status" aria-live="polite">Loading the paper index…</p>
           <div class="outlook-controls">
             <label>Exam series
@@ -324,7 +324,7 @@
               <input id="corpus-year" type="number" min="1900" max="2100">
             </label>
           </div>
-          <button id="corpus-run" class="button button-dark" type="button" disabled>Review past topic signals</button>
+          <button id="corpus-run" class="button button-dark" type="button" disabled>Show reviewed-history coverage</button>
           <p id="corpus-outlook-status" class="exam-status" role="status" aria-live="polite"></p>
           <div id="corpus-results" class="outlook-results" hidden aria-live="polite"></div>
           <details class="paper-schema">
@@ -333,7 +333,7 @@
             <input id="corpus-search" class="paper-import-input" type="search" placeholder="Search a paper filename">
             <ul id="corpus-paper-list" class="corpus-paper-list"></ul>
           </details>
-          <p class="exam-privacy">The deployed site does not contain paper PDFs or extracted question text. Corpus indexing runs locally before deployment; scanned/low-text files and uncertain years are explicitly excluded from the topic calculation.</p>
+          <p class="exam-privacy">The site contains no papers or extracted questions. Scanned files and uncertain years are excluded.</p>
         </section>
         <section class="exam-paper-practice" aria-labelledby="paper-practice-title">
           <div>
@@ -343,6 +343,31 @@
             <label class="paper-import-label" for="local-paper-file">Choose a local exam-paper PDF</label>
             <input id="local-paper-file" class="paper-import-input" type="file" accept=".pdf,application/pdf">
             <p id="local-paper-status" class="exam-status" role="status" aria-live="polite">No local PDF selected.</p>
+            <details class="paper-schema">
+              <summary>Add a reviewed answer key and worked solutions</summary>
+              <p>Optional JSON stays on this device. The paper SHA-256 must match; marking rules and teacher-review details are shown with the result, not independently verified.</p>
+              <label class="paper-import-label" for="local-paper-key">Local answer-key JSON</label>
+              <input id="local-paper-key" class="paper-import-input" type="file" accept=".json,application/json">
+              <p id="local-paper-key-status" class="exam-status" role="status" aria-live="polite">No answer key selected. Timer-only practice remains available.</p>
+              <pre><code>{
+  "schemaVersion": 1,
+  "paperId": "neet-2024-paper-1",
+  "examSeries": "neet",
+  "year": 2024,
+  "source": "Source citation and paper section",
+  "sourceSha256": "SHA-256 of selected PDF",
+  "teacherReviewed": true,
+  "reviewedBy": "Reviewer name",
+  "marking": { "correct": 4, "incorrect": -1, "unanswered": 0 },
+  "questions": [
+    { "number": 1, "answerType": "choice", "answer": "B",
+      "solution": "Step 1: identify the principle. Step 2: apply it to the given values." },
+    { "number": 2, "answerType": "numeric", "answer": 2.5, "tolerance": 0.01,
+      "solution": "Step 1: write the relation. Step 2: substitute and check units.",
+      "marking": { "correct": 5, "incorrect": -2, "unanswered": 0 } }
+  ]
+}</code></pre>
+            </details>
             <div class="outlook-controls">
               <label>Exam series
                 <select id="local-paper-series">
@@ -370,7 +395,7 @@
             <button id="local-paper-finish" class="button button-dark" type="button">Finish this attempt</button>
           </div>
           <div id="local-paper-results" class="exam-results" hidden aria-live="polite"></div>
-          <p class="exam-privacy">The paper timer and response sheet run only in this page. Automatic scoring and worked solutions require a reviewed answer key and are not fabricated for these source PDFs.</p>
+          <p class="exam-privacy">Timer and responses stay in this tab. Optional local keys can score choice/numeric answers and show their supplied worked solutions; source accuracy and review claims are not independently verified.</p>
         </section>
       </div>
     </section>

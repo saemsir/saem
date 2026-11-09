@@ -664,7 +664,18 @@ end program motion`
           Number(targetYear.value)
         );
         const summary = document.createElement("p");
-        summary.textContent = `${outlook.board} · ${outlook.language} · ${outlook.paperCount} reviewed papers · ${outlook.years[0]}–${outlook.years[outlook.years.length - 1]} · target ${outlook.targetYear}. Only earlier papers were counted.`;
+        summary.textContent =
+          `${outlook.board} · ${outlook.paperCount} reviewed papers · ` +
+          `${outlook.years[0]}–${outlook.years[outlook.years.length - 1]} → ${outlook.targetYear}`;
+        const calibration = document.createElement("p");
+        calibration.className = `calibration-summary is-${outlook.calibration.status}`;
+        calibration.textContent = outlook.calibration.status === "validated"
+          ? `Backtest passed · ${outlook.calibration.validationYears} held-out years · ` +
+            `calibrated Brier ${outlook.calibration.calibratedBrier.toFixed(3)} · ` +
+            `baseline ${outlook.calibration.baselineBrier.toFixed(3)} · ` +
+            `calibration error ${outlook.calibration.expectedCalibrationError.toFixed(3)}.`
+          : `No calibrated probabilities yet · ${outlook.calibration.validationYears} held-out years, ` +
+            `${outlook.calibration.validationSamples} test observations. More reviewed history is needed.`;
         const list = document.createElement("ol");
         list.className = "outlook-topic-list";
         outlook.topics.forEach((topic) => {
@@ -672,10 +683,22 @@ end program motion`
           const label = document.createElement("span");
           label.textContent = topic.topic;
           const rate = document.createElement("strong");
-          rate.textContent = `${(topic.probability * 100).toFixed(1)}%`;
+          rate.textContent = topic.probability === null
+            ? "—"
+            : `${(topic.probability * 100).toFixed(0)}%`;
           const evidence = document.createElement("small");
-          evidence.textContent = `Tagged in ${topic.appearances} of ${topic.papers} papers`;
-          item.append(label, rate, evidence);
+          evidence.textContent =
+            `${topic.appearances} of ${topic.yearsObserved} earlier years · ${topic.papers} source papers`;
+          const track = document.createElement("span");
+          track.className = "outlook-probability-track";
+          track.setAttribute("aria-hidden", "true");
+          const fill = document.createElement("span");
+          fill.className = "outlook-probability-fill";
+          if (topic.probability !== null) {
+            fill.dataset.probability = String(Math.max(0, Math.min(1, topic.probability)));
+          }
+          track.append(fill);
+          item.append(label, rate, evidence, track);
           list.append(item);
         });
         const sources = document.createElement("details");
@@ -695,9 +718,18 @@ end program motion`
             sourceList.append(item);
           });
         sources.append(sourceSummary, sourceList);
-        forecastResults.replaceChildren(summary, list, sources);
+        forecastResults.replaceChildren(summary, calibration, list, sources);
         forecastResults.hidden = false;
-        forecastStatus.textContent = "Exploratory frequency only—not a calibrated exam forecast.";
+        if (outlook.calibration.status === "validated") {
+          window.requestAnimationFrame(() => {
+            forecastResults.querySelectorAll(".outlook-probability-fill").forEach((fill) => {
+              fill.style.transform = `scaleX(${fill.dataset.probability})`;
+            });
+          });
+        }
+        forecastStatus.textContent = outlook.calibration.status === "validated"
+          ? "Calibrated annual topic-coverage estimates from reviewed records; not predictions of specific questions."
+          : "Frequencies are hidden as probabilities until a strictly past-only calibration check passes.";
       } catch (error) {
         forecastStatus.textContent = error.message;
       }
@@ -780,18 +812,18 @@ end program motion`
           `${outlook.years[0]}–${outlook.years[outlook.years.length - 1]}.`;
         const caveat = document.createElement("p");
         caveat.textContent =
-          "These percentages are the share of analyzed PDFs with matching topic keywords—not probability of appearance. Years and topic tags are unreviewed candidates.";
+          "Topic keywords are machine candidates only. These counts are not topic probabilities.";
         const list = document.createElement("ol");
         list.className = "outlook-topic-list";
         outlook.topics.slice(0, 20).forEach((topic) => {
           const item = document.createElement("li");
           const label = document.createElement("span");
           label.textContent = `${topic.subject} · ${topic.topic}`;
-          const rate = document.createElement("strong");
-          rate.textContent = `${(topic.historicalDetectionRate * 100).toFixed(0)}%`;
+          const count = document.createElement("strong");
+          count.textContent = `${topic.appearances}/${topic.papers}`;
           const evidence = document.createElement("small");
-          evidence.textContent = `Keyword signal in ${topic.appearances} of ${topic.papers} files`;
-          item.append(label, rate, evidence);
+          evidence.textContent = "unreviewed keyword matches";
+          item.append(label, count, evidence);
           list.append(item);
         });
         const sources = document.createElement("details");
@@ -812,7 +844,7 @@ end program motion`
         sources.append(sourceSummary, sourceList);
         results.replaceChildren(summary, caveat, list, sources);
         results.hidden = false;
-        outlookStatus.textContent = "Exploratory corpus signal only. It is not a calibrated forecast or question prediction.";
+        outlookStatus.textContent = "Coverage summary only. No calibrated probabilities from unreviewed tags.";
       } catch (error) {
         outlookStatus.textContent = error.message;
       }
@@ -833,11 +865,31 @@ end program motion`
     const minutesInput = document.getElementById("local-paper-minutes");
     const questionCountInput = document.getElementById("local-paper-count");
     const seriesInput = document.getElementById("local-paper-series");
+    const answerKeyInput = document.getElementById("local-paper-key");
+    const answerKeyStatus = document.getElementById("local-paper-key-status");
     let paperObjectUrl = null;
     let intervalId = null;
     let secondsRemaining = 0;
     let deadline = 0;
     let selectedPaper = null;
+    let selectedPaperDigest = null;
+    let answerKey = null;
+
+    function answerKeyMatchStatus() {
+      if (!answerKey) return "No answer key selected. Timer-only practice remains available.";
+      if (!selectedPaper) return "Answer key loaded locally. Select its exact PDF to verify the paper hash.";
+      if (!selectedPaperDigest) return "This browser cannot verify the PDF fingerprint; timer-only practice is available.";
+      if (answerKey.sourceSha256 !== selectedPaperDigest) {
+        return "This answer key belongs to a different PDF. Scoring and solutions are disabled.";
+      }
+      if (answerKey.examSeries !== seriesInput.value) {
+        return "Choose the same exam series as the answer key before starting.";
+      }
+      if (answerKey.questions.length !== Number(questionCountInput.value)) {
+        return `Key covers ${answerKey.questions.length} questions; set the same question count.`;
+      }
+      return `Local key matched · ${answerKey.paperId} · ${answerKey.reviewedBy} · review claim not independently verified.`;
+    }
 
     function updateAnsweredCount() {
       const inputs = answerSheet.querySelectorAll("input");
@@ -855,19 +907,40 @@ end program motion`
       if (intervalId !== null) window.clearInterval(intervalId);
       intervalId = null;
       const inputs = answerSheet.querySelectorAll("input");
-      const answered = [...inputs].filter((input) => input.value.trim()).length;
+      const responses = [...inputs].map((input) => input.value);
+      const answered = responses.filter((value) => value.trim()).length;
       const heading = document.createElement("h4");
-      heading.textContent = "Attempt complete";
+      const score = answerKey ? studio.scorePaperResponses(responses, answerKey) : null;
+      heading.textContent = score
+        ? `Your score: ${score.score} / ${score.maximumScore}`
+        : "Attempt complete";
       const summary = document.createElement("p");
       const note = document.createElement("p");
-      note.textContent =
-        "Compare your response sheet with the answer key and worked solutions in your own paper. The site has not read or uploaded your PDF and cannot score it.";
+      note.textContent = score
+        ? `Scored locally · ${score.correct} correct · ${score.incorrect} incorrect · ${score.unanswered} unanswered. Imported review claims are not independently verified.`
+        : "No matching reviewed key was loaded, so this is a response record only. The site has not read or uploaded your PDF.";
       const responseList = document.createElement("ol");
       inputs.forEach((input, index) => {
         const item = document.createElement("li");
-        item.textContent = `Q${index + 1}: ${input.value.trim() || "No response"}`;
+        const result = score ? ` · ${score.perQuestion[index].result}` : "";
+        item.textContent = `Q${index + 1}: ${input.value.trim() || "No response"}${result}`;
         responseList.append(item);
       });
+      const solutionList = document.createElement("div");
+      solutionList.className = "exam-review-list";
+      if (score) {
+        answerKey.questions.forEach((question, index) => {
+          const details = document.createElement("details");
+          details.className = "exam-review-item";
+          const solutionSummary = document.createElement("summary");
+          solutionSummary.textContent =
+            `Q${question.number} · ${score.perQuestion[index].result} · answer ${question.answer}`;
+          const solution = document.createElement("p");
+          solution.textContent = question.solution;
+          details.append(solutionSummary, solution);
+          solutionList.append(details);
+        });
+      }
       const restart = document.createElement("button");
       restart.className = "button button-quiet";
       restart.type = "button";
@@ -880,11 +953,20 @@ end program motion`
         minutesInput.disabled = false;
         questionCountInput.disabled = false;
         seriesInput.disabled = false;
+        answerKeyInput.disabled = false;
       });
       summary.textContent =
         `${byTimer ? "Time is up. " : ""}${answered} of ${inputs.length} responses recorded` +
         ` for ${selectedPaper ? selectedPaper.name : "the local paper"} (${seriesInput.options[seriesInput.selectedIndex].text}).`;
-      resultsPanel.replaceChildren(heading, summary, note, responseList, restart);
+      if (score) {
+        const solutionHeading = document.createElement("h5");
+        solutionHeading.textContent = "Worked solutions";
+        resultsPanel.replaceChildren(
+          heading, summary, note, responseList, solutionHeading, solutionList, restart
+        );
+      } else {
+        resultsPanel.replaceChildren(heading, summary, note, responseList, restart);
+      }
       session.hidden = true;
       startButton.hidden = true;
       resultsPanel.hidden = false;
@@ -899,6 +981,8 @@ end program motion`
     localPaperInput.addEventListener("change", async () => {
       selectedPaper = localPaperInput.files && localPaperInput.files[0];
       startButton.disabled = true;
+      selectedPaperDigest = null;
+      answerKeyStatus.textContent = answerKeyMatchStatus();
       if (paperObjectUrl) URL.revokeObjectURL(paperObjectUrl);
       paperObjectUrl = null;
       if (!selectedPaper) {
@@ -918,14 +1002,54 @@ end program motion`
         );
         if (selectedPaper !== paper) return;
         if (!header.includes("%PDF-")) throw new TypeError("This file has no PDF header.");
+        if (window.crypto && window.crypto.subtle) {
+          localStatus.textContent = "Checking this paper locally; its contents are not uploaded…";
+          const digest = await window.crypto.subtle.digest("SHA-256", await paper.arrayBuffer());
+          if (selectedPaper !== paper) return;
+          selectedPaperDigest = [...new Uint8Array(digest)]
+            .map((byte) => byte.toString(16).padStart(2, "0"))
+            .join("");
+        }
         paperObjectUrl = URL.createObjectURL(selectedPaper);
-        localStatus.textContent = `${selectedPaper.name} is ready. It stays in this browser and is not uploaded.`;
+        localStatus.textContent = `${selectedPaper.name} is ready. It stays in this browser and is not uploaded.${selectedPaperDigest ? "" : " This browser cannot verify a key fingerprint."}`;
         startButton.disabled = false;
+        answerKeyStatus.textContent = answerKeyMatchStatus();
       } catch (error) {
         if (selectedPaper !== paper) return;
         selectedPaper = null;
         localStatus.textContent = `Could not use this PDF: ${error.message}`;
+        answerKeyStatus.textContent = answerKeyMatchStatus();
       }
+    });
+
+    answerKeyInput.addEventListener("change", async () => {
+      answerKey = null;
+      const file = answerKeyInput.files && answerKeyInput.files[0];
+      if (!file) {
+        answerKeyStatus.textContent = answerKeyMatchStatus();
+        return;
+      }
+      if (file.size === 0 || file.size > 1_000_000 || !/\.json$/i.test(file.name)) {
+        answerKeyStatus.textContent = "Choose a non-empty answer-key JSON file no larger than 1 MB.";
+        return;
+      }
+      try {
+        const parsed = JSON.parse(await file.text());
+        answerKey = studio.parsePaperAnswerKey(parsed);
+        questionCountInput.value = String(answerKey.questions.length);
+        seriesInput.value = answerKey.examSeries;
+        answerKeyStatus.textContent = answerKeyMatchStatus();
+      } catch (error) {
+        answerKeyStatus.textContent = `Could not load answer key: ${error.message}`;
+        console.warn("Could not load the local answer key:", error);
+      }
+    });
+
+    questionCountInput.addEventListener("input", () => {
+      answerKeyStatus.textContent = answerKeyMatchStatus();
+    });
+    seriesInput.addEventListener("change", () => {
+      answerKeyStatus.textContent = answerKeyMatchStatus();
     });
 
     answerSheet.addEventListener("input", updateAnsweredCount);
@@ -937,6 +1061,13 @@ end program motion`
           questionCount < 1 || questionCount > 300) {
         localStatus.textContent = "Choose a PDF and enter valid paper time and question count.";
         return;
+      }
+      if (answerKey) {
+        const matchStatus = answerKeyMatchStatus();
+        if (!matchStatus.startsWith("Local key matched")) {
+          answerKeyStatus.textContent = matchStatus;
+          return;
+        }
       }
       const legend = document.createElement("legend");
       legend.className = "visually-hidden";
@@ -960,6 +1091,7 @@ end program motion`
       minutesInput.disabled = true;
       questionCountInput.disabled = true;
       seriesInput.disabled = true;
+      answerKeyInput.disabled = true;
       preview.src = paperObjectUrl;
       preview.hidden = false;
       secondsRemaining = minutes * 60;
@@ -1254,6 +1386,22 @@ end program motion`
       accelerationOutput.textContent = `${Number(accelerationSlider.value) >= 0 ? "+" : ""}${Number(accelerationSlider.value).toFixed(1)} m/s²`;
       setTime(time);
     }
+  }
+
+  if ("IntersectionObserver" in window &&
+      !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("is-visible");
+        observer.unobserve(entry.target);
+      });
+    }, { threshold: 0.12, rootMargin: "0px 0px -24px 0px" });
+    document.querySelectorAll(".exam-card, .exam-corpus-card, .exam-paper-practice, .path-card")
+      .forEach((element) => {
+        element.classList.add("reveal-on-scroll");
+        revealObserver.observe(element);
+      });
   }
 
   document.getElementById("current-year").textContent = String(new Date().getFullYear());

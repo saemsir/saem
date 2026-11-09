@@ -1,8 +1,12 @@
 # Saem Global EdTech: staged product and systems architecture
 
-Status: architecture proposal for this workspace, 2026-11-08. It separates
+Status: architecture proposal for this workspace, 2026-11-09. It separates
 verified material from planned work; it does not claim that a production
 backend or RISC-V deployment already exists.
+
+The exam product's staged scope, corpus gates, data axes, prediction
+validation, and kernel boundary are tracked in the
+[Exam Time Matrix](EXAM_TIME_MATRIX.md).
 
 ## Product direction
 
@@ -18,35 +22,44 @@ of each question and solution. Keep student work private by default, allow
 teacher/classroom workflows only with explicit sharing, and do not make a
 forecast or an automated model a substitute for a teacher.
 
-## System boundaries
+## System boundaries and intended dynamic website
 
 ```text
-Public channel site (HTML/CSS/JavaScript; static hosting)
+Student website (HTML/CSS/JavaScript; future dynamic-capable hosting)
                   |
                   v
-Local/offline learning app (Python UI/server and import/export)
+Versioned API / application adapter
                   |
-             versioned JSON
-                  v
-EdTech domain engine (C++17 modules from the Saem source snapshot)
-        |                         |
-        v                         v
-QCOS C17 gate and exact       Open Math Harness (Rust)
-math services                 isolated research/verification tool
-        |
-        v
-Later: constrained RISC-V target and local/edge deployment
+          +-------+--------+
+          |                |
+          v                v
+EdTech domain engine   C17 kernel service
+(C++17)                (exact bounded operations)
+                           |
+                           v
+                 later: constrained RISC-V
 ```
 
-These are separate trust and deployment boundaries. The root static website can
-be published without a server; it must not claim to run the production exam
-forecaster. A bounded browser experiment may calculate transparent statistics
-from locally imported data, but it is not the offline application or a
-validated service.
+The dynamic student website backed by a C17 service is the active product
+direction. The current root website is still static and GitHub Pages does not
+execute C17; it must not claim to call a production exam service that has not
+been built. A loopback-only dynamic-site/kernel vertical slice is implemented
+in [`dynamic-site/`](../dynamic-site/): a Python development adapter builds
+the existing C17 `cos_rat` code as a shared library and exposes a narrow v1
+HTTP API to its own student-facing page. This is verified local integration,
+not a deployed or production-ready service. The existing browser topic
+experiment remains separate and is not a validated forecast service.
+
+Keep the frontend, API/application adapter, EdTech domain engine, kernel, and
+content store as separate trust and deployment boundaries. The API adapter
+owns request validation and web concerns; the C17 kernel remains a bounded
+core, not an HTTP server, authentication system, or question database. Deploy
+the future service only on infrastructure that can build/run the selected C17
+adapter and supports its operational, privacy, and recovery requirements.
 The RISC-V kernel is not a web server. Open Math Harness is not a drop-in
 arithmetic library or a dependency that may silently decide student results.
-Initially the learning app should work on one computer with local files and a
-local database; classroom access on a local network is a later, opt-in mode.
+An offline/local mode may complement the website, but does not replace the
+user's stated dynamic-website direction.
 
 ### Programming-language roles
 
@@ -55,10 +68,10 @@ all compiled into the browser or placed in one runtime.
 
 | Language | Bounded role |
 |---|---|
-| HTML, CSS, JavaScript | Public website and browser presentation. Keep this first channel page static and lightweight. |
+| HTML, CSS, JavaScript | Student website and browser presentation. The existing channel page stays static during development; the intended exam product is a dynamic frontend calling versioned APIs. |
 | Python | Local/offline application shell, import/export, UI orchestration, and test automation. It must not be trusted to change QCOS-protected state. |
 | C++17 | Existing EdTech domain/solver and forecast modules in the archived Saem source bundle; isolate behind the JSON-lines/API boundary and preserve differential tests. |
-| C17 | QCOS/saem kernel, gates, bounded state, and exact rational/algebra primitives. Treat the kernel as a narrow authority/verifier, not the whole customer-facing app. |
+| C17 | QCOS/saem kernel, gates, bounded state, and exact rational/algebra primitives. A separately built server adapter may expose selected operations; the kernel is not the whole customer-facing app or a web server. |
 | C | The website's cross-language section includes a small integer-arithmetic example for comparison; production backend code remains C17. |
 | Rust | Open Math Harness itself and, if useful, standalone local developer/administration tools. Use a process/JSON boundary first; do not add unverified FFI ownership or runtime coupling. |
 | R | Offline statistics exploration, visualizations, and forecast analysis. Promote a result only after reproducible tests and porting it to a supported runtime. |
@@ -101,12 +114,14 @@ existing `CosRat` arithmetic API, while the other snippets use small integer
 inputs to illustrate the same equation. A capability map links students to
 tested repository code and distinguishes it from features not yet deployed.
 
-GitHub Pages can serve that static site, but cannot execute a C17 service. The
-QCOS C17 source and C++ EdTech engine remain in the separate
-[`saem-unified/`](../saem-unified/) tree and are not yet exposed through a web
-API. A future offline app should connect to bounded C17 capabilities through a
-versioned, tested interface; hosting and deployment of that service are a
-separate stage.
+GitHub Pages can serve the current static frontend, but cannot execute a C17
+service. The QCOS C17 source and C++ EdTech engine remain in the separate
+[`saem-unified/`](../saem-unified/) tree. The local C17 rational API prototype
+is not the future exam domain service. The intended dynamic student website
+will connect to selected C17 capabilities through a versioned, tested API
+adapter hosted on backend-capable infrastructure. Hosting, service
+operations, and any complementary offline mode are later stages; none are
+currently deployed.
 
 ## Learning and computation flow
 

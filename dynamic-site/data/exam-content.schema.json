@@ -1,0 +1,420 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://saem.example/schemas/exam-content-v1.json",
+  "title": "Saem Exam Content v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "datasetId",
+    "ownerVerification",
+    "sources",
+    "ruleProfiles",
+    "papers",
+    "topics",
+    "questions"
+  ],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "datasetId": { "$ref": "#/$defs/id" },
+    "ownerVerification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "reviewer", "reviewedOn", "scope"],
+      "properties": {
+        "status": { "const": "owner_verified" },
+        "reviewer": { "type": "string", "minLength": 1, "maxLength": 100 },
+        "reviewedOn": { "type": "string", "format": "date" },
+        "scope": { "type": "string", "minLength": 1, "maxLength": 500 }
+      }
+    },
+    "sources": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/source" }
+    },
+    "ruleProfiles": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/ruleProfile" }
+    },
+    "papers": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/paper" }
+    },
+    "topics": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/topic" }
+    },
+    "questions": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/question" }
+    }
+  },
+  "$defs": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._-]{0,99}$"
+    },
+    "examSeries": {
+      "enum": ["neet", "jee_main", "jee_advanced"]
+    },
+    "review": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["status"],
+          "properties": {
+            "status": { "const": "pending" }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["status", "reviewer", "reviewedOn"],
+          "properties": {
+            "status": { "const": "owner_verified" },
+            "reviewer": { "type": "string", "minLength": 1, "maxLength": 100 },
+            "reviewedOn": { "type": "string", "format": "date" }
+          }
+        }
+      ]
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "examSeries", "path", "sha256", "rightsStatus"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "examSeries": { "$ref": "#/$defs/examSeries" },
+        "path": { "type": "string", "minLength": 1, "maxLength": 500 },
+        "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "rightsStatus": {
+          "enum": ["not_recorded", "permission_confirmed", "restricted"]
+        },
+        "citation": { "type": ["string", "null"], "maxLength": 1000 }
+      }
+    },
+    "rational": {
+      "type": "string",
+      "pattern": "^-?(0|[1-9][0-9]*)(/[1-9][0-9]*)?$",
+      "maxLength": 64
+    },
+    "ruleProfile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "examSeries",
+        "year",
+        "session",
+        "durationSeconds",
+        "questionTypes",
+        "scoringByType",
+        "sourceIds",
+        "review"
+      ],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "examSeries": { "$ref": "#/$defs/examSeries" },
+        "year": { "type": "integer", "minimum": 1900, "maximum": 2100 },
+        "session": { "type": "string", "minLength": 1, "maxLength": 100 },
+        "durationSeconds": { "type": "integer", "minimum": 1, "maximum": 86400 },
+        "questionTypes": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/questionType" }
+        },
+        "scoringByType": {
+          "type": "object",
+          "minProperties": 1,
+          "propertyNames": { "$ref": "#/$defs/questionType" },
+          "additionalProperties": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["correct", "incorrect", "unanswered"],
+            "properties": {
+              "correct": { "$ref": "#/$defs/rational" },
+              "incorrect": { "$ref": "#/$defs/rational" },
+              "unanswered": { "$ref": "#/$defs/rational" },
+              "partial": { "$ref": "#/$defs/rational" }
+            }
+          }
+        },
+        "sourceIds": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/id" }
+        },
+        "review": { "$ref": "#/$defs/review" }
+      }
+    },
+    "paper": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "examSeries",
+        "year",
+        "session",
+        "subject",
+        "language",
+        "sourceIds",
+        "ruleProfileId",
+        "review"
+      ],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "examSeries": { "$ref": "#/$defs/examSeries" },
+        "year": { "type": "integer", "minimum": 1900, "maximum": 2100 },
+        "session": { "type": "string", "minLength": 1, "maxLength": 100 },
+        "subject": {
+          "enum": ["physics", "chemistry", "mathematics", "biology"]
+        },
+        "language": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["tag", "script"],
+          "properties": {
+            "tag": {
+              "type": "string",
+              "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{2,8})*$"
+            },
+            "script": {
+              "type": "string",
+              "pattern": "^[A-Z][a-z]{3}$"
+            }
+          }
+        },
+        "sourceIds": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/id" }
+        },
+        "ruleProfileId": { "$ref": "#/$defs/id" },
+        "review": { "$ref": "#/$defs/review" }
+      }
+    },
+    "topic": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "label", "subject"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "label": { "type": "string", "minLength": 1, "maxLength": 160 },
+        "subject": {
+          "enum": ["physics", "chemistry", "mathematics", "biology"]
+        },
+        "parentId": { "oneOf": [{ "$ref": "#/$defs/id" }, { "type": "null" }] }
+      }
+    },
+    "questionType": {
+      "enum": ["single_choice", "multiple_select", "integer", "numeric", "matching"]
+    },
+    "question": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "paperId",
+        "sourceId",
+        "sourceLocation",
+        "type",
+        "topicIds",
+        "prompt",
+        "answerKey",
+        "solution",
+        "review"
+      ],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "paperId": { "$ref": "#/$defs/id" },
+        "sourceId": { "$ref": "#/$defs/id" },
+        "sourceLocation": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["page", "label"],
+          "properties": {
+            "page": { "type": "integer", "minimum": 1 },
+            "label": { "type": "string", "minLength": 1, "maxLength": 80 }
+          }
+        },
+        "type": { "$ref": "#/$defs/questionType" },
+        "topicIds": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/id" }
+        },
+        "prompt": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["sourceText"],
+          "properties": {
+            "sourceText": { "type": "string", "minLength": 1, "maxLength": 20000 },
+            "normalizedText": { "type": "string", "maxLength": 20000 }
+          }
+        },
+        "options": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 20,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["id", "text"],
+            "properties": {
+              "id": { "$ref": "#/$defs/id" },
+              "text": { "type": "string", "minLength": 1, "maxLength": 5000 }
+            }
+          }
+        },
+        "answerKey": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["choiceId"],
+              "properties": { "choiceId": { "$ref": "#/$defs/id" } }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["choiceIds"],
+              "properties": {
+                "choiceIds": {
+                  "type": "array",
+                  "minItems": 1,
+                  "uniqueItems": true,
+                  "items": { "$ref": "#/$defs/id" }
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["value"],
+              "properties": {
+                "value": {
+                  "oneOf": [
+                    { "type": "integer" },
+                    { "$ref": "#/$defs/rational" }
+                  ]
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["pairs"],
+              "properties": {
+                "pairs": {
+                  "type": "array",
+                  "minItems": 1,
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": ["leftId", "rightId"],
+                    "properties": {
+                      "leftId": { "$ref": "#/$defs/id" },
+                      "rightId": { "$ref": "#/$defs/id" }
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "solution": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["steps", "finalAnswer", "review"],
+          "properties": {
+            "steps": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 100,
+              "items": { "type": "string", "minLength": 1, "maxLength": 5000 }
+            },
+            "finalAnswer": { "type": "string", "minLength": 1, "maxLength": 2000 },
+            "review": { "$ref": "#/$defs/review" }
+          }
+        },
+        "review": { "$ref": "#/$defs/review" }
+      },
+      "allOf": [
+        {
+          "if": {
+            "required": ["type"],
+            "properties": { "type": { "const": "single_choice" } }
+          },
+          "then": {
+            "properties": {
+              "answerKey": { "required": ["choiceId"] }
+            }
+          }
+        },
+        {
+          "if": {
+            "required": ["type"],
+            "properties": { "type": { "const": "multiple_select" } }
+          },
+          "then": {
+            "properties": {
+              "answerKey": { "required": ["choiceIds"] }
+            }
+          }
+        },
+        {
+          "if": {
+            "required": ["type"],
+            "properties": { "type": { "enum": ["single_choice", "multiple_select"] } }
+          },
+          "then": { "required": ["options"] }
+        },
+        {
+          "if": {
+            "required": ["type"],
+            "properties": { "type": { "const": "integer" } }
+          },
+          "then": {
+            "properties": {
+              "answerKey": {
+                "properties": { "value": { "type": "integer" } }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "required": ["type"],
+            "properties": { "type": { "const": "numeric" } }
+          },
+          "then": {
+            "properties": {
+              "answerKey": {
+                "properties": { "value": { "$ref": "#/$defs/rational" } }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "required": ["type"],
+            "properties": { "type": { "const": "matching" } }
+          },
+          "then": {
+            "properties": { "answerKey": { "required": ["pairs"] } }
+          }
+        }
+      ]
+    }
+  }
+}

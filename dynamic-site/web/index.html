@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f2e9">
+  <meta name="description" content="Explore exact arithmetic through the Saem C17 kernel.">
+  <title>Saem · Kernel Lab</title>
+  <link rel="stylesheet" href="/style.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="Saem Kernel Lab home"><span>S.</span> SAEM <small>LEARNING ENGINE</small></a>
+    <span class="mode-label"><i aria-hidden="true"></i> LOCAL DEVELOPMENT</span>
+  </header>
+  <main id="main">
+    <section class="intro" aria-labelledby="page-title">
+      <p class="eyebrow">A first dynamic learning slice</p>
+      <h1>Exact answers.<br><em>No hidden rounding.</em></h1>
+      <p class="lede">Try a calculation performed by the C17 rational kernel. The browser sends the expression to a local API; the kernel returns an exact fraction or clearly refuses an unsupported result.</p>
+    </section>
+
+    <section class="lab" aria-labelledby="lab-title">
+      <div class="lab-heading">
+        <div>
+          <p class="eyebrow">C17 · COS_RAT</p>
+          <h2 id="lab-title">Kernel lab</h2>
+        </div>
+        <p id="kernel-status" class="kernel-status" role="status" aria-live="polite">Connecting to the local kernel…</p>
+      </div>
+      <form id="calculation-form">
+        <label>
+          First exact decimal
+          <input id="left" name="left" type="text" inputmode="decimal" value="0.1" maxlength="64" required aria-describedby="input-help">
+        </label>
+        <label class="operation-label">
+          Operation
+          <select id="operation" name="operation">
+            <option value="add">Add (+)</option>
+            <option value="subtract">Subtract (−)</option>
+            <option value="multiply">Multiply (×)</option>
+            <option value="divide">Divide (÷)</option>
+          </select>
+        </label>
+        <label>
+          Second exact decimal
+          <input id="right" name="right" type="text" inputmode="decimal" value="0.2" maxlength="64" required aria-describedby="input-help">
+        </label>
+        <button type="submit">Ask the C17 kernel <span aria-hidden="true">→</span></button>
+      </form>
+      <p id="input-help" class="input-help">Enter ordinary decimal numbers, such as 0.1 or -2.5. Inputs are exact decimal strings, not approximate JavaScript numbers.</p>
+      <div class="answer" aria-live="polite">
+        <span class="answer-label">EXACT RESULT</span>
+        <output id="result">—</output>
+        <p id="calculation-status">The answer will appear here.</p>
+      </div>
+    </section>
+
+    <section class="principle" aria-labelledby="principle-title">
+      <p class="eyebrow">What the kernel guarantees</p>
+      <h2 id="principle-title">Exact result <em>or refusal.</em></h2>
+      <p>The existing rational core represents a value as a reduced numerator and positive denominator. For example, 0.1 + 0.2 is exactly 3/10—not a rounded display of a binary floating-point approximation. If an exact result cannot fit the kernel's supported range, it returns an error instead of silently rounding.</p>
+    </section>
+  </main>
+  <footer>
+    <span>SAEM · Built one verified step at a time</span>
+    <span>This local kernel lab is a prototype, not an exam predictor or production service.</span>
+  </footer>
+</body>
+</html>

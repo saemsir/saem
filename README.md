@@ -1,6 +1,6 @@
 # Saem Physics
 
-## Daily vision update — 2026-11-08
+## Daily vision update — 2026-11-09
 
 ### Past
 
@@ -41,6 +41,16 @@ channel broadcast. The feed snapshot refreshes hourly and the open page checks
 it every 15 minutes. YouTube's public Atom feed does not provide Community
 posts or live-status detection. See the
 [daily intuition log](DAILY_INTUITION.md) for model details and test evidence.
+
+The requested NEET/JEE exam-product scope is staged in the
+[Exam Time Matrix](docs/EXAM_TIME_MATRIX.md). The three paper folders contain
+papers the owner says they have personally verified; machine-readable
+metadata, question extraction, and item-level solution mapping are in progress.
+The versioned question/paper/rule contract and a checksummed inventory of 202
+source files are now implemented. The intended product is a dynamic student
+website backed by a versioned C17 service; its first loopback-only kernel/API
+slice is implemented in [dynamic-site/](dynamic-site/), while the current
+GitHub-Pages website remains static.
 
 ### Future
 
@@ -118,10 +128,12 @@ and backend source from the Pages artifact. In GitHub, open **Settings → Pages
 and select **GitHub Actions** as the build and deployment source. No build
 runtime is required to serve the site.
 
-The public site is static: GitHub Pages does not execute the C17 backend. The
-language examples are teaching sketches, not integrations. The intended
-offline EdTech application and the current state of each language are described
-in [the staged architecture](docs/SAEM_EDTECH_ARCHITECTURE.md).
+The current public site is static: GitHub Pages does not execute the C17
+backend. The future exam product is intended to be a dynamic student website
+calling a separately deployed C17-backed service; that service and its
+backend-capable hosting are not implemented yet. The language examples are
+teaching sketches, not integrations. See the
+[staged architecture](docs/SAEM_EDTECH_ARCHITECTURE.md).
 
 ## Project map
 
@@ -129,6 +141,10 @@ in [the staged architecture](docs/SAEM_EDTECH_ARCHITECTURE.md).
   [student-studio.js](student-studio.js): public website, student practice,
   and browser interactions.
 - [docs/qcos/](docs/qcos/): QCOS design and Work-Time Engine plan.
+- [Exam Time Matrix](docs/EXAM_TIME_MATRIX.md): staged paper, mock-test,
+  forecast, kernel, and dynamic student-website gates.
+- [Dynamic-site prototype](dynamic-site/README.md): local website and API
+  calling the existing C17 exact-rational kernel.
 - [Work-Time Engine guide](docs/qcos/WORK_TIME_ENGINE_GUIDE.md): fixed slice
   order, verification gates, and session handoff procedure.
 - [books/](books/): supplied physics, mathematics, computation, programming,

@@ -1,5 +1,179 @@
 # Daily intuition log (newest first)
 
+## 2026-11-09 (continued): live paper-folder intake
+
+Work item: continue the paper-ingest infrastructure so new source PDFs are
+discovered while the local dynamic site is running.
+
+- **Decision and invariant:** `neet_exam/`, `jee_exams/`, and
+  `jeeadv_exams/` remain the paper intake locations. The local server polls
+  for file path/size/mtime changes, refreshes the checksummed manifest
+  atomically, and exposes the latest inventory at `GET /api/v1/papers`.
+  Detection and PDF-header checks do not infer owner verification, source
+  metadata, redistribution permission, extracted questions, or mock eligibility.
+- **Review-state safeguard:** matching existing files retain their recorded
+  paper-level attestation only while SHA-256 matches. A newly discovered file
+  is indexed with `ownerVerification.status=not_reviewed`; intake does not
+  silently extend the owner's prior verification to future uploads.
+- **Changed:** added the live inventory watcher and inventory API, made
+  manifest replacement atomic, added add/remove and API tests, and updated
+  [the prototype instructions](dynamic-site/README.md) and
+  [Exam Time Matrix](docs/EXAM_TIME_MATRIX.md). Previously requested
+  placeholders remain deleted; the inventory has 202 sources with zero
+  header failures.
+- **Verification:** watcher tests add and remove papers in a temporary corpus
+  and observe the manifest update; the API test returns the current manifest.
+  Contract and C17/server integration tests pass.
+- **Next:** D1a source mapping remains next; confirm metadata and citations,
+  keeping the owner's paper-level attestation separate from redistribution
+  permission and question-level review.
+
+## 2026-11-09 (continued): versioned exam-content contract and paper inventory
+
+Work item: continue the Exam Time Matrix with D1, a typed, provenance-preserving
+contract for the owner's verified paper collection.
+
+- **Knowledge reviewed:** revisited the full Saem Global EdTech reading notes
+  in [books/edtech/README.md](books/edtech/README.md): immutable core/adaptive
+  shell (pp. 1-4, 180-205), provenance and human review (pp. 58, 151-162), and
+  original-language/visual pedagogy (pp. 58-62, 151-177). Also used the
+  [Exam Time Matrix](docs/EXAM_TIME_MATRIX.md) and its D0 API boundary. No
+  physics formula or exam-rule value was invented because this slice defines
+  data shape, not exam semantics.
+- **Equations and invariants:** source identity is bound to
+  `SHA-256(source_bytes)`; every question must reference an existing paper,
+  source, and topic; each rule profile must match its paper's exam/year/session;
+  forecast/mock eligibility requires explicit content review. Exact scoring
+  values are canonical rational strings within the C17 numerator/denominator
+  limits—no JSON floating-point score values.
+- **Code/data pattern and failure modes:** publish a JSON Schema 2020-12
+  contract plus cross-record validation; retain original PDF paths and bytes,
+  separately recording owner attestation, file hash/header checks,
+  item-level review, and redistribution status. Filename-derived values are
+  hints, not confirmed metadata. Reject stale hashes, missing references,
+  path traversal, duplicated IDs/options, mismatched rule profiles, and
+  unreviewed content; never silently mark a record public/mock-ready.
+- **Corpus result at that checkpoint:** the deterministic inventory covered
+  204 files (10 NEET, 156 JEE Main, 38 JEE Advanced). It found PDF headers in
+  202 files, including JEE Advanced 2017 after leading CRLF. Two local
+  2-byte CRLF placeholders were later deleted at the owner's request. This
+  observation concerns local bytes, not the owner's stated verification of
+  the papers. Opaque JEE filenames remain without guessed year/session.
+- **Changed:** added the v1
+  [exam content schema](dynamic-site/data/exam-content.schema.json), validator,
+  corpus inventory generator and checksummed
+  [paper inventory](dynamic-site/data/paper_inventory.json), requirements,
+  and contract tests. Updated the
+  [Exam Time Matrix](docs/EXAM_TIME_MATRIX.md): E1/D1 complete; D1a source
+  mapping is next. Original PDFs were not modified or copied into the site.
+- **Verification:** 9 content-contract tests pass, covering the real corpus
+  count/header findings plus valid records, schema shape, cross-references,
+  profile consistency, option/source links, path traversal, SHA-256 changes,
+  permissions/review gates, and duplicate IDs. The schema passes the
+  Draft 2020-12 meta-schema check; the D0 C17/API integration tests are a
+  separate verified slice. No source was fully parsed and no exam mock or
+  forecast is yet backed by this inventory.
+- **Next at that checkpoint:** D1a, confirm source-level
+  year/session/subject/language/citation mappings from the supplied papers.
+  Then map one exact rule profile and proceed to a reviewed exam mock.
+
+## 2026-11-09 (continued): owner order and first dynamic kernel slice
+
+Work item: save the owner's verified-paper order and build the first local
+dynamic student website slice backed by the existing C17 kernel.
+
+- **Knowledge reviewed:** the staged
+  [SAEM EdTech architecture](docs/SAEM_EDTECH_ARCHITECTURE.md), full-book
+  principles recorded in [books/edtech/README.md](books/edtech/README.md)
+  (visual pedagogy pp. 58-62 and 151-177; immutable core/adaptive shell
+  pp. 1-4 and 180-205), the existing `CosRat` public contract in
+  `saem-unified/core/c17/cos_rat.h`, the C17 status interface, and the Exam
+  Time Matrix. Existing full-book notes were reused instead of duplicating a
+  686-page extraction. The companion EdTech book and other physics/math
+  volumes were not needed for this narrow bridge and remain candidates for
+  later content/algorithm work.
+- **Equations and invariants:** `CosRat` stores reduced `num/den` with
+  positive denominator; `0.1 + 0.2 = 1/10 + 1/5 = 3/10` is exact. The C17
+  contract is exact answer or explicit refusal, with no silent rounding. The
+  HTTP adapter has a versioned route, JSON body limit, bounded decimal
+  operands, and a loopback-only development bind; it maps kernel refusal to a
+  non-success response.
+- **Code pattern and failure modes:** link a small C ABI bridge to the
+  authoritative C17 source rather than copying math into the browser; Python
+  owns HTTP/request validation, C owns exact arithmetic, and the UI presents
+  returned text with DOM `textContent`. Avoid exposing the development server,
+  returning success-shaped fallbacks, serving arbitrary filesystem paths, or
+  accepting unbounded input.
+- **Paper verification order:** the owner states all uploaded NEET, JEE Main,
+  and JEE Advanced papers have been personally verified. The Exam Time Matrix
+  now records this owner attestation while keeping file integrity,
+  machine-readable source/year/session/language metadata, extraction mapping,
+  and redistribution permissions as separate work.
+- **Changed:** recorded the order in [STANDING_ORDERS.md](STANDING_ORDERS.md);
+  added [dynamic-site/](dynamic-site/) with a loopback-only local site,
+  versioned C17 rational API, C bridge, student-facing kernel lab, tests, and
+  run instructions; updated the [Exam Time Matrix](docs/EXAM_TIME_MATRIX.md)
+  with D0 complete and D1 content contract next. The existing GitHub Pages
+  site remains unchanged and static.
+- **Verification:** `python3 dynamic-site/test_server.py` passes 8 tests
+  covering exact operations, divide-by-zero/overflow refusal, invalid data,
+  duplicate JSON keys, request/media bounds, health/page delivery, route
+  allowlisting, and response headers. Python compilation, JavaScript syntax,
+  11 HTML ID/selector checks, and `git diff --check` pass. No production
+  deployment or exam-scoring behavior is claimed.
+- **Next:** D1, define and validate the paper/question/rule/solution contract
+  against the owner's verified corpus while preserving source files. Then
+  select one exam subject and rule profile for the first genuine mock.
+
+## 2026-11-09: exam prediction and testing work matrix
+
+Work item: translate the NEET, JEE Main, and JEE Advanced request into a
+bounded, verifiable work order without overstating what the current website or
+kernel does.
+
+- **Knowledge reviewed:** the staged
+  [SAEM EdTech architecture](docs/SAEM_EDTECH_ARCHITECTURE.md), the existing
+  full-book review in [books/edtech/README.md](books/edtech/README.md)
+  (especially pp. 58-62 and 151-177), the current
+  [exam UI](index.html), [student model](student-studio.js), and the ordered
+  [QCOS Work-Time Engine matrix](docs/qcos/WORKMATRIX.md). The book's
+  calm-explanation, offline-access, provenance, and human-review principles
+  inform the workflow; its competing platform proposals are not treated as
+  implemented requirements.
+- **Equations and invariants:** a candidate weighted topic baseline is
+  `p = (sum_i w_i*y_i + alpha)/(sum_i w_i + 2*alpha)`, with declared
+  `alpha > 0` and weights; validate it only with past-only holdouts, comparing
+  Brier score `mean((p_i-y_i)^2)` against a historical-frequency baseline.
+  For target year `T`, every eligible paper must satisfy `paper.year < T`.
+  The existing browser explorer's `p=(k+1)/(n+2)` remains an exploratory
+  equal-weight baseline, not a calibrated prediction.
+- **Code/data pattern and failure modes:** preserve exam, session, subject,
+  language/script, source, marks, answer, and solution provenance as related
+  records; keep original text separate from normalized text. Treat PDF
+  extraction as untrusted until review. Never infer full-paper metadata from
+  opaque filenames, expose unreviewed questions, train on the target year, or
+  imply the static site calls the C17/C++17 engines.
+- **Corpus observation:** the folders contain 10 NEET, 156 JEE Main, and 38
+  JEE Advanced PDFs by filename count, not distinct verified exams. The
+  NEET 2024 path is a 2-byte text placeholder rather than a usable PDF.
+  Metadata, permission, and question review remain unresolved.
+- **Changed:** added the
+  [Exam Time Matrix](docs/EXAM_TIME_MATRIX.md), linked it from the staged
+  architecture and README, and recorded this checkpoint. The user's intended
+  product direction is a dynamic student website backed by a separate,
+  versioned C17 service; the current GitHub Pages site remains static until
+  that service and a compatible deployment are actually built. No question
+  text was extracted or published; the existing student UI and kernel
+  behavior are unchanged.
+- **Verification:** the existing focused student test command
+  `node tools/test_student_studio.js` passed before the documentation-only
+  change. No PDF text extraction, rights determination, browser visual QA, or
+  production forecast was claimed.
+- **Next at that checkpoint:** finish the paper-source/rights inventory,
+  then define and test a versioned question/rule/solution contract. The owner
+  has since clarified that the papers are personally verified; see the
+  continuation entry above for the active D0 implementation.
+
 ## 2026-11-08 (continued): first exam desk and dynamic channel updates
 
 Work item: move the static channel front door toward the SAEM Global EdTech

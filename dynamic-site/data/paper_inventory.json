@@ -1,0 +1,5466 @@
+{
+  "inventoryVersion": 1,
+  "ownerVerification": {
+    "status": "source_specific",
+    "reviewer": "project owner",
+    "reviewedOn": "2026-11-09",
+    "scope": "Owner verification is recorded per source. Existing sources retain a prior paper-level attestation only while their file hashes match; newly discovered sources are not implicitly attested. This is separate from extraction mapping, metadata, and redistribution permissions."
+  },
+  "sourceCount": 202,
+  "sources": [
+    {
+      "id": "src-59aee7be4bb814c581da",
+      "examSeries": "neet",
+      "path": "neet_exam/NEET 2021 - Physics_With_Solution_P2_H.pdf",
+      "originalName": "NEET 2021 - Physics_With_Solution_P2_H.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 1584529,
+      "sha256": "1d98b3c8c0cb4dc62efed819832163dbf04ad7a5a5ba6e75b505678831ceed93",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": 2021,
+        "session": null,
+        "subject": "physics",
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-1e86fbd64f9220593d67",
+      "examSeries": "neet",
+      "path": "neet_exam/NEET 2022 - Physics _ Final _ Code T3.pdf",
+      "originalName": "NEET 2022 - Physics _ Final _ Code T3.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 21022732,
+      "sha256": "4c0d122ebe1472fdbe2ebcae5baffedff0911d9ecef5074f00dcecf4b9ab00f9",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": 2022,
+        "session": null,
+        "subject": "physics",
+        "language": null,
+        "paperCode": "T3",
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-837e1909b41436edcf01",
+      "examSeries": "neet",
+      "path": "neet_exam/NEET 2023.pdf",
+      "originalName": "NEET 2023.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 20687473,
+      "sha256": "d215ec22c933f9f852b9832f5e1e03a66d59b888513c7a8cc23175ace47ed442",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": 2023,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-69ba53eee9241540f0e7",
+      "examSeries": "neet",
+      "path": "neet_exam/que_1733486617.pdf",
+      "originalName": "que_1733486617.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 10721255,
+      "sha256": "7d60d3c6741c392ba9d7c3373ac8e3e6ed304d5ae67de025b2dbc6ea540eb289",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-b5675fe63ea3342f331f",
+      "examSeries": "neet",
+      "path": "neet_exam/que_1733486946.pdf",
+      "originalName": "que_1733486946.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 14457016,
+      "sha256": "3045c637666c5d0dc2d4a55c2e3adeb74b370ccc3b2b6ed07580749625388632",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-a6faebc6fbf47b8b9679",
+      "examSeries": "neet",
+      "path": "neet_exam/que_1733486964.pdf",
+      "originalName": "que_1733486964.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 831782,
+      "sha256": "2657ff9390e9acd7d6cc6f7a1621ba5900c0521b7d36725b4774c921401e167a",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-12c6730f5a936803b2a2",
+      "examSeries": "neet",
+      "path": "neet_exam/que_1733486975.pdf",
+      "originalName": "que_1733486975.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 1299406,
+      "sha256": "2eaacc0c065c21a77d41a6b04cd3409035ab91d4f0c9b7d1c2e373189b2d69f2",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-04818a791c00a52792e7",
+      "examSeries": "neet",
+      "path": "neet_exam/que_1733486986.pdf",
+      "originalName": "que_1733486986.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 774282,
+      "sha256": "f5e682daed97d2dc1d69de1151d547c48cfd2f56ed7e0547ba1e93ff10c88582",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-93edc5e26670151f3093",
+      "examSeries": "neet",
+      "path": "neet_exam/que_1733486997.pdf",
+      "originalName": "que_1733486997.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 752469,
+      "sha256": "cd321c6dddee065f0ba7a212f27207896c2125d7be29b68e12550a9e26e24b0e",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-097e9b205fb1ff1aec1e",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733310643.pdf",
+      "originalName": "que_1733310643.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 1027789,
+      "sha256": "124e60701455eeda15309919c2dd20d269e36caf692269e2006f4ef6631ae48a",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-b162a9a90b2c752a551f",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733310658.pdf",
+      "originalName": "que_1733310658.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 950204,
+      "sha256": "337ac082dbee37b518ff4ef4daf846ea20f49336f453149abb13c83e8af8b976",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-e90cccbb4b81592879c6",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733310672.pdf",
+      "originalName": "que_1733310672.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 1489120,
+      "sha256": "08bc38ad8e6615d10fa1503f42d4d54163baa1527d4e3605aa0ab323c3f03a23",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-49d154b20260f2101d87",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733310683.pdf",
+      "originalName": "que_1733310683.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 1167557,
+      "sha256": "085d0575937281734a1a0267cddb8604d427e30557a840bdf76b82b766754244",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-10ec0c62c7c87e23e2b2",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733310696.pdf",
+      "originalName": "que_1733310696.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 1207963,
+      "sha256": "831fbfccdf9a7da16217a5d1e8d311013a0b54488a72a4da071b8be70fab48a6",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-f3c4331998161442202d",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733310706.pdf",
+      "originalName": "que_1733310706.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 1013703,
+      "sha256": "9a33200916e5a266c0fee38c772d9a003d1316708c1bab5d72ce90166bc5cbc4",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-2b430dea3b96190e2594",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733312053.pdf",
+      "originalName": "que_1733312053.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 1343153,
+      "sha256": "89360aa3a5c68dcda1eb1a83d5bc9c4a59c6819d1521a16350427a06d3ff2af8",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-d365d758133902214cef",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733312185.pdf",
+      "originalName": "que_1733312185.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 6912635,
+      "sha256": "6d5aa31ffa3adc879a8382fe056995d5681ab325ff00155beec28ee95890e0fc",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-8a7844ecc985778bf138",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733312198.pdf",
+      "originalName": "que_1733312198.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 1223102,
+      "sha256": "d7cef8b20d35e14f2cac9ce52e6c3365ae37f08ba5ce01cf4d6131bf205a547e",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-d093273840d06d3e21ac",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733312211.pdf",
+      "originalName": "que_1733312211.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 1186099,
+      "sha256": "91b3fc99f48da2ff7a61b7ce09941376db5ad49fe425496e2f12345594a10fee",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-9a66853044baf6c5136f",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733312225.pdf",
+      "originalName": "que_1733312225.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 1258093,
+      "sha256": "8d964e262c0fc6e14238360a30b0c51fa64dd56aef8a5e8132e8690097892208",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-8eb42ee759ae58bd6932",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733312238.pdf",
+      "originalName": "que_1733312238.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 1197355,
+      "sha256": "3ee0055bb567259ceea815638eb9da5626367572e16303e52005041287ec46c9",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-59dd7277298cbb4a1af5",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733312251.pdf",
+      "originalName": "que_1733312251.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 3472176,
+      "sha256": "745b876f909106e8e1276f3f3bcea1ed918be83201397ff7536c89010c70018c",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-0d8c6cdc63e2c4dc4632",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733312263.pdf",
+      "originalName": "que_1733312263.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 1820957,
+      "sha256": "3cefb1494e1d8e7930c046ebc72d76e589c8a72100ce4b2576a3a37e44a7cd53",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-8dc257467a2a0299a142",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733312274.pdf",
+      "originalName": "que_1733312274.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 1210692,
+      "sha256": "eb9f00803b89d95df9fa6a738a3911d62a4d40a9a2f744d4384c20bf335dda47",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-c97a31bbd75eb77f3127",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733312286.pdf",
+      "originalName": "que_1733312286.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 1273033,
+      "sha256": "da01210bb6ea4500e79f3209da8b387ea4131e6a511fd5f2808a95ad55280f63",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-24662ec69e1c29b9a659",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733312309.pdf",
+      "originalName": "que_1733312309.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 1289843,
+      "sha256": "95ea2b7ded3d133952f57e72cd2c240ab751aab0a9181c7793c2ac9989b4a36a",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-cdd2a3fbdc2df46d5be3",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733312322.pdf",
+      "originalName": "que_1733312322.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 1105003,
+      "sha256": "82e76caf9575a697ee460596989795ef22714c31167026d9b96a8eaa3f7c4f09",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-da8047621f2e0e1a5111",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733312334.pdf",
+      "originalName": "que_1733312334.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 922665,
+      "sha256": "9dd7a04a9cbbbf2b04a38387e9f54bce741d4701961f2bd3c4e683ad2e296a1b",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-b893f764075f6a07c3ef",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733312346.pdf",
+      "originalName": "que_1733312346.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 833616,
+      "sha256": "f840b3e7d38f426edb250b6984adbfdb6515327cb09a8e428ca02fe0bdee56d8",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-77a9055b739959f15fc8",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733312358.pdf",
+      "originalName": "que_1733312358.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 781714,
+      "sha256": "aa7ed56843c57ab37c883a63649c833e2aa91d4369cee5a588694fab7224cf32",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-c6ca8c91344f387ed233",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733312371.pdf",
+      "originalName": "que_1733312371.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 1274599,
+      "sha256": "17ff74eedf1a0f0dd1b2b1f906830270923d43410213dc2169177e04554e735e",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-06bc5bcaf1a87a988130",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733312395.pdf",
+      "originalName": "que_1733312395.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 529133,
+      "sha256": "5243825537745aad0a7b1d27d05193e59a7e7df03da8ebe4b62000c2a46f29a6",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-fc76aead618a42c6d75f",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733312412.pdf",
+      "originalName": "que_1733312412.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 543668,
+      "sha256": "597441a534a40702f07e6061cfea34af8a98c16dd7bc658621b63e987cd8dba1",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-523e93fbbcae533dd640",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733312423.pdf",
+      "originalName": "que_1733312423.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 641354,
+      "sha256": "7b38c2090d86042f40bb3e55e0d94f0f72ddb6713a1d5adce6f222d8840f4e4d",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-eb3ca6b9e1ce52c681e7",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733312446.pdf",
+      "originalName": "que_1733312446.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 473179,
+      "sha256": "1d3f9911afc24adceb0d4cb266e0c8fea7f013fa642cc96533c149c75cfdf911",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-7f055a637bb9ce5c37bb",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733312460.pdf",
+      "originalName": "que_1733312460.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 497797,
+      "sha256": "22bb988c45a15efc9d0ac519b950283772c0e5829f5e5ebc41b666acc5e54ac8",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-bf11a5453f3ed4048d09",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733312481.pdf",
+      "originalName": "que_1733312481.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 711640,
+      "sha256": "d9f658125605f376c5a9fa11b32fbb9113bcbf8e9b9c9357840fb667dd3e1238",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-b10418d7561f815d214e",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733312492.pdf",
+      "originalName": "que_1733312492.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 637516,
+      "sha256": "fa86fd035bcef5e6180b9f2bec213c588d4e84ac70ea6760dcb7d6f2af0e714b",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-a636dca54a4ac9fc8f75",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733312520.pdf",
+      "originalName": "que_1733312520.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 1044552,
+      "sha256": "9071542ecfe0bd2c89acb65c83ccc776fea4982896593744175f5f53c869458d",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-1079e94d51c9fb3aa98f",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733312531.pdf",
+      "originalName": "que_1733312531.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 921819,
+      "sha256": "cc851b3111936666379975b9be357a8ecef9660e0b02dbffeb7aa174011a7539",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-9b89aaa19a1ddd576d03",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733312542.pdf",
+      "originalName": "que_1733312542.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 811653,
+      "sha256": "79e7548a2534c49bc15beee342d8b9ca93e8ef773c7de06c3ec587efec0b6d26",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-6d8711ab8ee289c9e089",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733312557.pdf",
+      "originalName": "que_1733312557.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 810031,
+      "sha256": "a3278a0cc210eedbd0cf777e347355226469bfd68da80c43af067ffc382e5d7a",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-3141d866fbf2a8a2c9e9",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733312634.pdf",
+      "originalName": "que_1733312634.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 1755164,
+      "sha256": "47e71f80041223166bd8fd2d9acc5f7863814bd0ac81924e15d3210bcac4f8bf",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-4a9545aa6e24d049960a",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733312647.pdf",
+      "originalName": "que_1733312647.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 1686674,
+      "sha256": "eaaad61477045509d52d53861cfe1726f0c8058198cf747dd6da49831f4746d6",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-2374f72908570e4285a8",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733312680.pdf",
+      "originalName": "que_1733312680.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 1374734,
+      "sha256": "188ee63402ec87def076625eb6b840afda26ed720dee7efc259804cbfdf79d43",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-65c7b0eabb392cf3d4d0",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733312703.pdf",
+      "originalName": "que_1733312703.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 638326,
+      "sha256": "6add993290e2f9e15d1f44a54d23d3faf3092ca2182ad5d5544817c13571453f",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-a8ef71df75b15e29e468",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733312714.pdf",
+      "originalName": "que_1733312714.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 1557024,
+      "sha256": "dd8dcfef130089b6373add028ee93e2d248531886769ff92ef64cacaeed2cb54",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-1349bd286e375cbd38ad",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733312776.pdf",
+      "originalName": "que_1733312776.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 989758,
+      "sha256": "eb678be5e3dfe0d58afaa8f08e94af08a573b4528246e646f79d41f782eb311d",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-81d38567c69ddc1a2bd4",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733312787.pdf",
+      "originalName": "que_1733312787.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 935830,
+      "sha256": "fc3db2523bdeebc87d1d23419e2aafbaac539d469bb051b06e97876eaf3afbbf",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-c1ec3e1d27f53bdb71ee",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733312799.pdf",
+      "originalName": "que_1733312799.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 1293512,
+      "sha256": "77372f75730b3158974a74711a7bf7371ce2ccace9eb4e3e52abe1496949cb94",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-7b2528e583ee3dfed6b6",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733313087.pdf",
+      "originalName": "que_1733313087.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 891395,
+      "sha256": "586cef6eab5bed4af3464f780b12013b43deed8fb7c6d67f6548b5331bc3f2d8",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-f5fd0b0ebaa1a27441a4",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733313100.pdf",
+      "originalName": "que_1733313100.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 729403,
+      "sha256": "93992b2b8285343434cacd95fd016a7ad4abeacc1e07ccd6731e4b72c48100e2",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-3ec80986eef26b6115e4",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733313111.pdf",
+      "originalName": "que_1733313111.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 804672,
+      "sha256": "e9134a7a64f6da7591c806e82813f753003a0e94507f47ff018d0d177c3eeaf4",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-c7e84c6b80ff7f2f3de3",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733313144.pdf",
+      "originalName": "que_1733313144.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 1197871,
+      "sha256": "b010cdfb5cca29c23bcc7950b12be4e69f2911867fccfa1b32a194f3e07e7303",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-92d0bfb212bbe6fd5c64",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733313154.pdf",
+      "originalName": "que_1733313154.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 1038750,
+      "sha256": "78d18da4d8a3bd6097906c6484ba33711985c3c9fb2ab281d7233a3059a9f1a3",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-0910392f0c98d57ec529",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733313168.pdf",
+      "originalName": "que_1733313168.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 2243168,
+      "sha256": "f2e0be40678d120faacbeb4d883ca227ca6b692becf56c5993f2d19a94651b84",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-19a21c3da10ff3b94fed",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733313180.pdf",
+      "originalName": "que_1733313180.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 991243,
+      "sha256": "44efaab0b6889322f2db812090da40fd429a01850e78aae6b99d7a7a81c38936",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-2bfffd435457701c9a7a",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733313391.pdf",
+      "originalName": "que_1733313391.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 2416352,
+      "sha256": "9a3198c5e57d1d4b20614d26eb03be75fc26a859a43d03da14175e67ad5ed996",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-0e6ea9172e6cc7a58567",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733313404.pdf",
+      "originalName": "que_1733313404.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 1763721,
+      "sha256": "126fe6b860482a4e0c3b29ac93e7d7f71ccb512b4b690a97a74fb4b41cbc71d7",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-d074231402c539d1d5d6",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733313415.pdf",
+      "originalName": "que_1733313415.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 1198319,
+      "sha256": "59ed97f9056b0ad2a950c158a2160dff294b0dea78061f9888deac54920f3f4a",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-6dcc2074ce9dfece78ca",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733313428.pdf",
+      "originalName": "que_1733313428.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 1057666,
+      "sha256": "42d3915257dc4d7a733a22f95230a043d03132a557563b9bbd4fe46775524dfe",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-ab53d021ea60baacc58c",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733313439.pdf",
+      "originalName": "que_1733313439.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 881461,
+      "sha256": "4a7c05980b7739444d5ca363e816b61f4f24e44a97ebceff2da1d9147c06831e",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-109bd9d31c0eacf3d466",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733313454.pdf",
+      "originalName": "que_1733313454.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 5146580,
+      "sha256": "e40d786c89f4967775baa71fba4aea466d02bb25d4e195d2a6db2d73bcf3f9c1",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-d49e6e729e76811d5428",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733313466.pdf",
+      "originalName": "que_1733313466.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 529746,
+      "sha256": "3b81b93163981f14b2b018855d79b9a505586e0fc92cae5379726c6d2a2b088f",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-57d60103d0b8de2056b6",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733313478.pdf",
+      "originalName": "que_1733313478.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 763214,
+      "sha256": "09bee80e55d14360688572044882f035ecf980203d978153d33a8dc9e480905a",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-4209878c5f1e3f2a11c0",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733313489.pdf",
+      "originalName": "que_1733313489.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 913118,
+      "sha256": "e3c6d57573299060859ceae4e2de91a4ceec644fac19bb94683e59d0a6742485",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-fd571bdc41ff8f5a0f43",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733313500.pdf",
+      "originalName": "que_1733313500.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 1033243,
+      "sha256": "cdf98610568188472ae91f4d4733955dc20298927c887340bed14934940e9b7a",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-734351df2ebf0d787024",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733315615.pdf",
+      "originalName": "que_1733315615.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 1986272,
+      "sha256": "8cece3722416584836105bed924b3c88c274e09be1527b40baeeb59c03726600",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-5ded5d8ccedd49ac47ce",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733315625.pdf",
+      "originalName": "que_1733315625.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 1445720,
+      "sha256": "07b48fc05bbade47ec605f8e4ddff834284e478be6ff206555872645fd65b479",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-c15fa372fc9a633a70d7",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733315638.pdf",
+      "originalName": "que_1733315638.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 1765055,
+      "sha256": "b3fbf8953468a71585b184f4c74180d7fe30f6148ce08c9b5aa708cfb70a13e5",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-2830f248f9f84da39f27",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733315649.pdf",
+      "originalName": "que_1733315649.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 1494537,
+      "sha256": "75690025e9602c8f07891eab802ade27e018042229260b615cf4ffb08ccc1af6",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-41abc11498c6128fd194",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733315660.pdf",
+      "originalName": "que_1733315660.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 1285198,
+      "sha256": "a0ff4320e1ec55f9221af3606bb192b4d3e015d50b5a6283d589c4ee7018dd49",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-236c67e39b11929b3fc9",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733315670.pdf",
+      "originalName": "que_1733315670.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 1272366,
+      "sha256": "3534976b286ff19c44b8a462d76cfd3f647dba7ba5480bf24524369a998781ac",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-d60e04692969be82bec3",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733315680.pdf",
+      "originalName": "que_1733315680.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 1220636,
+      "sha256": "251b070443b93f0dfe4dfed271eb804d1d2731307b236ad949d12438d71fb9a1",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-c285c4feaa2084435bad",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733315689.pdf",
+      "originalName": "que_1733315689.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 977446,
+      "sha256": "e7d10af558d5ea93cef48a746569dcb2f9fc3657fb1c61ed43cebee6231d71dd",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-3f233f713f8e1fe4790d",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733315700.pdf",
+      "originalName": "que_1733315700.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 1528292,
+      "sha256": "a15e8b2a56142046eadefbc064eeb6248df64915720f61c7147aa04ee8c2636d",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-4ec622477e31a0ec2ceb",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733315712.pdf",
+      "originalName": "que_1733315712.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 1113917,
+      "sha256": "f3d7df5e9552b7561fd38ec8db0f0cc984052b8fc64bfbcddf7528b4865806a0",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-5603deddf54cf0ac586d",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733315728.pdf",
+      "originalName": "que_1733315728.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 1355807,
+      "sha256": "8669242aaadde66eb2608990030a7640d3d462ecdd2873cea4f26af556a36d7a",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-e598bf868fca36ffc53c",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733315738.pdf",
+      "originalName": "que_1733315738.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 1101091,
+      "sha256": "e9ac746d15316589358c28c18356a514f40f96337035273721aa11350581979c",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-ccc4a301af5a67bb8c82",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733315785.pdf",
+      "originalName": "que_1733315785.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 768721,
+      "sha256": "3b75c7174c49e15ca3a3c9bb20d3f452a7f124a72b4046267831e5a25cd055f6",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-43ac4eb357bb9ca8af31",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733315801.pdf",
+      "originalName": "que_1733315801.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 853200,
+      "sha256": "6414d1b3bb245f1296bdbadfa795cca4ae02c02b5aeaa31038b217ba35e85a8f",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-491daaf4850cfd546482",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733315811.pdf",
+      "originalName": "que_1733315811.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 673461,
+      "sha256": "f5215d8eb77d2a7aab19e99117ecba0855ec8b3a818aa6d918c5b3b90fd72f7f",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-e7dcef7bfcd49e70ff1a",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733315821.pdf",
+      "originalName": "que_1733315821.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 1386924,
+      "sha256": "eca09930d9ac6fd5e53520e44fa45950e0128f2d3838c9feeb8f55ef62949952",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-09111b05a3ef58fd71ea",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733315831.pdf",
+      "originalName": "que_1733315831.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 1526924,
+      "sha256": "0851b950f9cbb223c474a272f0de0d81cc3d5f6b45fd5bd1e450aababc60e8a4",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-c517bf6e41120dfe2592",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733315841.pdf",
+      "originalName": "que_1733315841.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 2458962,
+      "sha256": "ed1a7caa87f576d9de23b3afb92c67d6bef7d01243e79b26d2cd2084a505798a",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-358abf09731a3b713bb3",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733315850.pdf",
+      "originalName": "que_1733315850.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 1851626,
+      "sha256": "018a45015d2215dba700d7324a5c9611e097fe6c6813f6a7ae5812a6270aba10",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-2d14e4e220241af710f9",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733315861.pdf",
+      "originalName": "que_1733315861.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 2864048,
+      "sha256": "ef964799ccb0840427aec6447ddb3fa561cff934961632afa062e0dc1935934c",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-fb40cdd2a0f701b587d2",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733315872.pdf",
+      "originalName": "que_1733315872.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 1551844,
+      "sha256": "e1b3528a9dad430096ccbe6893edf98f3b644a260d7c3c2899a1a07516424762",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-a99c71ba95ff5f16522d",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733315881.pdf",
+      "originalName": "que_1733315881.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 673042,
+      "sha256": "655599f19a6831e44531feab7c45513359bea95d45b5dd252e3977b4c9cccfb5",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-ffc6973d30398a3d2b9e",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733315891.pdf",
+      "originalName": "que_1733315891.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 1590789,
+      "sha256": "e44807c31207989f7436159aa14f2f499c070e64bd0c0ec187c94d9c4bf057bc",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-3718d0abc7644305ca13",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733315902.pdf",
+      "originalName": "que_1733315902.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 1022768,
+      "sha256": "09b73a89ef6c02f49150dab8b75ec3c94ea2500f4503bc1f82d48e6b3d0352ed",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-9f79f895ead0cca11134",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733315917.pdf",
+      "originalName": "que_1733315917.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 1492198,
+      "sha256": "9ea0364ddd26871dea1cc7b9ce98b2a51e2132a4f8448978bed7446edb2d0216",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-8926c3986710424bd194",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733315929.pdf",
+      "originalName": "que_1733315929.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 1334832,
+      "sha256": "871cbd17a8885cc4a8be72b92b89545c4cc7177787cecc35b0bbdf9570c4265b",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-d05f4866795b9c0d0b65",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733315938.pdf",
+      "originalName": "que_1733315938.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 1187537,
+      "sha256": "78f5f2a5a06e071e3f658def55e0b5cd3ad12e4f0c0b9b2d3e9f17a72dd72be3",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-be7a17c14bcb3f2b9622",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733315949.pdf",
+      "originalName": "que_1733315949.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 1544013,
+      "sha256": "2a00d8f8df8294ec92c45b4f7b6c5905bed717c51695005dbc511cd2e20efd98",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-ef4b6b27f1180a8de669",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733315959.pdf",
+      "originalName": "que_1733315959.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 1538345,
+      "sha256": "8e0dd29eac057bd343541d0627ea753ad27db1be7cfa700a0e7bdcb8c139a436",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-472598735607b5372be1",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733315972.pdf",
+      "originalName": "que_1733315972.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 1770338,
+      "sha256": "e74ba53243618bc438083e7a72738bbbba5916851875467e30161e2f606d3087",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-6366fa07b6f3209897f1",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733315982.pdf",
+      "originalName": "que_1733315982.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 1704199,
+      "sha256": "1641ad0bfbb46c58c3146b93aa036b66d85dc382720061e291d6946297e25b02",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-d3beb8faa359994c4f2e",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733315993.pdf",
+      "originalName": "que_1733315993.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 1121282,
+      "sha256": "e046af5f94e9fc5e220fc88acbf8f3e89a91ec1ac84f023b7387d8fa498cfd35",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-bc9afc5f8b24006126c3",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733316004.pdf",
+      "originalName": "que_1733316004.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 2561905,
+      "sha256": "703ca474529432a385ea5c0fa723c4adea1fab458b407920faaf9e591064df83",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-73a60a8c0d782073d8fe",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733316015.pdf",
+      "originalName": "que_1733316015.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 1700738,
+      "sha256": "56f1fc204f36edbc3a886e529d939c0f4744508045cb52fc927813faf2d509c3",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-7badc000d04d61467cd7",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733316029.pdf",
+      "originalName": "que_1733316029.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 895441,
+      "sha256": "db9b1b72dd60425553fbe50d6588aed246108690d8619f518da67ddeefa411e1",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-efb130bd6e1219531ee1",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733316040.pdf",
+      "originalName": "que_1733316040.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 611273,
+      "sha256": "8cf59aa8bf0a183237291b553fa0ce351557145a5bb755f68372e18ca7eb55df",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-051c5a7ff2d39ad35b01",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733316049.pdf",
+      "originalName": "que_1733316049.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 504370,
+      "sha256": "ae7740e3cc9056d0212a152f63b4b0beeeeaa3cda307c15bd9363f3b07f65302",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-ffc86361315af0f7cf76",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733316059.pdf",
+      "originalName": "que_1733316059.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 510402,
+      "sha256": "e28da474bc5a5cf8b7e179b4d43c5283f8b3dcd3bfa74a52d4d8340d73648424",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-262f6aa2546a3305ee74",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733316069.pdf",
+      "originalName": "que_1733316069.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 514811,
+      "sha256": "950ad4ce27de2656d1ccd7bc66ff9f7cb96826c072cce019493e7be37305804a",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-e7d9ae8593ac4fb7f32c",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733316078.pdf",
+      "originalName": "que_1733316078.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 519516,
+      "sha256": "46597e052c719b784614d01b93faf2c4be1d2c56f8376763164aca28a7d1c01c",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-c24cde666a6fcfd49b6f",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733316087.pdf",
+      "originalName": "que_1733316087.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 533040,
+      "sha256": "107afadffa971141e9306db4447b5e2bdb918eb0d6574bf76f292aa8aacbc487",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-31237abec602a60405b3",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733316096.pdf",
+      "originalName": "que_1733316096.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 546157,
+      "sha256": "05b5d2e7841d9401d4f016d103f66a8ad285ef58a176077ff868a6612a2136d2",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-84e744142f6ef88e10b4",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733316107.pdf",
+      "originalName": "que_1733316107.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 507824,
+      "sha256": "9e832abb9b041e4496395e769470e8b3bc02ea13e7bb71d046a5859958058d35",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-8d2277222b3cd8baaca6",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733316122.pdf",
+      "originalName": "que_1733316122.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 503116,
+      "sha256": "515a692fce10987fd262d16fa16e1a68d9707fe0809ee9055c1135eb93308ee4",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-ffffa3090bdcbca6a203",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733380595.pdf",
+      "originalName": "que_1733380595.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 274108,
+      "sha256": "2f1be4f80becd61e26adeaa37d844c90f963bca8a9d313996d5a94f115476127",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-9acf16d8c98dbc763c65",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733380606.pdf",
+      "originalName": "que_1733380606.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 2351523,
+      "sha256": "33fb2b71864b57317127ded3eae1ead5fb8d488ce88a59ef59bc945dcbf4159f",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-b3f8687f28ef60eb3810",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733380618.pdf",
+      "originalName": "que_1733380618.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 559947,
+      "sha256": "c2c885e92439df9d063cf1d61dc6521197ef6029a5328f3f64443f7d2b44bfa8",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-450f349b558489bfd519",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733380629.pdf",
+      "originalName": "que_1733380629.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 772003,
+      "sha256": "89234917f04a2518125b47e65c40468350abdbe0ffe1792a279b8e36d53ac3f9",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-b7547638dd6e906da913",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733380639.pdf",
+      "originalName": "que_1733380639.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 543924,
+      "sha256": "9a5e23378961cdab5836f64a49fddc24ce61c2bee89f42a2e00fb6d60e6c15e3",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-e9b171024a4c7354543f",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733380659.pdf",
+      "originalName": "que_1733380659.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 737210,
+      "sha256": "102d097476c93936020b1ef0a4c4db25fc5913c583353999b29e11fc8976a9e4",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-76a8471d4d9c48062578",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733380671.pdf",
+      "originalName": "que_1733380671.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 730569,
+      "sha256": "86418b42bb7aafd60713104a8d769c46b629f161bd3fdf81f9d69ec8111e82cc",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-13c4c04449da6ff62268",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733380685.pdf",
+      "originalName": "que_1733380685.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 843355,
+      "sha256": "ba88a1e4cee0336b00df36346a16dc94319703b6a530eb2d20e4b0f6851c4cce",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-7ad1da65a97c9c5218c7",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733380698.pdf",
+      "originalName": "que_1733380698.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 514050,
+      "sha256": "801aac95528c7aeb73f5d5768332f1a660c941ce13478a386f55b505f097f751",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-68388571605d164941a1",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733380722.pdf",
+      "originalName": "que_1733380722.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 534240,
+      "sha256": "a3014a855b7a868cdd56df32e8f41fc5c44e5c625e01a33763518e6ad4db9a98",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-54c8a47e4948a65c9712",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733380731.pdf",
+      "originalName": "que_1733380731.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 502717,
+      "sha256": "cea4818d7f0d893ab52770e48eb1e7b808436e394cc5bf034d9297e0ed56623b",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-7e5c25e819d05c0f473f",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733380740.pdf",
+      "originalName": "que_1733380740.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 534229,
+      "sha256": "ae42bba548bbbbcaabae11ae8700ee9fa95f10e2ff962528cd9ddebe90df5721",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-b41d7bca0039ff8fa77c",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733380749.pdf",
+      "originalName": "que_1733380749.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 540678,
+      "sha256": "7dcf801a474ca67cea87e26e62a8f0f4ba40fe5875b4a00dae7b0b7a039e1348",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-4067d83e83eedf3c4811",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733380757.pdf",
+      "originalName": "que_1733380757.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 482318,
+      "sha256": "14d5718ab8284a2b5242c8e3d63c9ff4747ba59773381c9742f4ac2800b25202",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-620658954c8ee5992a97",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733380766.pdf",
+      "originalName": "que_1733380766.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 517926,
+      "sha256": "e9cac6523583ec0ded9e40e9ebfa6dfb516563daf4694b0a2b302c4582bd4a70",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-6be0b1d9644dc8c961af",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733380775.pdf",
+      "originalName": "que_1733380775.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 512393,
+      "sha256": "bd22502fc17c47fbac8a0d42df195c3d4435aec0b6c2279c75b0c030371586b0",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-66f7b1a6678d5a0a69de",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733380784.pdf",
+      "originalName": "que_1733380784.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 571856,
+      "sha256": "6372d5c29c154f929ce21ccf650279fd393c3fb62932f1f6762706adcbfcf2ee",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-170a2603b890faa4404f",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733380819.pdf",
+      "originalName": "que_1733380819.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 458368,
+      "sha256": "9e264f50ac1be4c4e0c6d1bc52c8fe81e1626922f274c499f76fa9b3ad97b01c",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-2c000ad48f0c5859e2c6",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733380826.pdf",
+      "originalName": "que_1733380826.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 458222,
+      "sha256": "2d20c67c2d3e154ffe8f528df3efba3d09f515b30d766cf5bd1ce8fafa7874d9",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-201451aa89b007fb1a64",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733380835.pdf",
+      "originalName": "que_1733380835.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 481212,
+      "sha256": "e1d683dfeca4717ec5a3b1b3bbfda7951c056a7fbe5006911f5da550558a078e",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-a547b13aa1b6f2fb752f",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733380843.pdf",
+      "originalName": "que_1733380843.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 467787,
+      "sha256": "bb98f31263c7493d4e6ff73e5aac5313465ad11b52e26b524130a00e00a03403",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-d74783bca9fdd1f20609",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733380852.pdf",
+      "originalName": "que_1733380852.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 518834,
+      "sha256": "99918768a97f9cec23d5b172f2998a0cfa2512a3b53d83b7fcd47b87c11deee1",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-3aa1b0d72ce50ec7335b",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733380860.pdf",
+      "originalName": "que_1733380860.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 430939,
+      "sha256": "84192a260335bcdc45aa2d342f6291940825782913cbc8c25e4cd3cd48399c45",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-d801099e1cf9b7c5b550",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733380871.pdf",
+      "originalName": "que_1733380871.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 611936,
+      "sha256": "62d62440b13b613a1366792db9c6f9aa22ee60f9ed370d5de9f526059151389a",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-af507f2795635add2699",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1733380881.pdf",
+      "originalName": "que_1733380881.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 503936,
+      "sha256": "d1585e8fa70fa347816125cd1892a392a645b8e201179baafb48c1ff731f4d72",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-c9e0c4246dcce0994c8b",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1739612121.pdf",
+      "originalName": "que_1739612121.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 613257,
+      "sha256": "cdbdb84105d87bd8b2b1d05f643fe7f09b22d7d0ce7a6aeb7f0c90d69de9be80",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-d928db7d7ecf0b661688",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1739612137.pdf",
+      "originalName": "que_1739612137.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 649777,
+      "sha256": "8ff2fdbe671baa00aa8dd639a35a33a8e1899abc396c3b959a112cc978ebf8ef",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-7e2d4f93a3d4ba6a7d51",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1739612153.pdf",
+      "originalName": "que_1739612153.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 784550,
+      "sha256": "fa707f8155892d55bfe370595397e1b819a1841609848ac648ccadfcc2102100",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-5ab6446975633006289c",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1739612170.pdf",
+      "originalName": "que_1739612170.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 8855399,
+      "sha256": "fd5517ff7ddf0ad76e14daf1ab2d4d70a347a0fa704305773865d1de1cf9f863",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-eeb024a199e2e76d067d",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1739612191.pdf",
+      "originalName": "que_1739612191.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 954325,
+      "sha256": "3aeaa0e308182d74435ce2b6fba53fb113cd967968be21f8b9c1126f09a4dcec",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-b6cfc9cb338ce10b7fa5",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1739612202.pdf",
+      "originalName": "que_1739612202.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 1374777,
+      "sha256": "5af8589d476c55fea200608a2ea059ff1d1749e44fdc58ae9199b57bec8b61cb",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-10775d0a578ce4c63ccc",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1739614227.pdf",
+      "originalName": "que_1739614227.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 1683468,
+      "sha256": "31152427b9de42dfd81f013c7dc1b2f4aa66d9e6fca991269a225a417d7eec88",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-91431a9d65c3f4095b98",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1739614240.pdf",
+      "originalName": "que_1739614240.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 526950,
+      "sha256": "50687ef8e3fffbd1e9d8fa9f541ec68e8216a376b31c3cfadb63c88de7b55aea",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-d756bb9a8fec43f15005",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1739614283.pdf",
+      "originalName": "que_1739614283.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 5470796,
+      "sha256": "c914c6fa75365d46f55023c82f5564663034917262f57f35253065316d47648b",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-da94eba17cb29a55f130",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1739620001.pdf",
+      "originalName": "que_1739620001.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 645346,
+      "sha256": "282fd2997fe7e7f41c75a5f2308dffd04e38727709d123d06c0c5024b7490672",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-b8565730ca42bf376332",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1769063535.pdf",
+      "originalName": "que_1769063535.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 598349,
+      "sha256": "668aed97f92c9b5438a058e36f56c04a0f962cf7fb20b8c2070cc6e614cecd80",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-d60cccf19398de1821f4",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1769063549.pdf",
+      "originalName": "que_1769063549.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 706533,
+      "sha256": "65acac67b5edc24f6839f17a4a9daf60fa17f337b1d090ebded0aebf397dab63",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-adb9be74a1545e0477ad",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1769063565.pdf",
+      "originalName": "que_1769063565.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 1044138,
+      "sha256": "5dfd25eb930b29b337037e38f9c8d1c6665a7a05631d788a0697147a06d24214",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-ef34912be319e7d9b86e",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1769063576.pdf",
+      "originalName": "que_1769063576.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 1444169,
+      "sha256": "3eb8e70e24e59a8893a95d42a018d56051c9b958eace14b000b6ef124882a4a7",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-52a75cd20b2d062312af",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1769063591.pdf",
+      "originalName": "que_1769063591.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 1528808,
+      "sha256": "387b90aede75c158e515a3cb1a55000a1a8f9b8dde249f3e1cb6698206e941a8",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-a4a85ca6536e85d1b3cf",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1769063603.pdf",
+      "originalName": "que_1769063603.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 1222054,
+      "sha256": "b8c9a13837dc6375e205c0fa08acbd48748f1a382a0256bd3ede733fe7ee80dc",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-7b40216b0d5e8067cfb3",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1769063616.pdf",
+      "originalName": "que_1769063616.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 957886,
+      "sha256": "ea27dc1e0824dd75ce0a6439a5a58502e889f575b77040426f1a3269c821a535",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-e6aa5a52390a678432ae",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1769063628.pdf",
+      "originalName": "que_1769063628.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 1299333,
+      "sha256": "c2c1331402696e35f7412420e007abfcbd5d237ddb48212286d6f95bd8488dd9",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-f07cef77ac7dae3bcfaa",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1769063645.pdf",
+      "originalName": "que_1769063645.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 4896572,
+      "sha256": "c0e5118beb2cccc74113eb56255d897ac539bcbe312fdc4ea470fdab3ba53dab",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-c8d75b9b71a445be1648",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1771399467.pdf",
+      "originalName": "que_1771399467.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 1625835,
+      "sha256": "de1f3ee66272a42e4f215b47cce4edf140cb61c6f38e3fe0e157aaaa1b716e4a",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-06299627492c347d68fc",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1771399479.pdf",
+      "originalName": "que_1771399479.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 1625719,
+      "sha256": "6d6dc96f35ed66015e52ae039a6c3475a961e2cdb1c5e720acb4e524263f6da4",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-2a15ed2a10652a97ed4e",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1771399491.pdf",
+      "originalName": "que_1771399491.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 2047452,
+      "sha256": "65c96cf34af0d806e935d5c54f74807b1615f8cf5b7b0a25cb1b432b3d4a418a",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-588ba548bd6df49bc76c",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1771399501.pdf",
+      "originalName": "que_1771399501.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 1775448,
+      "sha256": "e34d27bdbcf5f2aa07806f5d3cb1f432a8ae81f931beadd9e43496b01bfa569a",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-e2762843b4b0f804fe1e",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1771399525.pdf",
+      "originalName": "que_1771399525.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 2354998,
+      "sha256": "cab82f2fec1addc20e1993075f422cf91f52e272b796e8b47c1f041ba52d72cb",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-1df892ae16d56ef4d8cb",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1771399536.pdf",
+      "originalName": "que_1771399536.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 2064499,
+      "sha256": "da601791ffd7da5bef48af48aaeda16889d0f267a3379f4fe7dade174e7d10cb",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-e34072e6185cba817ed5",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1771399546.pdf",
+      "originalName": "que_1771399546.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 1662971,
+      "sha256": "98694404f9fe34180ec3813280861064362f6eb45178c88fab8d97ae570a7fe9",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-3983b53dd77958e94d3b",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1771399556.pdf",
+      "originalName": "que_1771399556.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 1901421,
+      "sha256": "3e45dc9007fc58730b54b1b8892da04802fb8993ab548f20cd5e835aea461c55",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-0689640748262275d5b3",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1771399568.pdf",
+      "originalName": "que_1771399568.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 1697780,
+      "sha256": "12a28a1a7c162394b5a350374f6b6af051799df926b7dad811abac065480d9f6",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-3d37f696cd7788e29355",
+      "examSeries": "jee_main",
+      "path": "jee_exams/que_1771399578.pdf",
+      "originalName": "que_1771399578.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 1855628,
+      "sha256": "941bd3fc49a0248221094a67a78a2a8008e753152bbb4e6c7242adb4a0edd677",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": null,
+        "session": null,
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-783e276b442e70e7c0a1",
+      "examSeries": "jee_advanced",
+      "path": "jeeadv_exams/2007_1.pdf",
+      "originalName": "2007_1.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 2950046,
+      "sha256": "6ac8408e2d9d735159dbcff0461d9e673b01032a63fb32a1006e0c8d716b1cae",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": 2007,
+        "session": "paper_1",
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-b48405f2d358fae6d8ff",
+      "examSeries": "jee_advanced",
+      "path": "jeeadv_exams/2007_2.pdf",
+      "originalName": "2007_2.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 2859094,
+      "sha256": "1149bf2e4d02eb46c1fdc89704bd611feae82fd7e8074c6f8a837a4a1f9d66a4",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": 2007,
+        "session": "paper_2",
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-8b0eae34827475d25ffb",
+      "examSeries": "jee_advanced",
+      "path": "jeeadv_exams/2008_1.pdf",
+      "originalName": "2008_1.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 3257888,
+      "sha256": "fb027c6b88c31a67da5c7d7a20c5e7344bc64ae9006876c11221ed2560364527",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": 2008,
+        "session": "paper_1",
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-65d24633cca71cf8bcfb",
+      "examSeries": "jee_advanced",
+      "path": "jeeadv_exams/2008_2.pdf",
+      "originalName": "2008_2.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 3480119,
+      "sha256": "c520afb15964cd7f59bbd642e7e5beb9003894d48f2ee4d1357b23c59368805f",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": 2008,
+        "session": "paper_2",
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-3dfcfc9a4d876bad9044",
+      "examSeries": "jee_advanced",
+      "path": "jeeadv_exams/2009_1.pdf",
+      "originalName": "2009_1.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 3216991,
+      "sha256": "97ff601dc4db9409a917012d66113398c2ec40afa28cc3af64fc0f99ee067051",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": 2009,
+        "session": "paper_1",
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-48ebb577e6b59cfd6100",
+      "examSeries": "jee_advanced",
+      "path": "jeeadv_exams/2009_2.pdf",
+      "originalName": "2009_2.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 2688430,
+      "sha256": "950595581c1a4576d01eb18b9cc6af4e5919edb7fc9f2d9a36b280b3e74ddbec",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": 2009,
+        "session": "paper_2",
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-9a1869bb88d6068d179d",
+      "examSeries": "jee_advanced",
+      "path": "jeeadv_exams/2010_1.pdf",
+      "originalName": "2010_1.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 816471,
+      "sha256": "2e685bb2d93da6b8fd8f713ca8b59e88c40c06d3baf7e109805601326867b02e",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": 2010,
+        "session": "paper_1",
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-7aa73cce706ed021ef80",
+      "examSeries": "jee_advanced",
+      "path": "jeeadv_exams/2010_2.pdf",
+      "originalName": "2010_2.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 1068003,
+      "sha256": "d2d066f1fbaf4824a93056e88742ac51d31bf452c012bf9e69978430faad2dbf",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": 2010,
+        "session": "paper_2",
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-3e4371d622708cedf2b1",
+      "examSeries": "jee_advanced",
+      "path": "jeeadv_exams/2011_1.pdf",
+      "originalName": "2011_1.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 702119,
+      "sha256": "01fd6b9b2b22b7d03514594c890aebfc522cdf6f88e4fddea4048c56674ce1e2",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": 2011,
+        "session": "paper_1",
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-35c94a51b18689fea304",
+      "examSeries": "jee_advanced",
+      "path": "jeeadv_exams/2011_2.pdf",
+      "originalName": "2011_2.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 737442,
+      "sha256": "7424b1856832769c8640f4f4d47727a95531380a03726ca99d5510c3d4b4984a",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": 2011,
+        "session": "paper_2",
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-b6856abc1d838393b4cd",
+      "examSeries": "jee_advanced",
+      "path": "jeeadv_exams/2012_1.pdf",
+      "originalName": "2012_1.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 1349324,
+      "sha256": "a6e2eb4354717bf43582b9327efe217db8cf756ba2ff72e418bed0ff73ca8cab",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": 2012,
+        "session": "paper_1",
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-fa901c2b5310f59aeaa4",
+      "examSeries": "jee_advanced",
+      "path": "jeeadv_exams/2012_2.pdf",
+      "originalName": "2012_2.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 1711910,
+      "sha256": "03df348b61083db4ae5c7db78908f3f1d6a0b7361a1800bfc1a5154cd09de478",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": 2012,
+        "session": "paper_2",
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-867d39c764442e096fd7",
+      "examSeries": "jee_advanced",
+      "path": "jeeadv_exams/2013_1.pdf",
+      "originalName": "2013_1.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 1909990,
+      "sha256": "896aa077e9a16a8b71dfc4b54272dd23f28915a94df07a86a7eaf018a1dbd168",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": 2013,
+        "session": "paper_1",
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-c23eddb19c277bde01d4",
+      "examSeries": "jee_advanced",
+      "path": "jeeadv_exams/2013_2.pdf",
+      "originalName": "2013_2.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 2590054,
+      "sha256": "8f13e2ce46120c28a4be78577f59a24130f504309e27aebf74831c3f86887f7a",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": 2013,
+        "session": "paper_2",
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-1f3d915dec3695b65936",
+      "examSeries": "jee_advanced",
+      "path": "jeeadv_exams/2014_1.pdf",
+      "originalName": "2014_1.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 324329,
+      "sha256": "01116559aeeaae65caeb90c9b02274b961e97d68a3ea22a57cd7d44685a75206",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": 2014,
+        "session": "paper_1",
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-8fbb311a2c4ded02de4a",
+      "examSeries": "jee_advanced",
+      "path": "jeeadv_exams/2014_2.pdf",
+      "originalName": "2014_2.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 565693,
+      "sha256": "ed3980423dd950ff3c8c24f7847242613f1de9e87f3d1fab180de5faf4c37963",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": 2014,
+        "session": "paper_2",
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-cd94b7b2a863c2e0853f",
+      "examSeries": "jee_advanced",
+      "path": "jeeadv_exams/2015_1.pdf",
+      "originalName": "2015_1.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 1640139,
+      "sha256": "9c6d7185c48e195c3da76fed4229a4fb552795f5f68553a63b46c7f4bfba478f",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": 2015,
+        "session": "paper_1",
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-3dde8ef4506e3ff4f88f",
+      "examSeries": "jee_advanced",
+      "path": "jeeadv_exams/2015_2.pdf",
+      "originalName": "2015_2.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 1585299,
+      "sha256": "eea767abd87818f30fee413455dfeddde206671e14a3a64fd14d6ffd35055837",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": 2015,
+        "session": "paper_2",
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-87934fd7fefe4b598f85",
+      "examSeries": "jee_advanced",
+      "path": "jeeadv_exams/2016_1.pdf",
+      "originalName": "2016_1.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 3006394,
+      "sha256": "9fee74444cc8c5ece55b4c8a9c8b2013de37bdc3b230314b0fa43f9861739c1b",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": 2016,
+        "session": "paper_1",
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-305a9f26d937d3dbaf6c",
+      "examSeries": "jee_advanced",
+      "path": "jeeadv_exams/2016_2.pdf",
+      "originalName": "2016_2.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 3447124,
+      "sha256": "de782262250ee997d05db5f7720427ae3788dccffcb11deb58b6031d4e152e60",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": 2016,
+        "session": "paper_2",
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-94f60e9b4974794bc93b",
+      "examSeries": "jee_advanced",
+      "path": "jeeadv_exams/2017_1.pdf",
+      "originalName": "2017_1.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 10132054,
+      "sha256": "f230dc1dc1eb006fffca0de8a9d026c2c65360e514b2562398a3a94c13ad1962",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": 2017,
+        "session": "paper_1",
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-4b5f3d27df9bfb37e0d8",
+      "examSeries": "jee_advanced",
+      "path": "jeeadv_exams/2017_2.pdf",
+      "originalName": "2017_2.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 11830566,
+      "sha256": "624e95110d7b7cfcca7a199989bda9ff8516bc6e7b7e26d40e89d0a981eaf47c",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": 2017,
+        "session": "paper_2",
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-8d1758f6415af12334a0",
+      "examSeries": "jee_advanced",
+      "path": "jeeadv_exams/2018_1.pdf",
+      "originalName": "2018_1.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 2411298,
+      "sha256": "aec96af9d9e03b865a799ba09ef859834edb852b43d40b84abfabed3ae152e3c",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": 2018,
+        "session": "paper_1",
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-d0270674498d8d0d76ed",
+      "examSeries": "jee_advanced",
+      "path": "jeeadv_exams/2018_2.pdf",
+      "originalName": "2018_2.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 618279,
+      "sha256": "18ba400526a46d56e12e347effb701c89514f8336c2c28ebe0f6e8f3d9ab11ef",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": 2018,
+        "session": "paper_2",
+        "subject": null,
+        "language": null,
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-1755b72f1d5db5c452da",
+      "examSeries": "jee_advanced",
+      "path": "jeeadv_exams/2019_1_English.pdf",
+      "originalName": "2019_1_English.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 10246349,
+      "sha256": "c93299dddcdb2f0d90b86888e0143cbdefbbcc5aa48caa66d8568003df499ee5",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": 2019,
+        "session": "paper_1",
+        "subject": null,
+        "language": "en",
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-7e302506ff98da6fff7a",
+      "examSeries": "jee_advanced",
+      "path": "jeeadv_exams/2019_2_English.pdf",
+      "originalName": "2019_2_English.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 9738768,
+      "sha256": "6082e197772b7b715c1dc7e063e8b3f23797c07f9479f9bd695bd3d31752ae16",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": 2019,
+        "session": "paper_2",
+        "subject": null,
+        "language": "en",
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-9896ecdfa71f5cf1b286",
+      "examSeries": "jee_advanced",
+      "path": "jeeadv_exams/2020_1_English.pdf",
+      "originalName": "2020_1_English.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 1715231,
+      "sha256": "2307b19c142793f32442342977e6f17a8b71cb725067e97d86bb1feddbe14407",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": 2020,
+        "session": "paper_1",
+        "subject": null,
+        "language": "en",
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-08b4498e6d1db1196d28",
+      "examSeries": "jee_advanced",
+      "path": "jeeadv_exams/2020_2_English.pdf",
+      "originalName": "2020_2_English.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 2005186,
+      "sha256": "667aa908e281ddeaa0d2ed2515ff22cd13203350cc938fbb0b36f9614580ed64",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": 2020,
+        "session": "paper_2",
+        "subject": null,
+        "language": "en",
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-ecde14f07d7ddd34bf9c",
+      "examSeries": "jee_advanced",
+      "path": "jeeadv_exams/2021_1_English.pdf",
+      "originalName": "2021_1_English.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 3237886,
+      "sha256": "513d0c9bd4bb602f4326d343edb2ab66a2bbe91f269b90381a99924b2d24fd40",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": 2021,
+        "session": "paper_1",
+        "subject": null,
+        "language": "en",
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-15a911fe516416db9fdb",
+      "examSeries": "jee_advanced",
+      "path": "jeeadv_exams/2021_2_English.pdf",
+      "originalName": "2021_2_English.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 3121110,
+      "sha256": "7c0efd42ce0ebc374a49c1de61b65da7aef67ec7e1d229a41519cdbfd96c55d6",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": 2021,
+        "session": "paper_2",
+        "subject": null,
+        "language": "en",
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-2a7d2f635611f4fa1088",
+      "examSeries": "jee_advanced",
+      "path": "jeeadv_exams/2022_1_English.pdf",
+      "originalName": "2022_1_English.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 5180040,
+      "sha256": "ff67ab84597e45dd99450ec61ec33d181e6c58570b0061ed7e8ff9ca73f8af58",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": 2022,
+        "session": "paper_1",
+        "subject": null,
+        "language": "en",
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-a4138dc84db38a3f192d",
+      "examSeries": "jee_advanced",
+      "path": "jeeadv_exams/2022_2_English.pdf",
+      "originalName": "2022_2_English.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 4537759,
+      "sha256": "19fb87de938f6e45c1d6dfb5d482b83d02bec1130ae2ab0b7a834c301d969fe2",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": 2022,
+        "session": "paper_2",
+        "subject": null,
+        "language": "en",
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-110b6d8b5127efc63d77",
+      "examSeries": "jee_advanced",
+      "path": "jeeadv_exams/2023_1_English.pdf",
+      "originalName": "2023_1_English.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 2570592,
+      "sha256": "7823ad451ebd269ffc1dcb36e2c29f2dff506a50a4a0f663f98b99864fa955be",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": 2023,
+        "session": "paper_1",
+        "subject": null,
+        "language": "en",
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-01e8b8a23a7ef262145d",
+      "examSeries": "jee_advanced",
+      "path": "jeeadv_exams/2023_2_English.pdf",
+      "originalName": "2023_2_English.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 2021375,
+      "sha256": "cef4c09da7aeebaaba90735ddf683b55d8dc76b146356bdba6b4b291aa20b210",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": 2023,
+        "session": "paper_2",
+        "subject": null,
+        "language": "en",
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-e650251d7a8b63816a0b",
+      "examSeries": "jee_advanced",
+      "path": "jeeadv_exams/2024_1_English.pdf",
+      "originalName": "2024_1_English.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 1835204,
+      "sha256": "d0f3ffd739772b80a06f7c65e9b161905a314853e79e0ea3f3994aa7c2d5c525",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": 2024,
+        "session": "paper_1",
+        "subject": null,
+        "language": "en",
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-14ac365038fd083bfaab",
+      "examSeries": "jee_advanced",
+      "path": "jeeadv_exams/2024_2_English.pdf",
+      "originalName": "2024_2_English.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 5807895,
+      "sha256": "2f01767b18f95ff9dd520879ae139afd0ea824d95c41f885db618db1f4326b4b",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": 2024,
+        "session": "paper_2",
+        "subject": null,
+        "language": "en",
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "src-670b6a3670b0d1965fce",
+      "examSeries": "jee_advanced",
+      "path": "jeeadv_exams/2025_1_English.pdf",
+      "originalName": "2025_1_English.pdf",
+      "mediaType": "application/pdf",
+      "sizeBytes": 5260166,
+      "sha256": "563a68ebca24815d1bee98c1025bc91437ccb96695bc5f1b6da1d6193567b920",
+      "machineChecks": {
+        "pdfHeaderPresentInFirst1024Bytes": true,
+        "readable": true
+      },
+      "indexing": {
+        "year": 2025,
+        "session": "paper_1",
+        "subject": null,
+        "language": "en",
+        "paperCode": null,
+        "status": "filename_hints_only"
+      },
+      "rightsStatus": "not_recorded",
+      "ownerVerification": {
+        "status": "owner_verified",
+        "reviewer": "project owner",
+        "reviewedOn": "2026-11-09"
+      }
+    }
+  ]
+}

@@ -1,0 +1,602 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f2e9">
+  <meta name="description" content="Learn physics through intuition, clear derivations, and thoughtful problem-solving with Saem Physics.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Saem Physics">
+  <meta property="og:title" content="Saem Physics — See the idea. Derive the law.">
+  <meta property="og:description" content="Visual physics lessons, exam preparation, and a growing computational learning project.">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Saem Physics — See the idea. Derive the law.">
+  <meta name="twitter:description" content="Visual physics lessons, exam preparation, and a growing computational learning project.">
+  <title>Saem Physics — See the idea. Derive the law.</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container header-row">
+      <a class="brand" href="#home" aria-label="Saem Physics home">
+        <span class="brand-mark" aria-hidden="true">S<span>.</span></span>
+        <span>SAEM <small>PHYSICS</small></span>
+      </a>
+      <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">
+        <span class="visually-hidden">Open navigation</span><i></i><i></i>
+      </button>
+      <nav class="primary-nav" id="primary-nav" aria-label="Main navigation">
+        <a href="#learn">Learn</a>
+        <a href="#channel-updates">Latest videos</a>
+        <a href="#visual-lab">Visual lab</a>
+        <a href="#practice-room">Practice</a>
+        <a href="#exam-center">Exam desk</a>
+        <a href="#library">Lesson library</a>
+        <a href="#method">Our method</a>
+        <a href="#lab">Code &amp; physics</a>
+        <a href="#repository-map">What powers Saem</a>
+        <a class="nav-cta" href="https://www.youtube.com/@SaemPhysics" target="_blank" rel="noopener noreferrer">Watch on YouTube <span aria-hidden="true">↗</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="home">
+      <div class="container hero-layout">
+        <div class="hero-copy">
+          <p class="eyebrow"><span class="eyebrow-line"></span> Physics, from first principles</p>
+          <h1>See the idea.<br><em>Then derive</em> the law.</h1>
+          <p class="hero-intro">Physics is not a pile of formulas. It is a way to make sense of the world—one clear picture, one careful argument, one good question at a time.</p>
+          <div class="hero-buttons">
+            <a class="button button-dark" href="#learn">Find your next lesson <span aria-hidden="true">↓</span></a>
+            <a class="button button-quiet" href="https://www.youtube.com/@SaemPhysics" target="_blank" rel="noopener noreferrer">Visit Saem Physics <span aria-hidden="true">↗</span></a>
+          </div>
+          <p class="hero-audience">JEE <i></i> NEET <i></i> CBSE <i></i> Bihar Board <i></i> NCERT</p>
+        </div>
+        <div class="hero-visual">
+          <div class="visual-note note-top">A path tells<br><strong>a physical story.</strong></div>
+          <svg class="hero-diagram" viewBox="0 0 640 500" role="img" aria-labelledby="hero-diagram-title hero-diagram-desc">
+            <title id="hero-diagram-title">A particle follows a curved path</title>
+            <desc id="hero-diagram-desc">Position and velocity vectors describe a particle moving through a field of motion.</desc>
+            <defs>
+              <marker id="arrow-coral" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+                <path d="M0 0 8 4 0 8Z" fill="#d96f47"></path>
+              </marker>
+              <marker id="arrow-green" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+                <path d="M0 0 8 4 0 8Z" fill="#245c46"></path>
+              </marker>
+            </defs>
+            <path class="diagram-orbit" d="M108 356 C154 156 350 91 518 184"></path>
+            <path class="diagram-path" d="M90 364 C156 292 160 193 270 177 S413 295 514 175"></path>
+            <path class="diagram-guide" d="M90 364H545M270 177V401"></path>
+            <path class="diagram-vector diagram-position" d="M90 364 270 177" marker-end="url(#arrow-green)"></path>
+            <path class="diagram-vector diagram-velocity" d="M270 177 390 132" marker-end="url(#arrow-coral)"></path>
+            <circle class="diagram-point" cx="270" cy="177" r="9"></circle>
+            <circle class="diagram-origin" cx="90" cy="364" r="5"></circle>
+            <text x="179" y="249">r(t)</text>
+            <text x="337" y="128">v(t)</text>
+            <text x="78" y="394">0</text>
+            <text x="534" y="387">x</text>
+            <text x="281" y="164">particle</text>
+            <text class="diagram-caption" x="90" y="445">POSITION · DIRECTION · CHANGE</text>
+          </svg>
+          <span class="formula formula-force">F = ma</span>
+          <span class="formula formula-wave">v = dr / dt</span>
+          <span class="visual-caption">Describe the motion.<br>Then ask what causes it.</span>
+          <span class="visual-index">01 / MECHANICS</span>
+        </div>
+      </div>
+      <div class="hero-bottom">
+        <div class="container hero-bottom-row">
+          <span>From intuition to examination</span>
+          <a href="#method">How we learn <span aria-hidden="true">↓</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="intro-strip" id="learn">
+      <div class="container intro-layout">
+        <p class="eyebrow">A better way into physics</p>
+        <div>
+          <h2>Understand the <em>why</em>, not just the answer.</h2>
+          <p>Build an intuition, connect it to the mathematics, and practice using it. Explore the lessons already available on the Saem Physics channel.</p>
+        </div>
+        <div class="subject-stamp" aria-hidden="true"><span>LEARN</span><b>∴</b><span>REASON</span></div>
+      </div>
+    </section>
+
+    <section class="channel-section section" id="channel-updates" aria-labelledby="channel-title">
+      <div class="container">
+        <div class="section-heading channel-heading">
+          <div>
+            <p class="eyebrow">From the Saem Physics channel</p>
+            <h2 id="channel-title">New ideas, <em>as they arrive.</em></h2>
+          </div>
+          <a class="arrow-link" href="https://www.youtube.com/@SaemPhysics/videos" target="_blank" rel="noopener noreferrer">Browse every upload <span aria-hidden="true">↗</span></a>
+        </div>
+        <div class="channel-feed-bar">
+          <p>New uploads appear as dated update cards. The public feed refreshes hourly; this page checks every 15 minutes while open. The feed does not carry Community posts or live status.</p>
+          <p id="channel-feed-status" class="channel-feed-status" role="status" aria-live="polite">Loading recent videos…</p>
+          <button id="channel-feed-refresh" class="channel-refresh" type="button">Check for updates</button>
+        </div>
+        <div class="channel-live-card">
+          <div>
+            <p class="eyebrow">Saem Physics · live channel</p>
+            <h3>Joining a live class?</h3>
+            <p>If a public YouTube broadcast is running, check it here. The player loads only after you choose to connect.</p>
+          </div>
+          <div class="channel-live-actions">
+            <button id="channel-live-load" class="button button-dark" type="button">Check live stream</button>
+            <a href="https://www.youtube.com/@SaemPhysics/streams" target="_blank" rel="noopener noreferrer">Browse channel streams ↗</a>
+          </div>
+          <div id="channel-live-player" class="channel-live-player" hidden></div>
+          <p id="channel-live-status" class="channel-live-status" role="status" aria-live="polite">YouTube will report whether a public stream is available after you connect.</p>
+        </div>
+        <div class="channel-video-grid" id="channel-video-grid"></div>
+        <noscript><p class="channel-fallback">Turn on JavaScript to see the latest uploads, or <a href="https://www.youtube.com/@SaemPhysics/videos">visit the channel archive</a>.</p></noscript>
+      </div>
+    </section>
+
+    <section class="visual-lab-section section" id="visual-lab" aria-labelledby="motion-title">
+      <div class="container">
+        <div class="visual-lab-heading">
+          <div>
+            <p class="eyebrow">A small visual experiment</p>
+            <h2 id="motion-title">See motion <em>change.</em></h2>
+          </div>
+          <p>One particle, one rule. Scrub time or change the acceleration and watch the position graph respond.</p>
+        </div>
+        <div class="motion-lab">
+          <div class="motion-stage">
+            <div class="motion-stage-topline"><span>CONSTANT ACCELERATION · ONE DIMENSION</span><span>INTERACTIVE MODEL</span></div>
+            <canvas id="motion-canvas" class="motion-canvas" width="960" height="360" role="img" aria-label="A particle moving on a line with a velocity arrow and a position versus time graph. Use the controls to change time and acceleration.">
+              A particle moves along a line. Its position graph is x of t equals 3t plus one half a t squared.
+            </canvas>
+            <div class="motion-legend" aria-hidden="true">
+              <span><i class="legend-position"></i> position</span>
+              <span><i class="legend-velocity"></i> velocity</span>
+              <span><i class="legend-acceleration"></i> acceleration</span>
+            </div>
+            <div class="motion-controls">
+              <button id="motion-play" class="motion-play" type="button" aria-pressed="false">Play motion</button>
+              <label class="motion-control">
+                <span>Time <output id="motion-time-output" for="motion-time">0.0 s</output></span>
+                <input id="motion-time" type="range" min="0" max="4" step="0.05" value="0">
+              </label>
+              <label class="motion-control">
+                <span>Acceleration <output id="motion-acceleration-output" for="motion-acceleration">+0.5 m/s²</output></span>
+                <input id="motion-acceleration" type="range" min="-1.5" max="1.5" step="0.1" value="0.5">
+              </label>
+            </div>
+            <p id="motion-status" class="motion-status" aria-live="polite">Paused. Scrub the time slider or press Play.</p>
+          </div>
+          <aside class="motion-explanation">
+            <p class="eyebrow">The model</p>
+            <h3>A changing position has a shape.</h3>
+            <p>Start at the origin with velocity <i>u</i> = 3 m/s. Constant acceleration bends the position-versus-time graph into a parabola.</p>
+            <div class="motion-equation" aria-label="Position equals initial velocity times time plus one half acceleration times time squared">
+              <span>x(t) = ut + ½at<sup>2</sup></span>
+              <small>Here, u = 3 m/s</small>
+            </div>
+            <p class="motion-prompt">What changes when <i>a</i> becomes negative? Try it, then compare the velocity arrow with the curve's slope.</p>
+          </aside>
+        </div>
+        <p class="visual-lab-note">The animation starts only when you choose Play; every value can also be explored with the sliders. This lightweight drawing is designed to stay usable on mobile devices.</p>
+      </div>
+    </section>
+
+    <section class="practice-section section" id="practice-room" aria-labelledby="practice-title">
+      <div class="container">
+        <div class="section-heading practice-heading">
+          <div>
+            <p class="eyebrow">A guided student practice</p>
+            <h2 id="practice-title">Try an idea. <em>Check your reasoning.</em></h2>
+          </div>
+          <p class="section-aside">Three short motion questions. Answer, read the explanation, and continue at your own pace.</p>
+        </div>
+        <div class="practice-layout" id="practice-widget">
+          <div class="practice-card">
+            <div class="practice-progress-row">
+              <span id="practice-step">Question 1 of 3</span>
+              <progress id="practice-progress" max="3" value="0" aria-label="Practice questions completed"></progress>
+            </div>
+            <h3 id="practice-question" tabindex="-1"></h3>
+            <fieldset id="practice-options" class="practice-options">
+              <legend class="visually-hidden">Choose one answer</legend>
+            </fieldset>
+            <p id="practice-feedback" class="practice-feedback" aria-live="polite"></p>
+            <div class="practice-actions">
+              <button id="practice-check" class="button button-dark" type="button">Check my answer</button>
+              <button id="practice-next" class="button button-quiet" type="button" hidden>Continue</button>
+              <button id="practice-reset" class="practice-reset" type="button" hidden>Start again</button>
+            </div>
+          </div>
+          <aside class="practice-note">
+            <p class="eyebrow">A useful habit</p>
+            <h3>Prediction before formula.</h3>
+            <p>Say what you expect to happen, choose a model, and check units before trusting a number. The feedback explains the reasoning, not only the answer.</p>
+            <div class="local-progress-note">
+              <span class="local-progress-icon" aria-hidden="true">⌂</span>
+              <p><strong>Your progress stays on this device.</strong><br>No account, name, or answer history is sent to a server.</p>
+            </div>
+            <p id="practice-storage-status" class="practice-storage-status" role="status" aria-live="polite">Progress is stored only in this browser.</p>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="exam-section section" id="exam-center" aria-labelledby="exam-title">
+      <div class="container">
+        <div class="section-heading exam-heading">
+          <div>
+            <p class="eyebrow">Saem exam desk · first version</p>
+            <h2 id="exam-title">Practice with a clock.<br><em>Revise with evidence.</em></h2>
+          </div>
+          <p class="section-aside">Try the sample, explore source-derived topic signals from the full supplied corpus, or run a paper you already have in a private timed session.</p>
+        </div>
+        <div class="exam-grid">
+          <section class="exam-card" id="exam-test-widget" aria-labelledby="exam-test-title">
+            <div class="exam-card-topline"><span>8 QUESTIONS · 12 MINUTES</span><span class="exam-badge">SAMPLE TEST</span></div>
+            <h3 id="exam-test-title">Check your physics foundations.</h3>
+            <p class="exam-card-intro">One mark per correct answer; no negative marking. This original starter set is not an official JEE, NEET, CBSE, or board paper.</p>
+            <div id="exam-test-session" hidden>
+              <div class="exam-progress-row">
+                <span id="exam-question-count">Question 1 of 8</span>
+                <span class="exam-timer">Time left <time id="exam-timer" aria-live="off">12:00</time></span>
+              </div>
+              <progress id="exam-progress" max="8" value="0" aria-label="Exam questions answered"></progress>
+              <h4 id="exam-question" tabindex="-1"></h4>
+              <fieldset id="exam-options" class="practice-options">
+                <legend class="visually-hidden">Choose one answer</legend>
+              </fieldset>
+              <p id="exam-test-status" class="exam-status" role="status" aria-live="polite"></p>
+              <div class="exam-actions">
+                <button id="exam-previous" class="button button-quiet" type="button">Previous</button>
+                <button id="exam-next" class="button button-dark" type="button">Next</button>
+                <button id="exam-submit" class="button button-dark" type="button">Finish test</button>
+              </div>
+            </div>
+            <div id="exam-test-start">
+              <button id="exam-start" class="button button-dark" type="button">Start sample test</button>
+              <p class="exam-privacy">The timer starts when you choose Start. Leaving this page ends the session; answers are not uploaded or saved.</p>
+            </div>
+            <div id="exam-test-results" class="exam-results" hidden aria-live="polite"></div>
+          </section>
+
+          <section class="exam-card outlook-card" aria-labelledby="outlook-title">
+            <div class="exam-card-topline"><span>PAST-PAPER OUTLOOK</span><span class="exam-badge exam-badge-experimental">BACKTESTED</span></div>
+            <h3 id="outlook-title">A forecast with its evidence.</h3>
+            <p class="exam-card-intro">Use reviewed papers only. Probabilities appear only after forward-year calibration passes its evidence checks.</p>
+            <label class="paper-import-label" for="paper-history-file">Choose a paper-history JSON file</label>
+            <input id="paper-history-file" class="paper-import-input" type="file" accept=".json,application/json">
+            <p id="paper-history-status" class="exam-status" role="status" aria-live="polite">No paper history loaded. Your file is read locally and is not sent to Saem.</p>
+            <div class="outlook-controls">
+              <label>Exam series
+                <select id="outlook-board" disabled>
+                  <option value="">Import history first</option>
+                </select>
+              </label>
+              <label>Paper language
+                <select id="outlook-language" disabled>
+                  <option value="">Choose exam series first</option>
+                </select>
+              </label>
+              <label>Target year
+                <input id="outlook-year" type="number" min="1900" max="2100">
+              </label>
+            </div>
+            <button id="outlook-run" class="button button-dark" type="button" disabled>Build outlook</button>
+            <p id="outlook-status" class="exam-status" role="status" aria-live="polite"></p>
+            <div id="outlook-results" class="outlook-results" hidden aria-live="polite"></div>
+            <details class="paper-schema">
+              <summary>History format and calibration method</summary>
+              <p>Each record represents one paper or exam session. Keep the exam series and paper language consistent, record its source, and include only topic labels a teacher has checked.</p>
+              <pre><code>[
+  {
+    "board": "JEE Main",
+    "paperId": "2024-session-1",
+    "year": 2024,
+    "language": "English",
+    "source": "Official paper citation or URL",
+    "reviewed": true,
+    "topics": ["Mechanics", "Optics"]
+  }
+]</code></pre>
+              <p>Each record's reviewed flag and citation are user supplied, not independently verified. The engine holds out whole years, fits a logistic calibration only on earlier out-of-fold years, and checks Brier score and calibration error on later held-out years. If evidence gates fail, it shows no probability. The corpus keyword candidates are not used as reviewed outcomes.</p>
+            </details>
+          </section>
+        </div>
+        <section class="exam-corpus-card" aria-labelledby="exam-corpus-title">
+          <div class="exam-card-topline"><span>EXAM TIME MATRIX · SOURCE FILES</span><span class="exam-badge exam-badge-experimental">REVIEW NEEDED</span></div>
+          <h3 id="exam-corpus-title">Review the paper trail.</h3>
+          <p class="exam-card-intro">See which files and machine topic tags still need human review. They do not generate probabilities.</p>
+          <p id="corpus-status" class="exam-status" role="status" aria-live="polite">Loading the paper index…</p>
+          <div class="outlook-controls">
+            <label>Exam series
+              <select id="corpus-board">
+                <option value="neet">NEET</option>
+                <option value="jee_main">JEE Main</option>
+                <option value="jee_advanced">JEE Advanced</option>
+              </select>
+            </label>
+            <label>Target year
+              <input id="corpus-year" type="number" min="1900" max="2100">
+            </label>
+          </div>
+          <button id="corpus-run" class="button button-dark" type="button" disabled>Show reviewed-history coverage</button>
+          <p id="corpus-outlook-status" class="exam-status" role="status" aria-live="polite"></p>
+          <div id="corpus-results" class="outlook-results" hidden aria-live="polite"></div>
+          <details class="paper-schema">
+            <summary>Browse all indexed paper files</summary>
+            <label class="paper-import-label" for="corpus-search">Filter this source list</label>
+            <input id="corpus-search" class="paper-import-input" type="search" placeholder="Search a paper filename">
+            <ul id="corpus-paper-list" class="corpus-paper-list"></ul>
+          </details>
+          <p class="exam-privacy">The site contains no papers or extracted questions. Scanned files and uncertain years are excluded.</p>
+        </section>
+        <section class="exam-paper-practice" aria-labelledby="paper-practice-title">
+          <div>
+            <p class="eyebrow">Private timed-paper mode</p>
+            <h3 id="paper-practice-title">Bring a paper. <em>Practice to the clock.</em></h3>
+            <p class="exam-card-intro">Choose a PDF already on your device. It stays in this browser tab; nothing is uploaded. Set the paper's time and question count from its instructions.</p>
+            <label class="paper-import-label" for="local-paper-file">Choose a local exam-paper PDF</label>
+            <input id="local-paper-file" class="paper-import-input" type="file" accept=".pdf,application/pdf">
+            <p id="local-paper-status" class="exam-status" role="status" aria-live="polite">No local PDF selected.</p>
+            <details class="paper-schema">
+              <summary>Add a reviewed answer key and worked solutions</summary>
+              <p>Optional JSON stays on this device. The paper SHA-256 must match; marking rules and teacher-review details are shown with the result, not independently verified.</p>
+              <label class="paper-import-label" for="local-paper-key">Local answer-key JSON</label>
+              <input id="local-paper-key" class="paper-import-input" type="file" accept=".json,application/json">
+              <p id="local-paper-key-status" class="exam-status" role="status" aria-live="polite">No answer key selected. Timer-only practice remains available.</p>
+              <pre><code>{
+  "schemaVersion": 1,
+  "paperId": "neet-2024-paper-1",
+  "examSeries": "neet",
+  "year": 2024,
+  "source": "Source citation and paper section",
+  "sourceSha256": "SHA-256 of selected PDF",
+  "teacherReviewed": true,
+  "reviewedBy": "Reviewer name",
+  "marking": { "correct": 4, "incorrect": -1, "unanswered": 0 },
+  "questions": [
+    { "number": 1, "answerType": "choice", "answer": "B",
+      "solution": "Step 1: identify the principle. Step 2: apply it to the given values." },
+    { "number": 2, "answerType": "numeric", "answer": 2.5, "tolerance": 0.01,
+      "solution": "Step 1: write the relation. Step 2: substitute and check units.",
+      "marking": { "correct": 5, "incorrect": -2, "unanswered": 0 } }
+  ]
+}</code></pre>
+            </details>
+            <div class="outlook-controls">
+              <label>Exam series
+                <select id="local-paper-series">
+                  <option value="neet">NEET</option>
+                  <option value="jee_main">JEE Main</option>
+                  <option value="jee_advanced">JEE Advanced</option>
+                </select>
+              </label>
+              <label>Time limit (minutes)
+                <input id="local-paper-minutes" type="number" min="1" max="300" value="180">
+              </label>
+              <label>Question count
+                <input id="local-paper-count" type="number" min="1" max="300" placeholder="Set from paper">
+              </label>
+            </div>
+            <button id="local-paper-start" class="button button-dark" type="button" disabled>Start private timed paper</button>
+          </div>
+          <div id="local-paper-session" class="local-paper-session" hidden>
+            <div class="exam-progress-row">
+              <span id="local-paper-progress">0 answered</span>
+              <span class="exam-timer">Time left <time id="local-paper-timer" aria-live="off">180:00</time></span>
+            </div>
+            <iframe id="local-paper-preview" title="Selected local exam paper" hidden></iframe>
+            <div id="local-paper-answer-sheet" class="local-paper-answer-sheet"></div>
+            <button id="local-paper-finish" class="button button-dark" type="button">Finish this attempt</button>
+          </div>
+          <div id="local-paper-results" class="exam-results" hidden aria-live="polite"></div>
+          <p class="exam-privacy">Timer and responses stay in this tab. Optional local keys can score choice/numeric answers and show their supplied worked solutions; source accuracy and review claims are not independently verified.</p>
+        </section>
+      </div>
+    </section>
+
+    <section class="section learning-section" aria-labelledby="paths-title">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Choose a starting point</p>
+            <h2 id="paths-title">A path through the ideas.</h2>
+          </div>
+          <a class="arrow-link" href="https://www.youtube.com/@SaemPhysics/playlists" target="_blank" rel="noopener noreferrer">All playlists <span aria-hidden="true">↗</span></a>
+        </div>
+        <div class="path-grid">
+          <a class="path-card path-feature" href="https://www.youtube.com/watch?v=CbqUMphK6Eo" target="_blank" rel="noopener noreferrer">
+            <span class="path-number">01</span><span class="path-label">MATHEMATICAL TOOLS</span>
+            <h3>Trigonometry<br>for physics</h3>
+            <p>Build the language behind vectors, waves, and rotations.</p>
+            <span class="path-action">Watch the lesson <b aria-hidden="true">↗</b></span>
+            <span class="path-art path-art-triangle" aria-hidden="true"><i></i><b>θ</b></span>
+          </a>
+          <a class="path-card path-blue" href="https://youtube.com/playlist?list=PLjEkQ_dvlIGmj-GBjRI7WC_vzYn4-7Si5&si=hqmCPs2kr-OM5-mF" target="_blank" rel="noopener noreferrer">
+            <span class="path-number">02</span><span class="path-label">MECHANICS</span>
+            <h3>Motion &amp;<br>Newton's laws</h3>
+            <p>See how forces change motion, step by step.</p>
+            <span class="path-action">Explore mechanics <b aria-hidden="true">↗</b></span>
+            <span class="path-art path-art-motion" aria-hidden="true"><i></i><b></b><em></em></span>
+          </a>
+          <a class="path-card path-gold" href="https://youtube.com/playlist?list=PLjEkQ_dvlIGmYGbJoXdyKCa3eN6w0OrL0&si=FMKiyUA__LxuaSLx" target="_blank" rel="noopener noreferrer">
+            <span class="path-number">03</span><span class="path-label">MODERN PHYSICS</span>
+            <h3>Beyond classical<br>intuition</h3>
+            <p>Meet the ideas that reshape our picture of nature.</p>
+            <span class="path-action">Explore the playlist <b aria-hidden="true">↗</b></span>
+            <span class="path-art path-art-atom" aria-hidden="true"><i></i><b></b><em></em></span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="library-section section" id="library">
+      <div class="container">
+        <div class="section-heading library-heading">
+          <div>
+            <p class="eyebrow">The lesson library</p>
+            <h2>Follow your <em>curiosity.</em></h2>
+          </div>
+          <p class="section-aside">Search topics, exam solutions, and revision lessons. Each card opens its source on YouTube.</p>
+        </div>
+        <div class="library-controls">
+          <label class="search-box">
+            <span class="visually-hidden">Search lessons</span>
+            <span class="search-icon" aria-hidden="true">⌕</span>
+            <input id="lesson-search" type="search" placeholder="Try “mechanics” or “NEET”" autocomplete="off">
+            <kbd>/</kbd>
+          </label>
+          <div class="filter-list" id="lesson-filters" role="group" aria-label="Filter lessons by category">
+            <button type="button" class="filter-button is-active" data-filter="all" aria-pressed="true">All lessons</button>
+            <button type="button" class="filter-button" data-filter="exam" aria-pressed="false">Exam solutions</button>
+            <button type="button" class="filter-button" data-filter="concept" aria-pressed="false">Concepts</button>
+            <button type="button" class="filter-button" data-filter="revision" aria-pressed="false">Revision</button>
+          </div>
+        </div>
+        <p class="results-count" id="results-count" aria-live="polite"></p>
+        <div class="lesson-grid" id="lesson-grid"></div>
+        <p class="empty-state" id="empty-state" hidden>No lessons match that search. Try another topic or choose “All lessons”.</p>
+      </div>
+    </section>
+
+    <section class="method-section section" id="method">
+      <div class="container method-layout">
+        <div class="method-heading">
+          <p class="eyebrow">The Saem Physics approach</p>
+          <h2>Three moves.<br><em>One deeper</em> understanding.</h2>
+          <p>Learning becomes durable when you can explain the idea, not only recognize the formula.</p>
+        </div>
+        <div class="method-steps">
+          <article class="method-step">
+            <span class="step-index">01</span><div><h3>Picture it</h3><p>Begin with a physical situation. Draw the system and name what can change.</p></div><span class="step-mark" aria-hidden="true">↗</span>
+          </article>
+          <article class="method-step">
+            <span class="step-index">02</span><div><h3>Make the model</h3><p>Choose assumptions, define quantities, and derive the relationship that fits.</p></div><span class="step-mark" aria-hidden="true">∑</span>
+          </article>
+          <article class="method-step">
+            <span class="step-index">03</span><div><h3>Test your thinking</h3><p>Solve a problem, check units and limits, and explain why the result makes sense.</p></div><span class="step-mark" aria-hidden="true">✓</span>
+          </article>
+          <div class="equation-note">
+            <span class="equation-tag">A SMALL EXAMPLE · CONSTANT ACCELERATION</span>
+            <p class="equation">s = ut + <span>½</span>at<sup>2</sup></p>
+            <p>Displacement = initial velocity × time + the contribution from acceleration.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="lab-section section" id="lab">
+      <div class="container">
+        <div class="lab-heading">
+          <div>
+            <p class="eyebrow">Physics meets computation</p>
+            <h2>One equation.<br><em>Many ways</em> to think.</h2>
+          </div>
+          <p>Use a tiny kinematics example to compare languages. These are teaching sketches—not production scoring code or claims that every runtime is connected to the website.</p>
+        </div>
+        <div class="lab-layout">
+          <div class="lab-code">
+            <div class="code-topline"><span>CONSTANT-ACCELERATION EXAMPLE</span><span class="code-status"><i></i> TEACHING SKETCH</span></div>
+            <div class="language-tabs" id="language-tabs" role="tablist" aria-label="Choose a programming language"></div>
+            <div class="code-panel" id="code-panel" role="tabpanel" aria-labelledby="language-tab-0" aria-live="polite">
+              <div class="code-caption"><span id="code-language">C17</span><button type="button" id="copy-code" class="copy-button">Copy code</button></div>
+              <pre><code id="code-example"></code></pre>
+              <p class="code-result" id="code-result"></p>
+            </div>
+          </div>
+          <aside class="stack-card">
+            <p class="eyebrow">Built with clear boundaries</p>
+            <h3>Many tools.<br>One source of truth.</h3>
+            <p>The website is a static front end. C17 is the intended authority for bounded exact computation; research and teaching languages serve distinct roles around it.</p>
+            <ul class="stack-list">
+              <li><span class="stack-dot dot-c"></span><span><b>C17 / QCOS</b><small>Kernel and exact arithmetic source exists; not a live web service.</small></span><em>CORE</em></li>
+              <li><span class="stack-dot dot-cpp"></span><span><b>C++17</b><small>EdTech engine source and tests exist separately.</small></span><em>ENGINE</em></li>
+              <li><span class="stack-dot dot-python"></span><span><b>Python</b><small>Oracle and verification tools; app integration is planned.</small></span><em>TOOLS</em></li>
+              <li><span class="stack-dot dot-research"></span><span><b>R · Julia · Fortran · Lisp</b><small>Research or learning prototypes; not wired into the site.</small></span><em>LAB</em></li>
+              <li><span class="stack-dot dot-rust"></span><span><b>Rust</b><small>Open Math archive is a reference, not a production dependency.</small></span><em>REFERENCE</em></li>
+            </ul>
+            <a class="arrow-link stack-link" href="https://github.com/saemsir/saem/blob/main/docs/SAEM_EDTECH_ARCHITECTURE.md" target="_blank" rel="noopener noreferrer">Read the staged architecture <span aria-hidden="true">↗</span></a>
+          </aside>
+        </div>
+        <p class="deployment-note"><b>Deployment truth:</b> GitHub Pages serves HTML, CSS, and JavaScript. It does not execute the C17 backend. A future offline learning app will connect to the C17 core through a documented, testable interface.</p>
+      </div>
+    </section>
+
+    <section class="capabilities-section section" id="repository-map" aria-labelledby="capabilities-title">
+      <div class="container">
+        <div class="section-heading capabilities-heading">
+          <div>
+            <p class="eyebrow">What powers Saem Global EdTech</p>
+            <h2 id="capabilities-title">A clear view of <em>what works today.</em></h2>
+          </div>
+          <p class="section-aside">Students should know what they can use now—and what is still being built.</p>
+        </div>
+        <div class="capability-columns">
+          <section class="capability-group" aria-labelledby="available-title">
+            <div class="capability-group-title"><span class="capability-status status-live"></span><h3 id="available-title">Available on this site</h3></div>
+            <article class="capability-item">
+              <span class="capability-index">01</span>
+              <div><h4>Lessons and channel updates</h4><p>Search curated lessons and see recent public Saem Physics uploads.</p><a href="#library">Open the lesson library <span aria-hidden="true">↗</span></a></div>
+            </article>
+            <article class="capability-item">
+              <span class="capability-index">02</span>
+              <div><h4>Interactive motion lab</h4><p>Change time and acceleration to connect a particle's motion to its graph.</p><a href="#visual-lab">Explore the motion model <span aria-hidden="true">↗</span></a></div>
+            </article>
+            <article class="capability-item">
+              <span class="capability-index">03</span>
+              <div><h4>Guided practice</h4><p>Try three questions with explanations and device-local progress.</p><a href="#practice-room">Start a practice session <span aria-hidden="true">↗</span></a></div>
+            </article>
+            <article class="capability-item">
+              <span class="capability-index">04</span>
+              <div><h4>Sample testing and topic outlook</h4><p>Take an eight-question timed sample test or explore frequencies from your own cited, teacher-reviewed past-paper data. Neither is an official exam prediction.</p><a href="#exam-center">Open the exam desk <span aria-hidden="true">↗</span></a></div>
+            </article>
+          </section>
+          <section class="capability-group capability-group-built" aria-labelledby="built-title">
+            <div class="capability-group-title"><span class="capability-status status-built"></span><h3 id="built-title">Built and tested in the repository</h3></div>
+            <article class="capability-item">
+              <span class="capability-index">05</span>
+              <div><h4>Exact rational and matrix kernel</h4><p>C17 can perform bounded exact arithmetic, linear solving, inverses, and projections. Independently tested; not connected to this page.</p><a href="https://github.com/saemsir/saem/tree/main/saem-unified/core/c17" target="_blank" rel="noopener noreferrer">Inspect the QCOS source <span aria-hidden="true">↗</span></a></div>
+            </article>
+            <article class="capability-item">
+              <span class="capability-index">06</span>
+              <div><h4>Local domain-engine source</h4><p>C++17 modules and test tools live in the repository; no public student API is deployed.</p><a href="https://github.com/saemsir/saem/tree/main/saem-unified" target="_blank" rel="noopener noreferrer">Read the implementation status <span aria-hidden="true">↗</span></a></div>
+            </article>
+            <article class="capability-item">
+              <span class="capability-index">07</span>
+              <div><h4>Automated verification</h4><p>Build and test workflows check code and compare exact math with independent oracles.</p><a href="https://github.com/saemsir/saem/actions" target="_blank" rel="noopener noreferrer">View repository checks <span aria-hidden="true">↗</span></a></div>
+            </article>
+          </section>
+        </div>
+        <div class="capability-boundary">
+          <span class="boundary-mark" aria-hidden="true">→</span>
+          <p><strong>Still being built:</strong> the offline workspace, official-board question bank, teacher review workflow, and a back-tested, calibrated topic forecast. The exam desk here is a local sample test and an experimental frequency tool, not those finished services.</p>
+          <a href="https://github.com/saemsir/saem/blob/main/docs/SAEM_EDTECH_ARCHITECTURE.md" target="_blank" rel="noopener noreferrer">See the staged roadmap <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="join-section">
+      <div class="container join-layout">
+        <div><p class="eyebrow">Your next question is waiting</p><h2>Keep asking<br><em>better questions.</em></h2></div>
+        <div><p>Start with a lesson, bring your questions, and keep building your understanding—one idea at a time.</p><div class="join-actions"><a class="button button-paper" href="https://www.youtube.com/@SaemPhysics" target="_blank" rel="noopener noreferrer">Explore the channel <span aria-hidden="true">↗</span></a><a class="join-text-link" href="https://t.me/SaemPhysics" target="_blank" rel="noopener noreferrer">Get notes on Telegram <span aria-hidden="true">↗</span></a></div></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-main">
+      <a class="brand footer-brand" href="#home"><span class="brand-mark" aria-hidden="true">S<span>.</span></span><span>SAEM <small>PHYSICS</small></span></a>
+      <p>Clear ideas. Careful reasoning.<br>A little more wonder in every lesson.</p>
+      <div class="footer-links"><a href="https://www.youtube.com/@SaemPhysics" target="_blank" rel="noopener noreferrer">YouTube ↗</a><a href="https://meet170.webex.com/meet/saem" target="_blank" rel="noopener noreferrer">Live class ↗</a><a href="mailto:msaemsir@gmail.com">Contact ↗</a><a href="https://forms.gle/xGCHZt8vsd7rDf9k9" target="_blank" rel="noopener noreferrer">Admission ↗</a></div>
+    </div>
+    <div class="container footer-bottom"><span>© <span id="current-year"></span> Saem Physics</span><span>Built for learners who want to understand.</span></div>
+  </footer>
+  <script src="student-studio.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
